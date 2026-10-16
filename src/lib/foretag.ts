@@ -8,8 +8,8 @@ export const FORETAG: {
   kortnamn: string;
   /** En mening om vad företaget gör – används i metadata, strukturerad data och llms.txt. */
   beskrivning: string;
+  /** Säte. Används bara i adressen och den strukturerade datan – inte i rubriker eller texter. */
   ort: string;
-  omrade: string;
   orgnr: string;
   gata: string;
   postnummer: string;
@@ -23,9 +23,8 @@ export const FORETAG: {
   namn: "Treatly – Marketing AB",
   kortnamn: "Treatly",
   beskrivning:
-    "Marknadsföringsbyrå i Göteborg som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag – till fasta priser.",
+    "Marknadsföringsbyrå som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag i hela Sverige – till fasta priser.",
   ort: "Göteborg",
-  omrade: "Göteborg",
   orgnr: "",
   gata: "",
   postnummer: "",

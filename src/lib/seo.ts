@@ -69,7 +69,7 @@ export function grundSchema(): Schema {
     logo: absolut("/logo.png"),
     image: absolut(DELNINGSBILD.src),
     address: adress,
-    areaServed: { "@type": "City", name: FORETAG.ort },
+    areaServed: { "@type": "Country", name: "Sverige" },
     priceRange: `${PRIS.bilder5}–${PRIS.premium} SEK`,
     knowsAbout: TJANSTER.map((t) => t.titel),
   };
@@ -102,7 +102,7 @@ export function tjanstSchema(t: Tjanst): Schema {
     description: t.seoBeskrivning,
     url: absolut(`/tjanster/${t.slug}`),
     provider: { "@id": FORETAG_ID },
-    areaServed: { "@type": "City", name: FORETAG.ort },
+    areaServed: { "@type": "Country", name: "Sverige" },
     offers: {
       "@type": "Offer",
       description: t.pris.avser,

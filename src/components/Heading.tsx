@@ -1,5 +1,6 @@
 import type { ElementType, ReactNode } from "react";
 import { Blob } from "@/components/Brand";
+import { avstava } from "@/lib/text";
 
 export function Heading({
   as: Tag = "h2",
@@ -62,12 +63,12 @@ export function PageHero({
 /** Rubriktext där en del (`markera`) får gul understrykning. */
 export function Markerad({ text, markera }: { text: string; markera: string }) {
   const i = text.indexOf(markera);
-  if (i < 0) return <>{text}</>;
+  if (i < 0) return <>{avstava(text)}</>;
   return (
     <>
-      {text.slice(0, i)}
-      <Mark>{markera}</Mark>
-      {text.slice(i + markera.length)}
+      {avstava(text.slice(0, i))}
+      <Mark>{avstava(markera)}</Mark>
+      {avstava(text.slice(i + markera.length))}
     </>
   );
 }

@@ -9,8 +9,8 @@ import { sidhuvud } from "@/lib/seo";
 export const Route = createFileRoute("/om-oss")({
   head: () =>
     sidhuvud({
-      titel: "Om oss – marknadsföring i Göteborg",
-      beskrivning: `${FORETAG.namn} är en marknadsföringsbyrå i ${FORETAG.ort}. Vi tar fram bilder, sköter SEO, GEO och annonser och bygger hemsidor åt företag.`,
+      titel: "Om oss – marknadsföringsbyrå för företag",
+      beskrivning: `${FORETAG.namn} är en marknadsföringsbyrå för företag i hela Sverige. Vi tar fram bilder, sköter SEO, GEO och annonser och bygger hemsidor åt företag.`,
       sokvag: "/om-oss",
     }),
   component: OmOss,
@@ -42,7 +42,6 @@ const FAKTA = [
   { rubrik: "Företag", varde: FORETAG.namn },
   { rubrik: "Organisationsnummer", varde: FORETAG.orgnr },
   { rubrik: "Bransch", varde: "Marknadsföring & kommunikation" },
-  { rubrik: "Säte", varde: FORETAG.ort },
   { rubrik: "Adress", varde: FORETAG.adress },
 ] as const;
 
@@ -60,10 +59,10 @@ function OmOss() {
         eyebrow="Om oss"
         title={
           <>
-            Marknadsföring från <Mark>{FORETAG.ort}</Mark>
+            En byrå som <Mark>gör jobbet</Mark> åt er
           </>
         }
-        intro={`${FORETAG.namn} är ett marknadsföringsbolag med säte i ${FORETAG.ort}. Vi hjälper företag med varumärke, innehåll och kampanjer.`}
+        intro={`${FORETAG.namn} hjälper företag i hela Sverige med marknadsföringsbilder, SEO, GEO, annonser och hemsidor. Vi gör jobbet – ni driver företaget.`}
       />
 
       <section className="container-page grid gap-4 py-20 md:grid-cols-3 sm:py-28">

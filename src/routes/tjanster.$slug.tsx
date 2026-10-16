@@ -7,6 +7,7 @@ import { Reveal } from "@/components/Reveal";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { kr, MOMS_TEXT } from "@/lib/priser";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
+import { avstava } from "@/lib/text";
 import { hittaTjanst, TJANSTER, type Tjanst } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/tjanster/$slug")({
@@ -58,7 +59,7 @@ function TjanstSida() {
         <Reveal>
           <p className="eyebrow">Själv eller med oss</p>
           <h2 id="jamforelse" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-            Det här krävs för {t.iText} – <Mark>vi gör det åt er</Mark>
+            Det här krävs för {avstava(t.iText)} – <Mark>vi gör det åt er</Mark>
           </h2>
         </Reveal>
         <Reveal delay={80} className="mt-10">
@@ -73,7 +74,7 @@ function TjanstSida() {
           </Reveal>
           <Reveal delay={80}>
             <p className="eyebrow">Vanliga frågor</p>
-            <h2 className="mt-4 text-3xl sm:text-4xl">Frågor om {t.iText}</h2>
+            <h2 className="mt-4 text-3xl sm:text-4xl">Frågor om {avstava(t.iText)}</h2>
             <div className="mt-8">
               <VanligaFragor fragor={t.fragor} />
             </div>

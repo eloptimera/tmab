@@ -91,7 +91,7 @@ export function Footer() {
                 <li className="flex gap-3">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-sun" aria-hidden="true" />
                   <Link to="/kontakt" className={LANK}>
-                    {FORETAG.ort} · Skriv till oss
+                    Skriv till oss
                   </Link>
                 </li>
               )}

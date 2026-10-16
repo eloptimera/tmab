@@ -4,6 +4,7 @@ import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Mark, PageHero } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { kr } from "@/lib/priser";
+import { avstava } from "@/lib/text";
 import { brodsmulor, sidhuvud } from "@/lib/seo";
 import { TJANSTER } from "@/lib/tjanster";
 
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/tjanster/")({
     sidhuvud({
       titel: "SEO, GEO, annonser och hemsidor",
       beskrivning:
-        "Marknadsföringsbilder, SEO, GEO, Meta-annonser, hemsideoptimering och nya hemsidor för företag i Göteborg. Fasta priser och gratis första genomgång.",
+        "Marknadsföringsbilder, SEO, GEO, Meta-annonser, hemsideoptimering och nya hemsidor för företag. Fasta priser och gratis första genomgång.",
       sokvag: "/tjanster",
       schema: [
         brodsmulor([
@@ -56,7 +57,7 @@ function Tjanster() {
                   <t.ikon className="size-7" aria-hidden="true" />
                 </span>
                 <h2 id={`${t.slug}-rubrik`} className="mt-6 text-3xl sm:text-4xl">
-                  {t.titel}
+                  {avstava(t.titel)}
                 </h2>
                 <p className="mt-3 text-lg font-bold text-ink">{t.vad}</p>
                 <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">
@@ -89,7 +90,7 @@ function Tjanster() {
                   params={{ slug: t.slug }}
                   className="btn-base btn-dark mt-6"
                 >
-                  Läs mer om {t.iText}
+                  Läs mer om {avstava(t.iText)}
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </div>

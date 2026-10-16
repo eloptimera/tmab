@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Mark, PageHero } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
@@ -125,10 +125,6 @@ function Kontakt() {
               )}
             </ul>
           )}
-          <p className="mt-6 flex items-center gap-3 text-muted-foreground">
-            <MapPin className="size-5 text-brand" aria-hidden="true" />
-            {FORETAG.namn}, {FORETAG.ort}
-          </p>
         </Reveal>
 
         <Reveal delay={100}>

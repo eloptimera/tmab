@@ -23,7 +23,7 @@ function llmsText(): string {
     "",
     `> ${FORETAG.beskrivning}`,
     "",
-    `Ort: ${FORETAG.ort}. ${MOMS_TEXT} Första genomgången (20–25 minuter) är gratis och bokas på ${absolut("/kontakt")}.`,
+    `Vi arbetar digitalt med företag i hela Sverige. ${MOMS_TEXT} Första genomgången (20–25 minuter) är gratis och bokas på ${absolut("/kontakt")}.`,
     "",
     "## Tjänster",
     "",

@@ -4,6 +4,7 @@ import { ArrowRight, Check, Plus } from "lucide-react";
 import { useRef, useState } from "react";
 import { FORETAG } from "@/lib/foretag";
 import { kr } from "@/lib/priser";
+import { avstava } from "@/lib/text";
 import { TJANSTER, type Tjanst } from "@/lib/tjanster";
 
 const LUTNING = ["-rotate-[1.4deg]", "rotate-[1.1deg]", "rotate-[0.8deg]", "-rotate-[1deg]"];
@@ -101,7 +102,7 @@ function Innehall({ o }: { o: Tjanst }) {
           <span className="text-sm text-muted-foreground">exkl. moms</span>
         </p>
         <Link to="/tjanster/$slug" params={{ slug: o.slug }} className="btn-base btn-outline">
-          Läs mer om {o.iText}
+          Läs mer om {avstava(o.iText)}
           <ArrowRight className="size-4" aria-hidden="true" />
         </Link>
       </div>
@@ -161,7 +162,7 @@ export function LyckasDigitalt() {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block font-display text-2xl leading-tight tracking-[-0.015em] text-ink sm:text-3xl">
-                  {o.titel}
+                  {avstava(o.titel)}
                 </span>
                 <span className="mt-1 block text-sm leading-snug text-muted-foreground sm:text-base">
                   {o.vad}
