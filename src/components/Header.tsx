@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { BokaKnapp } from "@/components/Boka";
 import { Logo } from "@/components/Brand";
 import { FORETAG } from "@/lib/foretag";
 
 const LANKAR = [
-  { to: "/", label: "Hem" },
   { to: "/tjanster", label: "Tjänster" },
   { to: "/priser", label: "Priser" },
   { to: "/om-oss", label: "Om oss" },
@@ -21,7 +21,7 @@ function Lank({ to, label, onClick }: { to: string; label: string; onClick?: () 
     <Link
       to={to}
       onClick={onClick}
-      activeOptions={{ exact: to === "/" }}
+      activeOptions={{ exact: false }}
       className={LANK}
       activeProps={{ className: `${LANK} ${LANK_AKTIV}`, "aria-current": "page" }}
     >
@@ -67,22 +67,11 @@ export function Header() {
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Huvudmeny">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Huvudmeny">
           {LANKAR.map((l) => (
             <Lank key={l.to} {...l} />
           ))}
-          <Link
-            to="/kontakt"
-            className="btn-base btn-outline ml-4 hidden min-h-11 px-6 py-2 text-sm xl:inline-flex"
-          >
-            Få kostnadsfri rådgivning
-          </Link>
-          <Link
-            to="/offert"
-            className="btn-base btn-dark ml-2 min-h-11 px-6 py-2 text-sm max-xl:ml-4"
-          >
-            Få fri offert
-          </Link>
+          <BokaKnapp className="ml-4 min-h-11 px-6 py-2 text-sm" />
         </nav>
 
         <button
@@ -91,7 +80,7 @@ export function Header() {
           aria-expanded={oppen}
           aria-controls="mobilmeny"
           onClick={() => setOppen((o) => !o)}
-          className="grid size-12 place-items-center rounded-full bg-tint text-ink md:hidden"
+          className="grid size-12 place-items-center rounded-full bg-tint text-ink lg:hidden"
         >
           {oppen ? (
             <X className="size-5" aria-hidden="true" />
@@ -104,21 +93,12 @@ export function Header() {
           <nav
             id="mobilmeny"
             aria-label="Mobilmeny"
-            className="absolute inset-x-4 top-full mt-2 flex flex-col gap-1 rounded-[1.75rem] bg-white p-3 shadow-xl shadow-ink/15 md:hidden"
+            className="absolute inset-x-4 top-full mt-2 flex flex-col gap-1 rounded-[1.75rem] bg-white p-3 shadow-xl shadow-ink/15 lg:hidden"
           >
             {LANKAR.map((l) => (
               <Lank key={l.to} {...l} onClick={() => setOppen(false)} />
             ))}
-            <Link
-              to="/kontakt"
-              onClick={() => setOppen(false)}
-              className="btn-base btn-outline mt-1"
-            >
-              Få kostnadsfri rådgivning
-            </Link>
-            <Link to="/offert" onClick={() => setOppen(false)} className="btn-base btn-dark">
-              Få fri offert
-            </Link>
+            <BokaKnapp className="mt-1" onClick={() => setOppen(false)} />
           </nav>
         )}
       </div>

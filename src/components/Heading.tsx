@@ -58,3 +58,16 @@ export function PageHero({
     </section>
   );
 }
+
+/** Rubriktext där en del (`markera`) får gul understrykning. */
+export function Markerad({ text, markera }: { text: string; markera: string }) {
+  const i = text.indexOf(markera);
+  if (i < 0) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, i)}
+      <Mark>{markera}</Mark>
+      {text.slice(i + markera.length)}
+    </>
+  );
+}

@@ -1,11 +1,13 @@
 // Enda källan till företagsuppgifter. Allt på sajten (sidfot, kontakt, integritetspolicy,
-// meta-data) läser härifrån.
+// metadata, strukturerad data och llms.txt) läser härifrån.
 //
 // Fält med tomt värde visas inte på sajten förrän de fylls i.
-// TODO(Treatly): fyll i org.nr, adress, telefon, e-post och personer innan sajten går live.
+// TODO(Treatly): fyll i org.nr, adress, telefon, e-post och personer.
 export const FORETAG: {
   namn: string;
   kortnamn: string;
+  /** En mening om vad företaget gör – används i metadata, strukturerad data och llms.txt. */
+  beskrivning: string;
   ort: string;
   omrade: string;
   orgnr: string;
@@ -20,6 +22,8 @@ export const FORETAG: {
 } = {
   namn: "Treatly – Marketing AB",
   kortnamn: "Treatly",
+  beskrivning:
+    "Marknadsföringsbyrå i Göteborg som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag – till fasta priser.",
   ort: "Göteborg",
   omrade: "Göteborg",
   orgnr: "",
@@ -32,3 +36,13 @@ export const FORETAG: {
   oppettider: [],
   personer: [],
 };
+
+declare const __SAJT_URL__: string;
+
+/** Sajtens publika adress utan avslutande snedstreck, t.ex. https://exempel.se */
+export const SAJT_URL: string = __SAJT_URL__;
+
+/** Gör en sökväg (/priser) till en absolut adress (https://…/priser). */
+export function absolut(sokvag: string): string {
+  return `${SAJT_URL}${sokvag === "/" ? "/" : sokvag}`;
+}

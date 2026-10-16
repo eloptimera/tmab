@@ -1,21 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/Heading";
 import { FORETAG } from "@/lib/foretag";
+import { sidhuvud } from "@/lib/seo";
 
 export const Route = createFileRoute("/integritetspolicy")({
-  head: () => ({
-    meta: [
-      { title: "Integritetspolicy – Treatly – Marketing AB" },
-      {
-        name: "description",
-        content:
-          "Så behandlar Treatly – Marketing AB dina personuppgifter när du kontaktar oss eller begär offert.",
-      },
-      { property: "og:title", content: "Integritetspolicy – Treatly – Marketing AB" },
-      { property: "og:url", content: "/integritetspolicy" },
-    ],
-    links: [{ rel: "canonical", href: "/integritetspolicy" }],
-  }),
+  head: () =>
+    sidhuvud({
+      titel: "Integritetspolicy",
+      beskrivning: `Så behandlar ${FORETAG.namn} dina personuppgifter när du bokar en genomgång eller kontaktar oss.`,
+      sokvag: "/integritetspolicy",
+    }),
   component: Integritetspolicy,
 });
 
@@ -54,16 +48,12 @@ function Integritetspolicy() {
         </Sektion>
 
         <Sektion titel="Vilka uppgifter vi samlar in">
-          <p>Vi samlar bara in det du själv skriver i våra formulär:</p>
+          <p>Vi samlar bara in det du själv skriver i bokningsformuläret:</p>
           <ul className="list-disc space-y-1 pl-6">
             <li>
-              <strong className="font-medium text-foreground">Kontaktformuläret:</strong> namn,
-              e-post, telefonnummer och ditt meddelande.
-            </li>
-            <li>
-              <strong className="font-medium text-foreground">Offertförfrågan:</strong> namn,
-              telefonnummer, e-post, företag, uppgifter om uppdraget (till exempel typ av uppdrag,
-              budget och önskat startdatum), eventuella bifogade filer och ditt meddelande.
+              <strong className="font-medium text-foreground">Bokningsformuläret:</strong> namn,
+              företag, e-post, telefonnummer, er hemsida, vilka tjänster eller paket ni är
+              intresserade av och ditt meddelande.
             </li>
           </ul>
           <p>
@@ -94,6 +84,7 @@ function Integritetspolicy() {
           <p>
             Uppgifterna hanteras av oss och av de tjänsteleverantörer vi använder för att driva
             webbplatsen och ta emot förfrågningar, som behandlar uppgifterna för vår räkning.
+            Förfrågningar från bokningsformuläret skickas till oss som mejl via en e-posttjänst.
             Webbplatsen driftas hos en hostingleverantör som kan se teknisk trafikdata som
             IP-adress. Utöver det lämnar vi bara ut uppgifter om lag kräver det.
           </p>

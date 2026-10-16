@@ -1,31 +1,33 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
+import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Blob } from "@/components/Brand";
 import { Mark, PageHero } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
+import { VanligaFragor } from "@/components/VanligaFragor";
 import {
   ENGANGSTJANSTER,
   KONSULTATION,
+  kr,
+  MOMS_TEXT,
   PAKET,
   PAKET_VILLKOR,
+  PRIS,
+  PRIS_FRAGOR,
+  prisText,
   type Paket,
   type Prisrad,
 } from "@/lib/priser";
+import { faqSchema, paketSchema, sidhuvud } from "@/lib/seo";
 
 export const Route = createFileRoute("/priser")({
-  head: () => ({
-    meta: [
-      { title: "Priser – Treatly – Marketing AB" },
-      {
-        name: "description",
-        content:
-          "Månadspaket från 2 995 kr exkl. moms, engångstjänster och gratis första konsultation. Se vad marknadsföringsbilder, SEO/GEO, Meta-annonser och hemsida kostar.",
-      },
-      { property: "og:title", content: "Priser – Treatly – Marketing AB" },
-      { property: "og:url", content: "/priser" },
-    ],
-    links: [{ rel: "canonical", href: "/priser" }],
-  }),
+  head: () =>
+    sidhuvud({
+      titel: `Priser från ${kr(PRIS.start)}/mån`,
+      beskrivning: `Månadspaket från ${kr(PRIS.start)} per månad, engångstjänster från ${kr(PRIS.bilder5)} och gratis första genomgång. ${MOMS_TEXT}`,
+      sokvag: "/priser",
+      schema: [paketSchema(), faqSchema(PRIS_FRAGOR)],
+    }),
   component: Priser,
 });
 
@@ -51,9 +53,9 @@ function Paketkort({ p }: { p: Paket }) {
       >
         {p.namn}
       </h3>
-      <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">{p.pris}</p>
+      <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">{kr(p.belopp)}</p>
       <p className={`mt-2 text-sm ${utvalt ? "text-white/80" : "text-muted-foreground"}`}>
-        {p.per}
+        per månad, exkl. moms
       </p>
 
       <ul
@@ -74,9 +76,9 @@ function Paketkort({ p }: { p: Paket }) {
       </ul>
 
       <div className="mt-auto pt-9">
-        <Link to="/offert" className={`btn-base w-full ${utvalt ? "btn-white" : "btn-dark"}`}>
+        <BokaKnapp paket={p.id} variant={utvalt ? "white" : "dark"} className="w-full">
           Välj {p.namn}
-        </Link>
+        </BokaKnapp>
       </div>
     </article>
   );
@@ -110,7 +112,17 @@ function Pristabell({
                   scope="row"
                   className="py-5 pr-3 align-middle font-normal break-words hyphens-auto text-ink sm:pr-4 sm:text-lg"
                 >
-                  {r.tjanst}
+                  {r.slug ? (
+                    <Link
+                      to="/tjanster/$slug"
+                      params={{ slug: r.slug }}
+                      className="underline decoration-line decoration-2 underline-offset-4 transition-colors hover:decoration-brand"
+                    >
+                      {r.tjanst}
+                    </Link>
+                  ) : (
+                    r.tjanst
+                  )}
                 </th>
                 <td className="py-5 text-right align-middle">
                   {gratis ? (
@@ -120,21 +132,12 @@ function Pristabell({
                   ) : (
                     <span
                       className={
-                        /\d/.test(r.pris)
-                          ? "font-display text-lg text-ink sm:text-2xl"
+                        typeof r.pris === "number"
+                          ? "font-display text-lg whitespace-nowrap text-ink sm:text-2xl"
                           : "inline-block max-w-[9rem] text-sm text-muted-foreground"
                       }
                     >
-                      {r.pris.split("–").map((del, i) => (
-                        <span key={del}>
-                          {i > 0 && (
-                            <>
-                              –<wbr />
-                            </>
-                          )}
-                          <span className="whitespace-nowrap">{del}</span>
-                        </span>
-                      ))}
+                      {prisText(r)}
                     </span>
                   )}
                 </td>
@@ -159,9 +162,7 @@ function Priser() {
         }
         intro="Välj ett månadspaket, köp en enskild tjänst eller börja med en kostnadsfri konsultation där vi går igenom er digitala närvaro."
       >
-        <Link to="/kontakt" className="btn-base btn-dark">
-          Boka kostnadsfri konsultation
-        </Link>
+        <BokaKnapp />
         <a href="#engangstjanster" className="btn-base btn-outline">
           Se engångstjänster
         </a>
@@ -216,34 +217,31 @@ function Priser() {
             </div>
           </Reveal>
         </div>
-        <p className="container-page mt-8 text-sm text-muted-foreground">
-          Alla priser är exkl. moms.
-        </p>
+        <p className="container-page mt-8 text-sm text-muted-foreground">{MOMS_TEXT}</p>
       </section>
 
-      {/* Avslut */}
-      <section className="px-3 pb-3 sm:px-6">
-        <Reveal>
-          <div className="panel-ink relative isolate mx-auto max-w-[88rem] overflow-hidden rounded-[2rem] px-6 py-16 sm:px-14 sm:py-20">
-            <Blob className="absolute top-1/2 -right-24 -z-10 hidden w-[34rem] -translate-y-1/2 lg:block" />
-            <p className="caps text-white/70">Osäker på vilket paket?</p>
-            <h2 className="mt-5 max-w-2xl text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05]">
-              Vi går igenom er närvaro <Mark>kostnadsfritt</Mark>
+      {/* Vanliga frågor */}
+      <section aria-labelledby="fragor" className="container-page py-14 sm:py-20">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <Reveal>
+            <p className="eyebrow">Vanliga frågor</p>
+            <h2 id="fragor" className="mt-4 text-3xl sm:text-4xl">
+              Frågor om <Mark>priser</Mark>
             </h2>
-            <p className="mt-5 max-w-xl text-white/80">
-              20–25 minuter, ett skräddarsytt förslag efteråt och inga förpliktelser.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link to="/kontakt" className="btn-base btn-white">
-                Boka kostnadsfri konsultation
-              </Link>
-              <Link to="/offert" className="btn-base btn-outline-white">
-                Få fri offert
-              </Link>
-            </div>
-          </div>
-        </Reveal>
+          </Reveal>
+          <Reveal delay={80}>
+            <VanligaFragor fragor={PRIS_FRAGOR} />
+          </Reveal>
+        </div>
       </section>
+
+      <BokaPanel
+        rubrik={
+          <>
+            Osäker på vilket <Mark>paket</Mark>?
+          </>
+        }
+      />
     </>
   );
 }

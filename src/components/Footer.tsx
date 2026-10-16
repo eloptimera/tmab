@@ -15,7 +15,7 @@ export function Footer() {
           <div>
             <Logo ljus className="text-2xl" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
-              Marknadsföring för företag som vill synas och växa. Baserade i {FORETAG.omrade}.
+              {FORETAG.beskrivning}
             </p>
           </div>
 
@@ -23,8 +23,8 @@ export function Footer() {
             <p className="text-xs font-bold tracking-[0.14em] text-sun uppercase">Tjänster</p>
             <ul className="mt-4 space-y-2.5 text-sm text-white/85">
               {TJANSTER.map((t) => (
-                <li key={t.id}>
-                  <Link to="/tjanster" hash={t.id} className={LANK}>
+                <li key={t.slug}>
+                  <Link to="/tjanster/$slug" params={{ slug: t.slug }} className={LANK}>
                     {t.titel}
                   </Link>
                 </li>
@@ -46,13 +46,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/offert" className={LANK}>
-                  Få fri offert
-                </Link>
-              </li>
-              <li>
                 <Link to="/kontakt" className={LANK}>
-                  Kontakt
+                  Boka gratis genomgång
                 </Link>
               </li>
               <li>

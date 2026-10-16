@@ -14,6 +14,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FORETAG } from "@/lib/foretag";
+import { grundSchema, jsonLd } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -74,13 +76,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Treatly – Marketing AB" },
-      {
-        name: "description",
-        content:
-          "Varumärke, innehåll och kampanjer för företag som vill synas och växa. Få fri offert.",
-      },
-      { property: "og:site_name", content: "Treatly – Marketing AB" },
+      // Standardvärden – varje sida sätter egna via sidhuvud() i src/lib/seo.ts.
+      { title: FORETAG.namn },
+      { name: "description", content: FORETAG.beskrivning },
+      { property: "og:site_name", content: FORETAG.namn },
       { name: "theme-color", content: "#ebeae6" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "sv_SE" },
@@ -95,23 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon-32.png", type: "image/png", sizes: "32x32" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "Treatly – Marketing AB",
-          description: "Marknadsföring för företag: varumärke, innehåll och kampanjer.",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Göteborg",
-            addressCountry: "SE",
-          },
-          areaServed: ["Göteborg"],
-        }),
-      },
-    ],
+    scripts: [jsonLd(grundSchema())],
   }),
   shellComponent: RootShell,
   component: RootComponent,

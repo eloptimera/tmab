@@ -12,10 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as OffertRouteImport } from './routes/offert'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as PriserRouteImport } from './routes/priser'
-import { Route as TjansterRouteImport } from './routes/tjanster'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TjansterIndexRouteImport } from './routes/tjanster.index'
+import { Route as TjansterSlugRouteImport } from './routes/tjanster.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,6 +34,11 @@ const IntegritetspolicyRoute = IntegritetspolicyRouteImport.update({
 const KontaktRoute = KontaktRouteImport.update({
   id: '/kontakt',
   path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OffertRoute = OffertRouteImport.update({
@@ -47,9 +56,24 @@ const PriserRoute = PriserRouteImport.update({
   path: '/priser',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TjansterRoute = TjansterRouteImport.update({
-  id: '/tjanster',
-  path: '/tjanster',
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TjansterIndexRoute = TjansterIndexRouteImport.update({
+  id: '/tjanster/',
+  path: '/tjanster/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TjansterSlugRoute = TjansterSlugRouteImport.update({
+  id: '/tjanster/$slug',
+  path: '/tjanster/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -57,29 +81,41 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
-  '/tjanster': typeof TjansterRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tjanster/$slug': typeof TjansterSlugRoute
+  '/tjanster/': typeof TjansterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
-  '/tjanster': typeof TjansterRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tjanster/$slug': typeof TjansterSlugRoute
+  '/tjanster': typeof TjansterIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
-  '/tjanster': typeof TjansterRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tjanster/$slug': typeof TjansterSlugRoute
+  '/tjanster/': typeof TjansterIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,38 +123,54 @@ export interface FileRouteTypes {
     | '/'
     | '/integritetspolicy'
     | '/kontakt'
+    | '/llms.txt'
     | '/offert'
     | '/om-oss'
     | '/priser'
-    | '/tjanster'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/tjanster/$slug'
+    | '/tjanster/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/integritetspolicy'
     | '/kontakt'
+    | '/llms.txt'
     | '/offert'
     | '/om-oss'
     | '/priser'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/tjanster/$slug'
     | '/tjanster'
   id:
     | '__root__'
     | '/'
     | '/integritetspolicy'
     | '/kontakt'
+    | '/llms.txt'
     | '/offert'
     | '/om-oss'
     | '/priser'
-    | '/tjanster'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/tjanster/$slug'
+    | '/tjanster/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   KontaktRoute: typeof KontaktRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
   OffertRoute: typeof OffertRoute
   OmOssRoute: typeof OmOssRoute
   PriserRoute: typeof PriserRoute
-  TjansterRoute: typeof TjansterRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TjansterSlugRoute: typeof TjansterSlugRoute
+  TjansterIndexRoute: typeof TjansterIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -144,6 +196,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontaktRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/offert': {
       id: '/offert'
       path: '/offert'
@@ -165,11 +224,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PriserRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tjanster': {
-      id: '/tjanster'
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tjanster/': {
+      id: '/tjanster/'
       path: '/tjanster'
-      fullPath: '/tjanster'
-      preLoaderRoute: typeof TjansterRouteImport
+      fullPath: '/tjanster/'
+      preLoaderRoute: typeof TjansterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tjanster/$slug': {
+      id: '/tjanster/$slug'
+      path: '/tjanster/$slug'
+      fullPath: '/tjanster/$slug'
+      preLoaderRoute: typeof TjansterSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -179,10 +259,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   KontaktRoute: KontaktRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
   OffertRoute: OffertRoute,
   OmOssRoute: OmOssRoute,
   PriserRoute: PriserRoute,
-  TjansterRoute: TjansterRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TjansterSlugRoute: TjansterSlugRoute,
+  TjansterIndexRoute: TjansterIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

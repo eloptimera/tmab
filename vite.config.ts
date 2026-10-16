@@ -6,10 +6,23 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Sajtens publika adress, används i canonical-länkar, delningsbilder och strukturerad data.
+// Ordning: SAJT_URL (sätts manuellt, t.ex. egen domän) → Vercels produktionsdomän → lokalt.
+const sajtUrl =
+  process.env["SAJT_URL"] ??
+  (process.env["VERCEL_PROJECT_PRODUCTION_URL"]
+    ? `https://${process.env["VERCEL_PROJECT_PRODUCTION_URL"]}`
+    : "http://localhost:3000");
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+  },
+  vite: {
+    define: {
+      __SAJT_URL__: JSON.stringify(sajtUrl.replace(/\/$/, "")),
+    },
   },
 });

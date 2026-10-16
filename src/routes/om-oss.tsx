@@ -1,23 +1,18 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Lightbulb, LineChart, UserRound } from "lucide-react";
+import { BokaPanel } from "@/components/Boka";
 import { Heading, Mark, PageHero } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { FORETAG } from "@/lib/foretag";
+import { sidhuvud } from "@/lib/seo";
 
 export const Route = createFileRoute("/om-oss")({
-  head: () => ({
-    meta: [
-      { title: "Om oss – Treatly – Marketing AB" },
-      {
-        name: "description",
-        content:
-          "Treatly – Marketing AB är ett marknadsföringsbolag i Göteborg. Läs om hur vi arbetar.",
-      },
-      { property: "og:title", content: "Om oss – Treatly – Marketing AB" },
-      { property: "og:url", content: "/om-oss" },
-    ],
-    links: [{ rel: "canonical", href: "/om-oss" }],
-  }),
+  head: () =>
+    sidhuvud({
+      titel: "Om oss – marknadsföring i Göteborg",
+      beskrivning: `${FORETAG.namn} är en marknadsföringsbyrå i ${FORETAG.ort}. Vi tar fram bilder, sköter SEO, GEO och annonser och bygger hemsidor åt företag.`,
+      sokvag: "/om-oss",
+    }),
   component: OmOss,
 });
 
@@ -127,16 +122,7 @@ function OmOss() {
         </div>
       </section>
 
-      <section className="container-page py-14 sm:py-20">
-        <Reveal className="flex flex-wrap justify-center gap-3">
-          <Link to="/offert" className="btn-base btn-dark px-9 py-4 text-base">
-            Få fri offert
-          </Link>
-          <Link to="/kontakt" className="btn-base btn-outline px-9 py-4 text-base">
-            Kontakta oss
-          </Link>
-        </Reveal>
-      </section>
+      <BokaPanel />
     </>
   );
 }
