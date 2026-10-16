@@ -6,13 +6,12 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-// Sajtens publika adress, används i canonical-länkar, delningsbilder och strukturerad data.
-// Ordning: SAJT_URL (sätts manuellt, t.ex. egen domän) → Vercels produktionsdomän → lokalt.
+// Sajtens publika adress, används i canonical-länkar, sitemap, delningsbilder och strukturerad
+// data. Byggen på Vercel pekar alltid på den riktiga domänen – även förhandsversioner och
+// vercel.app-adressen – så att Google bara indexerar en adress. SAJT_URL överstyr vid behov.
+const DOMAN = "https://treatlymarketing.se";
 const sajtUrl =
-  process.env["SAJT_URL"] ??
-  (process.env["VERCEL_PROJECT_PRODUCTION_URL"]
-    ? `https://${process.env["VERCEL_PROJECT_PRODUCTION_URL"]}`
-    : "http://localhost:3000");
+  process.env["SAJT_URL"] ?? (process.env["VERCEL"] ? DOMAN : "http://localhost:3000");
 
 export default defineConfig({
   tanstackStart: {

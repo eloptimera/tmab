@@ -82,6 +82,7 @@ export const PAKET: readonly Paket[] = [
       "Löpande SEO/GEO-optimering",
       "Fler hemsideförbättringar",
       "Meta Ads-hantering och optimering",
+      "Månadsrapport",
       "2 avstämningar per månad",
     ],
   },
