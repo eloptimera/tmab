@@ -7,6 +7,7 @@ import {
   Search,
   type LucideIcon,
 } from "lucide-react";
+import type { Steg } from "@/components/Steg";
 import { kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 // De sex tjänsterna. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
@@ -37,6 +38,8 @@ export type Tjanst = {
   pris: { belopp: number; fran: boolean; avser: string };
   /** Hur tjänsten ingår i månadspaketen, eller null om den inte gör det. */
   iPaket: string | null;
+  /** Hur vi arbetar, steg för steg – visas som "Så jobbar vi" på tjänstesidan. */
+  arbetssatt?: { steg: readonly Steg[]; underlag: string };
   fragor: readonly Fraga[];
 };
 
@@ -269,7 +272,29 @@ export const TJANSTER: readonly Tjanst[] = [
     ],
     pris: { belopp: PRIS.hemsida, fran: true, avser: "Ny hemsida" },
     iPaket: null,
+    arbetssatt: {
+      steg: [
+        {
+          titel: "Vi bestämmer vad sajten ska göra",
+          text: "Mål, målgrupp, vilka sidor som behövs och hur besökaren tar sig från första klicket till att kontakta er.",
+        },
+        {
+          titel: "Ni godkänner utseendet",
+          text: "Färger, typsnitt, bildstil och tonalitet utifrån ert varumärke – innan vi börjar designa.",
+        },
+        {
+          titel: "Vi bygger efter en tidplan",
+          text: "Ni vet hela tiden vad som händer härnäst, från första sidan till lansering.",
+        },
+      ],
+      underlag:
+        "Allt står på papper: ni får kravunderlag, användarflöde, designbrief och tidplan att godkänna innan vi bygger. Då ser ni svart på vitt att vi förstått hur ni vill ha det.",
+    },
     fragor: [
+      {
+        fraga: "Hur går det till när ni bygger en hemsida?",
+        svar: "I tre steg: vi bestämmer tillsammans vad sajten ska göra, ni godkänner utseendet och sedan bygger vi efter en tidplan. Ni får kravunderlag, användarflöde, designbrief och tidplan att godkänna innan vi börjar bygga.",
+      },
       {
         fraga: "Vad kostar en ny hemsida?",
         svar: `En ny hemsida kostar från ${kr(PRIS.hemsida)}. Det slutliga priset beror på hur många sidor och funktioner ni behöver, och ni får ett skräddarsytt förslag efter den kostnadsfria genomgången. ${MOMS_TEXT}`,

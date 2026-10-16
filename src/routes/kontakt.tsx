@@ -3,6 +3,7 @@ import { Mail, Phone } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Mark, PageHero } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
+import { Stegliste, type Steg } from "@/components/Steg";
 import { skickaBokning } from "@/lib/bokning";
 import { FORETAG } from "@/lib/foretag";
 import { PAKET } from "@/lib/priser";
@@ -30,7 +31,7 @@ export const Route = createFileRoute("/kontakt")({
   component: Kontakt,
 });
 
-const STEG = [
+const STEG: readonly Steg[] = [
   {
     titel: "Ni skickar formuläret",
     text: "Berätta kort vilka ni är och vad ni vill ha hjälp med.",
@@ -40,7 +41,7 @@ const STEG = [
     titel: "Ni får ett förslag",
     text: "Vi går igenom er digitala närvaro och ger ett skräddarsytt förslag – helt utan kostnad.",
   },
-] as const;
+];
 
 function Kontakt() {
   const sok = Route.useSearch();
@@ -91,19 +92,9 @@ function Kontakt() {
       <section className="container-page grid gap-14 py-14 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <h2 className="text-3xl sm:text-4xl">Så går det till</h2>
-          <ol className="mt-8 space-y-4">
-            {STEG.map((s, i) => (
-              <li key={s.titel} className="flex gap-5 rounded-[1.5rem] bg-tint p-6">
-                <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand font-display text-lg text-white">
-                  {i + 1}
-                </span>
-                <span>
-                  <span className="block font-bold text-ink">{s.titel}</span>
-                  <span className="mt-1 block leading-relaxed text-muted-foreground">{s.text}</span>
-                </span>
-              </li>
-            ))}
-          </ol>
+          <div className="mt-8">
+            <Stegliste steg={STEG} />
+          </div>
 
           {(FORETAG.telefon || FORETAG.epost) && (
             <ul className="mt-8 space-y-3">
