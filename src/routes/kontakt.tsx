@@ -63,7 +63,7 @@ function Kontakt() {
         intro="Skicka ett meddelande så svarar vi så snart vi kan."
       />
 
-      <section className="container-page grid gap-14 py-20 sm:py-28 lg:grid-cols-2 lg:gap-20">
+      <section className="container-page grid gap-14 py-14 sm:py-20 lg:grid-cols-2 lg:gap-20">
         <Reveal>
           <ul className="space-y-4">
             {FORETAG.telefon && (

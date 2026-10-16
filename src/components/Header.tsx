@@ -32,6 +32,16 @@ function Lank({ to, label, onClick }: { to: string; label: string; onClick?: () 
 export function Header() {
   const [oppen, setOppen] = useState(false);
 
+  // Helt transparent högst upp. Efter scroll läggs en lätt oskärpa bakom, annars krockar
+  // menyn med rubriker och text som glider under den.
+  const [scrollad, setScrollad] = useState(false);
+  useEffect(() => {
+    const kolla = () => setScrollad(window.scrollY > 24);
+    kolla();
+    window.addEventListener("scroll", kolla, { passive: true });
+    return () => window.removeEventListener("scroll", kolla);
+  }, []);
+
   useEffect(() => {
     if (!oppen) return;
     const stang = (e: KeyboardEvent) => e.key === "Escape" && setOppen(false);
@@ -40,7 +50,11 @@ export function Header() {
   }, [oppen]);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
+    <header
+      className={`sticky top-0 z-50 transition-[background-color,backdrop-filter] duration-300 ${
+        scrollad ? "bg-background/40 backdrop-blur-md" : "bg-transparent"
+      }`}
+    >
       <a
         href="#innehall"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-4 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-bold focus:text-ink"
@@ -56,7 +70,16 @@ export function Header() {
           {LANKAR.map((l) => (
             <Lank key={l.to} {...l} />
           ))}
-          <Link to="/offert" className="btn-base btn-dark ml-4 min-h-11 px-6 py-2 text-sm">
+          <Link
+            to="/kontakt"
+            className="btn-base btn-outline ml-4 hidden min-h-11 px-6 py-2 text-sm lg:inline-flex"
+          >
+            Få kostnadsfri rådgivning
+          </Link>
+          <Link
+            to="/offert"
+            className="btn-base btn-dark ml-2 min-h-11 px-6 py-2 text-sm max-lg:ml-4"
+          >
             Få fri offert
           </Link>
         </nav>
@@ -85,7 +108,14 @@ export function Header() {
             {LANKAR.map((l) => (
               <Lank key={l.to} {...l} onClick={() => setOppen(false)} />
             ))}
-            <Link to="/offert" onClick={() => setOppen(false)} className="btn-base btn-dark mt-1">
+            <Link
+              to="/kontakt"
+              onClick={() => setOppen(false)}
+              className="btn-base btn-outline mt-1"
+            >
+              Få kostnadsfri rådgivning
+            </Link>
+            <Link to="/offert" onClick={() => setOppen(false)} className="btn-base btn-dark">
               Få fri offert
             </Link>
           </nav>

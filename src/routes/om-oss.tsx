@@ -85,7 +85,7 @@ function OmOss() {
         ))}
       </section>
 
-      <section className="bg-fade-tint py-20 sm:py-28">
+      <section className="bg-fade-tint py-14 sm:py-20">
         <div
           className={`container-page grid gap-12 lg:gap-20 ${FORETAG.personer.length > 0 ? "lg:grid-cols-2" : "max-w-3xl"}`}
         >
@@ -127,7 +127,7 @@ function OmOss() {
         </div>
       </section>
 
-      <section className="container-page py-20 sm:py-28">
+      <section className="container-page py-14 sm:py-20">
         <Reveal className="flex flex-wrap justify-center gap-3">
           <Link to="/offert" className="btn-base btn-dark px-9 py-4 text-base">
             Få fri offert
