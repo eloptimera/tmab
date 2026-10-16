@@ -21,6 +21,19 @@ export const MOMS_TEXT = "Alla priser är exkl. moms.";
 export const BINDNING_TEXT =
   "Ingen bindningstid. Ni kan avsluta när ni vill – paketet löper till slutet av den period ni redan betalat för.";
 
+/** Löften som visas på pris-, kontakt- och om oss-sidan och står i villkoren. */
+export const SVARSTID_TEXT = "Vi svarar inom en arbetsdag.";
+export const GARANTI_TEXT = "Inte nöjda med bilderna? Vi gör om dem en gång utan kostnad.";
+export const AGANDE_TEXT = "Ni äger bilder, texter, konton och hemsida som vi tar fram åt er.";
+export const BETALNING_TEXT = "Faktura i förskott för varje period, 15 dagars betalningstid.";
+
+export const LOFTEN: readonly { titel: string; text: string }[] = [
+  { titel: "Ingen bindningstid", text: BINDNING_TEXT.replace("Ingen bindningstid. ", "") },
+  { titel: "Omtag ingår", text: GARANTI_TEXT },
+  { titel: "Ni äger allt", text: AGANDE_TEXT },
+  { titel: "Svar inom en arbetsdag", text: "På bokningar, frågor och ändringar." },
+];
+
 /** 2995 → "2 995 kr" (med hårt mellanslag så att beloppet aldrig bryts). */
 export function kr(belopp: number): string {
   return `${String(belopp).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0")}\u00a0kr`;
@@ -124,6 +137,14 @@ export const PRIS_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Finns det någon bindningstid?",
     svar: BINDNING_TEXT,
+  },
+  {
+    fraga: "Vad händer om vi inte är nöjda?",
+    svar: `${GARANTI_TEXT} För hemsidor ingår en ändringsrunda innan lansering.`,
+  },
+  {
+    fraga: "Vem äger det ni tar fram?",
+    svar: `${AGANDE_TEXT} Konton för Google, Meta och domän ligger i ert namn – vi får bara åtkomst.`,
   },
   {
     fraga: "Ingår annonsbudgeten i priset?",

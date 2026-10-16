@@ -7,6 +7,7 @@ import {
   PAKET,
   PAKET_VILLKOR,
   PRIS_FRAGOR,
+  LOFTEN,
   prisText,
 } from "@/lib/priser";
 import { textSvar } from "@/lib/sidor";
@@ -26,6 +27,10 @@ function llmsText(): string {
     `${FORETAG.namn} drivs av ${FORETAG.juridisktNamn} (org.nr ${FORETAG.orgnr}). Kontakt: ${FORETAG.epost}.`,
     "",
     `Vi arbetar digitalt med företag i hela Sverige. ${MOMS_TEXT} Första genomgången (20–25 minuter) är gratis och bokas på ${absolut("/kontakt")}.`,
+    "",
+    "## Löften",
+    "",
+    ...LOFTEN.map((l) => `- ${l.titel}: ${l.text}`),
     "",
     "## Tjänster",
     "",
@@ -54,6 +59,7 @@ function llmsText(): string {
     `- [Alla tjänster](${absolut("/tjanster")})`,
     `- [Om oss](${absolut("/om-oss")})`,
     `- [Boka gratis genomgång](${absolut("/kontakt")})`,
+    `- [Allmänna villkor](${absolut("/villkor")})`,
     "",
   ];
   return ren(rader.join("\n"));

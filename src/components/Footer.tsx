@@ -51,6 +51,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/villkor" className={LANK}>
+                  Allmänna villkor
+                </Link>
+              </li>
+              <li>
                 <Link to="/integritetspolicy" className={LANK}>
                   Integritetspolicy
                 </Link>

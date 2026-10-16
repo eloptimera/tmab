@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Blob } from "@/components/Brand";
 import { Mark, PageHero } from "@/components/Heading";
+import { Loften } from "@/components/Loften";
 import { Reveal } from "@/components/Reveal";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import {
@@ -185,8 +186,14 @@ function Priser() {
               </Reveal>
             ))}
           </div>
-          <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            {PAKET_VILLKOR}
+          <div className="mt-12">
+            <Loften />
+          </div>
+          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            {PAKET_VILLKOR}{" "}
+            <Link to="/villkor" className="font-bold text-ink underline">
+              Allmänna villkor
+            </Link>
           </p>
         </div>
       </section>

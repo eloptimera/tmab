@@ -25,7 +25,7 @@ function Tack() {
           Tack – vi <Mark>hör av oss</Mark>
         </>
       }
-      intro="Vi har fått er förfrågan och återkommer för att boka en tid för den kostnadsfria genomgången."
+      intro="Vi har fått er förfrågan och hör av oss inom en arbetsdag för att boka en tid för den kostnadsfria genomgången."
     >
       <Link to="/" className="btn-base btn-dark">
         Till startsidan

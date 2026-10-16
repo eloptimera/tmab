@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Lightbulb, LineChart, UserRound } from "lucide-react";
+import { FileCheck, Receipt, Unlock } from "lucide-react";
 import { BokaPanel } from "@/components/Boka";
 import { Heading, Mark, PageHero } from "@/components/Heading";
+import { Loften } from "@/components/Loften";
 import { Reveal } from "@/components/Reveal";
 import { FORETAG } from "@/lib/foretag";
+import { AGANDE_TEXT, BINDNING_TEXT } from "@/lib/priser";
 import { sidhuvud } from "@/lib/seo";
 
 export const Route = createFileRoute("/om-oss")({
@@ -16,25 +18,25 @@ export const Route = createFileRoute("/om-oss")({
   component: OmOss,
 });
 
-// TODO(TAB): byt till era egna värderingar.
+// Tre saker vi står för – alla går att kontrollera på sajten och i villkoren.
 const VARDERINGAR = [
   {
-    ikon: UserRound,
-    titel: "En kontakt hela vägen",
-    text: "Du har en person att prata med, från första idé till färdig publicering.",
-    stil: "bg-brand text-white",
+    ikon: Receipt,
+    titel: "Fasta priser",
+    text: "Ni ser vad det kostar innan vi börjar. Alla priser står på sajten, och arbete utanför det avtalade stämmer vi av först.",
+    stil: "bg-brand text-white kortskugga-brand",
   },
   {
-    ikon: Lightbulb,
-    titel: "Kreativt och genomtänkt",
-    text: "Idéer som sticker ut, men som alltid utgår från vad verksamheten behöver.",
-    stil: "bg-ink text-white",
+    ikon: Unlock,
+    titel: "Ingen bindningstid",
+    text: BINDNING_TEXT.replace("Ingen bindningstid. ", ""),
+    stil: "bg-ink text-white kortskugga",
   },
   {
-    ikon: LineChart,
-    titel: "Resultat du kan följa",
-    text: "Vi sätter mål innan vi börjar och redovisar tydligt vad insatserna gav.",
-    stil: "bg-tint text-ink",
+    ikon: FileCheck,
+    titel: "Ni äger allt",
+    text: AGANDE_TEXT,
+    stil: "border-2 border-line bg-white text-ink kortskugga",
   },
 ] as const;
 
@@ -68,7 +70,33 @@ function OmOss() {
         intro={`${FORETAG.namn} hjälper företag i hela Sverige med marknadsföringsbilder, SEO, GEO, annonser och hemsidor. Vi gör jobbet – ni driver företaget.`}
       />
 
-      <section className="container-page grid gap-4 py-20 md:grid-cols-3 sm:py-28">
+      {/* Vilka vi är */}
+      <section aria-labelledby="vilka" className="container-page py-14 sm:py-20">
+        <Reveal className="max-w-3xl">
+          <p className="eyebrow">Vilka vi är</p>
+          <Heading className="mt-4 text-4xl sm:text-5xl">
+            <span id="vilka">
+              Vi har gjort det <Mark>för oss själva</Mark> först
+            </span>
+          </Heading>
+          <div className="mt-6 space-y-5 text-lg leading-relaxed text-ink/80">
+            <p>
+              {FORETAG.namn} startades av grundarna bakom {FORETAG.juridisktNamn}. Vi har byggt och
+              marknadsfört vårt eget bolag från noll: hemsida, bilder, synlighet på Google och
+              försäljning.
+            </p>
+            <p>
+              Nu gör vi samma jobb åt andra företag. Ni får en kontakt, fasta priser och någon som
+              faktiskt gör arbetet – inte bara ger råd om det.
+            </p>
+          </div>
+        </Reveal>
+      </section>
+
+      <section
+        aria-label="Det vi står för"
+        className="container-page grid gap-4 pb-14 md:grid-cols-3 sm:pb-20"
+      >
         {VARDERINGAR.map((v, i) => (
           <Reveal key={v.titel} delay={i * 90}>
             <article className={`h-full rounded-[2rem] p-8 ${v.stil}`}>
@@ -84,32 +112,30 @@ function OmOss() {
 
       <section className="bg-fade-tint py-14 sm:py-20">
         <div
-          className={`container-page grid gap-12 lg:gap-20 ${FORETAG.personer.length > 0 ? "lg:grid-cols-2" : "max-w-3xl"}`}
+          className={`container-page grid gap-12 lg:gap-20 ${FORETAG.personer.length > 0 ? "lg:grid-cols-2" : "[&>*]:max-w-3xl"}`}
         >
-          <Reveal>
-            {FORETAG.personer.length > 0 && (
-              <>
-                <p className="eyebrow">Teamet</p>
-                <Heading className="mt-4 text-4xl sm:text-5xl">Ledningen</Heading>
-                <ul className="mt-8 space-y-3">
-                  {FORETAG.personer.map((p) => (
-                    <li key={p.namn} className="flex items-center gap-4 rounded-3xl bg-white p-4">
-                      <span
-                        aria-hidden="true"
-                        className="grid size-14 shrink-0 place-items-center rounded-full bg-brand font-display text-xl text-white"
-                      >
-                        {initialer(p.namn)}
-                      </span>
-                      <span>
-                        <span className="block font-bold text-ink">{p.namn}</span>
-                        <span className="text-sm text-muted-foreground">{p.roll}</span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </Reveal>
+          {FORETAG.personer.length > 0 && (
+            <Reveal>
+              <p className="eyebrow">Teamet</p>
+              <Heading className="mt-4 text-4xl sm:text-5xl">Ledningen</Heading>
+              <ul className="mt-8 space-y-3">
+                {FORETAG.personer.map((p) => (
+                  <li key={p.namn} className="flex items-center gap-4 rounded-3xl bg-white p-4">
+                    <span
+                      aria-hidden="true"
+                      className="grid size-14 shrink-0 place-items-center rounded-full bg-brand font-display text-xl text-white"
+                    >
+                      {initialer(p.namn)}
+                    </span>
+                    <span>
+                      <span className="block font-bold text-ink">{p.namn}</span>
+                      <span className="text-sm text-muted-foreground">{p.roll}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          )}
           <Reveal delay={100}>
             <p className="eyebrow">Fakta om företaget</p>
             <dl className="mt-6 divide-y-2 divide-line rounded-[2rem] bg-white px-6 py-2 sm:px-8">

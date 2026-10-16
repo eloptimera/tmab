@@ -19,6 +19,7 @@ import { Route as PriserRouteImport } from './routes/priser'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TackRouteImport } from './routes/tack'
+import { Route as VillkorRouteImport } from './routes/villkor'
 import { Route as TjansterIndexRouteImport } from './routes/tjanster.index'
 import { Route as TjansterSlugRouteImport } from './routes/tjanster.$slug'
 
@@ -72,6 +73,11 @@ const TackRoute = TackRouteImport.update({
   path: '/tack',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VillkorRoute = VillkorRouteImport.update({
+  id: '/villkor',
+  path: '/villkor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TjansterIndexRoute = TjansterIndexRouteImport.update({
   id: '/tjanster/',
   path: '/tjanster/',
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
+  '/villkor': typeof VillkorRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/tjanster/': typeof TjansterIndexRoute
 }
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
+  '/villkor': typeof VillkorRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/tjanster': typeof TjansterIndexRoute
 }
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
+  '/villkor': typeof VillkorRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/tjanster/': typeof TjansterIndexRoute
 }
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/tack'
+    | '/villkor'
     | '/tjanster/$slug'
     | '/tjanster/'
   fileRoutesByTo: FileRoutesByTo
@@ -153,6 +163,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/tack'
+    | '/villkor'
     | '/tjanster/$slug'
     | '/tjanster'
   id:
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/tack'
+    | '/villkor'
     | '/tjanster/$slug'
     | '/tjanster/'
   fileRoutesById: FileRoutesById
@@ -182,6 +194,7 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TackRoute: typeof TackRoute
+  VillkorRoute: typeof VillkorRoute
   TjansterSlugRoute: typeof TjansterSlugRoute
   TjansterIndexRoute: typeof TjansterIndexRoute
 }
@@ -258,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/villkor': {
+      id: '/villkor'
+      path: '/villkor'
+      fullPath: '/villkor'
+      preLoaderRoute: typeof VillkorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tjanster/': {
       id: '/tjanster/'
       path: '/tjanster'
@@ -286,6 +306,7 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TackRoute: TackRoute,
+  VillkorRoute: VillkorRoute,
   TjansterSlugRoute: TjansterSlugRoute,
   TjansterIndexRoute: TjansterIndexRoute,
 }

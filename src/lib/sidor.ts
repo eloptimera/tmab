@@ -8,6 +8,7 @@ export const SIDOR: readonly { sokvag: string; namn: string }[] = [
   { sokvag: "/priser", namn: "Priser" },
   { sokvag: "/om-oss", namn: "Om oss" },
   { sokvag: "/kontakt", namn: "Boka gratis genomgång" },
+  { sokvag: "/villkor", namn: "Allmänna villkor" },
   { sokvag: "/integritetspolicy", namn: "Integritetspolicy" },
 ];
 

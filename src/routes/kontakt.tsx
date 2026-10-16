@@ -3,6 +3,7 @@ import { Mail, Phone } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Mark, PageHero } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
+import { Loften } from "@/components/Loften";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { skickaBokning } from "@/lib/bokning";
 import { FORETAG } from "@/lib/foretag";
@@ -36,7 +37,10 @@ const STEG: readonly Steg[] = [
     titel: "Ni skickar formuläret",
     text: "Berätta kort vilka ni är och vad ni vill ha hjälp med.",
   },
-  { titel: "Vi bokar en tid", text: "Vi hör av oss och bokar in 20–25 minuter som passar er." },
+  {
+    titel: "Vi bokar en tid",
+    text: "Vi hör av oss inom en arbetsdag och bokar in 20–25 minuter som passar er.",
+  },
   {
     titel: "Ni får ett förslag",
     text: "Vi går igenom er digitala närvaro och ger ett skräddarsytt förslag – helt utan kostnad.",
@@ -95,6 +99,9 @@ function Kontakt() {
           <h2 className="text-3xl sm:text-4xl">Så går det till</h2>
           <div className="mt-8">
             <Stegliste steg={STEG} />
+          </div>
+          <div className="mt-8">
+            <Loften kompakt />
           </div>
 
           {(FORETAG.telefon || FORETAG.epost) && (
