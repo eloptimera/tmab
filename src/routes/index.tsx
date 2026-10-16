@@ -100,8 +100,9 @@ function Start() {
           <Reveal>
             <p className="eyebrow">Tjänster</p>
             <Heading className="mt-8 max-w-3xl text-4xl sm:text-5xl">
-              <Tusch className="px-2">
-                Från idé till <Mark>synlighet</Mark>
+              Från idé till{" "}
+              <Tusch className="ml-[0.1em] px-[0.3em]">
+                <Mark>synlighet</Mark>
               </Tusch>
             </Heading>
           </Reveal>

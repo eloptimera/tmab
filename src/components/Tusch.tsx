@@ -29,15 +29,15 @@ export function Tusch({ children, className = "" }: { children: ReactNode; class
       {children}
       <svg
         aria-hidden="true"
-        viewBox="0 0 400 120"
+        viewBox="0 0 300 120"
         preserveAspectRatio="none"
         fill="none"
-        className="pointer-events-none absolute -top-[32%] -left-[6.5%] h-[166%] w-[111%] sm:-top-[38%] sm:-left-[9%] sm:h-[176%] sm:w-[118%] overflow-visible text-ink"
+        className="pointer-events-none absolute -top-[30%] -left-[4%] h-[164%] w-[108%] overflow-visible text-ink"
       >
         <path
           pathLength={1}
           className={`tusch-linje ${synlig ? "tusch-in" : ""}`}
-          d="M334 15C252 1 92 3 31 26C-6 41 3 89 61 105C152 127 322 120 379 92C411 74 397 29 330 16C288 8 248 11 214 17"
+          d="M150 7C232 5 294 27 294 59C294 92 236 114 151 114C66 114 6 94 6 60C6 27 63 7 142 8C170 8 192 11 210 16"
           stroke="currentColor"
           strokeWidth="3.4"
           strokeLinecap="round"
