@@ -20,6 +20,8 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TackRouteImport } from './routes/tack'
 import { Route as VillkorRouteImport } from './routes/villkor'
+import { Route as GuiderIndexRouteImport } from './routes/guider.index'
+import { Route as GuiderSlugRouteImport } from './routes/guider.$slug'
 import { Route as TjansterIndexRouteImport } from './routes/tjanster.index'
 import { Route as TjansterSlugRouteImport } from './routes/tjanster.$slug'
 
@@ -78,6 +80,16 @@ const VillkorRoute = VillkorRouteImport.update({
   path: '/villkor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuiderIndexRoute = GuiderIndexRouteImport.update({
+  id: '/guider/',
+  path: '/guider/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuiderSlugRoute = GuiderSlugRouteImport.update({
+  id: '/guider/$slug',
+  path: '/guider/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TjansterIndexRoute = TjansterIndexRouteImport.update({
   id: '/tjanster/',
   path: '/tjanster/',
@@ -101,7 +113,9 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
+  '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
+  '/guider/': typeof GuiderIndexRoute
   '/tjanster/': typeof TjansterIndexRoute
 }
 export interface FileRoutesByTo {
@@ -116,7 +130,9 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
+  '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
+  '/guider': typeof GuiderIndexRoute
   '/tjanster': typeof TjansterIndexRoute
 }
 export interface FileRoutesById {
@@ -132,7 +148,9 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
+  '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
+  '/guider/': typeof GuiderIndexRoute
   '/tjanster/': typeof TjansterIndexRoute
 }
 export interface FileRouteTypes {
@@ -149,7 +167,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
+    | '/guider/$slug'
     | '/tjanster/$slug'
+    | '/guider/'
     | '/tjanster/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -164,7 +184,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
+    | '/guider/$slug'
     | '/tjanster/$slug'
+    | '/guider'
     | '/tjanster'
   id:
     | '__root__'
@@ -179,7 +201,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
+    | '/guider/$slug'
     | '/tjanster/$slug'
+    | '/guider/'
     | '/tjanster/'
   fileRoutesById: FileRoutesById
 }
@@ -195,7 +219,9 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TackRoute: typeof TackRoute
   VillkorRoute: typeof VillkorRoute
+  GuiderSlugRoute: typeof GuiderSlugRoute
   TjansterSlugRoute: typeof TjansterSlugRoute
+  GuiderIndexRoute: typeof GuiderIndexRoute
   TjansterIndexRoute: typeof TjansterIndexRoute
 }
 
@@ -278,6 +304,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VillkorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guider/': {
+      id: '/guider/'
+      path: '/guider'
+      fullPath: '/guider/'
+      preLoaderRoute: typeof GuiderIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guider/$slug': {
+      id: '/guider/$slug'
+      path: '/guider/$slug'
+      fullPath: '/guider/$slug'
+      preLoaderRoute: typeof GuiderSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tjanster/': {
       id: '/tjanster/'
       path: '/tjanster'
@@ -307,7 +347,9 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TackRoute: TackRoute,
   VillkorRoute: VillkorRoute,
+  GuiderSlugRoute: GuiderSlugRoute,
   TjansterSlugRoute: TjansterSlugRoute,
+  GuiderIndexRoute: GuiderIndexRoute,
   TjansterIndexRoute: TjansterIndexRoute,
 }
 export const routeTree = rootRouteImport

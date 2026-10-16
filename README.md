@@ -17,6 +17,7 @@ All text som återkommer på flera ställen har en enda källa:
 | `src/lib/tjanster.ts` | De sex tjänsterna – startsida, `/tjanster`, tjänstesidor, sidfot, formulär |
 | `src/lib/priser.ts`   | Alla priser och prisfrågor                                                 |
 | `src/lib/projekt.ts`  | Tidigare projekt och marknadsföringsbilder                                 |
+| `src/lib/guider.ts`   | Guiderna på `/guider` – text, datum och vanliga frågor                     |
 | `src/lib/seo.ts`      | Metadata och strukturerad data (schema.org) för varje sida                 |
 | `src/lib/sidor.ts`    | Sidlistan för `sitemap.xml` och `llms.txt`                                 |
 
@@ -29,6 +30,21 @@ All text som återkommer på flera ställen har en enda källa:
 - `/sitemap.xml`, `/robots.txt` och `/llms.txt` genereras av servern från samma data.
 - Sajtens adress tas från Vercels produktionsdomän. Använd egen domän genom att sätta
   `SAJT_URL` (t.ex. `https://exempel.se`) i Vercel.
+- `robots.txt` släpper in alla sökmotorer och AI-tjänsternas robotar med namn.
+- Guiderna får `Article`-schema och `lastmod` i sitemap från fältet `uppdaterad`.
+  Uppdatera datumet när du ändrar en guide.
+
+### Google Search Console och Bing Webmaster Tools
+
+1. Lägg till sajten i [Google Search Console](https://search.google.com/search-console)
+   som **URL-prefix** och välj verifiering med **HTML-tagg**.
+2. Kopiera värdet i `content="…"` och sätt det som `GOOGLE_SITE_VERIFICATION` i Vercel.
+3. Gör en ny deploy och klicka på Verifiera. Skicka sedan in `/sitemap.xml` under Webbplatskartor.
+4. I [Bing Webmaster Tools](https://www.bing.com/webmasters) väljer du import från
+   Google Search Console. Vill du verifiera separat sätter du `BING_SITE_VERIFICATION`.
+
+Byt till egen domän? Lägg till den som en ny egendom (helst typen Domän, via DNS) och
+skicka in sitemap igen.
 
 ## Bokningsformuläret
 

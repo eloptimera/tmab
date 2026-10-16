@@ -10,6 +10,7 @@ import {
   LOFTEN,
   prisText,
 } from "@/lib/priser";
+import { GUIDER } from "@/lib/guider";
 import { textSvar } from "@/lib/sidor";
 import { TJANSTER } from "@/lib/tjanster";
 
@@ -49,6 +50,10 @@ function llmsText(): string {
     "",
     ...ENGANGSTJANSTER.map((r) => `- ${r.tjanst}: ${prisText(r)}`),
     "",
+    "## Guider",
+    "",
+    ...GUIDER.map((g) => `- [${g.titel}](${absolut(`/guider/${g.slug}`)}): ${g.ingress}`),
+    "",
     "## Vanliga frågor",
     "",
     ...[...PRIS_FRAGOR, ...TJANSTER.flatMap((t) => t.fragor)].map((f) => `- ${f.fraga} ${f.svar}`),
@@ -57,6 +62,7 @@ function llmsText(): string {
     "",
     `- [Priser](${absolut("/priser")})`,
     `- [Alla tjänster](${absolut("/tjanster")})`,
+    `- [Guider](${absolut("/guider")})`,
     `- [Om oss](${absolut("/om-oss")})`,
     `- [Boka gratis genomgång](${absolut("/kontakt")})`,
     `- [Allmänna villkor](${absolut("/villkor")})`,

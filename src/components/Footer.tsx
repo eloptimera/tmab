@@ -41,6 +41,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/guider" className={LANK}>
+                  Guider
+                </Link>
+              </li>
+              <li>
                 <Link to="/om-oss" className={LANK}>
                   Om oss
                 </Link>

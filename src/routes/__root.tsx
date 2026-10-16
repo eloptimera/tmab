@@ -17,7 +17,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "@/components/Footer";
-import { FORETAG } from "@/lib/foretag";
+import { FORETAG, VERIFIERING } from "@/lib/foretag";
 import { grundSchema, jsonLd } from "@/lib/seo";
 
 function NotFoundComponent() {
@@ -87,6 +87,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "sv_SE" },
       { name: "twitter:card", content: "summary_large_image" },
+      // Bevisar för Google och Bing att sajten är vår (miljövariabler i Vercel).
+      ...(VERIFIERING.google
+        ? [{ name: "google-site-verification", content: VERIFIERING.google }]
+        : []),
+      ...(VERIFIERING.bing ? [{ name: "msvalidate.01", content: VERIFIERING.bing }] : []),
     ],
     links: [
       // Typsnitten förladdas så att texten inte byter typsnitt och knuffar layouten.

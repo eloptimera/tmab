@@ -2,6 +2,7 @@
 // Varje route anropar sidhuvud() i sin head() – då blir titel, beskrivning, canonical,
 // delningsbild och strukturerad data likadana överallt.
 import { absolut, FORETAG, SAJT_URL } from "@/lib/foretag";
+import type { Guide } from "@/lib/guider";
 import { PAKET, PRIS, type Fraga } from "@/lib/priser";
 import { TJANSTER, type Tjanst } from "@/lib/tjanster";
 
@@ -165,5 +166,24 @@ export function paketSchema(): Schema {
         valueAddedTaxIncluded: false,
       },
     })),
+  };
+}
+
+/** En guide som artikel – visar Google och AI-tjänster vem som skrivit den och när. */
+export function artikelSchema(g: Guide): Schema {
+  const url = absolut(`/guider/${g.slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: g.rubrik.text,
+    description: g.seoBeskrivning,
+    url,
+    mainEntityOfPage: url,
+    datePublished: g.publicerad,
+    dateModified: g.uppdaterad,
+    inLanguage: "sv-SE",
+    image: absolut(DELNINGSBILD.src),
+    author: { "@id": FORETAG_ID },
+    publisher: { "@id": FORETAG_ID },
   };
 }

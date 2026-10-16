@@ -47,6 +47,10 @@ export const FORETAG: {
 };
 
 declare const __SAJT_URL__: string;
+declare const __VERIFIERING__: { google: string; bing: string };
+
+/** Verifieringskoder för Search Console och Bing Webmaster Tools (tomma om de inte är satta). */
+export const VERIFIERING = __VERIFIERING__;
 
 /** Sajtens publika adress utan avslutande snedstreck, t.ex. https://exempel.se */
 export const SAJT_URL: string = __SAJT_URL__;

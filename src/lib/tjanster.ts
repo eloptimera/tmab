@@ -8,7 +8,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { Steg } from "@/components/Steg";
-import { kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
+import { GSC_SVAR, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 // De sex tjänsterna. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
 // kontaktformuläret, sitemap.xml och llms.txt.
@@ -66,7 +66,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Sökordsanalys mot era kunder",
       "Tekniska åtgärder på sajten",
       "Innehållsplan som vi skriver",
-      "Rapport varje månad",
+      "Google Search Console i ert namn och rapport varje månad",
     ],
     pris: { belopp: PRIS.seoGeo, fran: false, avser: "Grundoptimering av SEO och GEO" },
     iPaket: `Löpande SEO ingår i alla månadspaket, från ${kr(PRIS.start)} per månad.`,
@@ -83,6 +83,7 @@ export const TJANSTER: readonly Tjanst[] = [
         fraga: "Vad är skillnaden mellan SEO och GEO?",
         svar: "SEO handlar om att synas på Google. GEO handlar om att bli nämnd när någon frågar en AI-assistent som ChatGPT. Grunden är densamma, så vi gör dem tillsammans.",
       },
+      { fraga: "Ingår Google Search Console?", svar: GSC_SVAR },
     ],
   },
   {

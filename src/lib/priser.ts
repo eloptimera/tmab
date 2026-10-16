@@ -129,6 +129,10 @@ export const KONSULTATION: readonly Prisrad[] = [
 export type Fraga = { fraga: string; svar: string };
 
 /** Vanliga frågor på prissidan. Svaren bygger bara på priserna ovan. */
+/** Search Console ingår i allt SEO-arbete – samma svar på prissidan och SEO-sidan. */
+export const GSC_SVAR =
+  "Ja. Vi kopplar Google Search Console och Bing Webmaster Tools till er hemsida, i ert eget namn. Därifrån följer vi upp vilka sökningar ni syns på och hur många som klickar, och kontot är ert även om ni slutar hos oss.";
+
 export const PRIS_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Vad kostar marknadsföring hos er?",
@@ -157,5 +161,9 @@ export const PRIS_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Finns det en startavgift?",
     svar: `Uppstart av större månadsabonnemang kostar ${kr(PRIS.uppstart)}. Engångstjänsterna har ingen startavgift.`,
+  },
+  {
+    fraga: "Ingår Google Search Console?",
+    svar: GSC_SVAR,
   },
 ];

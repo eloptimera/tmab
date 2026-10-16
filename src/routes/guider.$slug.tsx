@@ -1,0 +1,228 @@
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ArrowRight, Check, Clock } from "lucide-react";
+import { BokaKnapp, BokaPanel } from "@/components/Boka";
+import { Markerad, Mark, PageHero } from "@/components/Heading";
+import { VanligaFragor } from "@/components/VanligaFragor";
+import { FORETAG } from "@/lib/foretag";
+import { GUIDER, hittaGuide, lastid, type Avsnitt, type Rad } from "@/lib/guider";
+import { artikelSchema, brodsmulor, faqSchema, sidhuvud } from "@/lib/seo";
+import { hittaTjanst } from "@/lib/tjanster";
+
+export const Route = createFileRoute("/guider/$slug")({
+  loader: ({ params }) => {
+    if (!hittaGuide(params.slug)) throw notFound();
+  },
+  head: ({ params }) => {
+    const g = hittaGuide(params.slug);
+    if (!g) return {};
+    const sidan = sidhuvud({
+      titel: g.seoTitel,
+      beskrivning: g.seoBeskrivning,
+      sokvag: `/guider/${g.slug}`,
+      schema: [
+        artikelSchema(g),
+        faqSchema(g.fragor),
+        brodsmulor([
+          { namn: "Hem", sokvag: "/" },
+          { namn: "Guider", sokvag: "/guider" },
+          { namn: g.titel, sokvag: `/guider/${g.slug}` },
+        ]),
+      ],
+    });
+    return {
+      ...sidan,
+      meta: [
+        ...sidan.meta,
+        { property: "og:type", content: "article" },
+        { property: "article:published_time", content: g.publicerad },
+        { property: "article:modified_time", content: g.uppdaterad },
+      ],
+    };
+  },
+  component: GuideSida,
+});
+
+const datum = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("sv-SE", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+function GuideSida() {
+  const { slug } = Route.useParams();
+  const g = hittaGuide(slug);
+  if (!g) return null;
+  const tjanst = hittaTjanst(g.tjanst);
+  const fler = GUIDER.filter((o) => o.slug !== g.slug);
+
+  return (
+    <>
+      <PageHero
+        eyebrow="Guide"
+        title={<Markerad text={g.rubrik.text} markera={g.rubrik.markera} />}
+        intro={g.ingress}
+      />
+
+      <article className="container-page pt-8 pb-14 sm:pt-10 sm:pb-20">
+        <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+          <span className="inline-flex items-center gap-2">
+            <Clock className="size-4" aria-hidden="true" />
+            {lastid(g)} min läsning
+          </span>
+          <span>
+            Uppdaterad <time dateTime={g.uppdaterad}>{datum(g.uppdaterad)}</time> av {FORETAG.namn}
+          </span>
+        </p>
+
+        <div className="mt-10 max-w-3xl space-y-12">
+          {g.avsnitt.map((a) => (
+            <AvsnittVy key={a.rubrik} a={a} />
+          ))}
+        </div>
+
+        {tjanst && (
+          <aside className="mt-14 max-w-3xl rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+            <p className="caps text-sun">Vill du slippa göra det själv?</p>
+            <p className="mt-4 text-2xl leading-snug sm:text-3xl">
+              Vi sköter {tjanst.iText} åt dig – från första analysen till uppföljningen varje månad.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <BokaKnapp variant="white" tjanst={tjanst.slug} />
+              <Link
+                to="/tjanster/$slug"
+                params={{ slug: tjanst.slug }}
+                className="btn-base btn-outline-white"
+              >
+                Om {tjanst.titel}
+              </Link>
+            </div>
+          </aside>
+        )}
+      </article>
+
+      <section aria-labelledby="fragor" className="bg-fade-tint py-14 sm:py-20">
+        <div className="container-page">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Vanliga frågor</p>
+            <h2 id="fragor" className="mt-4 text-3xl sm:text-4xl">
+              Det här undrar <Mark>många</Mark>
+            </h2>
+            <div className="mt-8">
+              <VanligaFragor fragor={g.fragor} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="fler-guider" className="container-page py-14 sm:py-20">
+        <h2 id="fler-guider" className="text-3xl sm:text-4xl">
+          Fler <Mark>guider</Mark>
+        </h2>
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+          {fler.map((o) => (
+            <li key={o.slug}>
+              <Link
+                to="/guider/$slug"
+                params={{ slug: o.slug }}
+                className="group flex h-full items-center justify-between gap-3 rounded-[1.5rem] border-2 border-line bg-white/80 p-5 transition-colors hover:border-ink"
+              >
+                <span className="font-bold text-ink">{o.titel}</span>
+                <ArrowRight
+                  className="size-5 shrink-0 text-ink transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {tjanst ? <BokaPanel tjanst={tjanst.slug} /> : <BokaPanel />}
+    </>
+  );
+}
+
+function AvsnittVy({ a }: { a: Avsnitt }) {
+  return (
+    <section>
+      <h2 className="text-3xl sm:text-4xl">{a.rubrik}</h2>
+      {a.stycken?.map((p) => (
+        <p key={p} className="mt-5 text-lg leading-relaxed text-ink/85">
+          {p}
+        </p>
+      ))}
+      {a.lista && <Lista {...a.lista} />}
+      {a.tabell && (
+        <div className="mt-6 overflow-x-auto rounded-2xl border-2 border-line bg-white">
+          <table className="w-full min-w-[32rem] text-left">
+            <thead>
+              <tr className="border-b-2 border-line">
+                {a.tabell.kolumner.map((k, i) => (
+                  <th key={i} scope="col" className="p-4 font-bold text-ink">
+                    {k}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {a.tabell.rader.map((rad) => (
+                <tr key={rad[0]} className="border-b border-line last:border-0">
+                  {rad.map((cell, i) =>
+                    i === 0 ? (
+                      <th key={i} scope="row" className="p-4 font-bold text-ink">
+                        {cell}
+                      </th>
+                    ) : (
+                      <td key={i} className="p-4 text-ink/85">
+                        {cell}
+                      </td>
+                    ),
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {a.efter?.map((p) => (
+        <p key={p} className="mt-5 text-lg leading-relaxed text-ink/85">
+          {p}
+        </p>
+      ))}
+    </section>
+  );
+}
+
+function Lista({ numrerad, rader }: { numrerad?: boolean; rader: readonly Rad[] }) {
+  const Tag = numrerad ? "ol" : "ul";
+  return (
+    <Tag className="mt-6 space-y-3">
+      {rader.map((r, i) => (
+        <li
+          key={typeof r === "string" ? r : r.titel}
+          className="flex gap-4 rounded-2xl bg-white p-4 text-lg leading-relaxed text-ink shadow-sm shadow-brand/10 sm:p-5"
+        >
+          {numrerad ? (
+            <span
+              className="grid size-8 shrink-0 place-items-center rounded-full bg-brand text-sm font-bold text-white"
+              aria-hidden="true"
+            >
+              {i + 1}
+            </span>
+          ) : (
+            <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+          )}
+          {typeof r === "string" ? (
+            <span>{r}</span>
+          ) : (
+            <span>
+              <strong className="block text-ink">{r.titel}</strong>
+              <span className="text-ink/80">{r.text}</span>
+            </span>
+          )}
+        </li>
+      ))}
+    </Tag>
+  );
+}

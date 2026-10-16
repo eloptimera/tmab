@@ -10,7 +10,10 @@ export const Route = createFileRoute("/sitemap.xml")({
           [
             '<?xml version="1.0" encoding="UTF-8"?>',
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-            ...SIDOR.map((s) => `  <url><loc>${absolut(s.sokvag)}</loc></url>`),
+            ...SIDOR.map(
+              (s) =>
+                `  <url><loc>${absolut(s.sokvag)}</loc>${s.andrad ? `<lastmod>${s.andrad}</lastmod>` : ""}</url>`,
+            ),
             "</urlset>",
             "",
           ].join("\n"),

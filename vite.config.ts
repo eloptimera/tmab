@@ -23,6 +23,12 @@ export default defineConfig({
   vite: {
     define: {
       __SAJT_URL__: JSON.stringify(sajtUrl.replace(/\/$/, "")),
+      // Verifieringskoder för Google Search Console och Bing Webmaster Tools.
+      // Sätts som miljövariabler i Vercel – se README.
+      __VERIFIERING__: JSON.stringify({
+        google: process.env["GOOGLE_SITE_VERIFICATION"] ?? "",
+        bing: process.env["BING_SITE_VERIFICATION"] ?? "",
+      }),
     },
   },
 });
