@@ -7,7 +7,7 @@ export const Route = createFileRoute("/integritetspolicy")({
   head: () =>
     sidhuvud({
       titel: "Integritetspolicy",
-      beskrivning: `Så behandlar ${FORETAG.namn} dina personuppgifter när du bokar en genomgång eller kontaktar oss.`,
+      beskrivning: `Så behandlar ${FORETAG.namn} (${FORETAG.juridisktNamn}) dina personuppgifter när du bokar en genomgång eller kontaktar oss.`,
       sokvag: "/integritetspolicy",
     }),
   component: Integritetspolicy,
@@ -35,10 +35,10 @@ function Integritetspolicy() {
       <article className="container-page max-w-3xl pt-4 pb-24">
         <Sektion titel="Personuppgiftsansvarig">
           <p>
-            {FORETAG.namn}
+            {FORETAG.juridisktNamn}
             {FORETAG.orgnr && `, org.nr ${FORETAG.orgnr}`}
-            {FORETAG.adress && `, ${FORETAG.adress}`}, är personuppgiftsansvarig för behandlingen.
-            Du når oss via{" "}
+            {FORETAG.adress && `, ${FORETAG.adress}`}, som driver {FORETAG.namn}, är
+            personuppgiftsansvarig för behandlingen. Du når oss via{" "}
             <Link className="font-bold text-brand underline" to="/kontakt">
               kontaktformuläret
             </Link>

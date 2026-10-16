@@ -12,7 +12,7 @@ import { kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 // De sex tjänsterna. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
 // kontaktformuläret, sitemap.xml och llms.txt.
-// TODO(Treatly): stämmer "Med oss"-listorna med vad ni levererar i varje tjänst?
+// TODO(TAB): stämmer "Med oss"-listorna med vad ni levererar i varje tjänst?
 
 export type Tjanst = {
   /** Används i adressen: /tjanster/{slug} */

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Mail, Phone } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Mark, PageHero } from "@/components/Heading";
@@ -46,7 +46,7 @@ const STEG: readonly Steg[] = [
 function Kontakt() {
   const sok = Route.useSearch();
   const [skickar, setSkickar] = useState(false);
-  const [klart, setKlart] = useState(false);
+  const navigate = useNavigate();
   const [fel, setFel] = useState(false);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -69,7 +69,8 @@ function Kontakt() {
           falla: text("falla"),
         },
       });
-      setKlart(true);
+      // Egen tacksida: varje besök där räknas som en bokning i statistiken.
+      await navigate({ to: "/tack" });
     } catch {
       setFel(true);
     } finally {
@@ -119,114 +120,102 @@ function Kontakt() {
         </Reveal>
 
         <Reveal delay={100}>
-          {klart ? (
-            <div role="status" className="rounded-[2rem] border-2 border-line bg-white p-8 sm:p-10">
-              <h2 className="text-3xl">Tack – vi hör av oss</h2>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
-                Vi har fått er förfrågan och återkommer för att boka en tid för genomgången.
-              </p>
-              <Link to="/" className="btn-base btn-outline mt-8">
-                Till startsidan
-              </Link>
+          <form
+            onSubmit={onSubmit}
+            className="grid gap-6 rounded-[2rem] border-2 border-line bg-white p-7 sm:p-10"
+          >
+            <div className="grid gap-6 sm:grid-cols-2">
+              <Falt id="namn" etikett="Namn" autoComplete="name" kravs />
+              <Falt id="foretag" etikett="Företag" autoComplete="organization" kravs />
+              <Falt id="epost" etikett="E-post" typ="email" autoComplete="email" kravs />
+              <Falt id="telefon" etikett="Telefon (valfritt)" typ="tel" autoComplete="tel" />
             </div>
-          ) : (
-            <form
-              onSubmit={onSubmit}
-              className="grid gap-6 rounded-[2rem] border-2 border-line bg-white p-7 sm:p-10"
-            >
-              <div className="grid gap-6 sm:grid-cols-2">
-                <Falt id="namn" etikett="Namn" autoComplete="name" kravs />
-                <Falt id="foretag" etikett="Företag" autoComplete="organization" kravs />
-                <Falt id="epost" etikett="E-post" typ="email" autoComplete="email" kravs />
-                <Falt id="telefon" etikett="Telefon (valfritt)" typ="tel" autoComplete="tel" />
+            <Falt
+              id="webbplats"
+              etikett="Er nuvarande hemsida (valfritt)"
+              typ="url"
+              autoComplete="url"
+              platshallare="https://"
+            />
+
+            <fieldset>
+              <legend className="text-sm font-bold">Vad vill ni ha hjälp med? (valfritt)</legend>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {TJANSTER.map((t) => (
+                  <label
+                    key={t.slug}
+                    className="flex min-h-11 cursor-pointer items-center rounded-full border-2 border-line px-4 py-2 text-sm font-bold transition-colors duration-200 hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand has-[:checked]:text-white has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-light"
+                  >
+                    <input
+                      type="checkbox"
+                      name="tjanster"
+                      value={t.titel}
+                      defaultChecked={sok.tjanst === t.slug}
+                      className="sr-only"
+                    />
+                    {t.titel}
+                  </label>
+                ))}
               </div>
-              <Falt
-                id="webbplats"
-                etikett="Er nuvarande hemsida (valfritt)"
-                typ="url"
-                autoComplete="url"
-                platshallare="https://"
-              />
+            </fieldset>
 
-              <fieldset>
-                <legend className="text-sm font-bold">Vad vill ni ha hjälp med? (valfritt)</legend>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {TJANSTER.map((t) => (
-                    <label
-                      key={t.slug}
-                      className="flex min-h-11 cursor-pointer items-center rounded-full border-2 border-line px-4 py-2 text-sm font-bold transition-colors duration-200 hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand has-[:checked]:text-white has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-light"
-                    >
-                      <input
-                        type="checkbox"
-                        name="tjanster"
-                        value={t.titel}
-                        defaultChecked={sok.tjanst === t.slug}
-                        className="sr-only"
-                      />
-                      {t.titel}
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-
-              <div>
-                <label htmlFor="paket" className="text-sm font-bold">
-                  Månadspaket (valfritt)
-                </label>
-                <select
-                  id="paket"
-                  name="paket"
-                  defaultValue={PAKET.find((p) => p.id === sok.paket)?.namn ?? ""}
-                  className="field mt-2"
-                >
-                  <option value="">Vet inte än</option>
-                  {PAKET.map((p) => (
-                    <option key={p.id} value={p.namn}>
-                      {p.namn}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="meddelande" className="text-sm font-bold">
-                  Något vi bör veta? (valfritt)
-                </label>
-                <textarea id="meddelande" name="meddelande" rows={4} className="field mt-2" />
-              </div>
-
-              {/* Dolt fält mot skräppost – riktiga besökare ser det aldrig. */}
-              <div aria-hidden="true" className="absolute -left-[9999px] h-0 overflow-hidden">
-                <label htmlFor="falla">Lämna tomt</label>
-                <input id="falla" name="falla" tabIndex={-1} autoComplete="off" />
-              </div>
-
-              <label className="flex items-start gap-3 text-sm text-muted-foreground">
-                <input type="checkbox" required className="mt-0.5 size-5 shrink-0 accent-brand" />
-                <span>
-                  Jag samtycker till att {FORETAG.namn} sparar mina uppgifter för att boka
-                  genomgången. Läs mer i{" "}
-                  <Link to="/integritetspolicy" className="font-bold text-brand underline">
-                    integritetspolicyn
-                  </Link>
-                  .
-                </span>
+            <div>
+              <label htmlFor="paket" className="text-sm font-bold">
+                Månadspaket (valfritt)
               </label>
+              <select
+                id="paket"
+                name="paket"
+                defaultValue={PAKET.find((p) => p.id === sok.paket)?.namn ?? ""}
+                className="field mt-2"
+              >
+                <option value="">Vet inte än</option>
+                {PAKET.map((p) => (
+                  <option key={p.id} value={p.namn}>
+                    {p.namn}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-              {fel && (
-                <p role="alert" className="text-sm font-bold text-destructive">
-                  Förfrågan kunde inte skickas. Försök igen om en stund
-                  {FORETAG.epost ? ` eller mejla ${FORETAG.epost}` : ""}.
-                </p>
-              )}
+            <div>
+              <label htmlFor="meddelande" className="text-sm font-bold">
+                Något vi bör veta? (valfritt)
+              </label>
+              <textarea id="meddelande" name="meddelande" rows={4} className="field mt-2" />
+            </div>
 
-              <div>
-                <button type="submit" disabled={skickar} className="btn-base btn-dark">
-                  {skickar ? "Skickar …" : "Boka gratis genomgång"}
-                </button>
-              </div>
-            </form>
-          )}
+            {/* Dolt fält mot skräppost – riktiga besökare ser det aldrig. */}
+            <div aria-hidden="true" className="absolute -left-[9999px] h-0 overflow-hidden">
+              <label htmlFor="falla">Lämna tomt</label>
+              <input id="falla" name="falla" tabIndex={-1} autoComplete="off" />
+            </div>
+
+            <label className="flex items-start gap-3 text-sm text-muted-foreground">
+              <input type="checkbox" required className="mt-0.5 size-5 shrink-0 accent-brand" />
+              <span>
+                Jag samtycker till att {FORETAG.namn} sparar mina uppgifter för att boka
+                genomgången. Läs mer i{" "}
+                <Link to="/integritetspolicy" className="font-bold text-brand underline">
+                  integritetspolicyn
+                </Link>
+                .
+              </span>
+            </label>
+
+            {fel && (
+              <p role="alert" className="text-sm font-bold text-destructive">
+                Förfrågan kunde inte skickas. Försök igen om en stund
+                {FORETAG.epost ? ` eller mejla ${FORETAG.epost}` : ""}.
+              </p>
+            )}
+
+            <div>
+              <button type="submit" disabled={skickar} className="btn-base btn-dark">
+                {skickar ? "Skickar …" : "Boka gratis genomgång"}
+              </button>
+            </div>
+          </form>
         </Reveal>
       </section>
     </>

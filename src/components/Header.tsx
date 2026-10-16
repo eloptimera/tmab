@@ -53,7 +53,7 @@ export function Header() {
   return (
     <header
       className={`sticky top-0 z-50 transition-[background-color,backdrop-filter] duration-300 ${
-        scrollad ? "bg-background/40 backdrop-blur-md" : "bg-transparent"
+        scrollad ? "bg-background/80 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <a
@@ -74,20 +74,27 @@ export function Header() {
           <BokaKnapp className="ml-4 min-h-11 px-6 py-2 text-sm" />
         </nav>
 
-        <button
-          type="button"
-          aria-label={oppen ? "Stäng meny" : "Öppna meny"}
-          aria-expanded={oppen}
-          aria-controls="mobilmeny"
-          onClick={() => setOppen((o) => !o)}
-          className="grid size-12 place-items-center rounded-full bg-tint text-ink lg:hidden"
-        >
-          {oppen ? (
-            <X className="size-5" aria-hidden="true" />
-          ) : (
-            <Menu className="size-5" aria-hidden="true" />
-          )}
-        </button>
+        {/* Mobil: bokningsknappen syns alltid, inte bara inne i menyn */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <BokaKnapp className="min-h-11 px-4 py-2 text-sm" onClick={() => setOppen(false)}>
+            Boka
+            <span className="sr-only"> gratis genomgång</span>
+          </BokaKnapp>
+          <button
+            type="button"
+            aria-label={oppen ? "Stäng meny" : "Öppna meny"}
+            aria-expanded={oppen}
+            aria-controls="mobilmeny"
+            onClick={() => setOppen((o) => !o)}
+            className="grid size-11 place-items-center rounded-full bg-tint text-ink"
+          >
+            {oppen ? (
+              <X className="size-5" aria-hidden="true" />
+            ) : (
+              <Menu className="size-5" aria-hidden="true" />
+            )}
+          </button>
+        </div>
 
         {oppen && (
           <nav

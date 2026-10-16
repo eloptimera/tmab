@@ -11,8 +11,11 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import bodoniUrl from "@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-normal.woff2?url";
+import dmSansUrl from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
+import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "@/components/Footer";
 import { FORETAG } from "@/lib/foretag";
 import { grundSchema, jsonLd } from "@/lib/seo";
@@ -86,6 +89,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      // Typsnitten förladdas så att texten inte byter typsnitt och knuffar layouten.
+      { rel: "preload", href: bodoniUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      { rel: "preload", href: dmSansUrl, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -129,6 +135,8 @@ function RootComponent() {
         </main>
         <Footer />
       </div>
+      {/* Cookiefri besöksstatistik. Slås på under Analytics i Vercel. */}
+      <Analytics />
     </QueryClientProvider>
   );
 }

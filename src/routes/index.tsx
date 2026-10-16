@@ -66,7 +66,7 @@ function Start() {
             <Linjer className="absolute inset-x-[-1.5rem] top-1/2 -z-10 h-[min(34vw,26rem)] min-h-40 w-[calc(100%+3rem)] -translate-y-1/2 text-ink/80 sm:inset-x-[-2.5rem] sm:w-[calc(100%+5rem)]" />
             <p
               aria-hidden="true"
-              className="font-display text-[min(17vw,14rem)] leading-[0.9] font-medium tracking-[-0.02em] text-ink uppercase select-none"
+              className="font-display text-[min(30vw,21rem)] leading-[0.9] font-medium tracking-[-0.02em] text-ink uppercase select-none"
             >
               {FORETAG.kortnamn}
             </p>
@@ -132,7 +132,7 @@ function Start() {
         </div>
       </section>
 
-      {/* Varför Treatly – vad som krävs för att lyckas digitalt */}
+      {/* Varför TAB – vad som krävs för att lyckas digitalt */}
       <section aria-labelledby="lyckas-rubrik" className="bg-fade-tint py-12 sm:py-16">
         <div className="container-page">
           <Reveal>

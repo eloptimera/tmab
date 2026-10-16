@@ -24,7 +24,7 @@ export const Route = createFileRoute("/priser")({
   head: () =>
     sidhuvud({
       titel: `Priser från ${kr(PRIS.start)}/mån`,
-      beskrivning: `Månadspaket från ${kr(PRIS.start)} per månad, engångstjänster från ${kr(PRIS.bilder5)} och gratis första genomgång. ${MOMS_TEXT}`,
+      beskrivning: `Månadspaket från ${kr(PRIS.start)} per månad, engångstjänster från ${kr(PRIS.bilder5)} och gratis första genomgång. Ingen bindningstid. ${MOMS_TEXT}`,
       sokvag: "/priser",
       schema: [paketSchema(), faqSchema(PRIS_FRAGOR)],
     }),
@@ -55,7 +55,7 @@ function Paketkort({ p }: { p: Paket }) {
       </h3>
       <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">{kr(p.belopp)}</p>
       <p className={`mt-2 text-sm ${utvalt ? "text-white/80" : "text-muted-foreground"}`}>
-        per månad, exkl. moms
+        per månad, exkl. moms · ingen bindningstid
       </p>
 
       <ul

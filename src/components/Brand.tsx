@@ -1,14 +1,19 @@
 import { FORETAG } from "@/lib/foretag";
 
-/** Ordbild: TREATLY i serif-versaler. */
+/** Ordbild: TAB MARKETING i serif-versaler. */
 export function Logo({ ljus = false, className = "" }: { ljus?: boolean; className?: string }) {
   return (
     <span
-      className={`font-display text-xl font-semibold tracking-[0.2em] uppercase ${
+      className={`font-display text-[0.95rem] tracking-[0.12em] whitespace-nowrap uppercase sm:text-xl sm:tracking-[0.18em] ${
         ljus ? "text-white" : "text-ink"
       } ${className}`}
     >
-      <span aria-hidden="true">{FORETAG.kortnamn}</span>
+      <span aria-hidden="true">
+        <span className="font-semibold">{FORETAG.kortnamn}</span>
+        <span className="ml-[0.4em] font-normal">
+          {FORETAG.namn.replace(FORETAG.kortnamn, "").trim()}
+        </span>
+      </span>
       <span className="sr-only">{FORETAG.namn}</span>
     </span>
   );

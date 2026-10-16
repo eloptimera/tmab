@@ -2,15 +2,20 @@
 // metadata, strukturerad data och llms.txt) läser härifrån.
 //
 // Fält med tomt värde visas inte på sajten förrän de fylls i.
-// TODO(Treatly): fyll i org.nr, adress, telefon, e-post och personer.
+// TODO(TAB): fyll i adress och telefon när ni vill visa dem.
 export const FORETAG: {
+  /** Varumärket som syns på sajten. */
   namn: string;
+  /** Kort form – den stora ordbilden och "Varför TAB". */
   kortnamn: string;
+  /** Bolaget som driver verksamheten (personuppgiftsansvarig, fakturerar). */
+  juridisktNamn: string;
   /** En mening om vad företaget gör – används i metadata, strukturerad data och llms.txt. */
   beskrivning: string;
   /** Säte. Används bara i adressen och den strukturerade datan – inte i rubriker eller texter. */
   ort: string;
   orgnr: string;
+  momsnr: string;
   gata: string;
   postnummer: string;
   adress: string;
@@ -20,18 +25,20 @@ export const FORETAG: {
   oppettider: readonly { dagar: string; tid: string }[];
   personer: readonly { namn: string; roll: string }[];
 } = {
-  namn: "Treatly – Marketing AB",
-  kortnamn: "Treatly",
+  namn: "TAB Marketing",
+  kortnamn: "TAB",
+  juridisktNamn: "Treatly AB",
   beskrivning:
     "Marknadsföringsbyrå som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag i hela Sverige – till fasta priser.",
   ort: "Göteborg",
-  orgnr: "",
+  orgnr: "559582-8046",
+  momsnr: "SE559582804601",
   gata: "",
   postnummer: "",
   adress: "",
   telefon: "",
   telefonLank: "",
-  epost: "",
+  epost: "edvin@treatlymarketing.se",
   oppettider: [],
   personer: [],
 };

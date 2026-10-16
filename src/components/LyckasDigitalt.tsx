@@ -152,7 +152,7 @@ export function LyckasDigitalt() {
           <Accordion.Header className="font-sans leading-normal font-normal tracking-normal">
             <Accordion.Trigger className="group flex w-full cursor-pointer items-center gap-4 px-5 py-5 text-left sm:gap-6 sm:px-8 sm:py-6">
               <span
-                className="hidden font-display text-2xl text-ink/35 sm:inline"
+                className="hidden font-display text-2xl text-ink/55 sm:inline"
                 aria-hidden="true"
               >
                 {String(i + 1).padStart(2, "0")}

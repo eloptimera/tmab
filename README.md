@@ -1,6 +1,6 @@
-# Treatly – Marketing AB – webbplats
+# TAB Marketing – webbplats
 
-Byggd med TanStack Start, React och Tailwind. Körs på Vercel.
+TAB Marketing drivs av Treatly AB. Byggd med TanStack Start, React och Tailwind. Körs på Vercel.
 
 ```sh
 bun install
@@ -41,4 +41,4 @@ Formuläret på `/kontakt` skickar mejl via [Resend](https://resend.com). Sätt 
 
 Utan nyckeln visar formuläret ett felmeddelande i stället för att låtsas att det skickats.
 
-Sök efter `TODO(Treatly)` för det som ska fyllas i.
+Sök efter `TODO(TAB)` för det som ska fyllas i.

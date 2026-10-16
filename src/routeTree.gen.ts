@@ -18,6 +18,7 @@ import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as PriserRouteImport } from './routes/priser'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TackRouteImport } from './routes/tack'
 import { Route as TjansterIndexRouteImport } from './routes/tjanster.index'
 import { Route as TjansterSlugRouteImport } from './routes/tjanster.$slug'
 
@@ -66,6 +67,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TackRoute = TackRouteImport.update({
+  id: '/tack',
+  path: '/tack',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TjansterIndexRoute = TjansterIndexRouteImport.update({
   id: '/tjanster/',
   path: '/tjanster/',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/priser': typeof PriserRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tack': typeof TackRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/tjanster/': typeof TjansterIndexRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/priser': typeof PriserRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tack': typeof TackRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/tjanster': typeof TjansterIndexRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/priser': typeof PriserRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tack': typeof TackRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/tjanster/': typeof TjansterIndexRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/priser'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/tack'
     | '/tjanster/$slug'
     | '/tjanster/'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/priser'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/tack'
     | '/tjanster/$slug'
     | '/tjanster'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/priser'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/tack'
     | '/tjanster/$slug'
     | '/tjanster/'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   PriserRoute: typeof PriserRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TackRoute: typeof TackRoute
   TjansterSlugRoute: typeof TjansterSlugRoute
   TjansterIndexRoute: typeof TjansterIndexRoute
 }
@@ -238,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tack': {
+      id: '/tack'
+      path: '/tack'
+      fullPath: '/tack'
+      preLoaderRoute: typeof TackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tjanster/': {
       id: '/tjanster/'
       path: '/tjanster'
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   PriserRoute: PriserRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TackRoute: TackRoute,
   TjansterSlugRoute: TjansterSlugRoute,
   TjansterIndexRoute: TjansterIndexRoute,
 }

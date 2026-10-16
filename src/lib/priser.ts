@@ -1,6 +1,5 @@
 // Alla priser på sajten. Beloppen står bara här – prissidan, tjänstesidorna, strukturerad
 // data och llms.txt läser härifrån. Alla priser är exkl. moms.
-// TODO(Treatly): ange bindningstid och uppsägningstid för månadspaketen.
 
 export const PRIS = {
   start: 2995,
@@ -17,6 +16,10 @@ export const PRIS = {
 } as const;
 
 export const MOMS_TEXT = "Alla priser är exkl. moms.";
+
+/** Villkor för månadspaketen. */
+export const BINDNING_TEXT =
+  "Ingen bindningstid. Ni kan avsluta när ni vill – paketet löper till slutet av den period ni redan betalat för.";
 
 /** 2995 → "2 995 kr" (med hårt mellanslag så att beloppet aldrig bryts). */
 export function kr(belopp: number): string {
@@ -71,7 +74,7 @@ export const PAKET: readonly Paket[] = [
   },
 ];
 
-export const PAKET_VILLKOR = `${MOMS_TEXT} Annonsbudget ingår inte.`;
+export const PAKET_VILLKOR = `${BINDNING_TEXT} ${MOMS_TEXT} Annonsbudget ingår inte.`;
 
 /** En rad i en pristabell. `pris` är ett belopp i kronor, "Gratis" eller en kort text. */
 export type Prisrad = {
@@ -117,6 +120,10 @@ export const PRIS_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Vad kostar marknadsföring hos er?",
     svar: `Månadspaketen kostar ${kr(PRIS.start)}, ${kr(PRIS.growth)} eller ${kr(PRIS.premium)} per månad. Enskilda tjänster finns från ${kr(PRIS.bilder5)}. ${MOMS_TEXT}`,
+  },
+  {
+    fraga: "Finns det någon bindningstid?",
+    svar: BINDNING_TEXT,
   },
   {
     fraga: "Ingår annonsbudgeten i priset?",

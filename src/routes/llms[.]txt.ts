@@ -23,6 +23,8 @@ function llmsText(): string {
     "",
     `> ${FORETAG.beskrivning}`,
     "",
+    `${FORETAG.namn} drivs av ${FORETAG.juridisktNamn} (org.nr ${FORETAG.orgnr}). Kontakt: ${FORETAG.epost}.`,
+    "",
     `Vi arbetar digitalt med företag i hela Sverige. ${MOMS_TEXT} Första genomgången (20–25 minuter) är gratis och bokas på ${absolut("/kontakt")}.`,
     "",
     "## Tjänster",

@@ -16,7 +16,7 @@ export const Route = createFileRoute("/om-oss")({
   component: OmOss,
 });
 
-// TODO(Treatly): byt till era egna värderingar.
+// TODO(TAB): byt till era egna värderingar.
 const VARDERINGAR = [
   {
     ikon: UserRound,
@@ -39,10 +39,13 @@ const VARDERINGAR = [
 ] as const;
 
 const FAKTA = [
-  { rubrik: "Företag", varde: FORETAG.namn },
+  { rubrik: "Varumärke", varde: FORETAG.namn },
+  { rubrik: "Bolag", varde: FORETAG.juridisktNamn },
   { rubrik: "Organisationsnummer", varde: FORETAG.orgnr },
   { rubrik: "Bransch", varde: "Marknadsföring & kommunikation" },
   { rubrik: "Adress", varde: FORETAG.adress },
+  { rubrik: "E-post", varde: FORETAG.epost },
+  { rubrik: "Skatt", varde: "Godkänd för F-skatt, momsregistrerad" },
 ] as const;
 
 const initialer = (namn: string) =>

@@ -64,6 +64,7 @@ export function grundSchema(): Schema {
     "@type": "ProfessionalService",
     "@id": FORETAG_ID,
     name: FORETAG.namn,
+    legalName: FORETAG.juridisktNamn,
     description: FORETAG.beskrivning,
     url: absolut("/"),
     logo: absolut("/logo.png"),
@@ -76,6 +77,7 @@ export function grundSchema(): Schema {
   if (FORETAG.telefon) foretag["telephone"] = FORETAG.telefonLank;
   if (FORETAG.epost) foretag["email"] = FORETAG.epost;
   if (FORETAG.orgnr) foretag["taxID"] = FORETAG.orgnr;
+  if (FORETAG.momsnr) foretag["vatID"] = FORETAG.momsnr;
 
   return {
     "@context": "https://schema.org",

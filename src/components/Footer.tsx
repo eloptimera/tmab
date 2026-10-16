@@ -87,7 +87,7 @@ export function Footer() {
                   </address>
                 </li>
               )}
-              {!FORETAG.gata && (
+              {!FORETAG.gata && !FORETAG.epost && (
                 <li className="flex gap-3">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-sun" aria-hidden="true" />
                   <Link to="/kontakt" className={LANK}>
@@ -102,9 +102,10 @@ export function Footer() {
         <div className="border-t border-white/15">
           <div className="container-page flex flex-wrap justify-between gap-2 py-6 text-xs text-white/70">
             <span>
-              © {new Date().getFullYear()} {FORETAG.namn}
+              © {new Date().getFullYear()} {FORETAG.namn} · Drivs av {FORETAG.juridisktNamn}
               {FORETAG.orgnr && ` · Org.nr ${FORETAG.orgnr}`}
             </span>
+            <span>Godkänd för F-skatt</span>
           </div>
         </div>
       </div>

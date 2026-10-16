@@ -1,5 +1,5 @@
 // Tidigare projekt som visas på startsidan.
-// TODO(Treatly): stämmer beskrivningarna med vad ni faktiskt gjorde i varje uppdrag?
+// TODO(TAB): stämmer beskrivningarna med vad ni faktiskt gjorde i varje uppdrag?
 export type Projekt = {
   namn: string;
   kategori: string;
@@ -38,7 +38,7 @@ export const PROJEKT: readonly Projekt[] = [
 ];
 
 // Marknadsföringsbilder som visas under projekten. Filerna ligger i public/projekt/.
-// TODO(Treatly): bekräfta att ni har rätt att visa bilderna och vilka kunder de gjordes för.
+// TODO(TAB): bekräfta att ni har rätt att visa bilderna och vilka kunder de gjordes för.
 export type Bild = {
   src: string;
   alt: string;
