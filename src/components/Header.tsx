@@ -7,6 +7,7 @@ import { FORETAG } from "@/lib/foretag";
 const LANKAR = [
   { to: "/", label: "Hem" },
   { to: "/tjanster", label: "Tjänster" },
+  { to: "/priser", label: "Priser" },
   { to: "/om-oss", label: "Om oss" },
   { to: "/kontakt", label: "Kontakt" },
 ] as const;
@@ -72,13 +73,13 @@ export function Header() {
           ))}
           <Link
             to="/kontakt"
-            className="btn-base btn-outline ml-4 hidden min-h-11 px-6 py-2 text-sm lg:inline-flex"
+            className="btn-base btn-outline ml-4 hidden min-h-11 px-6 py-2 text-sm xl:inline-flex"
           >
             Få kostnadsfri rådgivning
           </Link>
           <Link
             to="/offert"
-            className="btn-base btn-dark ml-2 min-h-11 px-6 py-2 text-sm max-lg:ml-4"
+            className="btn-base btn-dark ml-2 min-h-11 px-6 py-2 text-sm max-xl:ml-4"
           >
             Få fri offert
           </Link>

@@ -14,6 +14,7 @@ import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolic
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as OffertRouteImport } from './routes/offert'
 import { Route as OmOssRouteImport } from './routes/om-oss'
+import { Route as PriserRouteImport } from './routes/priser'
 import { Route as TjansterRouteImport } from './routes/tjanster'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const OmOssRoute = OmOssRouteImport.update({
   path: '/om-oss',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PriserRoute = PriserRouteImport.update({
+  id: '/priser',
+  path: '/priser',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TjansterRoute = TjansterRouteImport.update({
   id: '/tjanster',
   path: '/tjanster',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
+  '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
+  '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
+  '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/offert'
     | '/om-oss'
+    | '/priser'
     | '/tjanster'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/offert'
     | '/om-oss'
+    | '/priser'
     | '/tjanster'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/offert'
     | '/om-oss'
+    | '/priser'
     | '/tjanster'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   OffertRoute: typeof OffertRoute
   OmOssRoute: typeof OmOssRoute
+  PriserRoute: typeof PriserRoute
   TjansterRoute: typeof TjansterRoute
 }
 
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OmOssRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/priser': {
+      id: '/priser'
+      path: '/priser'
+      fullPath: '/priser'
+      preLoaderRoute: typeof PriserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tjanster': {
       id: '/tjanster'
       path: '/tjanster'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   OffertRoute: OffertRoute,
   OmOssRoute: OmOssRoute,
+  PriserRoute: PriserRoute,
   TjansterRoute: TjansterRoute,
 }
 export const routeTree = rootRouteImport

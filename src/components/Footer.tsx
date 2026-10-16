@@ -36,6 +36,11 @@ export function Footer() {
             <p className="text-xs font-bold tracking-[0.14em] text-sun uppercase">Sidor</p>
             <ul className="mt-4 space-y-2.5 text-sm text-white/85">
               <li>
+                <Link to="/priser" className={LANK}>
+                  Priser
+                </Link>
+              </li>
+              <li>
                 <Link to="/om-oss" className={LANK}>
                   Om oss
                 </Link>
