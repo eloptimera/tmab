@@ -36,3 +36,44 @@ export const PROJEKT: readonly Projekt[] = [
     farger: ["#7fe3ff", "#3d7bff"],
   },
 ];
+
+// Marknadsföringsbilder som visas under projekten. Filerna ligger i public/projekt/.
+// TODO(Treatly): bekräfta att ni har rätt att visa bilderna och vilka kunder de gjordes för.
+export type Bild = {
+  src: string;
+  alt: string;
+  etikett: string;
+  bredd: number;
+  hojd: number;
+};
+
+export const BILDER: readonly Bild[] = [
+  {
+    src: "/projekt/karamellsas.webp",
+    alt: "Flaska med karamellsås som rinner över glasskulor i en skål av metall",
+    etikett: "Produktbild · Dryck & dessert",
+    bredd: 900,
+    hojd: 1205,
+  },
+  {
+    src: "/projekt/serum.webp",
+    alt: "Serumflaska som ligger bland jordgubbar i röd sirap",
+    etikett: "Produktbild · Hudvård",
+    bredd: 768,
+    hojd: 1376,
+  },
+  {
+    src: "/projekt/solglasogon.webp",
+    alt: "Hand som håller upp solglasögon mot blå himmel, i en mobilkameras sökare",
+    etikett: "Kampanjbild · Glasögon",
+    bredd: 900,
+    hojd: 1599,
+  },
+  {
+    src: "/projekt/tshirt.webp",
+    alt: "Modell bakifrån i svart t-shirt med röd text på ryggen",
+    etikett: "Lookbook · Streetwear",
+    bredd: 768,
+    hojd: 1376,
+  },
+];

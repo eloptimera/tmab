@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Lightbulb, LineChart, Phone, UserRound } from "lucide-react";
+import { ArrowUpRight, Phone } from "lucide-react";
 import { Blob, Linjer } from "@/components/Brand";
 import { Heading, Mark } from "@/components/Heading";
+import { LyckasDigitalt } from "@/components/LyckasDigitalt";
 import { Reveal } from "@/components/Reveal";
 import { Tusch } from "@/components/Tusch";
-import { PROJEKT } from "@/lib/projekt";
+import { BILDER, PROJEKT } from "@/lib/projekt";
 import { FORETAG } from "@/lib/foretag";
 import { TJANSTER } from "@/lib/tjanster";
 
@@ -31,25 +32,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Start,
 });
-
-// TODO(Treatly): byt till era egna argument när ni har dem.
-const FORDELAR = [
-  {
-    ikon: UserRound,
-    titel: "En kontakt hela vägen",
-    text: "Du har en person att prata med, från första idé till färdig publicering.",
-  },
-  {
-    ikon: Lightbulb,
-    titel: "Kreativt med fötterna på jorden",
-    text: "Idéer som sticker ut, men som alltid utgår från vad verksamheten behöver.",
-  },
-  {
-    ikon: LineChart,
-    titel: "Resultat du kan följa",
-    text: "Vi sätter mål innan vi börjar och redovisar tydligt vad insatserna gav.",
-  },
-] as const;
 
 const KORTSTIL = [
   "bg-brand text-white",
@@ -151,28 +133,24 @@ function Start() {
         </div>
       </section>
 
-      {/* Varför Treatly */}
-      <section className="bg-fade-tint py-12 sm:py-16">
+      {/* Varför Treatly – vad som krävs för att lyckas digitalt */}
+      <section aria-labelledby="lyckas-rubrik" className="bg-fade-tint py-12 sm:py-16">
         <div className="container-page">
           <Reveal>
             <p className="eyebrow">Varför {FORETAG.kortnamn}</p>
-            <Heading className="mt-4 max-w-2xl text-4xl sm:text-5xl">
-              Marknadsföring som <Mark>gör skillnad</Mark>
+            <Heading className="mt-4 max-w-3xl text-4xl sm:text-5xl">
+              <span id="lyckas-rubrik">
+                Det här krävs för att <Mark>lyckas</Mark> digitalt
+              </span>
             </Heading>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
+              Digital marknadsföring är sex hantverk på en gång. Ni kan lära er alla själva, eller
+              låta oss sköta dem medan ni driver företaget.
+            </p>
           </Reveal>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {FORDELAR.map((f, i) => (
-              <Reveal key={f.titel} delay={i * 80}>
-                <article className="h-full rounded-[2rem] bg-white p-8 shadow-sm shadow-brand/10">
-                  <span className="grid size-14 place-items-center rounded-full bg-brand text-white">
-                    <f.ikon className="size-6" aria-hidden="true" />
-                  </span>
-                  <h3 className="mt-6 text-2xl">{f.titel}</h3>
-                  <p className="mt-3 leading-relaxed text-muted-foreground">{f.text}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={100} className="mt-10">
+            <LyckasDigitalt />
+          </Reveal>
         </div>
       </section>
 
@@ -231,6 +209,36 @@ function Start() {
                       <span className="sr-only"> (öppnas i ny flik)</span>
                     </div>
                   </a>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+
+          <Reveal className="mt-14">
+            <h3 className="text-3xl sm:text-4xl">
+              Marknadsföringsbilder vi <Mark>tagit fram</Mark>
+            </h3>
+          </Reveal>
+          <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {BILDER.map((b, i) => (
+              <li key={b.src}>
+                <Reveal delay={i * 70}>
+                  <figure>
+                    <div className="overflow-hidden rounded-[1.5rem] bg-tint">
+                      <img
+                        src={b.src}
+                        alt={b.alt}
+                        width={b.bredd}
+                        height={b.hojd}
+                        loading="lazy"
+                        decoding="async"
+                        className="aspect-[3/4] w-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+                      />
+                    </div>
+                    <figcaption className="mt-3 text-xs font-bold tracking-[0.14em] text-ink/70 uppercase">
+                      {b.etikett}
+                    </figcaption>
+                  </figure>
                 </Reveal>
               </li>
             ))}
