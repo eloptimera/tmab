@@ -14,7 +14,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { KornFilter } from "@/components/Brand";
 
 function NotFoundComponent() {
   return (
@@ -139,7 +138,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <KornFilter />
       <div className="flex min-h-screen flex-col">
         <Header />
         <main id="innehall" className="flex-1 overflow-x-clip">

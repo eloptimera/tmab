@@ -1,5 +1,6 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { ArrowRight, Check, Plus } from "lucide-react";
+import { useRef, useState } from "react";
 import { FORETAG } from "@/lib/foretag";
 import { OMRADEN, type Omrade } from "@/lib/omraden";
 
@@ -86,12 +87,41 @@ function Innehall({ o }: { o: Omrade }) {
 
 /** Utfällbar lista: vad som krävs för att lyckas digitalt, själv kontra med oss. */
 export function LyckasDigitalt() {
+  const rot = useRef<HTMLDivElement>(null);
+  const [oppen, setOppen] = useState("seo");
+
+  // När en rad ovanför stängs samtidigt som en ny öppnas glider den klickade raden uppåt
+  // under fingret, vilket upplevs som hack. Vi håller kvar den klickade raden på samma
+  // plats på skärmen medan animationen pågår.
+  function byt(nytt: string) {
+    const id = nytt || oppen;
+    const rad = rot.current?.querySelector<HTMLElement>(`[data-omrade="${id}"]`);
+    const start = rad?.getBoundingClientRect().top;
+    setOppen(nytt);
+    if (!rad || start === undefined) return;
+    const slut = performance.now() + 450;
+    const folj = () => {
+      const diff = rad.getBoundingClientRect().top - start;
+      if (Math.abs(diff) > 0.5) window.scrollBy({ top: diff, behavior: "instant" });
+      if (performance.now() < slut) requestAnimationFrame(folj);
+    };
+    requestAnimationFrame(folj);
+  }
+
   return (
-    <Accordion.Root type="single" collapsible defaultValue="seo" className="grid gap-3">
+    <Accordion.Root
+      ref={rot}
+      type="single"
+      collapsible
+      value={oppen}
+      onValueChange={byt}
+      className="grid gap-3 [overflow-anchor:none]"
+    >
       {OMRADEN.map((o, i) => (
         <Accordion.Item
           key={o.id}
           value={o.id}
+          data-omrade={o.id}
           className="overflow-hidden rounded-[2rem] border-2 border-line bg-white/80 transition-colors data-[state=open]:border-ink/80 data-[state=open]:bg-white"
         >
           <Accordion.Header className="font-sans leading-normal font-normal tracking-normal">
@@ -124,7 +154,7 @@ export function LyckasDigitalt() {
               </span>
             </Accordion.Trigger>
           </Accordion.Header>
-          <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+          <Accordion.Content className="overflow-hidden [--tw-animation-duration:280ms] [--tw-ease:cubic-bezier(0.22,1,0.36,1)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
             <Innehall o={o} />
           </Accordion.Content>
         </Accordion.Item>

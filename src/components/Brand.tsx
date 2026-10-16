@@ -14,72 +14,25 @@ export function Logo({ ljus = false, className = "" }: { ljus?: boolean; classNa
   );
 }
 
-/** SVG-filter som suddar och spräcklar blobbens kanter (korn). Renderas en gång i roten. */
-export function KornFilter() {
-  return (
-    <svg width="0" height="0" aria-hidden="true" className="pointer-events-none absolute">
-      <defs>
-        <filter
-          id="treatly-korn"
-          x="-30%"
-          y="-30%"
-          width="160%"
-          height="160%"
-          colorInterpolationFilters="sRGB"
-        >
-          <feGaussianBlur stdDeviation="22" result="bl" />
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.8"
-            numOctaves="2"
-            seed="7"
-            result="nz"
-          />
-          <feDisplacementMap
-            in="bl"
-            in2="nz"
-            scale="64"
-            xChannelSelector="R"
-            yChannelSelector="G"
-          />
-        </filter>
-      </defs>
-    </svg>
-  );
-}
-
-const BLOBBAR = [
-  // [left, top, width, height, gradient, rotation]
-  ["6%", "4%", "46%", "42%", "radial-gradient(circle at 40% 40%, #7fe3ff 0%, #3d7bff 70%)", 0],
-  ["26%", "22%", "42%", "56%", "radial-gradient(circle at 50% 40%, #8a4dff 0%, #3a1fe0 80%)", -18],
-  ["50%", "10%", "42%", "40%", "radial-gradient(circle at 50% 50%, #ffb066 0%, #ff6f3c 85%)", 8],
-  ["4%", "52%", "40%", "36%", "radial-gradient(circle at 50% 50%, #ffe27a 0%, #ffb52e 90%)", 0],
-  ["46%", "56%", "40%", "38%", "radial-gradient(circle at 50% 50%, #ff7d96 0%, #ff4f6e 90%)", 0],
-  ["34%", "58%", "26%", "28%", "radial-gradient(circle at 50% 50%, #6a3bff 0%, #3a1fe0 90%)", 0],
-] as const;
-
 /**
- * Kornig, suddig färgblob i referensens stil. Rent dekorativ – döljs för skärmläsare.
+ * Kornig, suddig färgblob. Förrenderad till en bild (public/blob.webp) i stället för ett
+ * levande SVG-filter – filtret räknades om varje gång innehållet runt omkring flyttade sig,
+ * vilket gjorde t.ex. den utfällbara listan hackig. Rent dekorativ – döljs för skärmläsare.
  * Storlek och placering styrs med className (t.ex. absolute/relative + bredd).
  */
 export function Blob({ className = "" }: { className?: string }) {
   return (
     <div aria-hidden="true" className={`pointer-events-none aspect-[5/4] ${className}`}>
-      <div className="relative size-full" style={{ filter: "url(#treatly-korn)" }}>
-        {BLOBBAR.map(([left, top, w, h, bg, rot]) => (
-          <span
-            key={bg}
-            className="absolute rounded-full"
-            style={{
-              left,
-              top,
-              width: w,
-              height: h,
-              backgroundImage: bg,
-              transform: `rotate(${rot}deg)`,
-            }}
-          />
-        ))}
+      <div className="relative size-full">
+        <img
+          src="/blob.webp"
+          alt=""
+          width={1000}
+          height={800}
+          decoding="async"
+          draggable={false}
+          className="absolute top-[-30%] left-[-30%] h-[160%] w-[160%] max-w-none select-none"
+        />
       </div>
     </div>
   );
