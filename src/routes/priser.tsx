@@ -19,7 +19,7 @@ export const Route = createFileRoute("/priser")({
       {
         name: "description",
         content:
-          "Månadspaket från 2 995 kr, engångstjänster och gratis första konsultation. Se vad marknadsföringsbilder, SEO/GEO, Meta-annonser och hemsida kostar.",
+          "Månadspaket från 2 995 kr exkl. moms, engångstjänster och gratis första konsultation. Se vad marknadsföringsbilder, SEO/GEO, Meta-annonser och hemsida kostar.",
       },
       { property: "og:title", content: "Priser – Treatly – Marketing AB" },
       { property: "og:url", content: "/priser" },
@@ -170,7 +170,7 @@ function Priser() {
       {/* Månadspaket */}
       <section aria-labelledby="manadspaket" className="relative isolate">
         <Blob className="absolute top-1/3 -left-56 -z-10 hidden w-[34rem] opacity-35 lg:block" />
-        <div className="container-page py-14 sm:py-20">
+        <div className="container-page pt-14 pb-6 sm:pt-20 sm:pb-8">
           <Reveal>
             <p className="eyebrow">01 · Månadspaket</p>
             <h2 id="manadspaket" className="mt-4 text-4xl sm:text-5xl">
@@ -184,14 +184,14 @@ function Priser() {
               </Reveal>
             ))}
           </div>
-          <p className="mt-10 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
             {PAKET_VILLKOR}
           </p>
         </div>
       </section>
 
       {/* Engångstjänster och konsultation */}
-      <section className="bg-fade-tint py-14 sm:py-20">
+      <section className="bg-fade-tint pt-8 pb-14 sm:pt-10 sm:pb-20">
         <div className="container-page grid gap-14 lg:grid-cols-2 lg:gap-10">
           <Reveal className="min-w-0">
             <p className="eyebrow">02 · Engångstjänster</p>
@@ -216,6 +216,9 @@ function Priser() {
             </div>
           </Reveal>
         </div>
+        <p className="container-page mt-8 text-sm text-muted-foreground">
+          Alla priser är exkl. moms.
+        </p>
       </section>
 
       {/* Avslut */}
