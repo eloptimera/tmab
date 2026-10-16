@@ -28,21 +28,21 @@ const OMRADEN = [
     titel: "Varumärke & strategi",
     text: "En tydlig position och ett budskap som håller i alla kanaler.",
     ikon: Target,
-    stil: "bg-brand text-white",
+    stil: "bg-brand text-white kortskugga-brand",
     till: { to: "/tjanster" },
   },
   {
     titel: "Innehåll & sociala medier",
     text: "Text, bild och video som får er målgrupp att stanna upp.",
     ikon: PenTool,
-    stil: "border-2 border-line bg-white text-ink",
+    stil: "border-2 border-line bg-white text-ink kortskugga",
     till: { to: "/tjanster/$slug", params: { slug: "marknadsforingsbilder" } },
   },
   {
     titel: "Kampanjer & annonsering",
     text: "Kampanjer som når rätt personer och går att mäta.",
     ikon: Megaphone,
-    stil: "bg-ink text-white",
+    stil: "bg-ink text-white kortskugga",
     till: { to: "/tjanster/$slug", params: { slug: "meta-annonser" } },
   },
 ] as const;
@@ -111,7 +111,7 @@ function Start() {
               <Reveal key={o.titel} delay={i * 70}>
                 <Link
                   {...o.till}
-                  className={`group flex h-full min-h-[18rem] flex-col justify-between rounded-[2rem] p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-8 ${o.stil}`}
+                  className={`group flex h-full min-h-[18rem] flex-col justify-between rounded-[2rem] p-7 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 sm:p-8 ${o.stil}`}
                 >
                   <div className="flex items-start justify-between">
                     <span className="grid size-14 place-items-center rounded-full bg-white/20 ring-1 ring-current/15">

@@ -296,6 +296,33 @@
   transform: none;
 }
 
+/* Mjuk skugga i flera lager för kort. Den blå varianten tonas i kortets egen färg. */
+@utility kortskugga {
+  box-shadow:
+    0 1px 2px rgb(16 17 20 / 0.06),
+    0 10px 20px -8px rgb(16 17 20 / 0.16),
+    0 28px 48px -22px rgb(16 17 20 / 0.28);
+  &:hover {
+    box-shadow:
+      0 1px 2px rgb(16 17 20 / 0.06),
+      0 16px 28px -10px rgb(16 17 20 / 0.2),
+      0 40px 64px -26px rgb(16 17 20 / 0.34);
+  }
+}
+
+@utility kortskugga-brand {
+  box-shadow:
+    0 1px 2px rgb(36 56 201 / 0.12),
+    0 10px 20px -8px rgb(36 56 201 / 0.3),
+    0 28px 48px -22px rgb(36 56 201 / 0.45);
+  &:hover {
+    box-shadow:
+      0 1px 2px rgb(36 56 201 / 0.12),
+      0 16px 28px -10px rgb(36 56 201 / 0.36),
+      0 40px 64px -26px rgb(36 56 201 / 0.55);
+  }
+}
+
 /* Handritad tuschring som ritas fram (se Tusch.tsx) */
 .tusch-linje {
   stroke-dasharray: 1;
