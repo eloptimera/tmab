@@ -34,16 +34,6 @@ function Lank({ to, label, onClick }: { to: string; label: string; onClick?: () 
 export function Header() {
   const [oppen, setOppen] = useState(false);
 
-  // Helt transparent högst upp. Efter scroll läggs en lätt oskärpa bakom, annars krockar
-  // menyn med rubriker och text som glider under den.
-  const [scrollad, setScrollad] = useState(false);
-  useEffect(() => {
-    const kolla = () => setScrollad(window.scrollY > 24);
-    kolla();
-    window.addEventListener("scroll", kolla, { passive: true });
-    return () => window.removeEventListener("scroll", kolla);
-  }, []);
-
   useEffect(() => {
     if (!oppen) return;
     const stang = (e: KeyboardEvent) => e.key === "Escape" && setOppen(false);
@@ -52,11 +42,8 @@ export function Header() {
   }, [oppen]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-[background-color,backdrop-filter] duration-300 ${
-        scrollad ? "bg-background/80 backdrop-blur-md" : "bg-transparent"
-      }`}
-    >
+    // Helt transparent, ingen bakgrund eller oskärpa – även efter scroll.
+    <header className="sticky top-0 z-50 bg-transparent">
       <a
         href="#innehall"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-4 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-bold focus:text-ink"

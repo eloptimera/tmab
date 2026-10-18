@@ -52,7 +52,7 @@ function Start() {
     <>
       {/* Hero */}
       <section className="relative isolate overflow-hidden">
-        <div className="mx-auto flex max-w-[88rem] flex-col px-6 pt-6 pb-8 sm:px-10 lg:min-h-[min(42rem,calc(100svh-4.5rem))] lg:pb-6">
+        <div className="mx-auto flex max-w-[88rem] flex-col px-6 pt-6 pb-8 max-lg:min-h-[calc(100svh-4.5rem)] sm:px-10 lg:min-h-[min(42rem,calc(100svh-4.5rem))] lg:pb-6">
           <div className="caps flex items-start justify-between gap-6 text-ink max-sm:justify-end">
             <span aria-hidden="true" className="hidden sm:inline">
               Bilder · SEO & GEO · Annonser · Hemsidor
@@ -61,7 +61,9 @@ function Start() {
           </div>
 
           {/* Ordbild över blob och linjer */}
-          <div className="relative my-10 flex flex-1 items-center justify-center lg:my-4">
+          {/* Luft under ordbilden: linjerna och ellipsen sticker ut under texten, så avståndet
+              till rubriken måste räknas från dem – inte från bokstäverna. */}
+          <div className="relative mt-14 mb-24 flex items-center justify-center sm:mb-28 lg:mt-6 lg:mb-16 lg:flex-1">
             <Blob className="absolute top-1/2 left-1/2 -z-10 w-[min(72vw,44rem)] -translate-x-[48%] -translate-y-[56%]" />
             <Linjer className="absolute inset-x-[-1.5rem] top-1/2 -z-10 h-[min(34vw,26rem)] min-h-40 w-[calc(100%+3rem)] -translate-y-1/2 text-ink/80 sm:inset-x-[-2.5rem] sm:w-[calc(100%+5rem)]" />
             <p
@@ -72,16 +74,17 @@ function Start() {
             </p>
           </div>
 
-          <div className="grid items-end gap-8 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
+          {/* Mobil: blocket fyller resten av skärmen och knapparna hamnar längst ner i hörnet */}
+          <div className="grid items-end gap-8 max-lg:flex max-lg:flex-1 max-lg:flex-col max-lg:items-stretch lg:grid-cols-[1.25fr_1fr] lg:gap-16">
             <h1 className="max-w-2xl text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.12]">
               Marknadsföringsbyrå som <Mark>gör jobbet åt er</Mark>
             </h1>
-            <div>
+            <div className="max-lg:flex max-lg:flex-1 max-lg:flex-col">
               <p className="max-w-md leading-relaxed text-ink/80">
                 Marknadsföringsbilder, SEO, GEO, Meta-annonser och hemsidor – till fasta priser från{" "}
                 {kr(PRIS.start)} i månaden, exkl. moms. Börja med en gratis genomgång.
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-3 max-lg:mt-auto max-lg:pt-10">
                 <BokaKnapp />
                 <Link to="/priser" className="btn-base btn-outline">
                   Se priser
