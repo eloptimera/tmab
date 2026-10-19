@@ -321,7 +321,7 @@ export const TJANSTER: readonly Tjanst[] = [
       markera: "sagt nej",
     },
     seoTitel: "Cookiebanner och GDPR för företagets hemsida",
-    seoBeskrivning: `Vi sätter upp cookiebanner, Meta-pixel och statistik så att inget spårar förrän besökaren sagt ja. Från ${kr(PRIS.sparning)}. Gratis genomgång.`,
+    seoBeskrivning: `Vi sätter upp cookiebanner, Meta-pixel och statistik så att inget spårar förrän besökaren sagt ja. Ingår i alla månadspaket, annars från ${kr(PRIS.sparning)}.`,
     vad: "Mät vad som fungerar, med samtycke som håller",
     ikon: Cookie,
     svarighet: 4,
@@ -340,8 +340,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Integritetspolicy som listar varje verktyg",
     ],
     pris: { belopp: PRIS.sparning, fran: true, avser: "Cookiebanner och spårning" },
-    iPaket:
-      "Ingår när vi bygger en ny hemsida. I månadspaketen håller vi samtycket uppdaterat när nya verktyg kommer till.",
+    iPaket: `Ingår i alla månadspaket, från ${kr(PRIS.start)} per månad: vi sätter upp bannern och håller den uppdaterad när nya verktyg kommer till. Ingår också när vi bygger en ny hemsida.`,
     fragor: [
       {
         fraga: "Behöver vi en cookiebanner?",
@@ -361,7 +360,7 @@ export const TJANSTER: readonly Tjanst[] = [
       },
       {
         fraga: "Vad kostar en cookiebanner?",
-        svar: `Uppsättning av cookiebanner och spårning kostar från ${kr(PRIS.sparning)}, beroende på hur många verktyg sajten använder. Det ingår när vi bygger en ny hemsida. ${MOMS_TEXT}`,
+        svar: `Det ingår i alla månadspaket, från ${kr(PRIS.start)} per månad, och när vi bygger en ny hemsida. Vill ni bara ha cookiebanner och spårning uppsatt kostar det från ${kr(PRIS.sparning)}, beroende på hur många verktyg sajten använder. ${MOMS_TEXT}`,
       },
     ],
   },
