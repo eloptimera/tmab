@@ -6,7 +6,13 @@ import type { Guide } from "@/lib/guider";
 import { PAKET, PRIS, type Fraga } from "@/lib/priser";
 import { TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
 
-export const DELNINGSBILD = { src: "/og.png", bredd: 1200, hojd: 630 } as const;
+/** Standardbilden när en länk delas. Sidor med egen bild skickar `bild` till sidhuvud(). */
+export const DELNINGSBILD = { src: "/og.jpg", bredd: 1200, hojd: 630 } as const;
+
+/** Guidens egen delningsbild (public/og/guider/<slug>.jpg), annars standardbilden. */
+export function guideBild(g: Guide): string {
+  return g.delningsbild ?? DELNINGSBILD.src;
+}
 
 const FORETAG_ID = `${SAJT_URL}/#foretag`;
 
@@ -25,12 +31,15 @@ export function sidhuvud({
   beskrivning,
   sokvag,
   schema = [],
+  bild,
 }: {
   /** Titel utan företagsnamn – det läggs till automatiskt. */
   titel: string;
   beskrivning: string;
   sokvag: string;
   schema?: readonly Schema[];
+  /** Egen delningsbild (1200 × 630) med alt-text. Utelämnad = standardbilden. */
+  bild?: { src: string; alt: string };
 }) {
   const fullTitel = titel === FORETAG.namn ? titel : `${titel} | ${FORETAG.namn}`;
   const url = absolut(sokvag);
@@ -41,10 +50,13 @@ export function sidhuvud({
       { property: "og:title", content: fullTitel },
       { property: "og:description", content: beskrivning },
       { property: "og:url", content: url },
-      { property: "og:image", content: absolut(DELNINGSBILD.src) },
+      { property: "og:image", content: absolut(bild?.src ?? DELNINGSBILD.src) },
       { property: "og:image:width", content: String(DELNINGSBILD.bredd) },
       { property: "og:image:height", content: String(DELNINGSBILD.hojd) },
-      { property: "og:image:alt", content: FORETAG.namn },
+      {
+        property: "og:image:alt",
+        content: bild?.alt ?? `${FORETAG.namn} – bilder, SEO, GEO, Meta-annonser och hemsidor`,
+      },
     ],
     links: [{ rel: "canonical", href: url }],
     scripts: schema.map(jsonLd),
@@ -87,7 +99,9 @@ export function grundSchema(): Schema {
       {
         "@type": "WebSite",
         "@id": `${SAJT_URL}/#webbplats`,
+        // Namnet Google visar som sajtnamn i sökresultaten.
         name: FORETAG.namn,
+        alternateName: FORETAG.kortnamn,
         url: absolut("/"),
         inLanguage: "sv-SE",
         publisher: { "@id": FORETAG_ID },
@@ -190,7 +204,7 @@ export function artikelSchema(g: Guide): Schema {
     datePublished: g.publicerad,
     dateModified: g.uppdaterad,
     inLanguage: "sv-SE",
-    image: absolut(DELNINGSBILD.src),
+    image: absolut(guideBild(g)),
     author: { "@id": FORETAG_ID },
     publisher: { "@id": FORETAG_ID },
   };

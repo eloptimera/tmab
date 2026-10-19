@@ -5,7 +5,7 @@ import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
 import { FLYTTADE_GUIDER, GUIDER, hittaGuide, lastid, type Avsnitt, type Rad } from "@/lib/guider";
-import { artikelSchema, brodsmulor, faqSchema, sidhuvud } from "@/lib/seo";
+import { artikelSchema, brodsmulor, faqSchema, guideBild, sidhuvud } from "@/lib/seo";
 import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/guider/$slug")({
@@ -23,6 +23,7 @@ export const Route = createFileRoute("/guider/$slug")({
       titel: g.seoTitel,
       beskrivning: g.seoBeskrivning,
       sokvag: `/guider/${g.slug}`,
+      bild: { src: guideBild(g), alt: g.titel },
       schema: [
         artikelSchema(g),
         faqSchema(g.fragor),

@@ -27,6 +27,11 @@ export type Guide = {
   uppdaterad: string;
   /** Tjänsten guiden leder vidare till. */
   tjanst: string;
+  /**
+   * Egen delningsbild (1200 × 630) med guidens rubrik, t.ex. "/og/guider/<slug>.jpg".
+   * Utelämnad = sajtens standardbild. Ny guide → be om en bild i samma mall.
+   */
+  delningsbild?: string;
   avsnitt: readonly Avsnitt[];
   fragor: readonly Fraga[];
 };
@@ -47,6 +52,7 @@ export const GUIDER: readonly Guide[] = [
     publicerad: "2026-10-16",
     uppdaterad: "2026-10-16",
     tjanst: "seo",
+    delningsbild: "/og/guider/google-search-console.jpg",
     avsnitt: [
       {
         rubrik: "Vad du kan se i Search Console",
@@ -155,6 +161,7 @@ export const GUIDER: readonly Guide[] = [
     publicerad: "2026-10-16",
     uppdaterad: "2026-10-16",
     tjanst: "geo",
+    delningsbild: "/og/guider/vad-ar-geo.jpg",
     avsnitt: [
       {
         rubrik: "Hur AI-assistenter väljer vilka företag de nämner",
@@ -267,6 +274,7 @@ export const GUIDER: readonly Guide[] = [
     publicerad: "2026-10-16",
     uppdaterad: "2026-10-19",
     tjanst: "seo",
+    delningsbild: "/og/guider/seo-for-smaforetag.jpg",
     avsnitt: [
       {
         rubrik: "Checklistan",

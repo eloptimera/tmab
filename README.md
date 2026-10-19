@@ -36,6 +36,24 @@ All text som återkommer på flera ställen har en enda källa:
 - Guiderna får `Article`-schema och `lastmod` i sitemap från fältet `uppdaterad`.
   Uppdatera datumet när du ändrar en guide.
 
+## Logga, ikoner och delningsbilder
+
+Allt ligger i `public/` och är byggt från samma källa (ordmärket "Tab" och färgkortet).
+
+| Fil                                         | Används till                                                |
+| ------------------------------------------- | ----------------------------------------------------------- |
+| `logo/tab-chip.svg`                         | Kortet i sidhuvud och sidfot (`Logo` i `Brand.tsx`)         |
+| `favicon.ico`, `favicon.svg`                | Webbläsarflik. Under 48 px står bara T:et kvar              |
+| `favicon-96x96.png`                         | Google-sök (kräver en multipel av 48 px)                    |
+| `apple-touch-icon.png`                      | iPhone/iPad hemskärm (180 px, utan transparens)             |
+| `icon-192.png`, `icon-512.png`, `-maskable` | Android/PWA via `site.webmanifest`                          |
+| `logo.png`                                  | Organisationens logga i den strukturerade datan             |
+| `og.jpg`                                    | Standardbild när en sida delas (1200 × 630)                 |
+| `og/guider/<slug>.jpg`                      | Guidens egen delningsbild, satt med `delningsbild` i guiden |
+
+Byter ni favicon igen: be Google indexera om startsidan i Search Console, annars dröjer det
+innan sökresultaten visar den nya.
+
 ### Koppla domänen (Strato → Vercel)
 
 1. Vercel → projektet → Settings → Domains: lägg till `treatlymarketing.se` och
