@@ -13,6 +13,8 @@ export type Projekt = {
    * 2026-10-19 – ta nya när sajten ändras.
    */
   skarmbild?: { dator: string; mobil: string };
+  /** Vad vi gjorde – bara sådant som faktiskt levererats. Inga påhittade siffror. */
+  gjorde?: readonly string[];
 };
 
 export const PROJEKT: readonly Projekt[] = [
@@ -23,6 +25,12 @@ export const PROJEKT: readonly Projekt[] = [
     url: "https://www.treatly.se",
     doman: "treatly.se",
     farger: ["#ffb066", "#ff4f6e"],
+    // TODO(TAB): stämmer listan? Lägg till siffror (besök, kunder) när ni har dem.
+    gjorde: [
+      "Hemsida och kundplattform – design, texter och utveckling",
+      "Produktbilder framtagna med AI",
+      "Innehåll för LinkedIn riktat till HR-chefer",
+    ],
   },
   {
     namn: "Scudaro",
@@ -31,6 +39,12 @@ export const PROJEKT: readonly Projekt[] = [
     url: "https://www.scudaro.com",
     doman: "scudaro.com",
     farger: ["#8a4dff", "#3a1fe0"],
+    // TODO(TAB): stämmer listan? Lägg till siffror (följare, försäljning) när ni har dem.
+    gjorde: [
+      "Visuell identitet och lookbook framtagen med AI",
+      "Korta videor i stående format för Instagram och TikTok",
+      "Innehållsserier för TikTok",
+    ],
     skarmbild: {
       dator: "/projekt/scudaro-hemsida.webp",
       mobil: "/projekt/scudaro-hemsida-mobil.webp",
@@ -51,7 +65,8 @@ export const PROJEKT: readonly Projekt[] = [
 ];
 
 // Marknadsföringsbilder som visas under projekten. Filerna ligger i public/projekt/.
-// TODO(TAB): bekräfta att ni har rätt att visa bilderna och vilka kunder de gjordes för.
+// Bilder med andras varumärken är konceptbilder – märk dem så, så att ingen tror att
+// varumärket är vår kund. TODO(TAB): byt mot bilder från riktiga uppdrag när ni har dem.
 export type Bild = {
   src: string;
   alt: string;
@@ -64,21 +79,21 @@ export const BILDER: readonly Bild[] = [
   {
     src: "/projekt/karamellsas.webp",
     alt: "Flaska med karamellsås som rinner över glasskulor i en skål av metall",
-    etikett: "Produktbild · Dryck & dessert",
+    etikett: "Konceptbild · Dryck & dessert",
     bredd: 900,
     hojd: 1205,
   },
   {
     src: "/projekt/serum.webp",
     alt: "Serumflaska som ligger bland jordgubbar i röd sirap",
-    etikett: "Produktbild · Hudvård",
+    etikett: "Konceptbild · Hudvård",
     bredd: 768,
     hojd: 1376,
   },
   {
     src: "/projekt/solglasogon.webp",
     alt: "Hand som håller upp solglasögon mot blå himmel, i en mobilkameras sökare",
-    etikett: "Kampanjbild · Glasögon",
+    etikett: "Konceptbild · Glasögon",
     bredd: 900,
     hojd: 1599,
   },

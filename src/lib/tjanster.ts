@@ -232,9 +232,9 @@ export const TJANSTER: readonly Tjanst[] = [
       text: "Marknadsföringsbilder som får folk att sluta scrolla",
       markera: "sluta scrolla",
     },
-    seoTitel: "Marknadsföringsbilder för företag",
-    seoBeskrivning: `Produkt- och kampanjbilder för sociala medier, annonser och hemsida. 5 bilder ${kr(PRIS.bilder5)}, 10 bilder ${kr(PRIS.bilder10)}, 20 bilder ${kr(PRIS.bilder20)}.`,
-    vad: "Bilder som får folk att sluta scrolla",
+    seoTitel: "Marknadsföringsbilder och video för företag",
+    seoBeskrivning: `Produkt- och kampanjbilder och korta videor för sociala medier, annonser och hemsida. 5 bilder ${kr(PRIS.bilder5)}, 10 bilder ${kr(PRIS.bilder10)}.`,
+    vad: "Bilder och video som får folk att sluta scrolla",
     ikon: Camera,
     svarighet: 4,
     forklaring:
@@ -247,7 +247,7 @@ export const TJANSTER: readonly Tjanst[] = [
     ],
     medOss: [
       "Koncept anpassat efter varumärket",
-      "Produktion av bilderna",
+      "Produktion av bilder och video",
       "Färdiga format för alla kanaler",
       "Klara att publicera direkt",
     ],
@@ -258,6 +258,10 @@ export const TJANSTER: readonly Tjanst[] = [
       {
         fraga: "Vad kostar marknadsföringsbilder?",
         svar: `5 bilder kostar ${kr(PRIS.bilder5)}, 10 bilder ${kr(PRIS.bilder10)} och 20 bilder ${kr(PRIS.bilder20)}. Bilder ingår också i alla månadspaket. ${MOMS_TEXT}`,
+      },
+      {
+        fraga: "Gör ni video också?",
+        svar: "Ja. Vi gör korta videor i stående format för Reels, TikTok och annonser. Video prissätts efter vad som ska göras – ni får ett fast pris efter den kostnadsfria genomgången, innan något arbete börjar.",
       },
       {
         fraga: "Får vi bilderna i rätt format för varje kanal?",

@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { BILDER, PROJEKT, type Bild } from "@/lib/projekt";
 import { projektKlick } from "@/lib/sparning";
@@ -41,6 +41,23 @@ export function ProjektLista({ className = "" }: { className?: string }) {
                   {p.kategori}
                 </p>
                 <p className="mt-3 leading-relaxed text-muted-foreground">{p.text}</p>
+                {p.gjorde && (
+                  <>
+                    <p className="mt-5 text-sm font-bold text-ink">Det här gjorde vi</p>
+                    <ul className="mt-2 space-y-1.5 text-sm leading-snug text-ink/80">
+                      {p.gjorde.map((g) => (
+                        <li key={g} className="flex gap-2">
+                          <Check
+                            className="mt-0.5 size-4 shrink-0 text-brand"
+                            strokeWidth={3}
+                            aria-hidden="true"
+                          />
+                          {g}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
                 <span className="mt-auto flex items-center justify-between gap-3 pt-6 font-bold text-ink">
                   {p.doman}
                   <span className="grid size-10 shrink-0 place-items-center rounded-full bg-ink text-white transition-colors group-hover:bg-sun group-hover:text-ink">

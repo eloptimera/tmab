@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Megaphone, PenTool, Target } from "lucide-react";
+import { ArrowUpRight, Clapperboard, Megaphone, Search } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Blob, Linjer } from "@/components/Brand";
 import { Heading, Mark } from "@/components/Heading";
@@ -25,16 +25,16 @@ export const Route = createFileRoute("/")({
 // och på /tjanster – här ska besökaren bara snabbt förstå vad vi hjälper till med.
 const OMRADEN = [
   {
-    titel: "Varumärke & strategi",
-    text: "En tydlig position och ett budskap som håller i alla kanaler.",
-    ikon: Target,
+    titel: "Synas på Google & i AI",
+    text: "SEO och GEO som gör att kunderna hittar er – på Google och i ChatGPT.",
+    ikon: Search,
     stil: "bg-brand text-white kortskugga-brand",
-    till: { to: "/tjanster" },
+    till: { to: "/seo-byra" },
   },
   {
     titel: "Innehåll & sociala medier",
-    text: "Text, bild och video som får er målgrupp att stanna upp.",
-    ikon: PenTool,
+    text: "Bilder och korta videor som får er målgrupp att stanna upp.",
+    ikon: Clapperboard,
     stil: "border-2 border-line bg-white text-ink kortskugga",
     till: { to: "/tjanster/$slug", params: { slug: "marknadsforingsbilder" } },
   },
