@@ -9,14 +9,15 @@ import { VanligaFragor } from "@/components/VanligaFragor";
 import { kr, MOMS_TEXT } from "@/lib/priser";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { avstava } from "@/lib/text";
+import { landningssidaForTjanst } from "@/lib/landningssidor";
 import { hittaTjanst, TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/tjanster/$slug")({
   beforeLoad: ({ params }) => {
     // Tjänster med egen landningssida (t.ex. /hemsida-foretag) har bara en adress, så att
     // två sidor inte konkurrerar om samma sökningar. Permanent omdirigering.
-    const sida = hittaTjanst(params.slug)?.sida;
-    if (sida) throw redirect({ href: sida, statusCode: 301 });
+    const sida = landningssidaForTjanst(params.slug);
+    if (sida) throw redirect({ href: sida.sokvag, statusCode: 301 });
   },
   loader: ({ params }) => {
     if (!hittaTjanst(params.slug)) throw notFound();

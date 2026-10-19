@@ -20,6 +20,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
+import { FramtidaLank } from "@/components/FramtidaLank";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
 import { Reveal } from "@/components/Reveal";
@@ -298,6 +299,14 @@ function SeoByra() {
               en konsult som vill hittas av nya uppdragsgivare. I stället för att försöka synas på
               allt lägger vi kraften där trafiken kan bli affärer.
             </p>
+            <FramtidaLank
+              till="/seo-smaforetag"
+              dold
+              className="mt-5 inline-flex items-center gap-2 text-lg font-bold text-ink underline decoration-sun decoration-2 underline-offset-4"
+            >
+              Läs mer om SEO för småföretag
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </FramtidaLank>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Vill ni börja själva? Vår guide{" "}
               <Link to="/guider/$slug" params={{ slug: "seo-for-smaforetag" }} className={LANK}>
@@ -360,6 +369,14 @@ function SeoByra() {
               Vi tar reda på vilka lokala sökningar som är värda mest för er och vilka åtgärder som
               ska göras först.
             </p>
+            <FramtidaLank
+              till="/lokal-seo"
+              dold
+              className="mt-6 inline-flex items-center gap-2 font-bold text-ink underline decoration-sun decoration-2 underline-offset-4"
+            >
+              Läs mer om lokal SEO
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </FramtidaLank>
           </article>
         </Reveal>
         <Reveal delay={80} className="h-full">
@@ -498,11 +515,19 @@ function SeoByra() {
             <p className="text-lg leading-relaxed text-ink/80">
               SEO ska inte bara ge fler besökare – det ska ge fler av rätt besökare. Därför börjar
               vi med verksamheten och vilka sökningar som faktiskt kan bli kunder, och ser sedan hur
-              teknik, innehåll och struktur kan stärka synligheten.
+              teknik, innehåll och struktur kan stärka synligheten. Det gäller oavsett om ni letar
+              efter en SEO-byrå eller en{" "}
+              <FramtidaLank till="/seo-konsult" className={LANK}>
+                SEO-konsult
+              </FramtidaLank>
+              .
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Vi arbetar med hela kedjan: SEO, synlighet i AI och själva hemsidan. Behöver sajten
-              bara förbättras kan vi{" "}
+              Vi arbetar med hela kedjan: SEO, synlighet i AI och – som{" "}
+              <FramtidaLank till="/webbyra" className={LANK}>
+                webbyrå
+              </FramtidaLank>{" "}
+              – själva hemsidan. Behöver sajten bara förbättras kan vi{" "}
               <Link to={tjanstSokvag("hemsideoptimering")} className={LANK}>
                 modernisera er hemsida
               </Link>

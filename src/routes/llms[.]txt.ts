@@ -11,7 +11,7 @@ import {
   prisText,
 } from "@/lib/priser";
 import { GUIDER } from "@/lib/guider";
-import { LANDNINGSSIDOR } from "@/lib/landningssidor";
+import { LANDNINGSSIDOR, landningssidaForTjanst } from "@/lib/landningssidor";
 import { textSvar } from "@/lib/sidor";
 import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
@@ -60,7 +60,7 @@ function llmsText(): string {
     // Tjänster med egen landningssida har sina frågor där – inte på /tjanster/{slug}.
     ...[
       ...PRIS_FRAGOR,
-      ...TJANSTER.filter((t) => !t.sida).flatMap((t) => t.fragor),
+      ...TJANSTER.filter((t) => !landningssidaForTjanst(t.slug)).flatMap((t) => t.fragor),
       ...LANDNINGSSIDOR.flatMap((l) => l.fragor),
     ].map((f) => `- ${f.fraga} ${f.svar}`),
     "",
