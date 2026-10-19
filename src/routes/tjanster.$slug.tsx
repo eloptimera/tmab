@@ -3,6 +3,7 @@ import { ArrowRight, FileCheck } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
+import { BildGalleri } from "@/components/Projekt";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
@@ -62,6 +63,18 @@ function TjanstSida() {
           {kr(t.pris.belopp)}
         </a>
       </PageHero>
+
+      {t.galleri && (
+        <section aria-labelledby="exempel" className="container-page pt-14 sm:pt-20">
+          <Reveal>
+            <p className="eyebrow">Exempel</p>
+            <h2 id="exempel" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
+              Bilder vi <Mark>tagit fram</Mark>
+            </h2>
+          </Reveal>
+          <BildGalleri bilder={t.galleri} className="mt-10" />
+        </section>
+      )}
 
       <section aria-labelledby="jamforelse" className="container-page py-14 sm:py-20">
         <Reveal>

@@ -4,10 +4,9 @@ import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Blob, Linjer } from "@/components/Brand";
 import { Heading, Mark } from "@/components/Heading";
 import { LyckasDigitalt } from "@/components/LyckasDigitalt";
-import { ProjektLista } from "@/components/Projekt";
+import { BildGalleri, ProjektLista } from "@/components/Projekt";
 import { Reveal } from "@/components/Reveal";
 import { Tusch } from "@/components/Tusch";
-import { BILDER } from "@/lib/projekt";
 import { FORETAG } from "@/lib/foretag";
 import { kr, PRIS } from "@/lib/priser";
 import { sidhuvud } from "@/lib/seo";
@@ -176,30 +175,7 @@ function Start() {
               Marknadsföringsbilder vi <Mark>tagit fram</Mark>
             </h3>
           </Reveal>
-          <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {BILDER.map((b, i) => (
-              <li key={b.src}>
-                <Reveal delay={i * 70}>
-                  <figure>
-                    <div className="overflow-hidden rounded-[1.5rem] bg-tint">
-                      <img
-                        src={b.src}
-                        alt={b.alt}
-                        width={b.bredd}
-                        height={b.hojd}
-                        loading="lazy"
-                        decoding="async"
-                        className="aspect-[3/4] w-full object-cover transition-transform duration-700 hover:scale-[1.04]"
-                      />
-                    </div>
-                    <figcaption className="mt-3 text-xs font-bold tracking-[0.14em] text-ink/70 uppercase">
-                      {b.etikett}
-                    </figcaption>
-                  </figure>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          <BildGalleri className="mt-8" />
         </div>
       </section>
 

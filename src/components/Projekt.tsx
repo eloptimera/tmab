@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { PROJEKT } from "@/lib/projekt";
+import { BILDER, PROJEKT, type Bild } from "@/lib/projekt";
 import { projektKlick } from "@/lib/sparning";
 
 /** Tidigare projekt som kort – på startsidan och på /hemsida-foretag. Bara verkliga projekt. */
@@ -50,6 +50,42 @@ export function ProjektLista({ className = "" }: { className?: string }) {
                 <span className="sr-only"> (öppnas i ny flik)</span>
               </div>
             </a>
+          </Reveal>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Marknadsföringsbilder vi tagit fram – på startsidan och på sidan om marknadsföringsbilder. */
+export function BildGalleri({
+  bilder = BILDER,
+  className = "",
+}: {
+  bilder?: readonly Bild[];
+  className?: string;
+}) {
+  return (
+    <ul className={`grid grid-cols-2 gap-4 lg:grid-cols-4 ${className}`}>
+      {bilder.map((b, i) => (
+        <li key={b.src}>
+          <Reveal delay={i * 70}>
+            <figure>
+              <div className="overflow-hidden rounded-[1.5rem] bg-tint">
+                <img
+                  src={b.src}
+                  alt={b.alt}
+                  width={b.bredd}
+                  height={b.hojd}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[3/4] w-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+                />
+              </div>
+              <figcaption className="mt-3 text-xs font-bold tracking-[0.14em] text-ink/70 uppercase">
+                {b.etikett}
+              </figcaption>
+            </figure>
           </Reveal>
         </li>
       ))}

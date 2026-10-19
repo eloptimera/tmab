@@ -111,6 +111,7 @@ export function tjanstSchema(
     serviceType: t.titel,
     description: sida?.beskrivning ?? t.seoBeskrivning,
     url: absolut(sida?.sokvag ?? tjanstSokvag(t)),
+    ...(t.galleri ? { image: t.galleri.map((b) => absolut(b.src)) } : {}),
     provider: { "@id": FORETAG_ID },
     areaServed: { "@type": "Country", name: "Sverige" },
     offers: {

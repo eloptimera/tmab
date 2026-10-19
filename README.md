@@ -28,7 +28,8 @@ All text som återkommer på flera ställen har en enda källa:
 
 - Varje sida sätter titel, beskrivning, canonical, delningsbild och JSON-LD via `sidhuvud()`.
 - `/sitemap.xml`, `/robots.txt` och `/llms.txt` genereras av servern från samma data.
-- Sajtens adress är `https://treatlymarketing.se` (konstanten `DOMAN` i `vite.config.ts`).
+- Sajtens adress är `https://www.treatlymarketing.se` (konstanten `DOMAN` i `vite.config.ts`).
+  Domänen utan www skickas vidare dit i Vercel. Byter ni håll i Vercel måste konstanten följa med.
   Alla byggen på Vercel använder den i canonical, sitemap och schema, så vercel.app-adressen
   räknas som en kopia. `SAJT_URL` överstyr vid behov.
 - `robots.txt` släpper in alla sökmotorer och AI-tjänsternas robotar med namn.
@@ -38,7 +39,7 @@ All text som återkommer på flera ställen har en enda källa:
 ### Koppla domänen (Strato → Vercel)
 
 1. Vercel → projektet → Settings → Domains: lägg till `treatlymarketing.se` och
-   `www.treatlymarketing.se`, och låt www omdirigera till domänen utan www.
+   `www.treatlymarketing.se`, och låt domänen utan www omdirigera till www.
 2. Strato → DNS för domänen: lägg in exakt de A- och CNAME-poster som Vercel visar.
    **Behåll namnservrarna hos Strato och rör inte MX-posterna** – annars slutar mejlen
    till edvin@treatlymarketing.se att fungera.

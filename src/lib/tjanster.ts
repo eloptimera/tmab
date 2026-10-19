@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { Steg } from "@/components/Steg";
 import { landningssidaForTjanst } from "@/lib/landningssidor";
+import { BILDER, type Bild } from "@/lib/projekt";
 import { GSC_SVAR, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 // Tjänsterna. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
@@ -40,6 +41,8 @@ export type Tjanst = {
   pris: { belopp: number; fran: boolean; avser: string };
   /** Hur tjänsten ingår i månadspaketen, eller null om den inte gör det. */
   iPaket: string | null;
+  /** Exempelbilder som visas under rubriken på tjänstesidan. */
+  galleri?: readonly Bild[];
   /** Hur vi arbetar, steg för steg – visas som "Så jobbar vi" på tjänstesidan. */
   arbetssatt?: { steg: readonly Steg[]; underlag: string };
   fragor: readonly Fraga[];
@@ -241,6 +244,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Klara att publicera direkt",
     ],
     pris: { belopp: PRIS.bilder5, fran: true, avser: "Marknadsföringsbilder" },
+    galleri: BILDER,
     iPaket: `5, 10 eller 20 bilder per månad ingår i månadspaketen, från ${kr(PRIS.start)} per månad.`,
     fragor: [
       {
