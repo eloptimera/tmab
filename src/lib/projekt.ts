@@ -8,6 +8,11 @@ export type Projekt = {
   doman: string;
   /** Två färger ur blob-paletten som ger kortet sin egen färgklick. */
   farger: readonly [string, string];
+  /**
+   * Riktiga skärmbilder av sajten (public/projekt/). Tagna från projektets egen källkod
+   * 2026-10-19 – ta nya när sajten ändras.
+   */
+  skarmbild?: { dator: string; mobil: string };
 };
 
 export const PROJEKT: readonly Projekt[] = [
@@ -26,6 +31,10 @@ export const PROJEKT: readonly Projekt[] = [
     url: "https://www.scudaro.com",
     doman: "scudaro.com",
     farger: ["#8a4dff", "#3a1fe0"],
+    skarmbild: {
+      dator: "/projekt/scudaro-hemsida.webp",
+      mobil: "/projekt/scudaro-hemsida-mobil.webp",
+    },
   },
   {
     namn: "Martinssons",
@@ -34,6 +43,10 @@ export const PROJEKT: readonly Projekt[] = [
     url: "https://martinsson.vercel.app",
     doman: "martinsson.vercel.app",
     farger: ["#7fe3ff", "#3d7bff"],
+    skarmbild: {
+      dator: "/projekt/martinsson-hemsida.webp",
+      mobil: "/projekt/martinsson-hemsida-mobil.webp",
+    },
   },
 ];
 

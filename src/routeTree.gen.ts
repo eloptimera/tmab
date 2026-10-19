@@ -23,6 +23,7 @@ import { Route as SeoSmaforetagRouteImport } from './routes/seo-smaforetag'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TackRouteImport } from './routes/tack'
 import { Route as VillkorRouteImport } from './routes/villkor'
+import { Route as WebbyraRouteImport } from './routes/webbyra'
 import { Route as GuiderIndexRouteImport } from './routes/guider.index'
 import { Route as GuiderSlugRouteImport } from './routes/guider.$slug'
 import { Route as TjansterIndexRouteImport } from './routes/tjanster.index'
@@ -98,6 +99,11 @@ const VillkorRoute = VillkorRouteImport.update({
   path: '/villkor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WebbyraRoute = WebbyraRouteImport.update({
+  id: '/webbyra',
+  path: '/webbyra',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuiderIndexRoute = GuiderIndexRouteImport.update({
   id: '/guider/',
   path: '/guider/',
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
+  '/webbyra': typeof WebbyraRoute
   '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/guider/': typeof GuiderIndexRoute
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
+  '/webbyra': typeof WebbyraRoute
   '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/guider': typeof GuiderIndexRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
+  '/webbyra': typeof WebbyraRoute
   '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/guider/': typeof GuiderIndexRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
+    | '/webbyra'
     | '/guider/$slug'
     | '/tjanster/$slug'
     | '/guider/'
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
+    | '/webbyra'
     | '/guider/$slug'
     | '/tjanster/$slug'
     | '/guider'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
+    | '/webbyra'
     | '/guider/$slug'
     | '/tjanster/$slug'
     | '/guider/'
@@ -258,6 +270,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TackRoute: typeof TackRoute
   VillkorRoute: typeof VillkorRoute
+  WebbyraRoute: typeof WebbyraRoute
   GuiderSlugRoute: typeof GuiderSlugRoute
   TjansterSlugRoute: typeof TjansterSlugRoute
   GuiderIndexRoute: typeof GuiderIndexRoute
@@ -364,6 +377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VillkorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/webbyra': {
+      id: '/webbyra'
+      path: '/webbyra'
+      fullPath: '/webbyra'
+      preLoaderRoute: typeof WebbyraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guider/': {
       id: '/guider/'
       path: '/guider'
@@ -410,6 +430,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TackRoute: TackRoute,
   VillkorRoute: VillkorRoute,
+  WebbyraRoute: WebbyraRoute,
   GuiderSlugRoute: GuiderSlugRoute,
   TjansterSlugRoute: TjansterSlugRoute,
   GuiderIndexRoute: GuiderIndexRoute,

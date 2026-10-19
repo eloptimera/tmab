@@ -9,6 +9,7 @@ import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
 import type { Fraga } from "@/lib/priser";
 import { SEO_BYRA, SEO_FRAGOR } from "@/lib/seo-byra";
 import { SEO_SMAFORETAG, SMAFORETAG_FRAGOR } from "@/lib/seo-smaforetag";
+import { WEBBYRA, WEBBYRA_FRAGOR } from "@/lib/webbyra";
 
 export type Landningssida = {
   sokvag: string;
@@ -33,6 +34,7 @@ export const LANDNINGSSIDOR: readonly Landningssida[] = [
   { ...SEO_BYRA, fragor: SEO_FRAGOR, tjanst: "seo" },
   { ...SEO_SMAFORETAG, fragor: SMAFORETAG_FRAGOR },
   { ...HEMSIDA_FORETAG, fragor: HEMSIDA_FRAGOR, tjanst: "hemsida" },
+  { ...WEBBYRA, fragor: WEBBYRA_FRAGOR },
 ];
 
 export function hittaLandningssida(sokvag: string): Landningssida | undefined {
