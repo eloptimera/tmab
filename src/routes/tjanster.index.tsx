@@ -35,7 +35,7 @@ function Tjanster() {
             Allt ni behöver för att <Mark>synas digitalt</Mark>
           </>
         }
-        intro="Sju tjänster som tillsammans får fler att hitta, välja och kontakta er. Ta en i taget eller alla i ett månadspaket."
+        intro="Sex tjänster som tillsammans får fler att hitta, välja och kontakta er. Ta en i taget eller alla i ett månadspaket."
       >
         <BokaKnapp />
         <Link to="/priser" className="btn-base btn-outline">

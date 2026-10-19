@@ -11,12 +11,15 @@ import { kr, MOMS_TEXT } from "@/lib/priser";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { avstava } from "@/lib/text";
 import { landningssidaForTjanst } from "@/lib/landningssidor";
-import { hittaTjanst, TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
+import { hittaDelomrade, hittaTjanst, TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/tjanster/$slug")({
   beforeLoad: ({ params }) => {
     // Tjänster med egen landningssida (t.ex. /hemsida-foretag) har bara en adress, så att
     // två sidor inte konkurrerar om samma sökningar. Permanent omdirigering.
+    // Områden som ingår i en annan tjänst (t.ex. cookies i Meta-annonser) har ingen egen sida.
+    const del = hittaDelomrade(params.slug);
+    if (del) throw redirect({ href: tjanstSokvag(del.ingarI), statusCode: 301 });
     const sida = landningssidaForTjanst(params.slug);
     if (sida) throw redirect({ href: sida.sokvag, statusCode: 301 });
   },
@@ -127,7 +130,7 @@ function TjanstSida() {
         <h2 id="fler-tjanster" className="text-3xl sm:text-4xl">
           Fler <Mark>tjänster</Mark>
         </h2>
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {ovriga.map((o) => (
             <li key={o.slug}>
               <Link

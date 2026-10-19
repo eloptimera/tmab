@@ -12,8 +12,6 @@ export const PRIS = {
   uppfraschning: 3995,
   hemsida: 4995,
   metaUppsattning: 2495,
-  // TODO(TAB): förslag – bekräfta priset för cookiebanner och spårning.
-  sparning: 1995,
   uppstart: 2495,
 } as const;
 
@@ -71,8 +69,7 @@ export const PAKET: readonly Paket[] = [
       "10 marknadsföringsbilder",
       "SEO/GEO-optimering",
       "Hemsideförbättringar",
-      "Cookiebanner och samtycke",
-      "Meta Ads-hantering",
+      "Meta Ads-hantering inkl. cookiebanner",
       "Månadsrapport",
     ],
   },
@@ -84,8 +81,7 @@ export const PAKET: readonly Paket[] = [
       "20 marknadsföringsbilder",
       "Löpande SEO/GEO-optimering",
       "Fler hemsideförbättringar",
-      "Cookiebanner och samtycke",
-      "Meta Ads-hantering och optimering",
+      "Meta Ads-hantering och optimering inkl. cookiebanner",
       "Månadsrapport",
       "2 avstämningar per månad",
     ],
@@ -120,12 +116,10 @@ export const ENGANGSTJANSTER: readonly Prisrad[] = [
     slug: "hemsideoptimering",
   },
   { tjanst: "Skapa hemsida", pris: PRIS.hemsida, fran: true, slug: "hemsida" },
-  { tjanst: "Meta Ads – uppsättning", pris: PRIS.metaUppsattning, slug: "meta-annonser" },
   {
-    tjanst: "Cookiebanner och spårning",
-    pris: PRIS.sparning,
-    fran: true,
-    slug: "cookies-och-sparning",
+    tjanst: "Meta Ads – uppsättning inkl. cookiebanner",
+    pris: PRIS.metaUppsattning,
+    slug: "meta-annonser",
   },
 ];
 

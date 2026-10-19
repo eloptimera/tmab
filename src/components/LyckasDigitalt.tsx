@@ -6,7 +6,7 @@ import { FORETAG } from "@/lib/foretag";
 import { kr } from "@/lib/priser";
 import { tjanstOppnad } from "@/lib/sparning";
 import { avstava } from "@/lib/text";
-import { TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
+import { hittaTjanst, OMRADEN, tjanstSokvag, type Delomrade, type Tjanst } from "@/lib/tjanster";
 
 const LUTNING = ["-rotate-[1.4deg]", "rotate-[1.1deg]", "rotate-[0.8deg]", "-rotate-[1deg]"];
 
@@ -29,7 +29,7 @@ function Svarighet({ niva }: { niva: Tjanst["svarighet"] }) {
 }
 
 /** "Gör det själv" mot "Med oss" för en tjänst. Används här och på tjänstesidorna. */
-export function SjalvMotOss({ o }: { o: Tjanst }) {
+export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
   return (
     <div className="grid items-center gap-5 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
       {/* Gör det själv */}
@@ -86,7 +86,9 @@ export function SjalvMotOss({ o }: { o: Tjanst }) {
   );
 }
 
-function Innehall({ o }: { o: Tjanst }) {
+function Innehall({ o }: { o: Tjanst | Delomrade }) {
+  const del = "ingarI" in o;
+  const lank = del ? hittaTjanst(o.ingarI) : o;
   return (
     <div className="px-5 pb-6 sm:px-8 sm:pb-8">
       <p className="max-w-3xl text-lg leading-relaxed text-ink/80">{o.forklaring}</p>
@@ -94,16 +96,20 @@ function Innehall({ o }: { o: Tjanst }) {
         <SjalvMotOss o={o} />
       </div>
       <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
-        <p className="text-ink/80">
-          {o.pris.avser}:{" "}
-          <span className="font-display text-xl text-ink">
-            {o.pris.fran ? "från " : ""}
-            {kr(o.pris.belopp)}
-          </span>{" "}
-          <span className="text-sm text-muted-foreground">exkl. moms</span>
-        </p>
-        <Link to={tjanstSokvag(o.slug)} className="btn-base btn-outline">
-          Läs mer om {avstava(o.iText)}
+        {del ? (
+          <p className="font-bold text-ink">{o.ingarText}</p>
+        ) : (
+          <p className="text-ink/80">
+            {o.pris.avser}:{" "}
+            <span className="font-display text-xl text-ink">
+              {o.pris.fran ? "från " : ""}
+              {kr(o.pris.belopp)}
+            </span>{" "}
+            <span className="text-sm text-muted-foreground">exkl. moms</span>
+          </p>
+        )}
+        <Link to={tjanstSokvag(lank?.slug ?? o.slug)} className="btn-base btn-outline">
+          Läs mer om {avstava(lank?.iText ?? o.iText)}
           <ArrowRight className="size-4" aria-hidden="true" />
         </Link>
       </div>
@@ -144,7 +150,7 @@ export function LyckasDigitalt() {
       onValueChange={byt}
       className="grid gap-3 [overflow-anchor:none]"
     >
-      {TJANSTER.map((o, i) => (
+      {OMRADEN.map((o, i) => (
         <Accordion.Item
           key={o.slug}
           value={o.slug}
