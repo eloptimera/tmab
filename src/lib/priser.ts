@@ -59,7 +59,6 @@ export const PAKET: readonly Paket[] = [
       "5 marknadsföringsbilder",
       "Grundläggande SEO/GEO",
       "Mindre hemsidejusteringar",
-      "Cookiebanner och samtycke",
       "Månadsrapport",
     ],
   },
