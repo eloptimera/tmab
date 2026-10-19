@@ -41,6 +41,11 @@ export type Tjanst = {
   /** Hur vi arbetar, steg för steg – visas som "Så jobbar vi" på tjänstesidan. */
   arbetssatt?: { steg: readonly Steg[]; underlag: string };
   fragor: readonly Fraga[];
+  /**
+   * Egen landningssida som ersätter /tjanster/{slug}. Den gamla adressen omdirigeras dit
+   * (301) och alla interna länkar går direkt till landningssidan.
+   */
+  sida?: string;
 };
 
 export const TJANSTER: readonly Tjanst[] = [
@@ -273,6 +278,7 @@ export const TJANSTER: readonly Tjanst[] = [
     ],
     pris: { belopp: PRIS.hemsida, fran: true, avser: "Ny hemsida" },
     iPaket: null,
+    sida: "/hemsida-foretag",
     arbetssatt: {
       steg: [
         {
@@ -310,4 +316,11 @@ export const TJANSTER: readonly Tjanst[] = [
 
 export function hittaTjanst(slug: string): Tjanst | undefined {
   return TJANSTER.find((t) => t.slug === slug);
+}
+
+/** Adressen till tjänstens sida – landningssidan om den har en, annars /tjanster/{slug}. */
+export function tjanstSokvag(t: Tjanst | string): string {
+  const tjanst = typeof t === "string" ? hittaTjanst(t) : t;
+  if (!tjanst) return "/tjanster";
+  return tjanst.sida ?? `/tjanster/${tjanst.slug}`;
 }

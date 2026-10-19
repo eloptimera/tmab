@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { ArrowRight, FileCheck } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
@@ -9,9 +9,15 @@ import { VanligaFragor } from "@/components/VanligaFragor";
 import { kr, MOMS_TEXT } from "@/lib/priser";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { avstava } from "@/lib/text";
-import { hittaTjanst, TJANSTER, type Tjanst } from "@/lib/tjanster";
+import { hittaTjanst, TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/tjanster/$slug")({
+  beforeLoad: ({ params }) => {
+    // Tjänster med egen landningssida (t.ex. /hemsida-foretag) har bara en adress, så att
+    // två sidor inte konkurrerar om samma sökningar. Permanent omdirigering.
+    const sida = hittaTjanst(params.slug)?.sida;
+    if (sida) throw redirect({ href: sida, statusCode: 301 });
+  },
   loader: ({ params }) => {
     if (!hittaTjanst(params.slug)) throw notFound();
   },
@@ -111,8 +117,7 @@ function TjanstSida() {
           {ovriga.map((o) => (
             <li key={o.slug}>
               <Link
-                to="/tjanster/$slug"
-                params={{ slug: o.slug }}
+                to={tjanstSokvag(o)}
                 className="group flex h-full items-center justify-between gap-3 rounded-[1.5rem] border-2 border-line bg-white/80 p-5 transition-colors hover:border-ink"
               >
                 <span>

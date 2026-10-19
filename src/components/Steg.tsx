@@ -3,7 +3,13 @@ export type Steg = { titel: string; text: string };
 /** Numrerade steg. `rad` lägger dem bredvid varandra på bredare skärmar. */
 export function Stegliste({ steg, rad = false }: { steg: readonly Steg[]; rad?: boolean }) {
   return (
-    <ol className={rad ? "grid gap-4 md:grid-cols-3" : "space-y-4"}>
+    <ol
+      className={
+        rad
+          ? `grid gap-4 ${steg.length === 4 ? "md:grid-cols-2 xl:grid-cols-4" : "md:grid-cols-3"}`
+          : "space-y-4"
+      }
+    >
       {steg.map((s, i) => (
         <li
           key={s.titel}

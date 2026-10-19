@@ -6,7 +6,7 @@ import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
 import { GUIDER, hittaGuide, lastid, type Avsnitt, type Rad } from "@/lib/guider";
 import { artikelSchema, brodsmulor, faqSchema, sidhuvud } from "@/lib/seo";
-import { hittaTjanst } from "@/lib/tjanster";
+import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/guider/$slug")({
   loader: ({ params }) => {
@@ -89,11 +89,7 @@ function GuideSida() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <BokaKnapp variant="white" tjanst={tjanst.slug} />
-              <Link
-                to="/tjanster/$slug"
-                params={{ slug: tjanst.slug }}
-                className="btn-base btn-outline-white"
-              >
+              <Link to={tjanstSokvag(tjanst)} className="btn-base btn-outline-white">
                 Om {tjanst.titel}
               </Link>
             </div>

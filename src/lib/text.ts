@@ -7,6 +7,7 @@ const AVSTAVNING: readonly [RegExp, string][] = [
   [/emsideoptimering/g, "emside­optimering"],
   [/emsideförbättringar/g, "emside­förbättringar"],
   [/ökmotoroptimering/g, "ökmotor­optimering"],
+  [/öretagshemsida/g, "öretags­hemsida"],
 ];
 
 /** Lägger in mjuka bindestreck i kända långa ord. Bara för visning – inte i metadata. */

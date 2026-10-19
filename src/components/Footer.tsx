@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/Brand";
 import { FORETAG } from "@/lib/foretag";
-import { TJANSTER } from "@/lib/tjanster";
+import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
 const LANK =
   "rounded-sm underline decoration-transparent decoration-2 underline-offset-4 transition-colors duration-200 hover:decoration-sun";
@@ -24,7 +24,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm text-white/85">
               {TJANSTER.map((t) => (
                 <li key={t.slug}>
-                  <Link to="/tjanster/$slug" params={{ slug: t.slug }} className={LANK}>
+                  <Link to={tjanstSokvag(t)} className={LANK}>
                     {t.titel}
                   </Link>
                 </li>

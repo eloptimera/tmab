@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { kr } from "@/lib/priser";
 import { avstava } from "@/lib/text";
 import { brodsmulor, sidhuvud } from "@/lib/seo";
-import { TJANSTER } from "@/lib/tjanster";
+import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/tjanster/")({
   head: () =>
@@ -85,11 +85,7 @@ function Tjanster() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  to="/tjanster/$slug"
-                  params={{ slug: t.slug }}
-                  className="btn-base btn-dark mt-6"
-                >
+                <Link to={tjanstSokvag(t)} className="btn-base btn-dark mt-6">
                   Läs mer om {avstava(t.iText)}
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>

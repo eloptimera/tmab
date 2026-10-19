@@ -11,8 +11,9 @@ import {
   prisText,
 } from "@/lib/priser";
 import { GUIDER } from "@/lib/guider";
+import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
 import { textSvar } from "@/lib/sidor";
-import { TJANSTER } from "@/lib/tjanster";
+import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
 // llms.txt (https://llmstxt.org): en kort sammanfattning av sajten för AI-assistenter.
 // Byggs från samma data som sidorna, så den är alltid uppdaterad.
@@ -37,7 +38,7 @@ function llmsText(): string {
     "",
     ...TJANSTER.map(
       (t) =>
-        `- [${t.titel}](${absolut(`/tjanster/${t.slug}`)}): ${t.vad}. ${t.pris.avser}: ${t.pris.fran ? "från " : ""}${kr(t.pris.belopp)}.`,
+        `- [${t.titel}](${absolut(tjanstSokvag(t))}): ${t.vad}. ${t.pris.avser}: ${t.pris.fran ? "från " : ""}${kr(t.pris.belopp)}.`,
     ),
     "",
     "## Månadspaket",
@@ -56,13 +57,16 @@ function llmsText(): string {
     "",
     "## Vanliga frågor",
     "",
-    ...[...PRIS_FRAGOR, ...TJANSTER.flatMap((t) => t.fragor)].map((f) => `- ${f.fraga} ${f.svar}`),
+    ...[...PRIS_FRAGOR, ...TJANSTER.flatMap((t) => t.fragor), ...HEMSIDA_FRAGOR].map(
+      (f) => `- ${f.fraga} ${f.svar}`,
+    ),
     "",
     "## Sidor",
     "",
     `- [Priser](${absolut("/priser")})`,
     `- [Alla tjänster](${absolut("/tjanster")})`,
     `- [Guider](${absolut("/guider")})`,
+    `- [${HEMSIDA_FORETAG.titel}](${absolut(HEMSIDA_FORETAG.sokvag)})`,
     `- [Om oss](${absolut("/om-oss")})`,
     `- [Boka gratis genomgång](${absolut("/kontakt")})`,
     `- [Allmänna villkor](${absolut("/villkor")})`,

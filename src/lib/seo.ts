@@ -4,7 +4,7 @@
 import { absolut, FORETAG, SAJT_URL } from "@/lib/foretag";
 import type { Guide } from "@/lib/guider";
 import { PAKET, PRIS, type Fraga } from "@/lib/priser";
-import { TJANSTER, type Tjanst } from "@/lib/tjanster";
+import { TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
 
 export const DELNINGSBILD = { src: "/og.png", bredd: 1200, hojd: 630 } as const;
 
@@ -103,7 +103,7 @@ export function tjanstSchema(t: Tjanst): Schema {
     name: t.titel,
     serviceType: t.titel,
     description: t.seoBeskrivning,
-    url: absolut(`/tjanster/${t.slug}`),
+    url: absolut(tjanstSokvag(t)),
     provider: { "@id": FORETAG_ID },
     areaServed: { "@type": "Country", name: "Sverige" },
     offers: {

@@ -20,6 +20,7 @@ import {
   type Prisrad,
 } from "@/lib/priser";
 import { faqSchema, paketSchema, sidhuvud } from "@/lib/seo";
+import { tjanstSokvag } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/priser")({
   head: () =>
@@ -115,8 +116,7 @@ function Pristabell({
                 >
                   {r.slug ? (
                     <Link
-                      to="/tjanster/$slug"
-                      params={{ slug: r.slug }}
+                      to={tjanstSokvag(r.slug)}
                       className="underline decoration-line decoration-2 underline-offset-4 transition-colors hover:decoration-brand"
                     >
                       {r.tjanst}
