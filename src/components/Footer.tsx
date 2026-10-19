@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/Brand";
 import { FORETAG } from "@/lib/foretag";
+import { BEHOVER_SAMTYCKE, oppnaInstallningar } from "@/lib/samtycke";
+import { mejlKlick } from "@/lib/sparning";
 import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
 const LANK =
@@ -65,6 +67,13 @@ export function Footer() {
                   Integritetspolicy
                 </Link>
               </li>
+              {BEHOVER_SAMTYCKE && (
+                <li>
+                  <button type="button" onClick={oppnaInstallningar} className={LANK}>
+                    Cookieinställningar
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 
@@ -82,7 +91,11 @@ export function Footer() {
               {FORETAG.epost && (
                 <li className="flex gap-3">
                   <Mail className="mt-0.5 size-4 shrink-0 text-sun" aria-hidden="true" />
-                  <a href={`mailto:${FORETAG.epost}`} className={LANK}>
+                  <a
+                    href={`mailto:${FORETAG.epost}`}
+                    onClick={() => mejlKlick(window.location.pathname)}
+                    className={LANK}
+                  >
                     {FORETAG.epost}
                   </a>
                 </li>

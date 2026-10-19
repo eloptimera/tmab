@@ -13,7 +13,8 @@ const LANKAR = [
   { to: "/kontakt", label: "Kontakt" },
 ] as const;
 
-const LANK_BAS = "caps px-4 py-3 !tracking-[0.16em] whitespace-nowrap transition-colors duration-200";
+const LANK_BAS =
+  "caps px-4 py-3 !tracking-[0.16em] whitespace-nowrap transition-colors duration-200";
 const LANK_MORK = `${LANK_BAS} text-ink/70 hover:text-ink`;
 const LANK_LJUS = `${LANK_BAS} text-white/75 hover:text-white`;
 const AKTIV_MORK = "text-ink underline decoration-ink decoration-1 underline-offset-[10px]";

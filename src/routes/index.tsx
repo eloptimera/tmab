@@ -147,7 +147,7 @@ function Start() {
               </span>
             </Heading>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Digital marknadsföring är sex hantverk på en gång. Ni kan lära er alla själva, eller
+              Digital marknadsföring är många hantverk på en gång. Ni kan lära er alla själva, eller
               låta oss sköta dem medan ni driver företaget.
             </p>
           </Reveal>

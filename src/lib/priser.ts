@@ -12,6 +12,8 @@ export const PRIS = {
   uppfraschning: 3995,
   hemsida: 4995,
   metaUppsattning: 2495,
+  // TODO(TAB): förslag – bekräfta priset för cookiebanner och spårning.
+  sparning: 1995,
   uppstart: 2495,
 } as const;
 
@@ -117,6 +119,12 @@ export const ENGANGSTJANSTER: readonly Prisrad[] = [
   },
   { tjanst: "Skapa hemsida", pris: PRIS.hemsida, fran: true, slug: "hemsida" },
   { tjanst: "Meta Ads – uppsättning", pris: PRIS.metaUppsattning, slug: "meta-annonser" },
+  {
+    tjanst: "Cookiebanner och spårning",
+    pris: PRIS.sparning,
+    fran: true,
+    slug: "cookies-och-sparning",
+  },
 ];
 
 export const KONSULTATION: readonly Prisrad[] = [

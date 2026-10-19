@@ -4,6 +4,7 @@ import { ArrowRight, Check, Plus } from "lucide-react";
 import { useRef, useState } from "react";
 import { FORETAG } from "@/lib/foretag";
 import { kr } from "@/lib/priser";
+import { tjanstOppnad } from "@/lib/sparning";
 import { avstava } from "@/lib/text";
 import { TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
 
@@ -119,6 +120,7 @@ export function LyckasDigitalt() {
   // under fingret, vilket upplevs som hack. Vi håller kvar den klickade raden på samma
   // plats på skärmen medan animationen pågår.
   function byt(nytt: string) {
+    if (nytt) tjanstOppnad(nytt);
     const id = nytt || oppen;
     const rad = rot.current?.querySelector<HTMLElement>(`[data-omrade="${id}"]`);
     const start = rad?.getBoundingClientRect().top;

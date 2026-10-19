@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/Heading";
 import { FORETAG } from "@/lib/foretag";
+import { AKTIVA_VERKTYG, BEHOVER_SAMTYCKE, KATEGORIER, oppnaInstallningar } from "@/lib/samtycke";
 import { sidhuvud } from "@/lib/seo";
 
 export const Route = createFileRoute("/integritetspolicy")({
@@ -13,9 +14,17 @@ export const Route = createFileRoute("/integritetspolicy")({
   component: Integritetspolicy,
 });
 
-function Sektion({ titel, children }: { titel: string; children: React.ReactNode }) {
+function Sektion({
+  titel,
+  id,
+  children,
+}: {
+  titel: string;
+  id?: string;
+  children: React.ReactNode;
+}) {
   return (
-    <section className="mt-12">
+    <section id={id} className="mt-12 scroll-mt-28">
       <h2 className="text-2xl text-ink">{titel}</h2>
       <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
         {children}
@@ -90,11 +99,48 @@ function Integritetspolicy() {
           </p>
         </Sektion>
 
-        <Sektion titel="Cookies">
+        <Sektion titel="Cookies och statistik" id="cookies">
           <p>
-            Webbplatsen använder i nuläget inga cookies för spårning, statistik eller
-            marknadsföring. Ändrar vi det uppdaterar vi den här sidan.
+            Vi använder Vercel Web Analytics för besöksstatistik. Den sätter inga cookies och sparar
+            inga uppgifter som kan identifiera dig. Vi ser bara sammanställda siffror, till exempel
+            hur många som besökt en sida och vilka knappar som klickats på.
           </p>
+          {BEHOVER_SAMTYCKE ? (
+            <>
+              <p>Om du säger ja i vår cookieruta använder vi också:</p>
+              <ul className="list-disc space-y-3 pl-6">
+                {AKTIVA_VERKTYG.map((v) => (
+                  <li key={v.id}>
+                    <strong className="font-medium text-foreground">{v.namn}</strong> (
+                    {KATEGORIER[v.kategori].namn.toLowerCase()}, {v.leverantor}): {v.syfte} Cookies
+                    sparas i {v.lagring.toLowerCase()}.
+                  </li>
+                ))}
+              </ul>
+              <p>
+                Rättslig grund är ditt samtycke. Inget av verktygen startar innan du sagt ja.
+                Leverantörerna kan föra över uppgifter till USA och är anslutna till EU–US Data
+                Privacy Framework. Ditt val sparas i din webbläsare så att vi inte behöver fråga
+                igen.
+              </p>
+              <p>
+                Du kan ändra eller ta tillbaka ditt samtycke när som helst under{" "}
+                <button
+                  type="button"
+                  onClick={oppnaInstallningar}
+                  className="font-bold text-brand underline"
+                >
+                  Cookieinställningar
+                </button>
+                , som också finns längst ner på varje sida.
+              </p>
+            </>
+          ) : (
+            <p>
+              Vi använder inga cookies för statistik eller marknadsföring. Ändrar vi det frågar vi
+              om ditt samtycke först och uppdaterar den här sidan.
+            </p>
+          )}
         </Sektion>
 
         <Sektion titel="Dina rättigheter">

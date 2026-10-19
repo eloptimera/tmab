@@ -1,6 +1,7 @@
 import {
   Bot,
   Camera,
+  Cookie,
   Gauge,
   LayoutTemplate,
   Megaphone,
@@ -10,7 +11,7 @@ import {
 import type { Steg } from "@/components/Steg";
 import { GSC_SVAR, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
-// De sex tjänsterna. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
+// Tjänsterna. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
 // kontaktformuläret, sitemap.xml och llms.txt.
 // TODO(TAB): stämmer "Med oss"-listorna med vad ni levererar i varje tjänst?
 
@@ -158,7 +159,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Testa, läsa siffror och justera varje vecka",
     ],
     medOss: [
-      "Konto och spårning på plats",
+      "Konto, pixel och samtycke på plats",
       "Annonsmaterial i alla format",
       "Löpande optimering av budgeten",
       "Tydlig rapport om vad det gav",
@@ -173,6 +174,10 @@ export const TJANSTER: readonly Tjanst[] = [
       {
         fraga: "Vad kostar det att komma igång?",
         svar: `Uppsättningen kostar ${kr(PRIS.metaUppsattning)}. Löpande hantering ingår i Growth (${kr(PRIS.growth)} per månad) och Premium (${kr(PRIS.premium)} per månad). ${MOMS_TEXT}`,
+      },
+      {
+        fraga: "Behövs en cookiebanner för att annonsera?",
+        svar: "För att mäta vilka annonser som ger kunder behövs Meta-pixeln på er sajt, och den får bara laddas efter att besökaren sagt ja. Har ni ingen cookiebanner som fungerar sätter vi upp det i samband med annonserna.",
       },
     ],
   },
@@ -310,6 +315,59 @@ export const TJANSTER: readonly Tjanst[] = [
       {
         fraga: "Ska vi bygga nytt eller förbättra den hemsida vi har?",
         svar: `Ofta räcker det att förbättra den sajt ni redan har – en uppfräschning kostar från ${kr(PRIS.uppfraschning)}. Vi går igenom vilket som passar er på den kostnadsfria genomgången.`,
+      },
+    ],
+  },
+  {
+    slug: "cookies-och-sparning",
+    titel: "Cookies och spårning",
+    iText: "cookies och spårning",
+    rubrik: {
+      text: "Se vad som fungerar – utan att spåra någon som sagt nej",
+      markera: "sagt nej",
+    },
+    seoTitel: "Cookiebanner och GDPR för företagets hemsida",
+    seoBeskrivning: `Vi sätter upp cookiebanner, Meta-pixel och statistik så att inget spårar förrän besökaren sagt ja. Från ${kr(PRIS.sparning)}. Gratis genomgång.`,
+    vad: "Mät vad som fungerar, med samtycke som håller",
+    ikon: Cookie,
+    svarighet: 4,
+    forklaring:
+      "Utan mätning vet ni inte vilka annonser och sidor som ger kunder. Men spårning kräver samtycke, och många cookiebanners är fel uppsatta: verktygen laddas innan besökaren svarat, eller så är det svårt att neka.",
+    sjalv: [
+      "Ta reda på vilka cookies sajten faktiskt sätter",
+      "Välja och sätta upp en cookiebanner",
+      "Se till att inget laddas innan besökaren svarat",
+      "Skriva en integritetspolicy som stämmer",
+    ],
+    medOss: [
+      "Genomgång av allt som laddas på sajten",
+      "Cookiebanner där Neka är lika enkelt som Godkänn",
+      "Meta-pixel och statistik kopplade till samtycket",
+      "Integritetspolicy som listar varje verktyg",
+    ],
+    pris: { belopp: PRIS.sparning, fran: true, avser: "Cookiebanner och spårning" },
+    iPaket:
+      "Ingår när vi bygger en ny hemsida. I månadspaketen håller vi samtycket uppdaterat när nya verktyg kommer till.",
+    fragor: [
+      {
+        fraga: "Behöver vi en cookiebanner?",
+        svar: "Ja, om sajten använder cookies eller liknande som inte behövs för att den ska fungera – till exempel Meta-pixeln, Google Analytics eller verktyg som spelar in besök. Då måste besökaren säga ja först. Använder ni bara statistik utan cookies behövs ingen banner. Vi kollar vad som gäller för er sajt på den kostnadsfria genomgången.",
+      },
+      {
+        fraga: "Vilka regler gäller för cookies?",
+        svar: "Cookiereglerna finns i lagen om elektronisk kommunikation, och Post- och telestyrelsen (PTS) har tillsyn. När uppgifterna räknas som personuppgifter gäller också GDPR, med Integritetsskyddsmyndigheten (IMY) som tillsyn. I korthet: inget som inte behövs får laddas före ett ja, det ska vara lika lätt att neka som att godkänna, och besökaren ska kunna ändra sig.",
+      },
+      {
+        fraga: "Behövs samtycke för Meta-pixeln?",
+        svar: "Ja. Pixeln sätter cookies och skickar uppgifter om besöken till Meta, så den får bara laddas efter ett ja. IMY har bötfällt svenska företag för hur de använt pixeln, bland annat Apoteket med 37 miljoner kronor 2024.",
+      },
+      {
+        fraga: "Kan ni garantera att vi följer GDPR?",
+        svar: "Nej, och det bör ingen byrå som inte är jurister lova. Vi ansvarar för det tekniska: att bannern fungerar, att verktygen väntar på samtycke och att policyn beskriver det som finns på sajten. Ni är personuppgiftsansvariga för er sajt, och vid juridiska frågor om just er verksamhet rekommenderar vi en jurist.",
+      },
+      {
+        fraga: "Vad kostar en cookiebanner?",
+        svar: `Uppsättning av cookiebanner och spårning kostar från ${kr(PRIS.sparning)}, beroende på hur många verktyg sajten använder. Det ingår när vi bygger en ny hemsida. ${MOMS_TEXT}`,
       },
     ],
   },

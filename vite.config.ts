@@ -28,6 +28,11 @@ export default defineConfig({
         google: process.env["GOOGLE_SITE_VERIFICATION"] ?? "",
         bing: process.env["BING_SITE_VERIFICATION"] ?? "",
       }),
+      // Spårverktyg som kräver samtycke. Tomt = avstängt och ingen cookiebanner. Se README.
+      __SPARVERKTYG__: JSON.stringify({
+        metaPixel: process.env["META_PIXEL_ID"] ?? "",
+        clarity: process.env["CLARITY_ID"] ?? "",
+      }),
     },
   },
 });

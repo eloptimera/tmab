@@ -8,7 +8,9 @@ import { Stegliste, type Steg } from "@/components/Steg";
 import { skickaBokning } from "@/lib/bokning";
 import { FORETAG } from "@/lib/foretag";
 import { PAKET } from "@/lib/priser";
+import { metaKonvertering } from "@/lib/samtycke";
 import { sidhuvud } from "@/lib/seo";
+import { bokningSkickad } from "@/lib/sparning";
 import { hittaTjanst, TJANSTER } from "@/lib/tjanster";
 
 type Sok = { tjanst?: string; paket?: string };
@@ -59,6 +61,7 @@ function Kontakt() {
     setSkickar(true);
     const fd = new FormData(e.currentTarget);
     const text = (namn: string) => String(fd.get(namn) ?? "");
+    const tjanster = fd.getAll("tjanster").map(String);
     try {
       await skickaBokning({
         data: {
@@ -67,12 +70,14 @@ function Kontakt() {
           epost: text("epost"),
           telefon: text("telefon"),
           webbplats: text("webbplats"),
-          tjanster: fd.getAll("tjanster").map(String),
+          tjanster,
           paket: text("paket"),
           meddelande: text("meddelande"),
           falla: text("falla"),
         },
       });
+      bokningSkickad(tjanster);
+      metaKonvertering("Lead");
       // Egen tacksida: varje besök där räknas som en bokning i statistiken.
       await navigate({ to: "/tack" });
     } catch {
@@ -129,6 +134,8 @@ function Kontakt() {
         <Reveal delay={100}>
           <form
             onSubmit={onSubmit}
+            // Clarity spelar aldrig in det som skrivs här, oavsett inställningar.
+            data-clarity-mask="true"
             className="grid gap-6 rounded-[2rem] border-2 border-line bg-white p-7 sm:p-10"
           >
             <div className="grid gap-6 sm:grid-cols-2">

@@ -16,6 +16,7 @@ import dmSansUrl from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-nor
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Analytics } from "@vercel/analytics/react";
+import { Samtycke } from "@/components/Samtycke";
 import { Footer } from "@/components/Footer";
 import { FORETAG, VERIFIERING } from "@/lib/foretag";
 import { grundSchema, jsonLd } from "@/lib/seo";
@@ -142,6 +143,8 @@ function RootComponent() {
       </div>
       {/* Cookiefri besöksstatistik. Slås på under Analytics i Vercel. */}
       <Analytics />
+      {/* Cookiebanner – visas bara när Meta-pixeln eller Clarity är påslagna. */}
+      <Samtycke />
     </QueryClientProvider>
   );
 }

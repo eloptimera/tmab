@@ -113,7 +113,7 @@ function TjanstSida() {
         <h2 id="fler-tjanster" className="text-3xl sm:text-4xl">
           Fler <Mark>tjänster</Mark>
         </h2>
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {ovriga.map((o) => (
             <li key={o.slug}>
               <Link

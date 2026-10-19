@@ -56,6 +56,21 @@ All text som återkommer på flera ställen har en enda källa:
 Går DNS inte att använda finns reservvägen URL-prefix med HTML-tagg: sätt koden som
 `GOOGLE_SITE_VERIFICATION` (och `BING_SITE_VERIFICATION` för Bing) i Vercel och deploya om.
 
+## Statistik, cookies och samtycke
+
+- **Vercel Web Analytics** räknar besök utan cookies, så ingen cookiebanner behövs för den.
+  Slå på under Analytics i Vercel.
+- **Klickhändelser** (`src/lib/sparning.ts`): `boka_klick`, `bokning_skickad`,
+  `tjanst_oppnad`, `projekt_klick` och `mejl_klick`. De syns i Vercel först på **Pro-planen**;
+  på Hobby ignoreras de. Skicka aldrig namn, e-post eller fritext som händelsedata.
+- **Spårverktyg som kräver samtycke** slås på med miljövariabler i Vercel:
+  - `META_PIXEL_ID` – Meta-pixeln (marknadsföring). Skickar `Lead` när en bokning skickas.
+  - `CLARITY_ID` – Microsoft Clarity (statistik: heatmaps och inspelningar).
+
+  Är någon satt visas cookiebannern (`src/components/Samtycke.tsx`), länken
+  Cookieinställningar i sidfoten och verktygen i integritetspolicyn. Inget laddas före ett ja.
+  Lägger ni till ett verktyg frågar bannern alla besökare igen. Är ingen satt finns ingen banner.
+
 ## Bokningsformuläret
 
 Formuläret på `/kontakt` skickar mejl via [Resend](https://resend.com). Sätt i Vercel

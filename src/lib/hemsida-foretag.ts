@@ -53,6 +53,10 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
     svar: `En SEO-grund ingår: sidstruktur, rubriker, sidtitlar och beskrivningar, sitemap, snabb laddning och mobilanpassning. Det gör att Google kan förstå och visa sidorna. Placeringar i sökresultaten kan ingen garantera – löpande SEO ingår i alla månadspaket från ${kr(PRIS.start)} per månad.`,
   },
   {
+    fraga: "Ingår cookiebanner och integritetspolicy?",
+    svar: "Ja, när sajten behöver det. Ska den använda till exempel Meta-pixeln eller statistik med cookies sätter vi upp en cookiebanner som väntar på besökarens ja, och en integritetspolicy som beskriver varje verktyg. Använder sajten inget sådant behövs ingen banner.",
+  },
+  {
     fraga: "Kan ni hjälpa till med domän och publicering?",
     svar: "Ja. Vi går igenom vilken domän och vilket webbhotell som passar och publicerar hemsidan enligt det vi kommit överens om. Domänen och kontona registreras i ert namn – vi får bara åtkomst.",
   },

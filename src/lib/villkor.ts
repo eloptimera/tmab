@@ -3,7 +3,7 @@
 import { FORETAG } from "@/lib/foretag";
 import { AGANDE_TEXT, BETALNING_TEXT, BINDNING_TEXT, GARANTI_TEXT, MOMS_TEXT } from "@/lib/priser";
 
-export const VILLKOR_DATUM = "2026-10-16";
+export const VILLKOR_DATUM = "2026-10-19";
 
 export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] = [
   {
@@ -79,7 +79,9 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
   {
     rubrik: "11. Personuppgifter",
     stycken: [
-      "När vi behandlar personuppgifter för kundens räkning, till exempel kundlistor eller formulär, tecknar vi ett personuppgiftsbiträdesavtal. Hur vi hanterar uppgifter som lämnas på webbplatsen står i integritetspolicyn.",
+      "Kunden är personuppgiftsansvarig för sin webbplats och för de uppgifter som samlas in där. När vi behandlar personuppgifter för kundens räkning, till exempel kundlistor eller formulär, tecknar vi ett personuppgiftsbiträdesavtal.",
+      "När vi sätter upp cookiebanner, spårning eller integritetspolicy ansvarar vi för det tekniska utförandet: att verktygen väntar på samtycke och att policyn beskriver det vi installerat. Vi ger inte juridisk rådgivning. Kunden ansvarar för att behandlingen har stöd i lag och att texterna stämmer med verksamheten.",
+      "Hur vi hanterar uppgifter som lämnas på vår egen webbplats står i integritetspolicyn.",
     ],
   },
   {

@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { PROJEKT } from "@/lib/projekt";
+import { projektKlick } from "@/lib/sparning";
 
 /** Tidigare projekt som kort – på startsidan och på /hemsida-foretag. Bara verkliga projekt. */
 export function ProjektLista({ className = "" }: { className?: string }) {
@@ -13,6 +14,7 @@ export function ProjektLista({ className = "" }: { className?: string }) {
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => projektKlick(p.namn)}
               className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-line bg-white transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="relative isolate grid aspect-[16/10] place-items-center overflow-hidden bg-tint">
