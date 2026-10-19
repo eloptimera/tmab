@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
-import { ArrowRight, FileCheck } from "lucide-react";
+import { ArrowRight, Check, FileCheck } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
@@ -110,6 +110,54 @@ function TjanstSida() {
           </Reveal>
         </section>
       )}
+
+      {t.fordjupning?.map((f, i) => (
+        <section
+          key={f.rubrik.text}
+          aria-labelledby={`fordjupning-${i}`}
+          className="container-page pb-14 sm:pb-20"
+        >
+          <div className="max-w-3xl">
+            <Reveal>
+              <h2 id={`fordjupning-${i}`} className="text-3xl sm:text-4xl">
+                <Markerad text={f.rubrik.text} markera={f.rubrik.markera} />
+              </h2>
+            </Reveal>
+            {f.stycken?.map((p) => (
+              <p key={p} className="mt-5 text-lg leading-relaxed text-ink/80">
+                {p}
+              </p>
+            ))}
+            {f.lista && (
+              <ul className="mt-6 space-y-3">
+                {f.lista.map((r) => (
+                  <li
+                    key={r}
+                    className="flex gap-3 rounded-2xl bg-white p-4 text-ink shadow-sm shadow-brand/10"
+                  >
+                    <Check className="mt-0.5 size-5 shrink-0 text-brand" aria-hidden="true" />
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {f.efter?.map((p) => (
+              <p key={p} className="mt-5 text-lg leading-relaxed text-ink/80">
+                {p}
+              </p>
+            ))}
+            {f.lank && (
+              <Link
+                to={f.lank.till}
+                className="mt-6 inline-flex items-center gap-2 font-bold text-ink underline decoration-sun decoration-2 underline-offset-4"
+              >
+                {f.lank.text}
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            )}
+          </div>
+        </section>
+      ))}
 
       <section className="bg-fade-tint py-14 sm:py-20">
         <div className="container-page grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">

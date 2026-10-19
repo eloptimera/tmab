@@ -11,11 +11,19 @@ import {
 import type { Steg } from "@/components/Steg";
 import { landningssidaForTjanst } from "@/lib/landningssidor";
 import { BILDER, type Bild } from "@/lib/projekt";
-import { GSC_SVAR, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
+import { GARANTI_TEXT, GSC_SVAR, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 // Tjänsterna som säljs var för sig. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
 // kontaktformuläret, sitemap.xml och llms.txt.
 // TODO(TAB): stämmer "Med oss"-listorna med vad ni levererar i varje tjänst?
+
+export type Fordjupning = {
+  rubrik: { text: string; markera: string };
+  stycken?: readonly string[];
+  lista?: readonly string[];
+  efter?: readonly string[];
+  lank?: { text: string; till: string };
+};
 
 export type Tjanst = {
   /** Används i adressen: /tjanster/{slug} */
@@ -43,6 +51,8 @@ export type Tjanst = {
   iPaket: string | null;
   /** Exempelbilder som visas under rubriken på tjänstesidan. */
   galleri?: readonly Bild[];
+  /** Fördjupande avsnitt på tjänstesidan: hur det går till, vad vi gör, hur vi mäter. */
+  fordjupning?: readonly Fordjupning[];
   /** Hur vi arbetar, steg för steg – visas som "Så jobbar vi" på tjänstesidan. */
   arbetssatt?: { steg: readonly Steg[]; underlag: string };
   fragor: readonly Fraga[];
@@ -120,6 +130,39 @@ export const TJANSTER: readonly Tjanst[] = [
     ],
     pris: { belopp: PRIS.seoGeo, fran: false, avser: "Grundoptimering av SEO och GEO" },
     iPaket: `GEO ingår löpande i alla månadspaket, från ${kr(PRIS.start)} per månad.`,
+    fordjupning: [
+      {
+        rubrik: { text: "Så väljer AI-assistenter vilka företag de nämner", markera: "nämner" },
+        stycken: [
+          "När någon frågar ChatGPT, Gemini, Perplexity eller Copilot om något aktuellt söker assistenten ofta på webben och sammanfattar det den hittar. Den nämner hellre företag vars sajt:",
+        ],
+        lista: [
+          "svarar tydligt och direkt på frågan,",
+          "har fakta i klartext – vad ni gör, för vem, var och vad det kostar,",
+          "är märkt med strukturerad data som maskiner kan läsa,",
+          "nämns på andra sajter som assistenten litar på.",
+        ],
+      },
+      {
+        rubrik: { text: "Det här gör vi för att ni ska bli nämnda", markera: "bli nämnda" },
+        lista: [
+          "Vi frågar AI-assistenterna det era kunder frågar och ser vilka företag som nämns i dag.",
+          "Vi skriver om sidorna så att de svarar direkt på kundernas frågor.",
+          "Vi lägger till strukturerad data för företaget, tjänsterna, priserna och vanliga frågor.",
+          "Vi släpper in AI-tjänsternas sökrobotar och lägger till en llms.txt.",
+          "Vi ser till att namn och uppgifter är likadana överallt där ni finns.",
+          "Vi hjälper er att synas på sajter som AI-assistenterna läser, som branschregister och recensionssajter.",
+        ],
+      },
+      {
+        rubrik: { text: "Så mäter vi resultatet", markera: "mäter" },
+        stycken: [
+          "Det finns ännu inget verktyg för AI-svar som motsvarar Google Search Console. Därför ställer vi samma frågor i ChatGPT, Gemini, Perplexity och Copilot varje månad och antecknar vilka företag som nämns. I er statistik följer vi besök som kommer från AI-tjänsterna.",
+          "Svaren varierar mellan gånger och användare, så vi tittar på utvecklingen över flera månader – inte på ett enskilt svar.",
+        ],
+        lank: { text: "Läs guiden: Vad är GEO?", till: "/guider/vad-ar-geo" },
+      },
+    ],
     fragor: [
       {
         fraga: "Vad är GEO?",
@@ -164,6 +207,31 @@ export const TJANSTER: readonly Tjanst[] = [
     ],
     pris: { belopp: PRIS.metaUppsattning, fran: false, avser: "Uppsättning av Meta Ads" },
     iPaket: `Löpande hantering ingår i Growth (${kr(PRIS.growth)} per månad) och Premium.`,
+    fordjupning: [
+      {
+        rubrik: { text: "Så sätter vi upp era annonser", markera: "sätter vi upp" },
+        lista: [
+          "Annonskonto och Business Manager i ert namn – vi får åtkomst som partner, så kontot alltid är ert.",
+          "Målgrupper utifrån vilka era kunder är, var de bor och vad de är intresserade av.",
+          "Annonser i flera format – bild, video och karusell – för flödet, Stories och Reels.",
+          "En tydlig plats att landa på: en sida på er hemsida eller ett formulär direkt i annonsen.",
+        ],
+      },
+      {
+        rubrik: { text: "Mätning – med eller utan pixel", markera: "Mätning" },
+        stycken: [
+          "Har vi tillgång till er hemsida lägger vi in Meta-pixeln tillsammans med en cookiebanner. Då ser vi vilka annonser som leder till förfrågningar, och vi kan visa annonser för personer som redan besökt sajten.",
+          "Har vi inte tillgång till sajten behövs ingen banner. Vi märker alla annonslänkar med spårningslänkar och följer besöken i er statistik, och vi kan använda formulärannonser där kunden lämnar sina uppgifter direkt i Facebook eller Instagram.",
+        ],
+      },
+      {
+        rubrik: { text: "Budget och uppföljning", markera: "uppföljning" },
+        stycken: [
+          "Annonsbudgeten betalar ni direkt till Meta och bestämmer själva. Planera för att låta annonserna gå i minst fyra veckor – de behöver tid att hitta rätt personer, och vi behöver tid att testa vad som fungerar.",
+          "Vi justerar målgrupper, budget och annonser löpande och visar i månadsrapporten vad pengarna gav.",
+        ],
+      },
+    ],
     fragor: [
       {
         fraga: "Ingår annonsbudgeten?",
@@ -213,6 +281,31 @@ export const TJANSTER: readonly Tjanst[] = [
     ],
     pris: { belopp: PRIS.uppfraschning, fran: true, avser: "Uppfräschning av hemsida" },
     iPaket: `Hemsideförbättringar ingår i alla månadspaket, från ${kr(PRIS.start)} per månad.`,
+    fordjupning: [
+      {
+        rubrik: { text: "Det här går vi igenom", markera: "går vi igenom" },
+        lista: [
+          "Laddtid, särskilt på mobilen, där de flesta besökare finns.",
+          "Tydlighet: förstår en ny besökare på några sekunder vad ni gör och vad nästa steg är?",
+          "Kontaktvägar: formulär, telefon och bokning ska gå att hitta och använda.",
+          "Teknisk SEO: sidtitlar, beskrivningar, rubriker, struktur och sitemap.",
+          "Tillgänglighet: kontrast, textstorlek och att sajten går att använda med tangentbord.",
+        ],
+      },
+      {
+        rubrik: { text: "Så ser ni skillnaden", markera: "skillnaden" },
+        stycken: [
+          "Innan vi ändrar något sparar vi utgångsläget: laddtid, besök, förfrågningar och placeringar i Google. Efter ändringarna jämför vi samma siffror, så att ni ser vad arbetet gav.",
+        ],
+      },
+      {
+        rubrik: { text: "Vi arbetar i er plattform", markera: "er plattform" },
+        stycken: [
+          "WordPress, Wix, Squarespace, Shopify eller en egenbyggd sajt – vi gör ändringarna där sajten redan finns. Ibland lönar det sig mer att bygga nytt än att laga det gamla, och då säger vi det.",
+        ],
+        lank: { text: "Läs om att bygga en ny hemsida", till: "/hemsida-foretag" },
+      },
+    ],
     fragor: [
       {
         fraga: "Vad kostar det att förbättra vår hemsida?",
@@ -254,6 +347,31 @@ export const TJANSTER: readonly Tjanst[] = [
     pris: { belopp: PRIS.bilder5, fran: true, avser: "Marknadsföringsbilder" },
     galleri: BILDER,
     iPaket: `5, 10 eller 20 bilder per månad ingår i månadspaketen, från ${kr(PRIS.start)} per månad.`,
+    fordjupning: [
+      {
+        rubrik: { text: "Så går det till", markera: "går det till" },
+        lista: [
+          "Vi går igenom varumärket, målgruppen och var bilderna ska användas.",
+          "Ni får förslag på koncept innan vi börjar producera.",
+          "Vi tar fram bilderna och videorna – med kamera, AI-verktyg eller båda.",
+          "Ni får allt i rätt format: stående och kvadratiskt för sociala medier, liggande för hemsidan och de format annonserna kräver.",
+        ],
+        efter: [GARANTI_TEXT],
+      },
+      {
+        rubrik: { text: "AI i bildproduktionen", markera: "AI" },
+        stycken: [
+          "Många av våra bilder tas fram helt eller delvis med AI-verktyg. Då kan vi visa produkten i miljöer som annars kräver studio, resa och rekvisita – till en bråkdel av kostnaden.",
+          "Produkten ska alltid se ut som den gör i verkligheten, så vi utgår från bilder på den riktiga produkten. Kräver en plattform att AI-genererat innehåll märks, hjälper vi er att göra det.",
+        ],
+      },
+      {
+        rubrik: { text: "Korta videor för sociala medier", markera: "videor" },
+        stycken: [
+          "Vi gör korta videor i stående format för Reels, TikTok och annonser – produkten i rörelse, en före och efter, eller en kort presentation av det ni erbjuder. Video prissätts efter innehåll, och ni får ett fast pris innan vi börjar.",
+        ],
+      },
+    ],
     fragor: [
       {
         fraga: "Vad kostar marknadsföringsbilder?",
