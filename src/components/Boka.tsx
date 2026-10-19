@@ -45,8 +45,15 @@ export function BokaPanel({
   ),
   text = "20–25 minuter där vi går igenom er digitala närvaro. Ni får ett skräddarsytt förslag efteråt – helt utan kostnad.",
   onBoka,
+  prislank = { href: "/priser", text: "Se priser" },
   ...val
-}: Val & { rubrik?: ReactNode; text?: string; onBoka?: () => void }) {
+}: Val & {
+  rubrik?: ReactNode;
+  text?: string;
+  onBoka?: () => void;
+  /** Den andra knappen – som standard /priser, t.ex. ett ankare (#priser) på en prissida. */
+  prislank?: { href: string; text: string };
+}) {
   return (
     <section className="px-3 pb-3 sm:px-6">
       <Reveal>
@@ -59,9 +66,15 @@ export function BokaPanel({
           <p className="mt-5 max-w-xl text-white/80">{text}</p>
           <div className="mt-9 flex flex-wrap gap-3">
             <BokaKnapp variant="white" {...(onBoka ? { onClick: onBoka } : {})} {...val} />
-            <Link to="/priser" className="btn-base btn-outline-white">
-              Se priser
-            </Link>
+            {prislank.href.startsWith("#") ? (
+              <a href={prislank.href} className="btn-base btn-outline-white">
+                {prislank.text}
+              </a>
+            ) : (
+              <Link to={prislank.href} className="btn-base btn-outline-white">
+                {prislank.text}
+              </Link>
+            )}
           </div>
         </div>
       </Reveal>

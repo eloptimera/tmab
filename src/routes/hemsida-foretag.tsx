@@ -21,6 +21,7 @@ import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
+import { HEMSIDA_PRIS } from "@/lib/hemsida-pris";
 import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
 import { AGANDE_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
@@ -428,8 +429,8 @@ function HemsidaForetag() {
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
                   Få en kostnadsfri offert
                 </BokaKnapp>
-                <Link to="/priser" className="btn-base btn-outline-white">
-                  Alla priser
+                <Link to={HEMSIDA_PRIS.sokvag} className="btn-base btn-outline-white">
+                  Se vad en hemsida kostar
                 </Link>
               </div>
               <div className="mt-10 border-t border-white/15 pt-8">

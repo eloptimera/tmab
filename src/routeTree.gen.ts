@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HemsidaForetagRouteImport } from './routes/hemsida-foretag'
+import { Route as HemsidaPrisRouteImport } from './routes/hemsida-pris'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
@@ -37,6 +38,11 @@ const IndexRoute = IndexRouteImport.update({
 const HemsidaForetagRoute = HemsidaForetagRouteImport.update({
   id: '/hemsida-foretag',
   path: '/hemsida-foretag',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HemsidaPrisRoute = HemsidaPrisRouteImport.update({
+  id: '/hemsida-pris',
+  path: '/hemsida-pris',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IntegritetspolicyRoute = IntegritetspolicyRouteImport.update({
@@ -128,6 +134,7 @@ const TjansterSlugRoute = TjansterSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/hemsida-foretag': typeof HemsidaForetagRoute
+  '/hemsida-pris': typeof HemsidaPrisRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/hemsida-foretag': typeof HemsidaForetagRoute
+  '/hemsida-pris': typeof HemsidaPrisRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -171,6 +179,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/hemsida-foretag': typeof HemsidaForetagRoute
+  '/hemsida-pris': typeof HemsidaPrisRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -194,6 +203,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/hemsida-foretag'
+    | '/hemsida-pris'
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
@@ -215,6 +225,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/hemsida-foretag'
+    | '/hemsida-pris'
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
@@ -236,6 +247,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/hemsida-foretag'
+    | '/hemsida-pris'
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
@@ -258,6 +270,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HemsidaForetagRoute: typeof HemsidaForetagRoute
+  HemsidaPrisRoute: typeof HemsidaPrisRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   KontaktRoute: typeof KontaktRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
@@ -291,6 +304,13 @@ declare module '@tanstack/react-router' {
       path: '/hemsida-foretag'
       fullPath: '/hemsida-foretag'
       preLoaderRoute: typeof HemsidaForetagRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hemsida-pris': {
+      id: '/hemsida-pris'
+      path: '/hemsida-pris'
+      fullPath: '/hemsida-pris'
+      preLoaderRoute: typeof HemsidaPrisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/integritetspolicy': {
@@ -418,6 +438,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HemsidaForetagRoute: HemsidaForetagRoute,
+  HemsidaPrisRoute: HemsidaPrisRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   KontaktRoute: KontaktRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,

@@ -28,6 +28,7 @@ import { Skarmbild } from "@/components/Skarmbild";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
+import { HEMSIDA_PRIS } from "@/lib/hemsida-pris";
 import { AGANDE_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
 import { PROJEKT } from "@/lib/projekt";
 import { SEO_BYRA } from "@/lib/seo-byra";
@@ -558,8 +559,8 @@ function Webbyra() {
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
                   Få en kostnadsfri offert
                 </BokaKnapp>
-                <Link to="/priser" className="btn-base btn-outline-white">
-                  Alla priser
+                <Link to={HEMSIDA_PRIS.sokvag} className="btn-base btn-outline-white">
+                  Se vad en hemsida kostar
                 </Link>
               </div>
             </div>

@@ -6,6 +6,7 @@
 //  - ersätter den en tjänst (`tjanst`) omdirigeras /tjanster/{slug} dit (301) och alla
 //    interna länkar till tjänsten går direkt till landningssidan.
 import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
+import { HEMSIDA_PRIS, HEMSIDA_PRIS_FRAGOR } from "@/lib/hemsida-pris";
 import type { Fraga } from "@/lib/priser";
 import { SEO_BYRA, SEO_FRAGOR } from "@/lib/seo-byra";
 import { SEO_SMAFORETAG, SMAFORETAG_FRAGOR } from "@/lib/seo-smaforetag";
@@ -35,6 +36,7 @@ export const LANDNINGSSIDOR: readonly Landningssida[] = [
   { ...SEO_SMAFORETAG, fragor: SMAFORETAG_FRAGOR },
   { ...HEMSIDA_FORETAG, fragor: HEMSIDA_FRAGOR, tjanst: "hemsida" },
   { ...WEBBYRA, fragor: WEBBYRA_FRAGOR },
+  { ...HEMSIDA_PRIS, fragor: HEMSIDA_PRIS_FRAGOR },
 ];
 
 export function hittaLandningssida(sokvag: string): Landningssida | undefined {
