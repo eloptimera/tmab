@@ -175,7 +175,7 @@ export const TJANSTER: readonly Tjanst[] = [
       },
       {
         fraga: "Ingår cookiebanner?",
-        svar: "Ja, så länge vi kan göra ändringar på er hemsida. För att mäta vilka annonser som ger kunder behövs Meta-pixeln, och den får bara laddas efter att besökaren sagt ja. Vi sätter upp pixeln, cookiebannern och texten i er integritetspolicy tillsammans. Ligger sajten hos en leverantör där vi inte kommer åt den går vi igenom vad som är möjligt på den kostnadsfria genomgången.",
+        svar: "Ja, när vi har tillgång till er hemsida eller bygger den åt er. Då lägger vi in Meta-pixeln, som mäter vilka annonser som ger bokningar, tillsammans med en cookiebanner och texten i er integritetspolicy. Har vi inte tillgång till sajten behövs ingen banner: annonserna skickar besökare till er, och vi följer upp resultatet med spårningslänkar och Metas egen statistik.",
       },
       {
         fraga: "Varför behövs samtycke för Meta-pixeln?",
