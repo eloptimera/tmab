@@ -252,15 +252,99 @@ export const GUIDER: readonly Guide[] = [
       },
     ],
   },
+  {
+    slug: "seo-for-smaforetag",
+    titel: "SEO för småföretag: 10 saker att fixa själv",
+    rubrik: {
+      text: "SEO för småföretag: 10 saker du kan fixa själv",
+      markera: "fixa själv",
+    },
+    seoTitel: "SEO för småföretag – 10 saker att fixa själv",
+    seoBeskrivning:
+      "En checklista för småföretag: sidtitlar, Google-företagsprofil, laddtid, sitemap och mer. Det mesta tar under en timme och kostar inget.",
+    ingress:
+      "Du behöver ingen byrå för att ta de första stegen. De här tio sakerna ger mest effekt för minst arbete, och de flesta går att göra på en eftermiddag.",
+    publicerad: "2026-10-16",
+    uppdaterad: "2026-10-19",
+    tjanst: "seo",
+    avsnitt: [
+      {
+        rubrik: "Checklistan",
+        lista: {
+          numrerad: true,
+          rader: [
+            {
+              titel: "Koppla Google Search Console",
+              text: "Då ser du vilka sökningar du redan syns för och om Google hittar alla dina sidor.",
+            },
+            {
+              titel: "Fyll i din Google-företagsprofil",
+              text: "Den styr hur du syns på Google Maps och i lokala sökningar. Lägg in öppettider, tjänster och bilder.",
+            },
+            {
+              titel: "Skriv en unik sidtitel för varje sida",
+              text: "Börja med det kunden söker på, till exempel ”Elektriker i Västerås – akut och planerat”, inte ”Startsida”.",
+            },
+            {
+              titel: "Skriv en beskrivning per sida",
+              text: "Den syns under titeln i sökresultatet och avgör ofta om någon klickar. Håll den under cirka 155 tecken.",
+            },
+            {
+              titel: "En sida per tjänst",
+              text: "En sida som handlar om en sak har lättare att ranka än en sida som räknar upp allt.",
+            },
+            {
+              titel: "Svara på vanliga frågor",
+              text: "Samla det kunder frågar och svara på hemsidan. Det hjälper både Google och AI-assistenter.",
+            },
+            {
+              titel: "Gör sajten snabb på mobilen",
+              text: "Testa i PageSpeed Insights. Stora bilder är den vanligaste orsaken till långsamma sidor.",
+            },
+            {
+              titel: "Ge bilderna namn och alt-text",
+              text: "”rostskydd-bil.jpg” säger mer än ”IMG_4021.jpg”, och alt-texten beskriver bilden för den som inte ser den.",
+            },
+            {
+              titel: "Länka mellan dina egna sidor",
+              text: "Från startsidan till tjänsterna, och från varje tjänst till kontakt.",
+            },
+            {
+              titel: "Be nöjda kunder om omdömen",
+              text: "Recensioner på Google-företagsprofilen påverkar hur högt du syns i lokala sökningar.",
+            },
+          ],
+        },
+      },
+      {
+        rubrik: "När är det dags att ta hjälp?",
+        stycken: [
+          "När grunden är på plats handlar SEO om löpande arbete: nytt innehåll, tekniska förbättringar och uppföljning varje månad. Det är där det blir tidskrävande – och där vi kan ta över.",
+        ],
+      },
+    ],
+    fragor: [
+      {
+        fraga: "Måste man betala för att synas på Google?",
+        svar: "Nej. En plats i de vanliga sökresultaten går inte att köpa. Annonser är något annat och märks som sponsrade.",
+      },
+      {
+        fraga: "Vad ska jag börja med om jag bara hinner en sak?",
+        svar: "Google-företagsprofilen om du har kunder i ett visst område. Annars en tydlig sidtitel och beskrivning på dina viktigaste sidor.",
+      },
+      {
+        fraga: "Hur ofta behöver man jobba med SEO?",
+        svar: "Grunden gör du en gång. Därefter räcker det långt med att följa upp i Search Console varje månad och lägga till nytt innehåll när du har något att säga.",
+      },
+    ],
+  },
 ];
 
 /**
  * Guider som ersatts av en landningssida. Den gamla adressen omdirigeras dit (301) så att
  * länkar och sökresultat hamnar rätt.
  */
-export const FLYTTADE_GUIDER: Readonly<Record<string, string>> = {
-  "seo-for-smaforetag": "/seo-smaforetag",
-};
+export const FLYTTADE_GUIDER: Readonly<Record<string, string>> = {};
 
 export function hittaGuide(slug: string): Guide | undefined {
   return GUIDER.find((g) => g.slug === slug);

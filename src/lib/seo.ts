@@ -98,7 +98,7 @@ export function grundSchema(): Schema {
 
 /**
  * Tjänsten som strukturerad data. `sida` används när en landningssida beskriver en del av
- * tjänsten (t.ex. /seo-smaforetag för SEO) – då med sidans eget namn, text och adress.
+ * tjänsten (t.ex. /seo-byra för SEO) – då med sidans eget namn, text och adress.
  */
 export function tjanstSchema(
   t: Tjanst,

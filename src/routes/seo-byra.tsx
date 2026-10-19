@@ -296,14 +296,14 @@ function SeoByra() {
               en konsult som vill hittas av nya uppdragsgivare. I stället för att försöka synas på
               allt lägger vi kraften där trafiken kan bli affärer.
             </p>
-            <FramtidaLank
-              till="/seo-smaforetag"
-              dold
+            <Link
+              to="/guider/$slug"
+              params={{ slug: "seo-for-smaforetag" }}
               className="mt-5 inline-flex items-center gap-2 text-lg font-bold text-ink underline decoration-sun decoration-2 underline-offset-4"
             >
-              Läs mer om SEO för småföretag
+              10 saker ni kan fixa själv
               <ArrowRight className="size-4" aria-hidden="true" />
-            </FramtidaLank>
+            </Link>
             <div className="mt-8">
               <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "smaforetag")}>
                 Få hjälp med SEO för ert företag
@@ -506,17 +506,13 @@ function SeoByra() {
               SEO ska inte bara ge fler besökare – det ska ge fler av rätt besökare. Därför börjar
               vi med verksamheten och vilka sökningar som faktiskt kan bli kunder, och ser sedan hur
               teknik, innehåll och struktur kan stärka synligheten. Det gäller oavsett om ni letar
-              efter en SEO-byrå eller en{" "}
-              <FramtidaLank till="/seo-konsult" className={LANK}>
-                SEO-konsult
-              </FramtidaLank>
-              .
+              efter en SEO-byrå eller en SEO-konsult.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Vi arbetar med hela kedjan: SEO, synlighet i AI och – som{" "}
-              <FramtidaLank till="/webbyra" className={LANK}>
+              <Link to={tjanstSokvag("hemsida")} className={LANK}>
                 webbyrå
-              </FramtidaLank>{" "}
+              </Link>{" "}
               – själva hemsidan. Behöver sajten bara förbättras kan vi{" "}
               <Link to={tjanstSokvag("hemsideoptimering")} className={LANK}>
                 modernisera er hemsida

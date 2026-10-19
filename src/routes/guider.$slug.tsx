@@ -28,7 +28,7 @@ export const Route = createFileRoute("/guider/$slug")({
         faqSchema(g.fragor),
         brodsmulor([
           { namn: "Hem", sokvag: "/" },
-          { namn: "Guider", sokvag: "/guider" },
+          { namn: "Resurser", sokvag: "/guider" },
           { namn: g.titel, sokvag: `/guider/${g.slug}` },
         ]),
       ],

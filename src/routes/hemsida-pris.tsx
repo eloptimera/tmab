@@ -34,11 +34,9 @@ import {
   PRIS,
 } from "@/lib/priser";
 import { SEO_BYRA } from "@/lib/seo-byra";
-import { SEO_SMAFORETAG } from "@/lib/seo-smaforetag";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { bokaKlick } from "@/lib/sparning";
 import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
-import { WEBBYRA } from "@/lib/webbyra";
 
 const SIDA = HEMSIDA_PRIS.sokvag;
 const TJANST = "hemsida";
@@ -827,17 +825,13 @@ function HemsidaPris() {
               <Link to={HEMSIDA_FORETAG.sokvag} className={LANK}>
                 hemsida till företag
               </Link>
-              , och om hur vi arbetar på sidan om{" "}
-              <Link to={WEBBYRA.sokvag} className={LANK}>
-                våra webbyråtjänster
-              </Link>
-              .
+              , med hur vi arbetar från första mötet till lansering.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Eftersom vi även jobbar med SEO och marknadsföring kan sajten fortsätta utvecklas
               efter lansering – till exempel med{" "}
-              <Link to={SEO_SMAFORETAG.sokvag} className={LANK}>
-                SEO för småföretag
+              <Link to={SEO_BYRA.sokvag} className={LANK}>
+                SEO
               </Link>{" "}
               när ni vill synas bättre på Google.
             </p>

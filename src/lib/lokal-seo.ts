@@ -1,5 +1,5 @@
 // Landningssidan /lokal-seo – lokal sökmotoroptimering, Google Maps och Google-företagsprofilen.
-// Skild från /seo-byra (SEO generellt) och /seo-smaforetag (budget och prioritering).
+// Skild från /seo-byra (SEO generellt).
 // Lokal SEO har inget eget pris – den ingår i SEO-arbetet. Priser hämtas från priser.ts.
 //
 // TODO(TAB): har ni ett eget pris eller paket för lokal SEO (t.ex. genomgång av

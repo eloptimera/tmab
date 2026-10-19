@@ -8,7 +8,7 @@ import { FORETAG } from "@/lib/foretag";
 const LANKAR = [
   { to: "/tjanster", label: "Tjänster" },
   { to: "/priser", label: "Priser" },
-  { to: "/guider", label: "Guider" },
+  { to: "/guider", label: "Resurser" },
   { to: "/om-oss", label: "Om oss" },
   { to: "/kontakt", label: "Kontakt" },
 ] as const;

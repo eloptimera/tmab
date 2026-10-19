@@ -61,6 +61,18 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
     svar: "Ja. Vi går igenom vilken domän och vilket webbhotell som passar och publicerar hemsidan enligt det vi kommit överens om. Domänen och kontona registreras i ert namn – vi får bara åtkomst.",
   },
   {
+    fraga: "Behöver vi redan ha texter och bilder?",
+    svar: "Nej. Vi kan skriva texterna och ta fram bilderna, eller utgå från det ni redan har. Vi går igenom materialet på genomgången så att ni vet vad som behövs.",
+  },
+  {
+    fraga: "Vad är skillnaden mellan webbdesign och webbutveckling?",
+    svar: "Webbdesign är hur sajten ser ut och hur den är att använda. Webbutveckling är att bygga den – koden, funktionerna och tekniken som gör att den fungerar och laddar snabbt. Vi gör båda.",
+  },
+  {
+    fraga: "Hur väljer vi rätt webbyrå?",
+    svar: "Titta på byråns tidigare sajter, be om ett skriftligt förslag på vad som ingår, fråga vem som äger sajten och kontona efteråt och vad det kostar att ändra den senare. Välj den som passar er, inte den med flest funktioner.",
+  },
+  {
     fraga: "Vem äger hemsidan när den är klar?",
     svar: `Ni. ${AGANDE_TEXT} Om ni någon gång vill byta leverantör tar ni med er allt.`,
   },

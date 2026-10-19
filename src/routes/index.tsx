@@ -68,7 +68,7 @@ function Start() {
             <Linjer className="absolute inset-x-[-1.5rem] top-1/2 -z-10 h-[min(34vw,26rem)] min-h-40 w-[calc(100%+3rem)] -translate-y-1/2 text-ink/80 sm:inset-x-[-2.5rem] sm:w-[calc(100%+5rem)]" />
             <p
               aria-hidden="true"
-              className="font-display text-[min(17vw,14rem)] leading-[0.9] font-medium tracking-[-0.02em] text-ink uppercase select-none"
+              className="font-display text-[min(30vw,17rem)] leading-[0.9] font-medium tracking-[0.04em] text-ink uppercase select-none"
             >
               {FORETAG.ordbild}
             </p>
@@ -84,7 +84,7 @@ function Start() {
                 Marknadsföringsbilder, SEO, GEO, Meta-annonser och hemsidor – till fasta priser från{" "}
                 {kr(PRIS.start)} i månaden, exkl. moms. Börja med en gratis genomgång.
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-3 max-lg:mt-auto max-lg:pt-10">
+              <div className="mt-6 flex flex-wrap items-center gap-3">
                 <BokaKnapp />
                 <Link to="/priser" className="btn-base btn-outline">
                   Se priser

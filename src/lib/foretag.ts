@@ -29,7 +29,7 @@ export const FORETAG: {
 } = {
   namn: "TAB Marketing",
   kortnamn: "TAB",
-  ordbild: "Treatly",
+  ordbild: "TAB",
   juridisktNamn: "Treatly AB",
   beskrivning:
     "Marknadsföringsbyrå som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag i hela Sverige – till fasta priser.",

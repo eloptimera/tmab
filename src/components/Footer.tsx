@@ -44,7 +44,7 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/guider" className={LANK}>
-                  Guider
+                  Resurser
                 </Link>
               </li>
               <li>

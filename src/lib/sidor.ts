@@ -13,14 +13,14 @@ export const SIDOR: readonly { sokvag: string; namn: string; andrad?: string }[]
       ? { sokvag: l.sokvag, namn: l.titel, andrad: l.uppdaterad }
       : { sokvag: tjanstSokvag(t), namn: t.titel };
   }),
-  // Landningssidor som inte ersätter en tjänst (t.ex. /seo-smaforetag) – de andra finns ovan.
+  // Landningssidor som inte ersätter en tjänst (t.ex. /lokal-seo) – de andra finns ovan.
   ...LANDNINGSSIDOR.filter((l) => !l.tjanst).map((l) => ({
     sokvag: l.sokvag,
     namn: l.titel,
     andrad: l.uppdaterad,
   })),
   { sokvag: "/priser", namn: "Priser" },
-  { sokvag: "/guider", namn: "Guider" },
+  { sokvag: "/guider", namn: "Resurser" },
   ...GUIDER.map((g) => ({ sokvag: `/guider/${g.slug}`, namn: g.titel, andrad: g.uppdaterad })),
   { sokvag: "/om-oss", namn: "Om oss" },
   { sokvag: "/kontakt", namn: "Boka gratis genomgång" },

@@ -1,6 +1,6 @@
 // Landningssidan /hemsida-pris – vad en hemsida kostar hos TAB.
 // Varje belopp kommer från priser.ts och räknas ut här, så att sidan aldrig visar ett pris som
-// inte står i prislistan. Skild från /hemsida-foretag (tjänsten) och /webbyra (byrån).
+// inte står i prislistan. Skild från /hemsida-foretag (tjänsten).
 //
 // TODO(TAB): komplettera när det är bestämt – visas inte på sajten förrän då:
 //  - vad som ingår i grundpriset för en ny hemsida (antal sidor, funktioner)
@@ -22,7 +22,7 @@ export const HEMSIDA_PRIS = {
   sokvag: "/hemsida-pris",
   titel: "Hemsida pris",
   etikett: "Pris · Hemsida",
-  seoTitel: "Hemsida företag pris – se våra priser",
+  seoTitel: "Vad kostar en hemsida för företag? Våra priser",
   seoBeskrivning: `Vad kostar en hemsida till företag? Hos TAB från ${kr(PRIS.hemsida)}, engångspris exkl. moms. Se vad som ingår, löpande kostnader och årskostnad.`,
   kortText:
     "Vad en företagshemsida kostar hos oss, vad som ingår, löpande kostnader och vad ni betalar totalt första året.",

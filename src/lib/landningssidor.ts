@@ -1,5 +1,11 @@
-// Alla landningssidor (/hemsida-foretag, /seo-byra …). Härifrån får /guider sina kort,
-// sitemap.xml sina adresser och llms.txt sina länkar och frågor.
+// Alla landningssidor (/hemsida-foretag, /seo-byra …). Härifrån får /guider (Resurser) sina
+// kort, sitemap.xml sina adresser och llms.txt sina länkar och frågor.
+//
+// REGEL: en sida per sökavsikt. Innan en ny landningssida byggs – kolla om en befintlig sida
+// redan svarar på samma fråga (t.ex. "webbyrå" = /hemsida-foretag, "SEO-konsult" och "SEO för
+// småföretag" = /seo-byra). Bygg i så fall ut den sidan i stället. Inga stadssidor
+// ("webbyrå Göteborg" osv.): TAB riktar sig till hela Sverige. Se projektdokumentet
+// claude/sajtstruktur.md.
 //
 // Ny landningssida: lägg till den här. Då händer resten av sig själv –
 //  - FramtidaLank-länkar som pekar på adressen blir riktiga länkar,
@@ -10,8 +16,6 @@ import { HEMSIDA_PRIS, HEMSIDA_PRIS_FRAGOR } from "@/lib/hemsida-pris";
 import { LOKAL_FRAGOR, LOKAL_SEO } from "@/lib/lokal-seo";
 import type { Fraga } from "@/lib/priser";
 import { SEO_BYRA, SEO_FRAGOR } from "@/lib/seo-byra";
-import { SEO_SMAFORETAG, SMAFORETAG_FRAGOR } from "@/lib/seo-smaforetag";
-import { WEBBYRA, WEBBYRA_FRAGOR } from "@/lib/webbyra";
 
 export type Landningssida = {
   sokvag: string;
@@ -34,10 +38,8 @@ export type Landningssida = {
 
 export const LANDNINGSSIDOR: readonly Landningssida[] = [
   { ...SEO_BYRA, fragor: SEO_FRAGOR, tjanst: "seo" },
-  { ...SEO_SMAFORETAG, fragor: SMAFORETAG_FRAGOR },
   { ...LOKAL_SEO, fragor: LOKAL_FRAGOR },
   { ...HEMSIDA_FORETAG, fragor: HEMSIDA_FRAGOR, tjanst: "hemsida" },
-  { ...WEBBYRA, fragor: WEBBYRA_FRAGOR },
   { ...HEMSIDA_PRIS, fragor: HEMSIDA_PRIS_FRAGOR },
 ];
 

@@ -18,7 +18,6 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
-import { FramtidaLank } from "@/components/FramtidaLank";
 import { KortVy, type Kort } from "@/components/Kort";
 import { Markerad, Mark } from "@/components/Heading";
 import { Blob } from "@/components/Brand";
@@ -30,11 +29,9 @@ import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { LOKAL_FRAGOR, LOKAL_SEO } from "@/lib/lokal-seo";
 import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
 import { SEO_BYRA } from "@/lib/seo-byra";
-import { SEO_SMAFORETAG } from "@/lib/seo-smaforetag";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { bokaKlick } from "@/lib/sparning";
 import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
-import { WEBBYRA } from "@/lib/webbyra";
 
 const SIDA = LOKAL_SEO.sokvag;
 const TJANST = "seo";
@@ -166,7 +163,7 @@ const PROFIL_CHECK = [
 ] as const;
 
 const SOKEXEMPEL = [
-  ["Målare", "Göteborg"],
+  ["Målare", "Västerås"],
   ["Städfirma", "Stockholm"],
   ["Redovisningsbyrå", "Malmö"],
   ["Frisör", "Borås"],
@@ -328,7 +325,7 @@ function LokalSeo() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               Lokal SEO, eller lokal sökmotoroptimering, gör ett företag lättare att hitta när någon
-              söker efter en tjänst kopplad till en plats – ”målare Göteborg”, ”städfirma Stockholm”
+              söker efter en tjänst kopplad till en plats – ”målare Västerås”, ”städfirma Stockholm”
               eller ”frisör nära mig”.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -689,23 +686,15 @@ function LokalSeo() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               Ni ska förstå vilka lokala sökningar som spelar roll och vad som behöver göras – utan
-              att bli experter själva. Är ni ett mindre företag finns mer om prioriteringar och
-              budget under{" "}
-              <Link to={SEO_SMAFORETAG.sokvag} className={LANK}>
+              att bli experter själva. Vill ni börja själva finns en checklista i guiden{" "}
+              <Link to="/guider/$slug" params={{ slug: "seo-for-smaforetag" }} className={LANK}>
                 SEO för småföretag
               </Link>
-              , och vill ni hellre ha en{" "}
-              <FramtidaLank till="/seo-konsult" className={LANK}>
-                SEO-konsult
-              </FramtidaLank>{" "}
-              än en byrå gäller samma upplägg.
+              , och vill ni hellre ha en SEO-konsult än en byrå gäller samma upplägg.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Eftersom vi även arbetar med{" "}
-              <Link to={WEBBYRA.sokvag} className={LANK}>
-                våra webbyråtjänster
-              </Link>{" "}
-              kan vi ändra hemsidan själva – ibland räcker det att{" "}
+              Eftersom vi även bygger och förbättrar hemsidor kan vi ändra hemsidan själva – ibland
+              räcker det att{" "}
               <Link to={tjanstSokvag("hemsideoptimering")} className={LANK}>
                 modernisera er hemsida
               </Link>
