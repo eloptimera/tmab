@@ -96,14 +96,21 @@ export function grundSchema(): Schema {
   };
 }
 
-export function tjanstSchema(t: Tjanst): Schema {
+/**
+ * Tjänsten som strukturerad data. `sida` används när en landningssida beskriver en del av
+ * tjänsten (t.ex. /seo-smaforetag för SEO) – då med sidans eget namn, text och adress.
+ */
+export function tjanstSchema(
+  t: Tjanst,
+  sida?: { namn: string; beskrivning: string; sokvag: string },
+): Schema {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: t.titel,
+    name: sida?.namn ?? t.titel,
     serviceType: t.titel,
-    description: t.seoBeskrivning,
-    url: absolut(tjanstSokvag(t)),
+    description: sida?.beskrivning ?? t.seoBeskrivning,
+    url: absolut(sida?.sokvag ?? tjanstSokvag(t)),
     provider: { "@id": FORETAG_ID },
     areaServed: { "@type": "Country", name: "Sverige" },
     offers: {

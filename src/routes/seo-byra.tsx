@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
 import {
   ArrowRight,
   BarChart3,
@@ -17,9 +16,9 @@ import {
   Settings2,
   Target,
   TrendingUp,
-  type LucideIcon,
 } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
+import { KortVy, type Kort } from "@/components/Kort";
 import { FramtidaLank } from "@/components/FramtidaLank";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
@@ -56,8 +55,6 @@ export const Route = createFileRoute("/seo-byra")({
   },
   component: SeoByra,
 });
-
-type Kort = { titel: string; text: string; ikon: LucideIcon };
 
 const LANK =
   "font-bold text-ink underline decoration-sun decoration-2 underline-offset-4 hover:decoration-ink";
@@ -307,13 +304,6 @@ function SeoByra() {
               Läs mer om SEO för småföretag
               <ArrowRight className="size-4" aria-hidden="true" />
             </FramtidaLank>
-            <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Vill ni börja själva? Vår guide{" "}
-              <Link to="/guider/$slug" params={{ slug: "seo-for-smaforetag" }} className={LANK}>
-                SEO för småföretag
-              </Link>{" "}
-              har tio saker ni kan fixa på en eftermiddag.
-            </p>
             <div className="mt-8">
               <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "smaforetag")}>
                 Få hjälp med SEO för ert företag
@@ -588,21 +578,6 @@ function SeoByra() {
         />
       </div>
     </>
-  );
-}
-
-function KortVy({ k, children }: { k: Kort; children?: ReactNode }) {
-  return (
-    <div className="kortskugga flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-7">
-      <span className="grid size-12 place-items-center rounded-full bg-tint text-brand">
-        <k.ikon className="size-6" aria-hidden="true" />
-      </span>
-      <h3 className="mt-6 font-sans text-lg leading-snug font-bold tracking-normal text-ink">
-        {k.titel}
-      </h3>
-      <p className="mt-2 flex-1 leading-relaxed text-muted-foreground">{k.text}</p>
-      {children}
-    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 // Alla indexerbara sidor – används av sitemap.xml och llms.txt.
 import { GUIDER } from "@/lib/guider";
-import { landningssidaForTjanst } from "@/lib/landningssidor";
+import { LANDNINGSSIDOR, landningssidaForTjanst } from "@/lib/landningssidor";
 import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
 /** `andrad` (ÅÅÅÅ-MM-DD) anges bara där vi vet när innehållet senast ändrades. */
@@ -13,6 +13,12 @@ export const SIDOR: readonly { sokvag: string; namn: string; andrad?: string }[]
       ? { sokvag: l.sokvag, namn: l.titel, andrad: l.uppdaterad }
       : { sokvag: tjanstSokvag(t), namn: t.titel };
   }),
+  // Landningssidor som inte ersätter en tjänst (t.ex. /seo-smaforetag) – de andra finns ovan.
+  ...LANDNINGSSIDOR.filter((l) => !l.tjanst).map((l) => ({
+    sokvag: l.sokvag,
+    namn: l.titel,
+    andrad: l.uppdaterad,
+  })),
   { sokvag: "/priser", namn: "Priser" },
   { sokvag: "/guider", namn: "Guider" },
   ...GUIDER.map((g) => ({ sokvag: `/guider/${g.slug}`, namn: g.titel, andrad: g.uppdaterad })),

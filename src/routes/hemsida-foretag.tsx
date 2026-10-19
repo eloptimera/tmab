@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
 import {
   ArrowRight,
   Check,
@@ -12,9 +11,9 @@ import {
   Search,
   ShieldCheck,
   Smartphone,
-  type LucideIcon,
 } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
+import { KortVy, type Kort } from "@/components/Kort";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
 import { ProjektLista } from "@/components/Projekt";
@@ -51,8 +50,6 @@ export const Route = createFileRoute("/hemsida-foretag")({
   },
   component: HemsidaForetag,
 });
-
-type Kort = { titel: string; text: string; ikon: LucideIcon };
 
 const FORDELAR_HERO = [
   "Anpassad efter ert företag",
@@ -539,20 +536,5 @@ function HemsidaForetag() {
         />
       </div>
     </>
-  );
-}
-
-function KortVy({ k, children }: { k: Kort; children?: ReactNode }) {
-  return (
-    <div className="kortskugga flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-7">
-      <span className="grid size-12 place-items-center rounded-full bg-tint text-brand">
-        <k.ikon className="size-6" aria-hidden="true" />
-      </span>
-      <h3 className="mt-6 font-sans text-lg leading-snug font-bold tracking-normal text-ink">
-        {k.titel}
-      </h3>
-      <p className="mt-2 flex-1 leading-relaxed text-muted-foreground">{k.text}</p>
-      {children}
-    </div>
   );
 }

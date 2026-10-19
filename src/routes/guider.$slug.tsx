@@ -1,14 +1,18 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { ArrowRight, Check, Clock } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
-import { GUIDER, hittaGuide, lastid, type Avsnitt, type Rad } from "@/lib/guider";
+import { FLYTTADE_GUIDER, GUIDER, hittaGuide, lastid, type Avsnitt, type Rad } from "@/lib/guider";
 import { artikelSchema, brodsmulor, faqSchema, sidhuvud } from "@/lib/seo";
 import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/guider/$slug")({
+  beforeLoad: ({ params }) => {
+    const ny = FLYTTADE_GUIDER[params.slug];
+    if (ny) throw redirect({ href: ny, statusCode: 301 });
+  },
   loader: ({ params }) => {
     if (!hittaGuide(params.slug)) throw notFound();
   },
