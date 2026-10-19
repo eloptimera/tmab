@@ -7,6 +7,7 @@ export const HEMSIDA_FORETAG = {
   sokvag: "/hemsida-foretag",
   /** Kort namn i listor, brödsmulor och sitemap. */
   titel: "Hemsida till företag",
+  etikett: "Tjänst · Ny hemsida",
   /** Sidans titel i sökresultat, utan företagsnamn (läggs till automatiskt). */
   seoTitel: `Hemsida till företag – från ${kr(PRIS.hemsida)}`,
   /** Max ca 155 tecken. */

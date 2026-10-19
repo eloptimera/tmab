@@ -75,6 +75,7 @@ export const TJANSTER: readonly Tjanst[] = [
     ],
     pris: { belopp: PRIS.seoGeo, fran: false, avser: "Grundoptimering av SEO och GEO" },
     iPaket: `Löpande SEO ingår i alla månadspaket, från ${kr(PRIS.start)} per månad.`,
+    sida: "/seo-byra",
     fragor: [
       {
         fraga: "Vad kostar SEO?",

@@ -18,6 +18,7 @@ import { Route as OffertRouteImport } from './routes/offert'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as PriserRouteImport } from './routes/priser'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SeoByraRouteImport } from './routes/seo-byra'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TackRouteImport } from './routes/tack'
 import { Route as VillkorRouteImport } from './routes/villkor'
@@ -71,6 +72,11 @@ const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SeoByraRoute = SeoByraRouteImport.update({
+  id: '/seo-byra',
+  path: '/seo-byra',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/seo-byra': typeof SeoByraRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
@@ -135,6 +142,7 @@ export interface FileRoutesByTo {
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/seo-byra': typeof SeoByraRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
@@ -154,6 +162,7 @@ export interface FileRoutesById {
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/seo-byra': typeof SeoByraRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
@@ -174,6 +183,7 @@ export interface FileRouteTypes {
     | '/om-oss'
     | '/priser'
     | '/robots.txt'
+    | '/seo-byra'
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
@@ -192,6 +202,7 @@ export interface FileRouteTypes {
     | '/om-oss'
     | '/priser'
     | '/robots.txt'
+    | '/seo-byra'
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
@@ -210,6 +221,7 @@ export interface FileRouteTypes {
     | '/om-oss'
     | '/priser'
     | '/robots.txt'
+    | '/seo-byra'
     | '/sitemap.xml'
     | '/tack'
     | '/villkor'
@@ -229,6 +241,7 @@ export interface RootRouteChildren {
   OmOssRoute: typeof OmOssRoute
   PriserRoute: typeof PriserRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SeoByraRoute: typeof SeoByraRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TackRoute: typeof TackRoute
   VillkorRoute: typeof VillkorRoute
@@ -303,6 +316,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seo-byra': {
+      id: '/seo-byra'
+      path: '/seo-byra'
+      fullPath: '/seo-byra'
+      preLoaderRoute: typeof SeoByraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -365,6 +385,7 @@ const rootRouteChildren: RootRouteChildren = {
   OmOssRoute: OmOssRoute,
   PriserRoute: PriserRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
+  SeoByraRoute: SeoByraRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TackRoute: TackRoute,
   VillkorRoute: VillkorRoute,

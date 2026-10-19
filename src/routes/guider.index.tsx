@@ -4,7 +4,7 @@ import { BokaPanel } from "@/components/Boka";
 import { Mark, PageHero } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { GUIDER, lastid } from "@/lib/guider";
-import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
+import { LANDNINGSSIDOR } from "@/lib/landningssidor";
 import { brodsmulor, sidhuvud } from "@/lib/seo";
 import { avstava } from "@/lib/text";
 
@@ -67,30 +67,30 @@ function Guider() {
           </li>
         ))}
         {/* Landningssidor med samma kort som guiderna, så att de går att hitta härifrån. */}
-        <li>
-          <Reveal delay={GUIDER.length * 60} className="h-full">
-            <Link
-              to={HEMSIDA_FORETAG.sokvag}
-              className="kortskugga group flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-7 transition-colors hover:border-ink sm:p-8"
-            >
-              <span className="flex items-center gap-2 text-sm text-muted-foreground">
-                <LayoutTemplate className="size-4" aria-hidden="true" />
-                Tjänst · Ny hemsida
-              </span>
-              <h2 className="mt-4 text-2xl sm:text-3xl">{avstava(HEMSIDA_FORETAG.titel)}</h2>
-              <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">
-                {HEMSIDA_FORETAG.kortText}
-              </p>
-              <span className="mt-6 inline-flex items-center gap-2 font-bold text-ink">
-                Läs mer
-                <ArrowRight
-                  className="size-5 transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </span>
-            </Link>
-          </Reveal>
-        </li>
+        {LANDNINGSSIDOR.map((l, i) => (
+          <li key={l.sokvag}>
+            <Reveal delay={(GUIDER.length + i) * 60} className="h-full">
+              <Link
+                to={l.sokvag}
+                className="kortskugga group flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-7 transition-colors hover:border-ink sm:p-8"
+              >
+                <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <LayoutTemplate className="size-4" aria-hidden="true" />
+                  {l.etikett}
+                </span>
+                <h2 className="mt-4 text-2xl sm:text-3xl">{avstava(l.titel)}</h2>
+                <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{l.kortText}</p>
+                <span className="mt-6 inline-flex items-center gap-2 font-bold text-ink">
+                  Läs mer
+                  <ArrowRight
+                    className="size-5 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </span>
+              </Link>
+            </Reveal>
+          </li>
+        ))}
       </ul>
 
       <BokaPanel />

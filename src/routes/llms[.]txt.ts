@@ -11,7 +11,7 @@ import {
   prisText,
 } from "@/lib/priser";
 import { GUIDER } from "@/lib/guider";
-import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
+import { LANDNINGSSIDOR } from "@/lib/landningssidor";
 import { textSvar } from "@/lib/sidor";
 import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
@@ -57,16 +57,19 @@ function llmsText(): string {
     "",
     "## Vanliga frågor",
     "",
-    ...[...PRIS_FRAGOR, ...TJANSTER.flatMap((t) => t.fragor), ...HEMSIDA_FRAGOR].map(
-      (f) => `- ${f.fraga} ${f.svar}`,
-    ),
+    // Tjänster med egen landningssida har sina frågor där – inte på /tjanster/{slug}.
+    ...[
+      ...PRIS_FRAGOR,
+      ...TJANSTER.filter((t) => !t.sida).flatMap((t) => t.fragor),
+      ...LANDNINGSSIDOR.flatMap((l) => l.fragor),
+    ].map((f) => `- ${f.fraga} ${f.svar}`),
     "",
     "## Sidor",
     "",
     `- [Priser](${absolut("/priser")})`,
     `- [Alla tjänster](${absolut("/tjanster")})`,
     `- [Guider](${absolut("/guider")})`,
-    `- [${HEMSIDA_FORETAG.titel}](${absolut(HEMSIDA_FORETAG.sokvag)})`,
+    ...LANDNINGSSIDOR.map((l) => `- [${l.titel}](${absolut(l.sokvag)})`),
     `- [Om oss](${absolut("/om-oss")})`,
     `- [Boka gratis genomgång](${absolut("/kontakt")})`,
     `- [Allmänna villkor](${absolut("/villkor")})`,
