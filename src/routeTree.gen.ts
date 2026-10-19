@@ -15,6 +15,7 @@ import { Route as HemsidaPrisRouteImport } from './routes/hemsida-pris'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as LokalSeoRouteImport } from './routes/lokal-seo'
 import { Route as OffertRouteImport } from './routes/offert'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as PriserRouteImport } from './routes/priser'
@@ -58,6 +59,11 @@ const KontaktRoute = KontaktRouteImport.update({
 const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
   id: '/llms.txt',
   path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LokalSeoRoute = LokalSeoRouteImport.update({
+  id: '/lokal-seo',
+  path: '/lokal-seo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OffertRoute = OffertRouteImport.update({
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/lokal-seo': typeof LokalSeoRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByTo {
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/lokal-seo': typeof LokalSeoRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -183,6 +191,7 @@ export interface FileRoutesById {
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/lokal-seo': typeof LokalSeoRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
+    | '/lokal-seo'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
+    | '/lokal-seo'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -251,6 +262,7 @@ export interface FileRouteTypes {
     | '/integritetspolicy'
     | '/kontakt'
     | '/llms.txt'
+    | '/lokal-seo'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -274,6 +286,7 @@ export interface RootRouteChildren {
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   KontaktRoute: typeof KontaktRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
+  LokalSeoRoute: typeof LokalSeoRoute
   OffertRoute: typeof OffertRoute
   OmOssRoute: typeof OmOssRoute
   PriserRoute: typeof PriserRoute
@@ -332,6 +345,13 @@ declare module '@tanstack/react-router' {
       path: '/llms.txt'
       fullPath: '/llms.txt'
       preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lokal-seo': {
+      id: '/lokal-seo'
+      path: '/lokal-seo'
+      fullPath: '/lokal-seo'
+      preLoaderRoute: typeof LokalSeoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/offert': {
@@ -442,6 +462,7 @@ const rootRouteChildren: RootRouteChildren = {
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   KontaktRoute: KontaktRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
+  LokalSeoRoute: LokalSeoRoute,
   OffertRoute: OffertRoute,
   OmOssRoute: OmOssRoute,
   PriserRoute: PriserRoute,
