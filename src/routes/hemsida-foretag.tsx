@@ -104,7 +104,7 @@ const MALGRUPPER: readonly { titel: string; text: string }[] = [
   },
   {
     titel: "Andra lokala tjänsteföretag",
-    text: "Syns när kunder i ert område söker, och ger dem en anledning att välja er.",
+    text: "Synas när kunder i ert område söker, och ge dem en anledning att välja er.",
   },
 ];
 
@@ -196,8 +196,8 @@ function HemsidaForetag() {
         eyebrow={`Tjänster · ${HEMSIDA_FORETAG.titel}`}
         title={
           <Markerad
-            text="Hemsida till företag – vi bygger er nästa företagshemsida"
-            markera="nästa företagshemsida"
+            text="Hemsida till företag – byggd för att ge er fler kunder"
+            markera="fler kunder"
           />
         }
         intro={`En professionell hemsida gör det enklare för kunderna att hitta er, förstå vad ni erbjuder och ta kontakt. ${FORETAG.kortnamn} bygger moderna, snabba och mobilanpassade hemsidor där design och affärsmål går hand i hand – oavsett om företaget är etablerat eller precis har startat.`}

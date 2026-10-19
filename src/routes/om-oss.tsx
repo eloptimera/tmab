@@ -23,7 +23,7 @@ const VARDERINGAR = [
   {
     ikon: Receipt,
     titel: "Fasta priser",
-    text: "Ni ser vad det kostar innan vi börjar. Alla priser står på sajten, och arbete utanför det avtalade stämmer vi av först.",
+    text: "Ni ser vad det kostar innan vi börjar. Alla grundpriser står på sajten, och arbete utanför det avtalade stämmer vi av först.",
     stil: "bg-brand text-white kortskugga-brand",
   },
   {

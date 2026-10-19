@@ -63,10 +63,11 @@ function Tjanster() {
                 <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">
                   {t.forklaring}
                 </p>
-                <p className="mt-6 font-display text-2xl text-ink">
+                <p className="mt-6 text-sm text-muted-foreground">{t.pris.avser}</p>
+                <p className="mt-1 font-display text-2xl text-ink">
                   {t.pris.fran ? "från " : ""}
-                  {kr(t.pris.belopp)}
-                  <span className="ml-2 font-sans text-sm text-muted-foreground">exkl. moms</span>
+                  {kr(t.pris.belopp)}{" "}
+                  <span className="ml-1 font-sans text-sm text-muted-foreground">exkl. moms</span>
                 </p>
               </div>
               <div>

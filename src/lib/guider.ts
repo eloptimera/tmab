@@ -50,7 +50,7 @@ export const GUIDER: readonly Guide[] = [
     ingress:
       "Google Search Console är Googles gratis verktyg som visar hur din hemsida syns i sökresultaten: vilka sökningar du visas för, hur många som klickar och om Google har problem att läsa dina sidor. Det tar en kvart att komma igång.",
     publicerad: "2026-10-16",
-    uppdaterad: "2026-10-16",
+    uppdaterad: "2026-10-19",
     tjanst: "seo",
     delningsbild: "/og/guider/google-search-console.jpg",
     avsnitt: [
@@ -117,8 +117,8 @@ export const GUIDER: readonly Guide[] = [
               text: "Rapporten säger varför. Ofta är det dubbletter eller sidor som saknar länkar.",
             },
             {
-              titel: "Sidupplevelse på mobil",
-              text: "Långsamma sidor tappar besökare, oavsett hur högt de rankar.",
+              titel: "Core Web Vitals",
+              text: "Rapporten visar om sidorna laddar snabbt och fungerar bra på mobilen. Långsamma sidor tappar besökare, oavsett hur högt de rankar.",
             },
           ],
         },
@@ -318,8 +318,8 @@ export const GUIDER: readonly Guide[] = [
               text: "Från startsidan till tjänsterna, och från varje tjänst till kontakt.",
             },
             {
-              titel: "Be nöjda kunder om omdömen",
-              text: "Recensioner på Google-företagsprofilen påverkar hur högt du syns i lokala sökningar.",
+              titel: "Be kunderna om omdömen",
+              text: "Fråga alla kunder, inte bara dem du tror är nöjda. Recensioner på Google-företagsprofilen påverkar hur högt du syns i lokala sökningar.",
             },
           ],
         },

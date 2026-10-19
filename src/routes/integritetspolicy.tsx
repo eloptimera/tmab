@@ -103,7 +103,8 @@ function Integritetspolicy() {
           <p>
             Vi använder Vercel Web Analytics för besöksstatistik. Den sätter inga cookies och sparar
             inga uppgifter som kan identifiera dig. Vi ser bara sammanställda siffror, till exempel
-            hur många som besökt en sida och vilka knappar som klickats på.
+            hur många som besökt en sida och vilka knappar som klickats på. Rättslig grund är vårt
+            berättigade intresse av att förstå hur webbplatsen används och göra den bättre.
           </p>
           {BEHOVER_SAMTYCKE ? (
             <>

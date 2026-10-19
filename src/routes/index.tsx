@@ -202,7 +202,7 @@ function Start() {
                 <dt className="text-xs font-bold tracking-[0.14em] text-white/85 uppercase">
                   Fokus
                 </dt>
-                <dd className="mt-3 font-display text-2xl sm:text-4xl">Marketing</dd>
+                <dd className="mt-3 font-display text-2xl sm:text-4xl">Marknadsföring</dd>
               </div>
               <div className="rounded-[2rem] bg-ink p-6 text-white">
                 <dt className="text-xs font-bold tracking-[0.14em] text-sun uppercase">Område</dt>

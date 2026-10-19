@@ -624,7 +624,7 @@ function LokalSeo() {
             Säljer ni i hela Sverige är bredare SEO ofta rätt. Lever ni på kunder i ett område
             kommer lokal SEO först. Många behöver båda – läs mer om{" "}
             <Link to={SEO_BYRA.sokvag} className={LANK}>
-              SEO och sökmotoroptimering
+              SEO för företag
             </Link>
             .
           </p>

@@ -188,7 +188,7 @@ const TILLVAL: readonly (Kort & { pris: string; till: string; lanktext: string }
     ikon: Search,
     pris: kr(PRIS.seoGeo),
     till: SEO_BYRA.sokvag,
-    lanktext: "SEO och sökmotoroptimering",
+    lanktext: "SEO för företag",
   },
   {
     titel: "GEO och AI-synlighet",
@@ -200,7 +200,7 @@ const TILLVAL: readonly (Kort & { pris: string; till: string; lanktext: string }
   },
   {
     titel: "Meta Ads – uppsättning",
-    text: "Konto, spårning, cookiebanner och annonser på Facebook och Instagram.",
+    text: "Konto, spårning och annonser på Facebook och Instagram – med cookiebanner när vi har tillgång till sajten.",
     ikon: Megaphone,
     pris: kr(PRIS.metaUppsattning),
     till: tjanstSokvag("meta-annonser"),
@@ -212,7 +212,7 @@ const TILLVAL: readonly (Kort & { pris: string; till: string; lanktext: string }
     ikon: RefreshCw,
     pris: `från ${kr(PRIS.uppfraschning)}`,
     till: tjanstSokvag("hemsideoptimering"),
-    lanktext: "Modernisera din hemsida",
+    lanktext: "Modernisera er hemsida",
   },
   {
     titel: "Marknadsföringsbilder",
@@ -401,7 +401,7 @@ function HemsidaPris() {
                 ändringarna åt er.
               </p>
               <Link to={tjanstSokvag("hemsideoptimering")} className={`mt-6 ${LANK}`}>
-                Modernisera din hemsida
+                Modernisera er hemsida
               </Link>
               <div className="mt-8">
                 <BokaKnapp tjanst="hemsideoptimering" onClick={() => bokaKlick(SIDA, "pris-upp")}>

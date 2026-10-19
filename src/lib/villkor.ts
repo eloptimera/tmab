@@ -1,7 +1,7 @@
 // Allmänna villkor för TAB Marketing. Sidan /villkor renderas härifrån.
 // TODO(TAB): utkast – låt någon med juridisk kunskap läsa igenom innan ni hänvisar kunder hit.
 import { FORETAG } from "@/lib/foretag";
-import { AGANDE_TEXT, BETALNING_TEXT, BINDNING_TEXT, GARANTI_TEXT, MOMS_TEXT } from "@/lib/priser";
+import { BETALNING_TEXT, MOMS_TEXT } from "@/lib/priser";
 
 export const VILLKOR_DATUM = "2026-10-19";
 
@@ -30,7 +30,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
   {
     rubrik: "4. Månadspaket och uppsägning",
     stycken: [
-      `${BINDNING_TEXT} Uppsägning görs via mejl till ${FORETAG.epost}.`,
+      `Månadspaketen har ingen bindningstid. Kunden kan säga upp när som helst, och paketet löper till slutet av den period som redan är betald. Uppsägning görs via mejl till ${FORETAG.epost}.`,
       "Påbörjad period återbetalas inte. Leveranser som ingår i ett paket gäller för den månaden och sparas inte till nästa.",
     ],
   },
@@ -38,7 +38,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     rubrik: "5. Leveranser och ändringar",
     stycken: [
       "Vi levererar det som står i paketet eller offerten.",
-      `${GARANTI_TEXT} För hemsidor ingår en ändringsrunda innan lansering, enligt den tidplan kunden godkänt.`,
+      "Är kunden inte nöjd med bilderna gör vi om dem en gång utan kostnad. För hemsidor ingår en ändringsrunda innan lansering, enligt den tidplan kunden godkänt.",
       "Arbete utanför det avtalade debiteras enligt överenskommelse, som vi alltid stämmer av med kunden innan arbetet börjar.",
     ],
   },
@@ -52,7 +52,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
   {
     rubrik: "7. Rättigheter till materialet",
     stycken: [
-      `${AGANDE_TEXT} Rätten går över till kunden när betalning skett.`,
+      "Kunden äger bilder, texter, konton och hemsida som vi tar fram åt kunden. Rätten går över till kunden när betalning skett.",
       "Bilder kan tas fram helt eller delvis med AI-verktyg. Kunden ansvarar för att märka sådant innehåll där lag eller en plattforms regler kräver det.",
       "Vi får visa arbetet som referens, om vi inte avtalat något annat.",
     ],

@@ -88,7 +88,7 @@ export const PAKET: readonly Paket[] = [
   },
 ];
 
-export const PAKET_VILLKOR = `${BINDNING_TEXT} ${MOMS_TEXT} Annonsbudget ingår inte.`;
+export const PAKET_VILLKOR = `${BINDNING_TEXT} ${MOMS_TEXT} Annonsbudget ingår inte. Cookiebanner sätts upp när vi har tillgång till er hemsida.`;
 
 /** En rad i en pristabell. `pris` är ett belopp i kronor, "Gratis" eller en kort text. */
 export type Prisrad = {
@@ -116,6 +116,11 @@ export const ENGANGSTJANSTER: readonly Prisrad[] = [
     slug: "hemsideoptimering",
   },
   { tjanst: "Skapa hemsida", pris: PRIS.hemsida, fran: true, slug: "hemsida" },
+  {
+    tjanst: "Korta videor",
+    pris: "Pris efter genomgång",
+    slug: "marknadsforingsbilder",
+  },
   {
     tjanst: "Meta Ads – uppsättning inkl. cookiebanner",
     pris: PRIS.metaUppsattning,

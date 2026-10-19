@@ -106,8 +106,8 @@ export const TJANSTER: readonly Tjanst[] = [
     titel: "GEO",
     iText: "GEO",
     rubrik: {
-      text: "GEO som gör att AI-assistenter rekommenderar er",
-      markera: "rekommenderar er",
+      text: "GEO som gör det lättare för AI-assistenter att rekommendera er",
+      markera: "rekommendera er",
     },
     seoTitel: "GEO – synas i ChatGPT och AI-sök",
     seoBeskrivning: `Generative Engine Optimization: bli nämnd när kunder frågar ChatGPT, Gemini och Perplexity. Grundoptimering ${kr(PRIS.seoGeo)}. Gratis genomgång.`,
@@ -200,13 +200,13 @@ export const TJANSTER: readonly Tjanst[] = [
       "Testa, läsa siffror och justera varje vecka",
     ],
     medOss: [
-      "Konto, pixel och cookiebanner på plats",
+      "Konto, pixel och cookiebanner – när vi har tillgång till sajten",
       "Annonsmaterial i alla format",
       "Löpande optimering av budgeten",
       "Tydlig rapport om vad det gav",
     ],
     pris: { belopp: PRIS.metaUppsattning, fran: false, avser: "Uppsättning av Meta Ads" },
-    iPaket: `Löpande hantering ingår i Growth (${kr(PRIS.growth)} per månad) och Premium.`,
+    iPaket: `Löpande hantering ingår i Growth (${kr(PRIS.growth)} per månad) och Premium (${kr(PRIS.premium)} per månad).`,
     fordjupning: [
       {
         rubrik: { text: "Så sätter vi upp era annonser", markera: "sätter vi upp" },
@@ -398,12 +398,12 @@ export const TJANSTER: readonly Tjanst[] = [
     ikon: LayoutTemplate,
     svarighet: 5,
     forklaring:
-      "En mall ser ut som alla andras, och en utvecklare på timme blir snabbt dyrt. En bra sajt kräver design, text, teknik och SEO som fungerar tillsammans.",
+      "En mall ser ut som alla andras, och en utvecklare som tar betalt per timme blir snabbt dyrt. En bra sajt kräver design, text, teknik och SEO som fungerar tillsammans.",
     sjalv: [
       "Välja plattform och mall",
       "Skriva all text och ta fram bilder",
       "Få den snabb och snygg på mobilen",
-      "Sköta hosting, uppdateringar och GDPR",
+      "Sköta hosting, uppdateringar och säkerhet",
     ],
     medOss: [
       "Design utifrån ert varumärke",
@@ -466,7 +466,7 @@ export const SPARNING: Delomrade = {
   slug: "cookies-och-sparning",
   titel: "Cookies och spårning",
   iText: "cookies och spårning",
-  vad: "Mät vad som fungerar, med samtycke som håller",
+  vad: "Mät vad som fungerar – med en cookiebanner som väntar på ja",
   ikon: Cookie,
   svarighet: 4,
   forklaring:

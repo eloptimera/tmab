@@ -208,8 +208,7 @@ function Kontakt() {
             <label className="flex items-start gap-3 text-sm text-muted-foreground">
               <input type="checkbox" required className="mt-0.5 size-5 shrink-0 accent-brand" />
               <span>
-                Jag samtycker till att {FORETAG.namn} sparar mina uppgifter för att boka
-                genomgången. Läs mer i{" "}
+                Jag har läst hur {FORETAG.namn} hanterar mina uppgifter för att boka genomgången i{" "}
                 <Link to="/integritetspolicy" className="font-bold text-brand underline">
                   integritetspolicyn
                 </Link>

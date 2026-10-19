@@ -1,7 +1,7 @@
 // Landningssidan /seo-byra – sajtens sida för SEO-tjänsten.
 // Ersätter /tjanster/seo (som omdirigeras hit). Priser hämtas från priser.ts – skriv aldrig
 // belopp här.
-import { BINDNING_TEXT, GSC_SVAR, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
+import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 export const SEO_BYRA = {
   sokvag: "/seo-byra",
@@ -58,7 +58,7 @@ export const SEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Hur vet vi om SEO-arbetet fungerar?",
-    svar: `Vi följer organiska klick, visningar i sökresultaten, utvecklingen för era viktigaste sidor och förfrågningar som kommer därifrån. ${GSC_SVAR}`,
+    svar: `Vi följer organiska klick, visningar i sökresultaten, utvecklingen för era viktigaste sidor och förfrågningar som kommer därifrån. Vi kopplar Google Search Console och Bing Webmaster Tools i ert eget namn, så att ni ser samma siffror som vi.`,
   },
   {
     fraga: "Finns det någon bindningstid?",

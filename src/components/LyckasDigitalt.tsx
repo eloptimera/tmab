@@ -79,7 +79,7 @@ export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
           ))}
         </ol>
         <p className="mt-7 inline-block -rotate-[1.2deg] rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white shadow-[3px_3px_0_rgb(255_255_255/0.35)]">
-          Klart. Ni behövde inte göra något.
+          Ni godkänner. Vi gör resten.
         </p>
       </div>
     </div>

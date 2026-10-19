@@ -20,6 +20,20 @@ import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
 const ren = (text: string) => text.replace(/\u00a0/g, " ");
 
+/** "Finns det bindningstid?" och "Finns det någon bindningstid?" räknas som samma fråga. */
+function unikaFragor<T extends { fraga: string }>(fragor: readonly T[]): T[] {
+  const sedda = new Set<string>();
+  return fragor.filter((f) => {
+    const nyckel = f.fraga
+      .toLowerCase()
+      .replace(/\b(någon|några|en|ett)\b/g, "")
+      .replace(/[^a-zåäö]/g, "");
+    if (sedda.has(nyckel)) return false;
+    sedda.add(nyckel);
+    return true;
+  });
+}
+
 function llmsText(): string {
   const rader = [
     `# ${FORETAG.namn}`,
@@ -58,11 +72,12 @@ function llmsText(): string {
     "## Vanliga frågor",
     "",
     // Tjänster med egen landningssida har sina frågor där – inte på /tjanster/{slug}.
-    ...[
+    // Samma fråga på flera sidor tas bara med en gång (den första).
+    ...unikaFragor([
       ...PRIS_FRAGOR,
       ...TJANSTER.filter((t) => !landningssidaForTjanst(t.slug)).flatMap((t) => t.fragor),
       ...LANDNINGSSIDOR.flatMap((l) => l.fragor),
-    ].map((f) => `- ${f.fraga} ${f.svar}`),
+    ]).map((f) => `- ${f.fraga} ${f.svar}`),
     "",
     "## Sidor",
     "",

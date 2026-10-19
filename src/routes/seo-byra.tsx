@@ -417,7 +417,7 @@ function SeoByra() {
             <Reveal>
               <p className="eyebrow">Pris</p>
               <h2 id="pris-rubrik" className="mt-4 text-4xl sm:text-5xl">
-                Vad kostar SEO och sökmotoroptimering för <Mark>företag</Mark>?
+                Vad kostar SEO för <Mark>företag</Mark>?
               </h2>
             </Reveal>
             <Reveal delay={80}>
