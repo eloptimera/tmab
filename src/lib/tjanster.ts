@@ -157,7 +157,7 @@ export const TJANSTER: readonly Tjanst[] = [
           "Vi frågar AI-assistenterna det era kunder frågar och ser vilka företag som nämns i dag.",
           "Vi skriver om sidorna så att de svarar direkt på kundernas frågor.",
           "Vi lägger till strukturerad data för företaget, tjänsterna, priserna och vanliga frågor.",
-          "Vi släpper in AI-tjänsternas sökrobotar och lägger till en llms.txt.",
+          "Vi kontrollerar att AI-tjänsternas sökrobotar, som OAI-SearchBot, släpps in.",
           "Vi ser till att namn och uppgifter är likadana överallt där ni finns.",
           "Vi hjälper er att synas på sajter som AI-assistenterna läser, som branschregister och recensionssajter.",
         ],
@@ -165,7 +165,7 @@ export const TJANSTER: readonly Tjanst[] = [
       {
         rubrik: { text: "Så mäter vi resultatet", markera: "mäter" },
         stycken: [
-          "Det finns ännu inget verktyg för AI-svar som motsvarar Google Search Console. Därför ställer vi samma frågor i ChatGPT, Gemini, Perplexity och Copilot varje månad och antecknar vilka företag som nämns. I er statistik följer vi besök som kommer från AI-tjänsterna.",
+          "Bing Webmaster Tools visar hur ofta sajten citeras i Copilot. Därutöver ställer vi samma frågor i ChatGPT, Gemini, Perplexity och Copilot varje månad och antecknar vilka företag som nämns, och i er statistik följer vi besök som kommer från AI-tjänsterna.",
           "Svaren varierar mellan gånger och användare, så vi tittar på utvecklingen över flera månader – inte på ett enskilt svar.",
         ],
         lank: { text: "Läs guiden: Vad är GEO?", till: "/guider/vad-ar-geo" },

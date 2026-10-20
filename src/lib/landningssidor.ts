@@ -14,6 +14,7 @@
 import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
 import { HEMSIDA_PRIS, HEMSIDA_PRIS_FRAGOR } from "@/lib/hemsida-pris";
 import { LOKAL_FRAGOR, LOKAL_SEO } from "@/lib/lokal-seo";
+import { GEO_FRAGOR, GEO_OPTIMERING } from "@/lib/geo-optimering";
 import { META_ADS_BYRA, META_FRAGOR } from "@/lib/meta-ads-byra";
 import { MODERNISERA_FRAGOR, MODERNISERA_HEMSIDA } from "@/lib/modernisera-hemsida";
 import type { Fraga } from "@/lib/priser";
@@ -43,6 +44,7 @@ export const LANDNINGSSIDOR: readonly Landningssida[] = [
   { ...SOKMOTOROPTIMERING, fragor: SOKMOTOROPTIMERING_FRAGOR },
   { ...SEO_BYRA, fragor: SEO_FRAGOR, tjanst: "seo" },
   { ...LOKAL_SEO, fragor: LOKAL_FRAGOR },
+  { ...GEO_OPTIMERING, fragor: GEO_FRAGOR, tjanst: "geo" },
   { ...HEMSIDA_FORETAG, fragor: HEMSIDA_FRAGOR, tjanst: "hemsida" },
   { ...HEMSIDA_PRIS, fragor: HEMSIDA_PRIS_FRAGOR },
   { ...MODERNISERA_HEMSIDA, fragor: MODERNISERA_FRAGOR, tjanst: "hemsideoptimering" },

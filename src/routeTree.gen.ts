@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GeoOptimeringRouteImport } from './routes/geo-optimering'
 import { Route as HemsidaForetagRouteImport } from './routes/hemsida-foretag'
 import { Route as HemsidaPrisRouteImport } from './routes/hemsida-pris'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
@@ -37,6 +38,11 @@ import { Route as TjansterSlugRouteImport } from './routes/tjanster.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GeoOptimeringRoute = GeoOptimeringRouteImport.update({
+  id: '/geo-optimering',
+  path: '/geo-optimering',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HemsidaForetagRoute = HemsidaForetagRouteImport.update({
@@ -157,6 +163,7 @@ const TjansterSlugRoute = TjansterSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/geo-optimering': typeof GeoOptimeringRoute
   '/hemsida-foretag': typeof HemsidaForetagRoute
   '/hemsida-pris': typeof HemsidaPrisRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
@@ -183,6 +190,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/geo-optimering': typeof GeoOptimeringRoute
   '/hemsida-foretag': typeof HemsidaForetagRoute
   '/hemsida-pris': typeof HemsidaPrisRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
@@ -210,6 +218,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/geo-optimering': typeof GeoOptimeringRoute
   '/hemsida-foretag': typeof HemsidaForetagRoute
   '/hemsida-pris': typeof HemsidaPrisRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
@@ -238,6 +247,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/geo-optimering'
     | '/hemsida-foretag'
     | '/hemsida-pris'
     | '/integritetspolicy'
@@ -264,6 +274,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/geo-optimering'
     | '/hemsida-foretag'
     | '/hemsida-pris'
     | '/integritetspolicy'
@@ -290,6 +301,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/geo-optimering'
     | '/hemsida-foretag'
     | '/hemsida-pris'
     | '/integritetspolicy'
@@ -317,6 +329,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GeoOptimeringRoute: typeof GeoOptimeringRoute
   HemsidaForetagRoute: typeof HemsidaForetagRoute
   HemsidaPrisRoute: typeof HemsidaPrisRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
@@ -349,6 +362,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/geo-optimering': {
+      id: '/geo-optimering'
+      path: '/geo-optimering'
+      fullPath: '/geo-optimering'
+      preLoaderRoute: typeof GeoOptimeringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hemsida-foretag': {
@@ -517,6 +537,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GeoOptimeringRoute: GeoOptimeringRoute,
   HemsidaForetagRoute: HemsidaForetagRoute,
   HemsidaPrisRoute: HemsidaPrisRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
