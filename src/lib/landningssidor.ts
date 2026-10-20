@@ -17,6 +17,7 @@ import { LOKAL_FRAGOR, LOKAL_SEO } from "@/lib/lokal-seo";
 import { META_ADS_BYRA, META_FRAGOR } from "@/lib/meta-ads-byra";
 import type { Fraga } from "@/lib/priser";
 import { SEO_BYRA, SEO_FRAGOR } from "@/lib/seo-byra";
+import { SOKMOTOROPTIMERING, SOKMOTOROPTIMERING_FRAGOR } from "@/lib/sokmotoroptimering";
 
 export type Landningssida = {
   sokvag: string;
@@ -38,6 +39,7 @@ export type Landningssida = {
 };
 
 export const LANDNINGSSIDOR: readonly Landningssida[] = [
+  { ...SOKMOTOROPTIMERING, fragor: SOKMOTOROPTIMERING_FRAGOR },
   { ...SEO_BYRA, fragor: SEO_FRAGOR, tjanst: "seo" },
   { ...LOKAL_SEO, fragor: LOKAL_FRAGOR },
   { ...HEMSIDA_FORETAG, fragor: HEMSIDA_FRAGOR, tjanst: "hemsida" },

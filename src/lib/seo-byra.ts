@@ -7,12 +7,12 @@ export const SEO_BYRA = {
   sokvag: "/seo-byra",
   titel: "SEO-byrå",
   etikett: "Tjänst · SEO",
-  seoTitel: "SEO-byrå för företag – sökmotoroptimering",
+  seoTitel: "SEO-byrå för företag – anlita hjälp med SEO",
   seoBeskrivning: `Vill ni synas bättre på Google? TAB hjälper företag med teknisk SEO, sökordsanalys och innehåll som når rätt kunder. Grundoptimering ${kr(PRIS.seoGeo)}.`,
   kortText:
     "Vad SEO är, vad vi gör, hur arbetet går till och vad sökmotoroptimering kostar för ett företag.",
   publicerad: "2026-10-19",
-  uppdaterad: "2026-10-19",
+  uppdaterad: "2026-10-20",
 } as const;
 
 export const SEO_FRAGOR: readonly Fraga[] = [

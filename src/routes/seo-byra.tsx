@@ -216,9 +216,9 @@ function SeoByra() {
       <section aria-labelledby="vad-ar-seo" className="container-page py-14 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
-            <p className="eyebrow">Grunderna</p>
+            <p className="eyebrow">Varför anlita</p>
             <h2 id="vad-ar-seo" className="mt-4 text-4xl sm:text-5xl">
-              Vad är sökmotoroptimering och varför är det <Mark>viktigt</Mark>?
+              Vad gör en SEO-byrå – och varför <Mark>anlita</Mark> en?
             </h2>
           </Reveal>
           <Reveal delay={80}>
@@ -231,6 +231,17 @@ function SeoByra() {
               Till skillnad från annonser betalar ni inte Google för varje klick. Däremot kräver SEO
               analys, tekniskt arbete och löpande förbättringar. Hur snabbt och hur mycket det ger
               beror på konkurrensen, hur sajten ser ut i dag och hur kunderna söker.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-ink/80">
+              Vill ni förstå hur det fungerar i detalj – crawling, indexering, sökord och länkar –
+              finns allt i vår genomgång av{" "}
+              <FramtidaLank
+                till="/sokmotoroptimering"
+                className="font-bold text-ink underline decoration-sun decoration-2 underline-offset-4"
+              >
+                sökmotoroptimering
+              </FramtidaLank>
+              .
             </p>
           </Reveal>
         </div>

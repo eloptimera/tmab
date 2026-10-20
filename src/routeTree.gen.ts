@@ -24,6 +24,7 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SeoByraRouteImport } from './routes/seo-byra'
 import { Route as SeoSmaforetagRouteImport } from './routes/seo-smaforetag'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SokmotoroptimeringRouteImport } from './routes/sokmotoroptimering'
 import { Route as TackRouteImport } from './routes/tack'
 import { Route as VillkorRouteImport } from './routes/villkor'
 import { Route as WebbyraRouteImport } from './routes/webbyra'
@@ -107,6 +108,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SokmotoroptimeringRoute = SokmotoroptimeringRouteImport.update({
+  id: '/sokmotoroptimering',
+  path: '/sokmotoroptimering',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TackRoute = TackRouteImport.update({
   id: '/tack',
   path: '/tack',
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/seo-byra': typeof SeoByraRoute
   '/seo-smaforetag': typeof SeoSmaforetagRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sokmotoroptimering': typeof SokmotoroptimeringRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
   '/webbyra': typeof WebbyraRoute
@@ -183,6 +190,7 @@ export interface FileRoutesByTo {
   '/seo-byra': typeof SeoByraRoute
   '/seo-smaforetag': typeof SeoSmaforetagRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sokmotoroptimering': typeof SokmotoroptimeringRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
   '/webbyra': typeof WebbyraRoute
@@ -208,6 +216,7 @@ export interface FileRoutesById {
   '/seo-byra': typeof SeoByraRoute
   '/seo-smaforetag': typeof SeoSmaforetagRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sokmotoroptimering': typeof SokmotoroptimeringRoute
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
   '/webbyra': typeof WebbyraRoute
@@ -234,6 +243,7 @@ export interface FileRouteTypes {
     | '/seo-byra'
     | '/seo-smaforetag'
     | '/sitemap.xml'
+    | '/sokmotoroptimering'
     | '/tack'
     | '/villkor'
     | '/webbyra'
@@ -258,6 +268,7 @@ export interface FileRouteTypes {
     | '/seo-byra'
     | '/seo-smaforetag'
     | '/sitemap.xml'
+    | '/sokmotoroptimering'
     | '/tack'
     | '/villkor'
     | '/webbyra'
@@ -282,6 +293,7 @@ export interface FileRouteTypes {
     | '/seo-byra'
     | '/seo-smaforetag'
     | '/sitemap.xml'
+    | '/sokmotoroptimering'
     | '/tack'
     | '/villkor'
     | '/webbyra'
@@ -307,6 +319,7 @@ export interface RootRouteChildren {
   SeoByraRoute: typeof SeoByraRoute
   SeoSmaforetagRoute: typeof SeoSmaforetagRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SokmotoroptimeringRoute: typeof SokmotoroptimeringRoute
   TackRoute: typeof TackRoute
   VillkorRoute: typeof VillkorRoute
   WebbyraRoute: typeof WebbyraRoute
@@ -423,6 +436,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sokmotoroptimering': {
+      id: '/sokmotoroptimering'
+      path: '/sokmotoroptimering'
+      fullPath: '/sokmotoroptimering'
+      preLoaderRoute: typeof SokmotoroptimeringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tack': {
       id: '/tack'
       path: '/tack'
@@ -491,6 +511,7 @@ const rootRouteChildren: RootRouteChildren = {
   SeoByraRoute: SeoByraRoute,
   SeoSmaforetagRoute: SeoSmaforetagRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SokmotoroptimeringRoute: SokmotoroptimeringRoute,
   TackRoute: TackRoute,
   VillkorRoute: VillkorRoute,
   WebbyraRoute: WebbyraRoute,
