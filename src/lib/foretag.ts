@@ -2,8 +2,8 @@
 // metadata, strukturerad data och llms.txt) läser härifrån.
 //
 // Fält med tomt värde visas inte på sajten förrän de fylls i.
-// Adressen är bolagets säte – inte en besöksadress. TAB träffar kunder digitalt och på telefon,
-// så skriv aldrig "besök oss" eller liknande. TODO(TAB): fyll i telefon när ni vill visa den.
+// Adressen är bolagets säte – inte en besöksadress. TAB träffar kunder digitalt, på telefon eller
+// hos kunden i Göteborgsområdet – skriv aldrig "besök oss" eller "vårt kontor". TODO(TAB): fyll i telefon när ni vill visa den.
 export const FORETAG: {
   /** Varumärket som syns på sajten. */
   namn: string;

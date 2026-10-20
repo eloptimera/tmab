@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Bot,
+  Car,
   Check,
   Laptop,
   MapPin,
@@ -66,7 +67,7 @@ export const Route = createFileRoute("/webbyra-goteborg")({
 
 const FAKTA = [
   "Säte i Göteborg",
-  "Möten på video eller telefon",
+  "Möten digitalt eller hos er",
   "Fast pris innan vi börjar",
 ] as const;
 
@@ -111,7 +112,7 @@ const TJANSTER: readonly {
 const STEG: readonly Steg[] = [
   {
     titel: "Gratis genomgång",
-    text: "20–25 minuter på video eller telefon om företaget och vad hemsidan ska uppnå.",
+    text: "20–25 minuter på video, telefon eller hos er om företaget och vad hemsidan ska uppnå.",
   },
   {
     titel: "Förslag och pris",
@@ -140,7 +141,7 @@ function WebbyraGoteborg() {
             markera="webbdesign för ert företag"
           />
         }
-        intro={`${FORETAG.kortnamn} är en webbyrå med säte i Göteborg. Vi bygger moderna, mobilanpassade hemsidor och förbättrar befintliga sajter åt företag i Göteborg och resten av Västra Götaland – med fast pris och möten på video eller telefon, så att ni slipper resa.`}
+        intro={`${FORETAG.kortnamn} är en webbyrå med säte i Göteborg. Vi bygger moderna, mobilanpassade hemsidor och förbättrar befintliga sajter åt företag i Göteborg och resten av Västra Götaland – med fast pris och möten på video eller telefon, eller hos er om ni hellre ses på plats.`}
       >
         <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")} />
         <Link to={HEMSIDA_PRIS.sokvag} className="btn-base btn-outline">
@@ -217,19 +218,21 @@ function WebbyraGoteborg() {
             <Reveal>
               <p className="eyebrow">Så samarbetar vi</p>
               <h2 id="samarbete" className="mt-4 text-4xl sm:text-5xl">
-                En Göteborgsbyrå som <Mark>jobbar digitalt</Mark>
+                Digitalt när det passar, <Mark>på plats</Mark> när ni vill
               </h2>
             </Reveal>
             <Reveal delay={80}>
               <p className="text-lg leading-relaxed text-ink/80">
-                Vi har vårt säte i Göteborg, men vi har inget kontor där vi tar emot besök. Alla
-                möten sker på video eller telefon. Det gör det enkelt att boka in en genomgång samma
-                vecka, och ni ser förslag och utkast på skärmen precis som i ett möte.
+                De flesta möten tar vi på video eller telefon – det gör det enkelt att boka in en
+                genomgång samma vecka, och ni ser förslag och utkast på skärmen. Vill ni hellre ses
+                på plats kommer vi ut till er i Göteborg och kranskommunerna. Vi har inget kontor
+                där vi tar emot besök.
               </p>
               <ul className="mt-6 space-y-3">
                 {[
                   { ikon: MapPin, text: `Säte: ${FORETAG.adress} (inga besök)` },
                   { ikon: Video, text: "Möten på video eller telefon, 20–25 minuter" },
+                  { ikon: Car, text: "Vi kommer ut till er i Göteborgsområdet om ni vill" },
                   { ikon: Check, text: "Svar inom en arbetsdag" },
                 ].map((r) => (
                   <li key={r.text} className="flex gap-3 text-ink">
@@ -245,7 +248,7 @@ function WebbyraGoteborg() {
           </Reveal>
           <Reveal delay={120} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
             <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "process")}>
-              Boka ett digitalt möte
+              Boka ett möte
             </BokaKnapp>
             <span className="text-muted-foreground">Ni godkänner priset innan vi börjar.</span>
           </Reveal>
@@ -265,8 +268,9 @@ function WebbyraGoteborg() {
             <p className="text-lg leading-relaxed text-ink/80">
               Vi arbetar med företag i hela Göteborg och i kranskommuner som{" "}
               {KRANSKOMMUNER.slice(0, -1).join(", ")} och {KRANSKOMMUNER.at(-1)} – och i resten av
-              Västra Götaland. Eftersom allt sker digitalt fungerar det likadant för ett företag i
-              Borås eller Trollhättan, och för den delen i resten av Sverige.
+              Västra Götaland. I Göteborg och kranskommunerna kan vi ses hos er; längre bort tar vi
+              mötena digitalt, och det fungerar likadant för ett företag i Borås, Trollhättan eller
+              resten av Sverige.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Vill ni själva synas när kunder i ert område söker, är det hemsidan, en lokal
@@ -368,7 +372,7 @@ function WebbyraGoteborg() {
               Behöver ert företag i Göteborg en <Mark>ny hemsida</Mark>?
             </>
           }
-          text="Boka en gratis genomgång på video eller telefon. Vi hör av oss inom en arbetsdag, går igenom vad ni behöver och skickar ett förslag med fast pris."
+          text="Boka en gratis genomgång – på video, telefon eller hos er i Göteborgsområdet. Vi hör av oss inom en arbetsdag, går igenom vad ni behöver och skickar ett förslag med fast pris."
         />
       </div>
     </>

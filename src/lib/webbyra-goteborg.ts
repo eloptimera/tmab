@@ -5,11 +5,13 @@
 //
 // Fakta som sidan bygger på (bekräftade av TAB 2026-10-20):
 // - säte i Göteborg; arbetar med företag i hela Göteborg och Västra Götaland (och resten av Sverige)
-// - möten sker digitalt eller på telefon – inga fysiska möten, inga besök på adressen
+// - möten sker oftast digitalt eller på telefon; TAB åker ut till kunder i Göteborg och
+//   kranskommunerna (Mölndal, Partille, Kungälv, Härryda, Lerum, Ale) om de vill ses på plats
+// - inga besök på adressen (säte, inte kontor)
 // Ändras något av det: uppdatera texterna här och på sidan.
 //
-// Google-företagsprofil: TAB uppfyller inte kraven i dag (Google kräver en plats kunder besöker
-// eller att företaget åker ut till kunderna). Skapa ingen profil innan det ändras.
+// Google-företagsprofil: TAB är ett serviceområdesföretag (åker ut till kunderna). Adressen ska
+// vara dold i profilen; serviceområdet = kommunerna ovan. Sajten och profilen ska säga samma sak.
 // Priser hämtas från priser.ts – det finns inga särskilda Göteborgspriser.
 import { AGANDE_TEXT, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
@@ -38,11 +40,11 @@ export const GOTEBORG_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Har TAB ett kontor i Göteborg?",
-    svar: "TAB drivs av Treatly AB, som har sitt säte på Svenslyckegatan 16 i Göteborg. Där tar vi inte emot besök – vi träffar kunder digitalt eller på telefon, vilket gör att möten går att boka in snabbt.",
+    svar: "TAB drivs av Treatly AB, som har sitt säte på Svenslyckegatan 16 i Göteborg. Där tar vi inte emot besök. De flesta möten tar vi på video eller telefon, och vill ni ses på plats kommer vi ut till er i Göteborgsområdet.",
   },
   {
     fraga: "Kan vi träffas fysiskt?",
-    svar: "Nej, alla möten sker digitalt eller på telefon. Genomgången tar 20–25 minuter och vi visar förslag och utkast på skärmen, så ni behöver inte resa någonstans.",
+    svar: "Ja. Vi kommer gärna ut till er i Göteborg och kranskommunerna – Mölndal, Partille, Kungälv, Härryda, Lerum och Ale. Många väljer ändå video eller telefon, eftersom det går snabbare att boka och vi kan visa förslag och utkast på skärmen.",
   },
   {
     fraga: "Kan ni bygga en hemsida åt vårt företag i Göteborg?",
@@ -74,10 +76,10 @@ export const GOTEBORG_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Arbetar ni bara med företag i Göteborg?",
-    svar: "Nej. Vi finns i Göteborg men arbetar med företag i hela Sverige – eftersom allt sker digitalt spelar det ingen roll var ni finns.",
+    svar: "Nej. Vi finns i Göteborg men arbetar med företag i hela Sverige – utanför Göteborgsområdet tar vi mötena digitalt, och då spelar det ingen roll var ni finns.",
   },
   {
     fraga: "Hur kommer vi igång?",
-    svar: "Boka en gratis genomgång. Vi hör av oss inom en arbetsdag och bokar in 20–25 minuter på video eller telefon. Efteråt får ni ett förslag med upplägg och pris.",
+    svar: "Boka en gratis genomgång. Vi hör av oss inom en arbetsdag och bokar in 20–25 minuter på video, telefon eller hos er. Efteråt får ni ett förslag med upplägg och pris.",
   },
 ];
