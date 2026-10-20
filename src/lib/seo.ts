@@ -116,7 +116,13 @@ export function grundSchema(): Schema {
  */
 export function tjanstSchema(
   t: Tjanst,
-  sida?: { namn: string; beskrivning: string; sokvag: string },
+  sida?: {
+    namn: string;
+    beskrivning: string;
+    sokvag: string;
+    /** Orter/regioner tjänsten riktar sig till på just den sidan. Utelämnas: hela Sverige. */
+    omraden?: readonly { typ: "City" | "AdministrativeArea"; namn: string }[];
+  },
 ): Schema {
   return {
     "@context": "https://schema.org",
@@ -127,7 +133,9 @@ export function tjanstSchema(
     url: absolut(sida?.sokvag ?? tjanstSokvag(t)),
     ...(t.galleri ? { image: t.galleri.map((b) => absolut(b.src)) } : {}),
     provider: { "@id": FORETAG_ID },
-    areaServed: { "@type": "Country", name: "Sverige" },
+    areaServed: sida?.omraden
+      ? sida.omraden.map((o) => ({ "@type": o.typ, name: o.namn }))
+      : { "@type": "Country", name: "Sverige" },
     offers: {
       "@type": "Offer",
       description: t.pris.avser,

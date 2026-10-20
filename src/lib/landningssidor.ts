@@ -16,6 +16,7 @@ import { HEMSIDA_PRIS, HEMSIDA_PRIS_FRAGOR } from "@/lib/hemsida-pris";
 import { LOKAL_FRAGOR, LOKAL_SEO } from "@/lib/lokal-seo";
 import { GEO_FRAGOR, GEO_OPTIMERING } from "@/lib/geo-optimering";
 import { META_ADS_BYRA, META_FRAGOR } from "@/lib/meta-ads-byra";
+import { GOTEBORG_FRAGOR, WEBBYRA_GOTEBORG } from "@/lib/webbyra-goteborg";
 import { MODERNISERA_FRAGOR, MODERNISERA_HEMSIDA } from "@/lib/modernisera-hemsida";
 import type { Fraga } from "@/lib/priser";
 import { SEO_BYRA, SEO_FRAGOR } from "@/lib/seo-byra";
@@ -47,6 +48,7 @@ export const LANDNINGSSIDOR: readonly Landningssida[] = [
   { ...GEO_OPTIMERING, fragor: GEO_FRAGOR, tjanst: "geo" },
   { ...HEMSIDA_FORETAG, fragor: HEMSIDA_FRAGOR, tjanst: "hemsida" },
   { ...HEMSIDA_PRIS, fragor: HEMSIDA_PRIS_FRAGOR },
+  { ...WEBBYRA_GOTEBORG, fragor: GOTEBORG_FRAGOR },
   { ...MODERNISERA_HEMSIDA, fragor: MODERNISERA_FRAGOR, tjanst: "hemsideoptimering" },
   { ...META_ADS_BYRA, fragor: META_FRAGOR, tjanst: "meta-annonser" },
 ];

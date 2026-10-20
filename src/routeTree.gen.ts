@@ -30,6 +30,7 @@ import { Route as SokmotoroptimeringRouteImport } from './routes/sokmotoroptimer
 import { Route as TackRouteImport } from './routes/tack'
 import { Route as VillkorRouteImport } from './routes/villkor'
 import { Route as WebbyraRouteImport } from './routes/webbyra'
+import { Route as WebbyraGoteborgRouteImport } from './routes/webbyra-goteborg'
 import { Route as GuiderIndexRouteImport } from './routes/guider.index'
 import { Route as GuiderSlugRouteImport } from './routes/guider.$slug'
 import { Route as TjansterIndexRouteImport } from './routes/tjanster.index'
@@ -140,6 +141,11 @@ const WebbyraRoute = WebbyraRouteImport.update({
   path: '/webbyra',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WebbyraGoteborgRoute = WebbyraGoteborgRouteImport.update({
+  id: '/webbyra-goteborg',
+  path: '/webbyra-goteborg',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuiderIndexRoute = GuiderIndexRouteImport.update({
   id: '/guider/',
   path: '/guider/',
@@ -183,6 +189,7 @@ export interface FileRoutesByFullPath {
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
   '/webbyra': typeof WebbyraRoute
+  '/webbyra-goteborg': typeof WebbyraGoteborgRoute
   '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/guider/': typeof GuiderIndexRoute
@@ -210,6 +217,7 @@ export interface FileRoutesByTo {
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
   '/webbyra': typeof WebbyraRoute
+  '/webbyra-goteborg': typeof WebbyraGoteborgRoute
   '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/guider': typeof GuiderIndexRoute
@@ -238,6 +246,7 @@ export interface FileRoutesById {
   '/tack': typeof TackRoute
   '/villkor': typeof VillkorRoute
   '/webbyra': typeof WebbyraRoute
+  '/webbyra-goteborg': typeof WebbyraGoteborgRoute
   '/guider/$slug': typeof GuiderSlugRoute
   '/tjanster/$slug': typeof TjansterSlugRoute
   '/guider/': typeof GuiderIndexRoute
@@ -267,6 +276,7 @@ export interface FileRouteTypes {
     | '/tack'
     | '/villkor'
     | '/webbyra'
+    | '/webbyra-goteborg'
     | '/guider/$slug'
     | '/tjanster/$slug'
     | '/guider/'
@@ -294,6 +304,7 @@ export interface FileRouteTypes {
     | '/tack'
     | '/villkor'
     | '/webbyra'
+    | '/webbyra-goteborg'
     | '/guider/$slug'
     | '/tjanster/$slug'
     | '/guider'
@@ -321,6 +332,7 @@ export interface FileRouteTypes {
     | '/tack'
     | '/villkor'
     | '/webbyra'
+    | '/webbyra-goteborg'
     | '/guider/$slug'
     | '/tjanster/$slug'
     | '/guider/'
@@ -349,6 +361,7 @@ export interface RootRouteChildren {
   TackRoute: typeof TackRoute
   VillkorRoute: typeof VillkorRoute
   WebbyraRoute: typeof WebbyraRoute
+  WebbyraGoteborgRoute: typeof WebbyraGoteborgRoute
   GuiderSlugRoute: typeof GuiderSlugRoute
   TjansterSlugRoute: typeof TjansterSlugRoute
   GuiderIndexRoute: typeof GuiderIndexRoute
@@ -504,6 +517,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WebbyraRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/webbyra-goteborg': {
+      id: '/webbyra-goteborg'
+      path: '/webbyra-goteborg'
+      fullPath: '/webbyra-goteborg'
+      preLoaderRoute: typeof WebbyraGoteborgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guider/': {
       id: '/guider/'
       path: '/guider'
@@ -557,6 +577,7 @@ const rootRouteChildren: RootRouteChildren = {
   TackRoute: TackRoute,
   VillkorRoute: VillkorRoute,
   WebbyraRoute: WebbyraRoute,
+  WebbyraGoteborgRoute: WebbyraGoteborgRoute,
   GuiderSlugRoute: GuiderSlugRoute,
   TjansterSlugRoute: TjansterSlugRoute,
   GuiderIndexRoute: GuiderIndexRoute,

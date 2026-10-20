@@ -2,7 +2,8 @@
 // metadata, strukturerad data och llms.txt) läser härifrån.
 //
 // Fält med tomt värde visas inte på sajten förrän de fylls i.
-// TODO(TAB): fyll i adress och telefon när ni vill visa dem.
+// Adressen är bolagets säte – inte en besöksadress. TAB träffar kunder digitalt och på telefon,
+// så skriv aldrig "besök oss" eller liknande. TODO(TAB): fyll i telefon när ni vill visa den.
 export const FORETAG: {
   /** Varumärket som syns på sajten. */
   namn: string;
@@ -33,9 +34,9 @@ export const FORETAG: {
   ort: "Göteborg",
   orgnr: "559582-8046",
   momsnr: "SE559582804601",
-  gata: "",
-  postnummer: "",
-  adress: "",
+  gata: "Svenslyckegatan 16",
+  postnummer: "416 56",
+  adress: "Svenslyckegatan 16, 416 56 Göteborg",
   telefon: "",
   telefonLank: "",
   epost: "edvin@treatlymarketing.se",

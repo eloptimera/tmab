@@ -27,6 +27,7 @@ import { AGANDE_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { bokaKlick } from "@/lib/sparning";
 import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
+import { WEBBYRA_GOTEBORG } from "@/lib/webbyra-goteborg";
 
 const SIDA = HEMSIDA_FORETAG.sokvag;
 const TJANST = "hemsida";
@@ -520,6 +521,16 @@ function HemsidaForetag() {
               </Link>{" "}
               och digital marknadsföring. Det gör att ni kan tänka långsiktigt kring er digitala
               närvaro, även om första steget bara är en ny hemsida.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-ink/80">
+              Vi arbetar med företag i hela Sverige och har vårt säte i Göteborg – läs mer om{" "}
+              <Link
+                to={WEBBYRA_GOTEBORG.sokvag}
+                className="font-bold text-ink underline decoration-sun decoration-2 underline-offset-4"
+              >
+                vår webbyrå i Göteborg
+              </Link>
+              .
             </p>
           </Reveal>
         </div>
