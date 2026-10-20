@@ -16,6 +16,7 @@ import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolic
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as LokalSeoRouteImport } from './routes/lokal-seo'
+import { Route as MetaAdsByraRouteImport } from './routes/meta-ads-byra'
 import { Route as OffertRouteImport } from './routes/offert'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as PriserRouteImport } from './routes/priser'
@@ -64,6 +65,11 @@ const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
 const LokalSeoRoute = LokalSeoRouteImport.update({
   id: '/lokal-seo',
   path: '/lokal-seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetaAdsByraRoute = MetaAdsByraRouteImport.update({
+  id: '/meta-ads-byra',
+  path: '/meta-ads-byra',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OffertRoute = OffertRouteImport.update({
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/lokal-seo': typeof LokalSeoRoute
+  '/meta-ads-byra': typeof MetaAdsByraRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -168,6 +175,7 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/lokal-seo': typeof LokalSeoRoute
+  '/meta-ads-byra': typeof MetaAdsByraRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -192,6 +200,7 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/lokal-seo': typeof LokalSeoRoute
+  '/meta-ads-byra': typeof MetaAdsByraRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/llms.txt'
     | '/lokal-seo'
+    | '/meta-ads-byra'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -240,6 +250,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/llms.txt'
     | '/lokal-seo'
+    | '/meta-ads-byra'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -263,6 +274,7 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/llms.txt'
     | '/lokal-seo'
+    | '/meta-ads-byra'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -287,6 +299,7 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   LokalSeoRoute: typeof LokalSeoRoute
+  MetaAdsByraRoute: typeof MetaAdsByraRoute
   OffertRoute: typeof OffertRoute
   OmOssRoute: typeof OmOssRoute
   PriserRoute: typeof PriserRoute
@@ -352,6 +365,13 @@ declare module '@tanstack/react-router' {
       path: '/lokal-seo'
       fullPath: '/lokal-seo'
       preLoaderRoute: typeof LokalSeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meta-ads-byra': {
+      id: '/meta-ads-byra'
+      path: '/meta-ads-byra'
+      fullPath: '/meta-ads-byra'
+      preLoaderRoute: typeof MetaAdsByraRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/offert': {
@@ -463,6 +483,7 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   LokalSeoRoute: LokalSeoRoute,
+  MetaAdsByraRoute: MetaAdsByraRoute,
   OffertRoute: OffertRoute,
   OmOssRoute: OmOssRoute,
   PriserRoute: PriserRoute,

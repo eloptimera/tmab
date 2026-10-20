@@ -43,7 +43,7 @@ const OMRADEN = [
     text: "Kampanjer som når rätt personer och går att mäta.",
     ikon: Megaphone,
     stil: "bg-ink text-white kortskugga",
-    till: { to: "/tjanster/$slug", params: { slug: "meta-annonser" } },
+    till: { to: "/meta-ads-byra" },
   },
 ] as const;
 

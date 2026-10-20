@@ -14,6 +14,7 @@
 import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
 import { HEMSIDA_PRIS, HEMSIDA_PRIS_FRAGOR } from "@/lib/hemsida-pris";
 import { LOKAL_FRAGOR, LOKAL_SEO } from "@/lib/lokal-seo";
+import { META_ADS_BYRA, META_FRAGOR } from "@/lib/meta-ads-byra";
 import type { Fraga } from "@/lib/priser";
 import { SEO_BYRA, SEO_FRAGOR } from "@/lib/seo-byra";
 
@@ -41,6 +42,7 @@ export const LANDNINGSSIDOR: readonly Landningssida[] = [
   { ...LOKAL_SEO, fragor: LOKAL_FRAGOR },
   { ...HEMSIDA_FORETAG, fragor: HEMSIDA_FRAGOR, tjanst: "hemsida" },
   { ...HEMSIDA_PRIS, fragor: HEMSIDA_PRIS_FRAGOR },
+  { ...META_ADS_BYRA, fragor: META_FRAGOR, tjanst: "meta-annonser" },
 ];
 
 export function hittaLandningssida(sokvag: string): Landningssida | undefined {
