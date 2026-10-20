@@ -48,17 +48,14 @@ export type Paket = {
   utvalt?: boolean;
 };
 
+// Månadspaketen innehåller bara marknadsföring: bilder, SEO/GEO, Meta-annonser och rapport.
+// Hemsidearbete (ny hemsida, uppfräschning, ändringar) ingår aldrig – det är engångstjänster.
 export const PAKET: readonly Paket[] = [
   {
     id: "start",
     namn: "Start",
     belopp: PRIS.start,
-    ingar: [
-      "5 marknadsföringsbilder",
-      "Grundläggande SEO/GEO",
-      "Mindre hemsidejusteringar",
-      "Månadsrapport",
-    ],
+    ingar: ["5 marknadsföringsbilder", "Grundläggande SEO/GEO", "Månadsrapport"],
   },
   {
     id: "growth",
@@ -68,7 +65,6 @@ export const PAKET: readonly Paket[] = [
     ingar: [
       "10 marknadsföringsbilder",
       "SEO/GEO-optimering",
-      "Hemsideförbättringar",
       "Meta Ads-hantering inkl. cookiebanner",
       "Månadsrapport",
     ],
@@ -80,7 +76,6 @@ export const PAKET: readonly Paket[] = [
     ingar: [
       "20 marknadsföringsbilder",
       "Löpande SEO/GEO-optimering",
-      "Fler hemsideförbättringar",
       "Meta Ads-hantering och optimering inkl. cookiebanner",
       "Månadsrapport",
       "2 avstämningar per månad",
@@ -88,7 +83,15 @@ export const PAKET: readonly Paket[] = [
   },
 ];
 
-export const PAKET_VILLKOR = `${BINDNING_TEXT} ${MOMS_TEXT} Annonsbudget ingår inte. Cookiebanner sätts upp när vi har tillgång till er hemsida.`;
+/** Gränsen mellan månadspaketen och hemsidearbete – samma text överallt där frågan kan uppstå. */
+export const HEMSIDA_UTANFOR_PAKET_TEXT =
+  "Hemsidearbete ingår inte i månadspaketen. En ny hemsida, en uppfräschning och andra ändringar på sajten är engångstjänster med fast pris i offerten, som vi stämmer av innan vi börjar.";
+
+/** SEO görs delvis på hemsidan – det här ingår ändå i SEO-arbetet. */
+export const SEO_PA_HEMSIDAN_TEXT =
+  "SEO-åtgärder som sidtitlar, metabeskrivningar, rubriker och sökordstexter ingår i SEO-arbetet, även när de görs på hemsidan.";
+
+export const PAKET_VILLKOR = `${BINDNING_TEXT} ${MOMS_TEXT} Annonsbudget ingår inte. Hemsidearbete ingår inte – det är engångstjänster. Cookiebanner sätts upp när vi har tillgång till er hemsida.`;
 
 /** En rad i en pristabell. `pris` är ett belopp i kronor, "Gratis" eller en kort text. */
 export type Prisrad = {
@@ -116,6 +119,11 @@ export const ENGANGSTJANSTER: readonly Prisrad[] = [
     slug: "hemsideoptimering",
   },
   { tjanst: "Skapa hemsida", pris: PRIS.hemsida, fran: true, slug: "hemsida" },
+  {
+    tjanst: "Ändringar och nya sidor på befintlig hemsida",
+    pris: "Fast pris i offerten",
+    slug: "hemsideoptimering",
+  },
   {
     tjanst: "Korta videor",
     pris: "Pris efter genomgång",
@@ -151,6 +159,10 @@ export const PRIS_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Finns det någon bindningstid?",
     svar: BINDNING_TEXT,
+  },
+  {
+    fraga: "Ingår ändringar på hemsidan i månadspaketen?",
+    svar: `Nej. Månadspaketen innehåller marknadsföring: bilder, SEO/GEO, Meta-annonser och rapport. ${HEMSIDA_UTANFOR_PAKET_TEXT} ${SEO_PA_HEMSIDAN_TEXT}`,
   },
   {
     fraga: "Vad händer om vi inte är nöjda?",

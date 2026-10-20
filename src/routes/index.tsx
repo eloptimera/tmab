@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
   head: () =>
     sidhuvud({
       titel: "Marknadsföringsbyrå för företag",
-      beskrivning: `Vi tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger hemsidor åt företag. Fasta priser från ${kr(PRIS.start)}/mån. Boka gratis genomgång.`,
+      beskrivning: `Vi tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger hemsidor åt företag. Marknadsföring från ${kr(PRIS.start)}/mån. Boka gratis genomgång.`,
       sokvag: "/",
     }),
   component: Start,
@@ -81,8 +81,8 @@ function Start() {
             </h1>
             <div className="max-lg:flex max-lg:flex-1 max-lg:flex-col">
               <p className="max-w-md leading-relaxed text-ink/80">
-                Marknadsföringsbilder, SEO, GEO, Meta-annonser och hemsidor – till fasta priser från{" "}
-                {kr(PRIS.start)} i månaden, exkl. moms. Börja med en gratis genomgång.
+                Marknadsföringsbilder, SEO, GEO och Meta-annonser från {kr(PRIS.start)} i månaden.
+                Hemsidor till fast engångspris. Exkl. moms. Börja med en gratis genomgång.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <BokaKnapp />

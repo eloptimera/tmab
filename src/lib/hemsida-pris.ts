@@ -5,7 +5,7 @@
 // TODO(TAB): komplettera när det är bestämt – visas inte på sajten förrän då:
 //  - vad som ingår i grundpriset för en ny hemsida (antal sidor, funktioner)
 //  - om ni rekommenderar ett webbhotell och ungefär vad domän och webbhotell kostar
-//  - pris för ändringar efter lansering för kunder utan månadspaket (timpris eller offert)
+//  - pris för ändringar efter lansering (timpris eller fast pris per offert) – ingår aldrig i paketen
 //  - vilka paket "uppstart av större månadsabonnemang" gäller (Growth och Premium?)
 import {
   AGANDE_TEXT,
@@ -27,7 +27,7 @@ export const HEMSIDA_PRIS = {
   kortText:
     "Vad en företagshemsida kostar hos oss, vad som ingår, löpande kostnader och vad ni betalar totalt första året.",
   publicerad: "2026-10-19",
-  uppdaterad: "2026-10-19",
+  uppdaterad: "2026-10-20",
 } as const;
 
 /** Årskostnad hos oss: ny hemsida + tolv månader av paketet. Uppstart och moms ingår inte. */
@@ -36,13 +36,14 @@ export const ARSKOSTNAD = [
     namn: "Bara hemsidan",
     start: PRIS.hemsida,
     perManad: 0,
-    beskrivning: "Ni sköter ändringar själva eller beställer dem när de behövs.",
+    beskrivning: "Ni sköter ändringar själva eller beställer dem som engångsarbete när de behövs.",
   },
   ...PAKET.map((p) => ({
     namn: `Hemsida + ${p.namn}`,
     start: PRIS.hemsida,
     perManad: p.belopp,
-    beskrivning: p.ingar.filter((r) => /hemsid|SEO/i.test(r)).join(", "),
+    // Paketen är marknadsföring – visa det som läggs till efter lansering, inte rapport och möten.
+    beskrivning: p.ingar.filter((r) => !/rapport|avstämning/i.test(r)).join(", "),
   })),
 ].map((r) => ({ ...r, forstaAret: r.start + 12 * r.perManad, darefter: 12 * r.perManad }));
 
@@ -57,11 +58,11 @@ export const HEMSIDA_PRIS_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar en hemsida per månad?",
-    svar: `Hos oss ingen obligatorisk månadsavgift. Vill ni ha löpande hjälp med ändringar, SEO och marknadsföring finns månadspaket från ${kr(PRIS.start)} per månad. Domän och webbhotell betalar ni direkt till leverantören.`,
+    svar: `Hos oss ingen månadsavgift för hemsidan. Ändringar efter lansering gör vi som engångsarbete med fast pris. Vill ni marknadsföra er löpande – bilder, SEO/GEO och Meta-annonser – finns månadspaket från ${kr(PRIS.start)} per månad. Domän och webbhotell betalar ni direkt till leverantören.`,
   },
   {
     fraga: "Är det ett engångspris eller en prenumeration?",
-    svar: "Hemsidan är ett engångspris. Månadspaketen är frivilliga och kan väljas till, nu eller senare.",
+    svar: "Hemsidan är ett engångspris, och det är ändringar efter lansering också. Månadspaketen gäller marknadsföring och är frivilliga – de kan väljas till, nu eller senare.",
   },
   {
     fraga: "Ingår domän och webbhotell i priset?",
@@ -73,7 +74,7 @@ export const HEMSIDA_PRIS_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan vi uppdatera hemsidan efter lansering?",
-    svar: "Ja. Ni äger sajten och kan ändra den själva eller låta oss göra det. Med ett månadspaket ingår hemsidejusteringar varje månad, annars stämmer vi av pris innan vi gör ändringen.",
+    svar: "Ja. Ni äger sajten och kan ändra den själva eller låta oss göra det. Ändringar från oss är engångsarbete: ni får ett fast pris innan vi börjar. De ingår inte i månadspaketen, som bara innehåller marknadsföring.",
   },
   {
     fraga: "Vem äger hemsidan när den är klar?",

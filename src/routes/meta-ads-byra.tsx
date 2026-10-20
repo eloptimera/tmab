@@ -756,7 +756,7 @@ function MetaAdsByra() {
               </div>
               <p className="mt-6 text-sm leading-relaxed text-white/70">
                 Fast arvode – det beror inte på hur mycket ni annonserar för. Paketen innehåller
-                även SEO och hemsideförbättringar. {BINDNING_TEXT} {MOMS_TEXT}
+                även SEO/GEO. {BINDNING_TEXT} {MOMS_TEXT}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>

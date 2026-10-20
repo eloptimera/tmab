@@ -11,7 +11,15 @@ import {
 import type { Steg } from "@/components/Steg";
 import { landningssidaForTjanst } from "@/lib/landningssidor";
 import { BILDER, type Bild } from "@/lib/projekt";
-import { GARANTI_TEXT, GSC_SVAR, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
+import {
+  GARANTI_TEXT,
+  GSC_SVAR,
+  HEMSIDA_UTANFOR_PAKET_TEXT,
+  kr,
+  MOMS_TEXT,
+  PRIS,
+  type Fraga,
+} from "@/lib/priser";
 
 // Tjänsterna som säljs var för sig. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
 // kontaktformuläret, sitemap.xml och llms.txt.
@@ -280,7 +288,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Mätning före och efter",
     ],
     pris: { belopp: PRIS.uppfraschning, fran: true, avser: "Uppfräschning av hemsida" },
-    iPaket: `Hemsideförbättringar ingår i alla månadspaket, från ${kr(PRIS.start)} per månad.`,
+    iPaket: null,
     fordjupning: [
       {
         rubrik: { text: "Det här går vi igenom", markera: "går vi igenom" },
@@ -313,7 +321,7 @@ export const TJANSTER: readonly Tjanst[] = [
       },
       {
         fraga: "Ingår hemsideförbättringar i månadspaketen?",
-        svar: "Ja. Start har mindre hemsidejusteringar, Growth har hemsideförbättringar och Premium har fler hemsideförbättringar.",
+        svar: `Nej. Månadspaketen innehåller marknadsföring: bilder, SEO/GEO och Meta-annonser. ${HEMSIDA_UTANFOR_PAKET_TEXT}`,
       },
     ],
   },

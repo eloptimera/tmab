@@ -73,7 +73,7 @@ export const Route = createFileRoute("/hemsida-pris")({
 const LANK =
   "font-bold text-ink underline decoration-sun decoration-2 underline-offset-4 hover:decoration-ink";
 
-/** Den del av ett paket som rör hemsidan, SEO eller annonser – hämtas ur paketet självt. */
+/** En rad ur ett paket som matchar mönstret – hämtas ur paketet självt. */
 const rad = (ingar: readonly string[], monster: RegExp) => ingar.find((r) => monster.test(r));
 
 const NY_HEMSIDA_INGAR = [
@@ -88,7 +88,8 @@ const NY_HEMSIDA_INGAR = [
 
 const NY_HEMSIDA_INGAR_INTE = [
   "Domän och webbhotell – betalas direkt till leverantören, i ert namn",
-  "Löpande SEO och ändringar efter lansering – i månadspaket eller enligt offert",
+  "Ändringar efter lansering – engångsarbete med fast pris i offerten",
+  "Löpande SEO och annan marknadsföring – i månadspaketen",
 ] as const;
 
 type Cell = { text: string; ingar: boolean };
@@ -108,9 +109,10 @@ const JAMFORELSE: readonly { rad: string; celler: readonly Cell[] }[] = [
   { rad: "Kontaktformulär", celler: [ja(), nej("—"), nej("—"), nej("—")] },
   { rad: "SEO-grund och metadata", celler: [ja(), nej("—"), nej("—"), nej("—")] },
   { rad: "Ändringsrunda innan lansering", celler: [ja(), nej("—"), nej("—"), nej("—")] },
+  // Hemsidearbete ingår aldrig i paketen – ändringar efter lansering är alltid engångsarbete.
   {
     rad: "Ändringar efter lansering",
-    celler: [nej("Enligt offert"), ...paketCell(/hemsid/i)],
+    celler: [nej("Enligt offert"), ...PAKET.map(() => nej("Enligt offert"))],
   },
   { rad: "Löpande SEO och GEO", celler: [nej("Tillägg"), ...paketCell(/SEO/)] },
   { rad: "Meta-annonser och cookiebanner", celler: [nej("Tillägg"), ...paketCell(/Meta/)] },
@@ -146,18 +148,21 @@ const FAKTORER: readonly Kort[] = [
   },
   {
     titel: "Efter lansering",
-    text: "Ska vi sköta ändringar löpande, eller tar ni över själva?",
+    text: "Ska vi göra ändringarna när de behövs, eller tar ni över själva?",
     ikon: Gauge,
   },
 ];
 
 const KONTROLLERA: readonly { punkt: string; hosOss: string }[] = [
   { punkt: "Startkostnad", hosOss: `Från ${kr(PRIS.hemsida)}, fast pris i offerten` },
-  { punkt: "Löpande avgifter", hosOss: "Inga obligatoriska – månadspaket är frivilliga" },
+  {
+    punkt: "Löpande avgifter",
+    hosOss: "Inga för hemsidan – månadspaket för marknadsföring är frivilliga",
+  },
   { punkt: "Vad som ingår", hosOss: "Står i offerten innan ni bestämmer er" },
   { punkt: "Mobilanpassning", hosOss: "Ingår alltid" },
   { punkt: "Grundläggande SEO", hosOss: "Ingår alltid" },
-  { punkt: "Ändringar", hosOss: "En runda innan lansering, sedan i paket eller enligt offert" },
+  { punkt: "Ändringar", hosOss: "En runda innan lansering, sedan fast pris per ändring i offert" },
   { punkt: "Ägande", hosOss: "Ni äger sajten, domänen och kontona" },
   { punkt: "Om ni slutar", hosOss: "Vi lämnar över all åtkomst och allt material" },
 ];
@@ -251,7 +256,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Lansering",
-    text: "En ändringsrunda, sedan publicerar vi. Vill ni ha löpande hjälp väljer ni ett månadspaket.",
+    text: "En ändringsrunda, sedan publicerar vi. Vill ni marknadsföra er löpande väljer ni ett månadspaket.",
   },
 ];
 
@@ -306,7 +311,11 @@ function HemsidaPris() {
                 <dd className="font-bold">från {kr(PRIS.uppfraschning)}</dd>
               </div>
               <div className="flex justify-between gap-4 py-3">
-                <dt className="text-white/80">Löpande hjälp (frivilligt)</dt>
+                <dt className="text-white/80">Ändringar efter lansering</dt>
+                <dd className="font-bold">Fast pris i offert</dd>
+              </div>
+              <div className="flex justify-between gap-4 py-3">
+                <dt className="text-white/80">Marknadsföring (frivilligt)</dt>
                 <dd className="font-bold">från {kr(PRIS.start)}/mån</dd>
               </div>
               <div className="flex justify-between gap-4 py-3">
@@ -330,8 +339,8 @@ function HemsidaPris() {
             Våra priser för <Mark>företagshemsidor</Mark>
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-            Tre sätt att komma igång. Den nya hemsidan och uppfräschningen är engångspriser.
-            Månadspaketen är frivilliga och kan väljas till när som helst.
+            Tre sätt att komma igång. Den nya hemsidan, uppfräschningen och senare ändringar är
+            engångspriser. Månadspaketen gäller marknadsföring och kan väljas till när som helst.
           </p>
         </Reveal>
 
@@ -419,14 +428,16 @@ function HemsidaPris() {
             >
               <p className="caps text-brand">Per månad · frivilligt</p>
               <h3 id="lopande" className="mt-3 font-sans text-2xl font-bold tracking-normal">
-                Löpande hjälp efter lansering
+                Marknadsföring efter lansering
               </h3>
               <p className="mt-5 font-display text-5xl leading-none">
                 <span className="text-2xl">från </span>
                 {kr(PRIS.start)}
                 <span className="text-2xl text-muted-foreground">/mån</span>
               </p>
-              <p className="mt-2 text-sm text-muted-foreground">Ingen bindningstid</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Ingen bindningstid · hemsidearbete ingår inte
+              </p>
               <ul className="mt-7 flex-1 divide-y divide-line">
                 {PAKET.map((p) => (
                   <li key={p.id} className="py-3">
@@ -435,7 +446,9 @@ function HemsidaPris() {
                       <span className="font-display text-xl">{kr(p.belopp)}/mån</span>
                     </span>
                     <span className="mt-1 block text-sm text-muted-foreground">
-                      {[rad(p.ingar, /hemsid/i), rad(p.ingar, /SEO/)].filter(Boolean).join(" · ")}
+                      {[rad(p.ingar, /bilder/), rad(p.ingar, /SEO/), rad(p.ingar, /Meta/)]
+                        .filter(Boolean)
+                        .join(" · ")}
                     </span>
                   </li>
                 ))}
@@ -466,8 +479,8 @@ function HemsidaPris() {
               Vad får ni när ni beställer en hemsida från <Mark>{FORETAG.kortnamn}</Mark>?
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Priset säger lite utan innehållet. Här står vad som ingår i den nya hemsidan och vad
-              månadspaketen lägger till efter lansering.
+              Priset säger lite utan innehållet. Här står vad som ingår i den nya hemsidan och
+              vilken marknadsföring månadspaketen lägger till efter lansering.
             </p>
           </Reveal>
 
@@ -572,7 +585,8 @@ function HemsidaPris() {
               {[
                 `Ni betalar hemsidan en gång – från ${kr(PRIS.hemsida)}.`,
                 "Domän och webbhotell betalar ni direkt till leverantören, i ert namn.",
-                `Månadspaket är frivilliga. ${BINDNING_TEXT}`,
+                "Ändringar efter lansering är också engångsarbete, med fast pris innan vi börjar.",
+                `Månadspaket för marknadsföring är frivilliga. ${BINDNING_TEXT}`,
                 "Slutar ni hos oss lämnar vi tillbaka all åtkomst och överlämnar materialet.",
               ].map((t) => (
                 <li key={t} className="flex gap-3 text-ink/85">
@@ -828,8 +842,8 @@ function HemsidaPris() {
               , med hur vi arbetar från första mötet till lansering.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Eftersom vi även jobbar med SEO och marknadsföring kan sajten fortsätta utvecklas
-              efter lansering – till exempel med{" "}
+              Eftersom vi även jobbar med SEO och marknadsföring kan ni fortsätta med oss efter
+              lansering – till exempel med{" "}
               <Link to={SEO_BYRA.sokvag} className={LANK}>
                 SEO
               </Link>{" "}

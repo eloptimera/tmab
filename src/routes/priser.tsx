@@ -176,8 +176,15 @@ function Priser() {
           <Reveal>
             <p className="eyebrow">01 · Månadspaket</p>
             <h2 id="manadspaket" className="mt-4 text-4xl sm:text-5xl">
-              Löpande hjälp varje <Mark>månad</Mark>
+              Löpande marknadsföring varje <Mark>månad</Mark>
             </h2>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
+              Bilder, SEO/GEO och Meta-annonser. Hemsidor och ändringar på hemsidan köper ni som{" "}
+              <a href="#engangstjanster" className="font-bold text-ink underline">
+                engångstjänster
+              </a>
+              .
+            </p>
           </Reveal>
           <div className="mt-14 grid items-stretch gap-6 lg:grid-cols-3 lg:gap-5">
             {PAKET.map((p, i) => (

@@ -3,7 +3,7 @@
 import { FORETAG } from "@/lib/foretag";
 import { BETALNING_TEXT, MOMS_TEXT } from "@/lib/priser";
 
-export const VILLKOR_DATUM = "2026-10-19";
+export const VILLKOR_DATUM = "2026-10-20";
 
 export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] = [
   {
@@ -32,6 +32,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     stycken: [
       `Månadspaketen har ingen bindningstid. Kunden kan säga upp när som helst, och paketet löper till slutet av den period som redan är betald. Uppsägning görs via mejl till ${FORETAG.epost}.`,
       "Påbörjad period återbetalas inte. Leveranser som ingår i ett paket gäller för den månaden och sparas inte till nästa.",
+      "Månadspaketen omfattar marknadsföring: bilder, SEO/GEO, Meta-annonser och rapportering enligt paketet. Hemsidearbete ingår inte. Ny hemsida, uppfräschning och andra ändringar på hemsidan beställs som engångstjänster enligt offert. SEO-åtgärder på hemsidan, till exempel sidtitlar, metabeskrivningar, rubriker och sökordstexter, räknas som SEO-arbete.",
     ],
   },
   {

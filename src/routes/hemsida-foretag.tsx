@@ -137,9 +137,9 @@ const INGAR: readonly (Kort & { lank?: { till: string; text: string } })[] = [
   },
   {
     titel: "Möjlighet att bygga vidare",
-    text: "Hemsidan kan utvecklas när verksamheten växer – med nya sidor, funktioner eller löpande förbättringar.",
+    text: "Hemsidan kan utvecklas när verksamheten växer – med nya sidor och funktioner, till fast pris per uppdrag.",
     ikon: Puzzle,
-    lank: { till: "/priser", text: "Månadspaket" },
+    lank: { till: "/priser", text: "Priser" },
   },
 ];
 
@@ -158,7 +158,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Lansering och vidare",
-    text: "Vi publicerar hemsidan enligt överenskommelse. Vill ni fortsätta utveckla den finns hemsideförbättringar och SEO i månadspaketen.",
+    text: "Vi publicerar hemsidan enligt överenskommelse. Senare ändringar gör vi till fast pris per uppdrag, och vill ni marknadsföra er löpande finns bilder, SEO och Meta-annonser i månadspaketen.",
   },
 ];
 
