@@ -8,8 +8,6 @@ export const FORETAG: {
   namn: string;
   /** Kort form – "Varför TAB", "Om TAB" m.m. */
   kortnamn: string;
-  /** Den stora ordbilden överst på startsidan. */
-  ordbild: string;
   /** Bolaget som driver verksamheten (personuppgiftsansvarig, fakturerar). */
   juridisktNamn: string;
   /** En mening om vad företaget gör – används i metadata, strukturerad data och llms.txt. */
@@ -29,7 +27,6 @@ export const FORETAG: {
 } = {
   namn: "TAB Marketing",
   kortnamn: "TAB",
-  ordbild: "TAB",
   juridisktNamn: "Treatly AB",
   beskrivning:
     "Marknadsföringsbyrå som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag i hela Sverige – till fasta priser.",

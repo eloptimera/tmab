@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Clapperboard, Megaphone, Search } from "lucide-react";
+import { ArrowUpRight, Check, Clapperboard, Megaphone, Search } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Blob, Linjer } from "@/components/Brand";
 import { Heading, Mark } from "@/components/Heading";
@@ -7,9 +7,11 @@ import { LyckasDigitalt } from "@/components/LyckasDigitalt";
 import { BildGalleri, ProjektLista } from "@/components/Projekt";
 import { Reveal } from "@/components/Reveal";
 import { Tusch } from "@/components/Tusch";
+import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
-import { kr, PRIS } from "@/lib/priser";
-import { sidhuvud } from "@/lib/seo";
+import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
+import { faqSchema, sidhuvud } from "@/lib/seo";
+import { avstava } from "@/lib/text";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -17,9 +19,41 @@ export const Route = createFileRoute("/")({
       titel: "Marknadsföringsbyrå för företag",
       beskrivning: `Vi tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger hemsidor åt företag. Marknadsföring från ${kr(PRIS.start)}/mån. Boka gratis genomgång.`,
       sokvag: "/",
+      schema: [faqSchema(HEM_FRAGOR)],
     }),
   component: Start,
 });
+
+const LOFTEN_KORT = ["Gratis genomgång", "Fasta priser", "Ingen bindningstid"] as const;
+
+// Vanliga frågor på startsidan – svarar på det man undrar innan man anlitar en byrå.
+// Visas längst ner och som FAQPage-schema.
+const HEM_FRAGOR: readonly Fraga[] = [
+  {
+    fraga: "Vad gör en marknadsföringsbyrå?",
+    svar: "Den hjälper företag att synas och få kunder – på Google, i AI-tjänster, i sociala medier och i annonser. Hos oss betyder det marknadsföringsbilder och video, SEO och GEO, Meta-annonser och hemsidor. Vi gör jobbet åt er i stället för att bara ge råd.",
+  },
+  {
+    fraga: "Vad kostar det att anlita er?",
+    svar: `Månadspaketen kostar ${kr(PRIS.start)}, ${kr(PRIS.growth)} eller ${kr(PRIS.premium)} per månad. En ny hemsida kostar från ${kr(PRIS.hemsida)} som engångspris. ${MOMS_TEXT} Första genomgången är gratis.`,
+  },
+  {
+    fraga: "Arbetar ni med företag i hela Sverige?",
+    svar: "Ja. Vi arbetar digitalt, så det spelar ingen roll var ert företag finns.",
+  },
+  {
+    fraga: "Finns det någon bindningstid?",
+    svar: BINDNING_TEXT,
+  },
+  {
+    fraga: "Kan ni garantera att vi hamnar först på Google?",
+    svar: "Nej, det kan ingen lova. Vi lovar arbetet och en rapport varje månad som visar vad det gav.",
+  },
+  {
+    fraga: "Hur kommer vi igång?",
+    svar: "Boka en gratis genomgång på 20–25 minuter. Vi går igenom er digitala närvaro och skickar sedan ett förslag med pris. Säger ni ja börjar vi.",
+  },
+];
 
 // Tre övergripande områden på startsidan. Detaljerna per tjänst ligger i listan längre ner
 // och på /tjanster – här ska besökaren bara snabbt förstå vad vi hjälper till med.
@@ -50,47 +84,48 @@ const OMRADEN = [
 function Start() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden">
-        <div className="mx-auto flex max-w-[88rem] flex-col px-6 pt-6 pb-8 max-lg:min-h-[calc(100svh-4.5rem)] sm:px-10 lg:min-h-[min(42rem,calc(100svh-4.5rem))] lg:pb-6">
-          <div className="caps flex items-start justify-between gap-6 text-ink max-sm:justify-end">
-            <span aria-hidden="true" className="hidden sm:inline">
-              Bilder · SEO & GEO · Annonser · Hemsidor
-            </span>
+      {/* Hero: en stark rubrik är det största på sidan – den bär sökordet och säger direkt
+          vad vi gör. Blobben och linjerna är samma bildspråk som tidigare ordbilden. */}
+      <section aria-labelledby="hero-rubrik" className="relative isolate overflow-hidden">
+        <div className="mx-auto flex max-w-[88rem] flex-col px-6 pt-6 pb-14 sm:px-10 lg:min-h-[min(46rem,calc(100svh-4.5rem))] lg:pb-16">
+          <div className="caps flex items-start justify-between gap-6 text-ink max-sm:justify-center">
+            <span className="hidden sm:inline">Marknadsföringsbyrå för företag</span>
             <span>Fasta priser · Gratis genomgång</span>
           </div>
 
-          {/* Ordbild över blob och linjer */}
-          {/* Luft under ordbilden: linjerna och ellipsen sticker ut under texten, så avståndet
-              till rubriken måste räknas från dem – inte från bokstäverna. */}
-          <div className="relative mt-14 mb-24 flex items-center justify-center sm:mb-28 lg:mt-6 lg:mb-16 lg:flex-1">
-            <Blob className="absolute top-1/2 left-1/2 -z-10 w-[min(72vw,44rem)] -translate-x-[48%] -translate-y-[56%]" />
-            <Linjer className="absolute inset-x-[-1.5rem] top-1/2 -z-10 h-[min(34vw,26rem)] min-h-40 w-[calc(100%+3rem)] -translate-y-1/2 text-ink/80 sm:inset-x-[-2.5rem] sm:w-[calc(100%+5rem)]" />
-            <p
-              aria-hidden="true"
-              className="font-display text-[min(30vw,17rem)] leading-[0.9] font-medium tracking-[0.04em] text-ink uppercase select-none"
+          <div className="relative my-14 flex items-center justify-center sm:my-16 lg:flex-1">
+            <Blob className="absolute top-1/2 left-1/2 -z-10 w-[min(80vw,46rem)] -translate-x-1/2 -translate-y-[55%]" />
+            {/* Höjden i em mot rubrikens egen textstorlek, så att linjerna ramar in rubriken
+                och ellipsen aldrig når ner i brödtexten: 3 rader på mobil, 2 från sm. */}
+            <Linjer className="absolute inset-x-[-1.5rem] top-1/2 -z-10 h-[5.2em] w-[calc(100%+3rem)] -translate-y-1/2 text-[clamp(2.3rem,7.2vw,6.5rem)] text-ink/70 sm:inset-x-[-2.5rem] sm:h-[3.7em] sm:w-[calc(100%+5rem)]" />
+            <h1
+              id="hero-rubrik"
+              className="max-w-[15ch] text-center text-[clamp(2.3rem,7.2vw,6.5rem)] sm:max-w-[21ch] leading-[1.02] text-balance"
             >
-              {FORETAG.ordbild}
-            </p>
+              {avstava("Marknadsföringsbyrå")} som <Mark>gör jobbet åt er</Mark>
+            </h1>
           </div>
 
-          {/* Mobil: blocket fyller resten av skärmen och knapparna hamnar längst ner i hörnet */}
-          <div className="grid items-end gap-8 max-lg:flex max-lg:flex-1 max-lg:flex-col max-lg:items-stretch lg:grid-cols-[1.25fr_1fr] lg:gap-16">
-            <h1 className="max-w-2xl text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.12]">
-              Marknadsföringsbyrå som <Mark>gör jobbet åt er</Mark>
-            </h1>
-            <div className="max-lg:flex max-lg:flex-1 max-lg:flex-col">
-              <p className="max-w-md leading-relaxed text-ink/80">
-                Marknadsföringsbilder, SEO, GEO och Meta-annonser från {kr(PRIS.start)} i månaden.
-                Hemsidor till fast engångspris. Exkl. moms. Börja med en gratis genomgång.
-              </p>
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <BokaKnapp />
-                <Link to="/priser" className="btn-base btn-outline">
-                  Se priser
-                </Link>
-              </div>
+          <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+            <p className="text-lg leading-relaxed text-ink/80">
+              Vi tar fram marknadsföringsbilder och video, sköter SEO, GEO och Meta-annonser och
+              bygger hemsidor som säljer – för företag i hela Sverige. Marknadsföring från{" "}
+              {kr(PRIS.start)} i månaden, exkl. moms.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <BokaKnapp />
+              <Link to="/priser" className="btn-base btn-outline">
+                Se priser
+              </Link>
             </div>
+            <ul className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-bold text-ink/80">
+              {LOFTEN_KORT.map((t) => (
+                <li key={t} className="flex items-center gap-2">
+                  <Check className="size-4 text-brand" strokeWidth={3} aria-hidden="true" />
+                  {t}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -217,6 +252,23 @@ function Start() {
                 </dd>
               </div>
             </dl>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Vanliga frågor */}
+      <section aria-labelledby="fragor-rubrik" className="bg-fade-tint py-12 sm:py-16">
+        <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <Reveal>
+            <p className="eyebrow">Vanliga frågor</p>
+            <Heading className="mt-4 text-4xl sm:text-5xl">
+              <span id="fragor-rubrik">
+                Innan ni anlitar en <Mark>marknadsföringsbyrå</Mark>
+              </span>
+            </Heading>
+          </Reveal>
+          <Reveal delay={80}>
+            <VanligaFragor fragor={HEM_FRAGOR} />
           </Reveal>
         </div>
       </section>
