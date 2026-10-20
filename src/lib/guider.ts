@@ -346,6 +346,171 @@ export const GUIDER: readonly Guide[] = [
       },
     ],
   },
+  {
+    slug: "facebook-annonsering",
+    titel: "Facebook-annonsering: så kommer du igång själv",
+    rubrik: {
+      text: "Facebook-annonsering: så kommer du igång själv",
+      markera: "igång själv",
+    },
+    seoTitel: "Facebook-annonsering – så kommer du igång",
+    seoBeskrivning:
+      "Steg för steg: konto, kampanjmål, målgrupp, annonser och budget för Facebook och Instagram. Plus de vanligaste misstagen och vad du ska följa upp.",
+    ingress:
+      "Annonser på Facebook och Instagram skapas i Metas Ads Manager. Du behöver ett annonskonto i företagets namn, ett tydligt mål för kampanjen, några annonsvarianter och en budget du låter gå i flera veckor. Så här gör du – och det här ska du undvika.",
+    publicerad: "2026-10-20",
+    uppdaterad: "2026-10-20",
+    tjanst: "meta-annonser",
+    avsnitt: [
+      {
+        rubrik: "Steg 1: Sätt upp kontona i företagets namn",
+        lista: {
+          numrerad: true,
+          rader: [
+            "Skapa ett företagskonto i Meta Business Suite, inloggad med ditt privata Facebook-konto – men på företagets uppgifter.",
+            "Koppla företagets Facebook-sida och Instagram-konto till företagskontot.",
+            "Skapa ett annonskonto och lägg in företagets betalkort. Välj rätt valuta och tidszon direkt – de är krångliga att ändra i efterhand.",
+            "Lägg till en kollega som administratör, så att ni inte låses ute om något händer med ditt konto.",
+          ],
+        },
+        efter: [
+          "Låter du en byrå eller konsult hjälpa dig senare ger du dem åtkomst som partner. Kontot, historiken och betalningen stannar hos företaget.",
+        ],
+      },
+      {
+        rubrik: "Steg 2: Använd Ads Manager – inte Boosta-knappen",
+        stycken: [
+          "Knappen Boosta inlägg är det snabbaste sättet att annonsera, men du får färre val för mål, målgrupp och placering. Bygger du kampanjen i Ads Manager styr du vad annonsen ska leda till och kan jämföra flera annonser mot varandra.",
+        ],
+      },
+      {
+        rubrik: "Steg 3: Välj ett mål som motsvarar det du vill ha",
+        stycken: [
+          "Meta visar annonsen för dem som mest sannolikt gör det du väljer som mål. Väljer du trafik får du klick – inte nödvändigtvis kunder.",
+        ],
+        tabell: {
+          kolumner: ["Du vill ha", "Välj målet", "Passar för"],
+          rader: [
+            [
+              "Förfrågningar och bokningar",
+              "Leads (potentiella kunder)",
+              "Tjänsteföretag, konsulter",
+            ],
+            ["Köp i webbshoppen", "Försäljning", "E-handel"],
+            ["Besök på hemsidan", "Trafik", "Innehåll, nya sidor"],
+            ["Bli kända i området", "Kännedom", "Lokala företag, nyöppning"],
+          ],
+        },
+        efter: [
+          "Leads kan ske med ett formulär direkt i annonsen – kunden behöver inte lämna Facebook eller Instagram. Det ger ofta fler svar, men kontrollera kvaliteten: det är lätt att skicka ett formulär man inte menar.",
+        ],
+      },
+      {
+        rubrik: "Steg 4: Bestäm hur du ska mäta resultatet",
+        stycken: [
+          "Vill du veta vilka annonser som leder till förfrågningar eller köp på hemsidan behöver du Meta-pixeln. Den sätter cookies och får bara laddas efter samtycke, så du behöver också en cookiebanner där det är lika lätt att neka som att godkänna.",
+          "Utan pixel kan du ändå mäta: använd formulärannonser, eller märk länkarna med spårningsparametrar (UTM) och följ besöken i din vanliga statistik.",
+        ],
+      },
+      {
+        rubrik: "Steg 5: Välj målgrupp – inte för smalt",
+        lista: {
+          rader: [
+            {
+              titel: "Plats",
+              text: "Ange var dina kunder finns. För ett lokalt företag: orten eller en radie runt den.",
+            },
+            {
+              titel: "Ålder",
+              text: "Begränsa bara om du vet att vissa åldrar aldrig köper.",
+            },
+            {
+              titel: "Intressen",
+              text: "Börja brett. Meta hittar ofta rätt personer själv utifrån vilka som reagerar på annonsen.",
+            },
+            {
+              titel: "Befintliga kunder",
+              text: "En kundlista eller besökare på hemsidan kan användas för att nå liknande personer – men bara om du har rätt att använda uppgifterna.",
+            },
+          ],
+        },
+        efter: [
+          "Annonserar du om bostäder, jobb eller lån gäller särskilda regler i Meta, och flera målgruppsval försvinner.",
+        ],
+      },
+      {
+        rubrik: "Steg 6: Gör två eller tre annonser, inte en",
+        lista: {
+          rader: [
+            "Använd stående format (4:5) för flödet och helskärm (9:16) för Stories och Reels.",
+            "Visa produkten, tjänsten eller resultatet – inte logotypen.",
+            "Skriv det viktigaste i första meningen. Efter några rader döljs resten av texten.",
+            "Välj en knapp som säger vad som händer: Boka nu, Begär offert, Handla.",
+            "Testa olika bilder eller vinklar, och låt resultaten avgöra vilken som får fortsätta.",
+          ],
+        },
+      },
+      {
+        rubrik: "Steg 7: Sätt en budget och ha tålamod",
+        stycken: [
+          "Välj en dagsbudget du klarar att låta gå i minst fyra veckor. De första dagarna testar Meta vilka som reagerar, och resultaten svänger mycket. Ändrar du budget, målgrupp eller annonser hela tiden börjar testet om.",
+          "Bestäm i förväg vad en förfrågan eller ett köp får kosta för att det ska löna sig. Då vet du när det fungerar – och när du ska stänga av.",
+        ],
+      },
+      {
+        rubrik: "Det här ska du följa upp",
+        tabell: {
+          kolumner: ["Nyckeltal", "Vad det säger"],
+          rader: [
+            [
+              "Kostnad per lead eller köp",
+              "Det viktigaste talet: vad en förfrågan eller ett köp kostar",
+            ],
+            [
+              "Klickfrekvens (CTR)",
+              "Om annonsen fångar intresse – låg CTR betyder ofta fel bild eller budskap",
+            ],
+            ["Kostnad per tusen visningar (CPM)", "Hur dyrt det är att synas för din målgrupp"],
+            ["Frekvens", "Hur många gånger samma person sett annonsen – byt annons när den stiger"],
+          ],
+        },
+        efter: [
+          "Gillamarkeringar och räckvidd ser bra ut i rapporten men betalar inga räkningar. Utvärdera på förfrågningar och köp.",
+        ],
+      },
+      {
+        rubrik: "De vanligaste misstagen",
+        lista: {
+          rader: [
+            "Annonskontot ligger på en privatperson eller en tidigare anställd.",
+            "Kampanjmålet är trafik när målet egentligen är förfrågningar.",
+            "Pixeln laddas utan samtycke.",
+            "En enda annons får gå tills den slutar fungera.",
+            "Budgeten ändras varannan dag.",
+            "Annonsen leder till startsidan i stället för en sida om erbjudandet.",
+          ],
+        },
+      },
+    ],
+    fragor: [
+      {
+        fraga: "Hur mycket kostar det att annonsera på Facebook?",
+        svar: "Du bestämmer själv budgeten och betalar direkt till Meta. Vad en förfrågan eller ett köp kostar varierar mycket mellan branscher och målgrupper – testa med en budget du klarar att låta gå i några veckor och utvärdera sedan.",
+      },
+      {
+        fraga: "Ska jag annonsera på Facebook eller Instagram?",
+        svar: "Båda styrs från samma Ads Manager. Låt kampanjen gå på båda till en början och se i resultaten var den fungerar bäst, i stället för att välja i förväg.",
+      },
+      {
+        fraga: "Behöver jag Meta-pixeln?",
+        svar: "Inte för att komma igång. Med formulärannonser och spårningslänkar kan du mäta utan pixel. Pixeln behövs för att mäta köp och förfrågningar på hemsidan och för att visa annonser för tidigare besökare – och då krävs samtycke.",
+      },
+      {
+        fraga: "När är det dags att ta hjälp?",
+        svar: "När annonserna kostar mer än de ger efter några veckor, när du inte hinner ta fram nya annonser och följa upp varje vecka, eller när du vill skala upp och behöver flera kampanjer som samverkar.",
+      },
+    ],
+  },
 ];
 
 /**

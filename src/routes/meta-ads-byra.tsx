@@ -520,6 +520,13 @@ function MetaAdsByra() {
                 ett erbjudande, en tydlig målgrupp och en kampanj som går att följa upp – och bygga
                 vidare på det som fungerar.
               </p>
+              <p className="mt-5 text-lg leading-relaxed text-ink/80">
+                Vill ni testa själva först? Guiden{" "}
+                <Link to="/guider/$slug" params={{ slug: "facebook-annonsering" }} className={LANK}>
+                  Facebook-annonsering: så kommer du igång själv
+                </Link>{" "}
+                går igenom konto, mål, målgrupp och budget steg för steg.
+              </p>
             </Reveal>
           </div>
           <ul className="mt-12 grid gap-4 md:grid-cols-3">
