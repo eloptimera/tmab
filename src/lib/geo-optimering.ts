@@ -42,6 +42,10 @@ export const GEO_FRAGOR: readonly Fraga[] = [
     svar: "Börja med att sajten är offentligt tillgänglig, beskriver verksamheten tydligt och inte blockerar OAI-SearchBot, roboten ChatGPT använder för sin sökfunktion. Det förbättrar möjligheten att bli hittad, men styr inte vad ChatGPT svarar.",
   },
   {
+    fraga: "Vad är ChatGPT-SEO eller ChatGPT-optimering?",
+    svar: "Det är GEO med fokus på ChatGPT: att optimera företagets sajt och information så att ChatGPT kan hitta, förstå och hänvisa till den när den söker på webben. Hos oss ingår det i samma arbete som SEO och GEO.",
+  },
+  {
     fraga: "Kan ni garantera att vi rekommenderas av ChatGPT?",
     svar: "Nej, och det kan ingen. Vilka företag och källor som nämns beror på frågan, användaren, tidpunkten och tjänstens egna system – och svaren varierar.",
   },

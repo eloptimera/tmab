@@ -11,7 +11,7 @@ export const HEMSIDA_FORETAG = {
   /** Sidans titel i sökresultat, utan företagsnamn (läggs till automatiskt). */
   seoTitel: `Hemsida till företag – från ${kr(PRIS.hemsida)}`,
   /** Max ca 155 tecken. */
-  seoBeskrivning: `Behöver ert företag en ny hemsida? TAB bygger moderna, mobilanpassade och SEO-vänliga hemsidor från ${kr(PRIS.hemsida)} exkl. moms. Boka en gratis genomgång.`,
+  seoBeskrivning: `Ny hemsida till företaget? TAB bygger moderna, mobilanpassade hemsidor för småföretag och växande företag från ${kr(PRIS.hemsida)} exkl. moms. Boka gratis genomgång.`,
   /** Text på kortet under /guider. */
   kortText:
     "Vad en bra företagshemsida behöver, vad som ingår när vi bygger den, hur det går till och vad det kostar.",
@@ -33,16 +33,24 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
     svar: "Ja. För ett nytt företag är hemsidan ofta det första kunderna ser. Vi hjälper er att presentera vad ni erbjuder, bygga förtroende från start och göra det enkelt att ta kontakt – även om ni ännu inte har texter eller bilder klara.",
   },
   {
-    fraga: "Kan ni bygga en hemsida åt ett småföretag?",
-    svar: "Ja. Vi anpassar antalet sidor, innehållet och funktionerna efter verksamheten och budgeten. Ett mindre företag behöver sällan en stor sajt – det viktiga är att besökaren snabbt förstår vad ni erbjuder och hur man tar kontakt.",
+    fraga: "Kan ni bygga en hemsida åt ett småföretag eller en enskild firma?",
+    svar: "Ja – åt enskilda firmor, mindre aktiebolag och nystartade företag. Vi anpassar antalet sidor, innehållet och funktionerna efter verksamheten och budgeten. Ett mindre företag behöver sällan en stor sajt – det viktiga är att besökaren snabbt förstår vad ni erbjuder och hur man tar kontakt.",
+  },
+  {
+    fraga: "Vad ska finnas på en hemsida för ett småföretag?",
+    svar: "En startsida som säger vad ni gör och för vem, en beskrivning av tjänsterna, var ni är verksamma, kontaktuppgifter och ett enkelt sätt att höra av sig – ett kontakt-, offert- eller bokningsformulär. Sajten ska fungera på mobilen och ha en SEO-grund så att Google förstår den. Mer än så behövs sällan i början.",
+  },
+  {
+    fraga: "Finns det billiga hemsidor för småföretag?",
+    svar: `Vår enklaste hemsida kostar från ${kr(PRIS.hemsida)}. Skillnaden mellan en billig och en dyr hemsida sitter sällan i utseendet utan i vad som ingår: antal sidor, texter och bilder, funktioner och vem som äger sajten och kontona efteråt. Jämför därför vad som ingår, inte bara priset. ${MOMS_TEXT}`,
   },
   {
     fraga: "Är hemsidorna mobilanpassade?",
     svar: "Ja. Vi bygger med responsiv design och testar hemsidan på mobil, surfplatta och dator innan lansering. För många företag kommer en stor del av besökarna från mobilen, så det är där vi börjar.",
   },
   {
-    fraga: "Kan vi få en hemsida med kontaktformulär?",
-    svar: "Ja. Ett kontaktformulär gör det enklare för besökare att ställa frågor eller begära offert. Vi utformar formuläret efter vad ni behöver veta för att kunna svara, så att förfrågningarna innehåller det ni behöver.",
+    fraga: "Kan vi få en hemsida med kontaktformulär, offertformulär eller bokning?",
+    svar: "Ja. Kontakt- och offertformulär utformar vi efter vad ni behöver veta för att kunna svara, så att förfrågningarna innehåller det ni behöver. Ska kunderna boka tid kan vi bygga ett bokningsformulär eller koppla in det bokningssystem ni redan använder. Vad som ingår står i förslaget.",
   },
   {
     fraga: "Kan ni förbättra vår befintliga hemsida i stället för att bygga en ny?",

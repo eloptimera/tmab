@@ -108,6 +108,16 @@ const MALGRUPPER: readonly { titel: string; text: string }[] = [
   },
 ];
 
+/** Checklista för småföretag – vad besökaren behöver hitta, inte vad paketet innehåller. */
+const SMAFORETAG_INNEHALL: readonly (readonly [string, string])[] = [
+  ["Tydlig startsida", "Vad ni gör och vem ni hjälper – direkt."],
+  ["Tjänstebeskrivningar", "Vad kunden kan få hjälp med, gärna med pris."],
+  ["Var ni finns", "Orter eller område ni arbetar i."],
+  ["Kontaktuppgifter", "Telefon och e-post som syns på varje sida."],
+  ["Formulär", "Kontakt, offertförfrågan eller bokning – det som passar er."],
+  ["Mobil och SEO-grund", "Fungerar på telefonen och går att hitta på Google."],
+];
+
 const INGAR: readonly (Kort & { lank?: { till: string; text: string } })[] = [
   {
     titel: "Design anpassad efter ert varumärke",
@@ -273,9 +283,9 @@ function HemsidaForetag() {
           <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-16">
             <Reveal delay={60}>
               <p className="text-lg leading-relaxed text-ink/80">
-                Att skapa en hemsida till ett småföretag behöver inte vara ett stort eller dyrt
-                projekt. För ett nystartat företag är hemsidan ofta första steget för att presentera
-                tjänsterna, skapa trovärdighet och bli lättare att hitta.
+                Att skapa en hemsida till ett småföretag eller en enskild firma behöver inte vara
+                ett stort eller dyrt projekt. För ett nystartat företag är hemsidan ofta första
+                steget för att presentera tjänsterna, skapa trovärdighet och bli lättare att hitta.
               </p>
             </Reveal>
             <Reveal delay={120}>
@@ -304,6 +314,32 @@ function HemsidaForetag() {
               </li>
             ))}
           </ul>
+
+          <Reveal delay={60} className="mt-14">
+            <div className="grid gap-8 rounded-[2rem] bg-white/80 p-8 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+              <div>
+                <h3 className="text-3xl sm:text-4xl">
+                  Vad ska finnas på en hemsida för småföretag?
+                </h3>
+                <p className="mt-4 leading-relaxed text-ink/80">
+                  Med liten budget lönar det sig att få det viktigaste att fungera riktigt bra i
+                  stället för att betala för funktioner ingen använder. Det här behöver de flesta
+                  mindre företag – resten kan byggas på när verksamheten växer.
+                </p>
+              </div>
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {SMAFORETAG_INNEHALL.map(([t, x]) => (
+                  <li key={t} className="flex gap-3 rounded-2xl bg-tint p-4">
+                    <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+                    <span>
+                      <span className="block font-bold text-ink">{t}</span>
+                      <span className="text-muted-foreground">{x}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </section>
 

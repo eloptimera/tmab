@@ -233,6 +233,12 @@ function SeoByra() {
               beror på konkurrensen, hur sajten ser ut i dag och hur kunderna söker.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
+              Letar ni efter en SEO-konsult för rådgivning snarare än en byrå? Hos oss ingår
+              rådgivningen i arbetet: den första SEO-konsultationen är gratis, och sedan har ni en
+              kontaktperson som förklarar varför vi prioriterar som vi gör – och som genomför
+              ändringarna åt er.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Vill ni förstå hur det fungerar i detalj – crawling, indexering, sökord och länkar –
               finns allt i vår genomgång av{" "}
               <FramtidaLank
@@ -297,9 +303,9 @@ function SeoByra() {
           </Reveal>
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
-              Ni behöver inte vara ett stort företag för att ha nytta av SEO. För många mindre
-              verksamheter är Google platsen där kunder letar efter lokala tjänster, jämför
-              alternativ och bestämmer sig.
+              Ni behöver inte vara ett stort företag för att ha nytta av SEO – och inte heller en
+              egen SEO-specialist. För många mindre verksamheter är Google platsen där kunder letar
+              efter lokala tjänster, jämför alternativ och bestämmer sig.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Med rätt sökord kan även ett litet företag vinna på specifika sökningar: en städfirma
@@ -438,8 +444,9 @@ function SeoByra() {
                 en grundoptimering som engångsinsats, och löpande SEO som ingår i månadspaketen.
               </p>
               <p className="mt-5 text-lg leading-relaxed text-ink/80">
-                På den kostnadsfria genomgången går vi igenom vad som behövs, och ni får ett förslag
-                där det står vad som ingår och varför.
+                Båda har fast pris: grundoptimeringen ett engångspris och månadspaketen ett fast
+                månadspris, utan bindningstid. På den kostnadsfria genomgången går vi igenom vad som
+                behövs, och ni får ett förslag där det står vad som ingår och varför.
               </p>
             </Reveal>
           </div>

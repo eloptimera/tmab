@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import { Blob } from "@/components/Brand";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
-import { FramtidaLank } from "@/components/FramtidaLank";
 import { KortVy, type Kort } from "@/components/Kort";
 import { Markerad, Mark } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
@@ -419,10 +418,6 @@ function GeoOptimering() {
               Någon metod som garanterar att ett företag citeras eller rekommenderas finns dock
               inte.
             </p>
-            <Link to="/guider/$slug" params={{ slug: GUIDE_SLUG }} className={`mt-6 ${LANK}`}>
-              Läs guiden: Vad är GEO?
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
           </Reveal>
         </div>
         <ul className="mt-12 grid gap-4 md:grid-cols-3">
@@ -581,8 +576,8 @@ function GeoOptimering() {
               kan styras var för sig.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Vad ChatGPT rekommenderar i en enskild konversation går inte att styra. Det vi kan
-              påverka är förutsättningarna:
+              Vad ChatGPT rekommenderar i en enskild konversation går inte att styra. Att optimera
+              företaget för ChatGPT handlar om förutsättningarna:
             </p>
             <ul className="mt-5 grid gap-2 sm:grid-cols-2">
               {[
@@ -597,10 +592,10 @@ function GeoOptimering() {
                 </li>
               ))}
             </ul>
-            <FramtidaLank till="/synas-i-chatgpt" className={`mt-6 ${LANK}`} dold>
-              Mer om att synas i ChatGPT
+            <Link to="/guider/$slug" params={{ slug: GUIDE_SLUG }} className={`mt-6 ${LANK}`}>
+              Guide: så syns ditt företag i ChatGPT
               <ArrowRight className="size-4" aria-hidden="true" />
-            </FramtidaLank>
+            </Link>
           </Reveal>
           <Reveal delay={80}>
             <p className="eyebrow">Google</p>

@@ -473,7 +473,8 @@ function MetaAdsByra() {
               kunden lämnar sina uppgifter utan att lämna appen.
             </p>
             <p className="mt-4 leading-relaxed text-ink/80">
-              Strategin utgår från erbjudandet, vem ni vill nå och vad annonsen ska leda till.
+              Oavsett om ni kallar det Facebook-reklam, Facebook Ads eller att annonsera på Facebook
+              utgår strategin från erbjudandet, vem ni vill nå och vad annonsen ska leda till.
             </p>
           </article>
         </Reveal>
@@ -489,12 +490,15 @@ function MetaAdsByra() {
               Instagram-annonsering som väcker intresse och <Mark>skapar handling</Mark>
             </h2>
             <p className="mt-5 leading-relaxed text-white/80">
-              Instagram är visuellt – bilder, Reels och Stories i helskärm. Det passar verksamheter
-              där utseendet säljer: produkter, mode, skönhet, mat och inredning.
+              Instagram är visuellt – bilder, Reels och Stories i helskärm. Annonserna syns som
+              sponsrade inlägg i flödet och mellan Stories, och skapas i samma Ads Manager som på
+              Facebook. Det passar verksamheter där utseendet säljer: produkter, mode, skönhet, mat
+              och inredning.
             </p>
             <p className="mt-4 leading-relaxed text-white/80">
-              Men designen är bara halva jobbet. Ett tydligt erbjudande, rätt kampanjmål och en sida
-              att landa på avgör om intresset blir en kund.
+              Men när ni annonserar på Instagram är designen bara halva jobbet. Ett tydligt
+              erbjudande, rätt kampanjmål och en sida att landa på avgör om intresset från era
+              Instagram Ads blir en kund.
             </p>
           </article>
         </Reveal>

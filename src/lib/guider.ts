@@ -148,18 +148,18 @@ export const GUIDER: readonly Guide[] = [
   },
   {
     slug: "vad-ar-geo",
-    titel: "Vad är GEO? Så syns ditt företag i ChatGPT",
+    titel: "Synas i ChatGPT: så får du ditt företag nämnt i AI-svar",
     rubrik: {
-      text: "Vad är GEO? Så syns ditt företag i ChatGPT och andra AI-assistenter",
+      text: "Synas i ChatGPT – så får du ditt företag nämnt i AI-svar",
       markera: "ChatGPT",
     },
-    seoTitel: "Vad är GEO? Synas i ChatGPT och AI-sök",
+    seoTitel: "Synas i ChatGPT – optimera ditt företag för AI-sök",
     seoBeskrivning:
-      "GEO betyder Generative Engine Optimization: att bli nämnd när kunder frågar ChatGPT, Gemini eller Perplexity. Så fungerar det och vad du kan göra själv.",
+      "Hur får man sitt företag att synas i ChatGPT? Så väljer AI-tjänster sina källor, sex saker du kan göra själv och hur du ser om ditt företag nämns.",
     ingress:
-      "GEO, Generative Engine Optimization, är arbetet med att bli nämnd och rekommenderad när någon frågar en AI-assistent i stället för att googla. Grunden är densamma som för SEO, men AI-assistenter lägger mer vikt vid tydliga svar, fakta som går att kontrollera och vad andra skriver om dig.",
+      "Allt fler frågar ChatGPT, Gemini eller Copilot i stället för att googla. Att optimera företaget för de svaren kallas GEO, Generative Engine Optimization – eller ChatGPT-SEO, AI-sökoptimering. Grunden är densamma som för vanlig SEO, men AI-tjänsterna lägger mer vikt vid tydliga svar, fakta som går att kontrollera och vad andra skriver om dig.",
     publicerad: "2026-10-16",
-    uppdaterad: "2026-10-16",
+    uppdaterad: "2026-10-20",
     tjanst: "geo",
     delningsbild: "/og/guider/vad-ar-geo.jpg",
     avsnitt: [
@@ -178,6 +178,13 @@ export const GUIDER: readonly Guide[] = [
         },
       },
       {
+        rubrik: "Kan man bli rekommenderad av ChatGPT?",
+        stycken: [
+          "Ingen kan bestämma vad ChatGPT svarar i en enskild konversation, och ingen kan garantera att ditt företag rekommenderas. Det du kan påverka är förutsättningarna: att ChatGPT kan hitta din sajt, förstå vad du gör och se att andra bekräftar det.",
+          "När ChatGPT söker på webben hämtas sidorna av roboten OAI-SearchBot. Stänger din robots.txt ute den visas sajten inte i ChatGPT:s sökresultat. Den är skild från GPTBot, som samlar träningsdata – de två kan styras var för sig.",
+        ],
+      },
+      {
         rubrik: "Skillnaden mellan SEO och GEO",
         tabell: {
           kolumner: ["", "SEO", "GEO"],
@@ -185,7 +192,11 @@ export const GUIDER: readonly Guide[] = [
             ["Mål", "Hamna högt i Googles resultat", "Bli nämnd i ett AI-svar"],
             ["Kunden ser", "En lista med länkar", "Ett färdigt svar, ibland med källor"],
             ["Viktigast", "Sökord, teknik, länkar", "Tydliga svar, fakta, omnämnanden"],
-            ["Följs upp med", "Google Search Console", "Egna tester och trafik från AI-tjänster"],
+            [
+              "Följs upp med",
+              "Google Search Console",
+              "Bing Webmaster Tools, egna tester och trafik från AI-tjänster",
+            ],
           ],
         },
       },
@@ -224,7 +235,7 @@ export const GUIDER: readonly Guide[] = [
       {
         rubrik: "Så kontrollerar du om du syns",
         stycken: [
-          "Det finns ännu inget verktyg för AI-svar som motsvarar Search Console. Det enklaste är att fråga själv:",
+          "Bing Webmaster Tools har en rapport som visar hur ofta sajten citeras i Copilot – citeringar, inte klick. För ChatGPT och de andra tjänsterna finns inget motsvarande, så där får du fråga själv:",
         ],
         lista: {
           rader: [
@@ -240,11 +251,15 @@ export const GUIDER: readonly Guide[] = [
       {
         rubrik: "Vad är llms.txt?",
         stycken: [
-          "llms.txt är en textfil på hemsidan som sammanfattar vad företaget gör, skriven för AI-tjänster. Det är ett förslag till standard och alla tjänster läser den inte ännu, men den är snabb att lägga till och skadar inte. Vår egen ligger på adressen /llms.txt.",
+          "llms.txt är en textfil på hemsidan som sammanfattar vad företaget gör, skriven för AI-tjänster. Det är ett förslag till standard som få tjänster använder, och Google skriver uttryckligen att det inte behövs några särskilda AI-filer för att synas i deras AI-funktioner. Den är snabb att lägga till och skadar inte – men prioritera punkterna ovan först. Vår egen ligger på adressen /llms.txt.",
         ],
       },
     ],
     fragor: [
+      {
+        fraga: "Vad är ChatGPT-SEO?",
+        svar: "Samma sak som GEO, inriktat på ChatGPT: att optimera sajten och företagsinformationen så att ChatGPT kan hitta, förstå och hänvisa till dig. Det kallas också ChatGPT-optimering eller AI-sökoptimering.",
+      },
       {
         fraga: "Är GEO samma sak som SEO?",
         svar: "Nej, men de bygger på samma grund. En sajt som är bra för SEO har oftast en bra start för GEO. GEO lägger mer vikt vid tydliga svar och vid att andra sajter nämner dig.",
@@ -355,9 +370,9 @@ export const GUIDER: readonly Guide[] = [
     },
     seoTitel: "Facebook-annonsering – så kommer du igång",
     seoBeskrivning:
-      "Steg för steg: konto, kampanjmål, målgrupp, annonser och budget för Facebook och Instagram. Plus de vanligaste misstagen och vad du ska följa upp.",
+      "Så skapar du Facebook-annonser steg för steg: konto, kampanjmål, målgrupp, annonser och budget för Facebook och Instagram. Plus vad det kostar och vanliga misstag.",
     ingress:
-      "Annonser på Facebook och Instagram skapas i Metas Ads Manager. Du behöver ett annonskonto i företagets namn, ett tydligt mål för kampanjen, några annonsvarianter och en budget du låter gå i flera veckor. Så här gör du – och det här ska du undvika.",
+      "Facebook-annonser – Facebook Ads, eller Facebook-reklam som många säger – skapas i Metas Ads Manager, och där gör du även annonser på Instagram. Du behöver ett annonskonto i företagets namn, ett tydligt mål för kampanjen, några annonsvarianter och en budget du låter gå i flera veckor. Så här gör du – och det här ska du undvika.",
     publicerad: "2026-10-20",
     uppdaterad: "2026-10-20",
     tjanst: "meta-annonser",
@@ -494,8 +509,12 @@ export const GUIDER: readonly Guide[] = [
     ],
     fragor: [
       {
-        fraga: "Hur mycket kostar det att annonsera på Facebook?",
-        svar: "Du bestämmer själv budgeten och betalar direkt till Meta. Vad en förfrågan eller ett köp kostar varierar mycket mellan branscher och målgrupper – testa med en budget du klarar att låta gå i några veckor och utvärdera sedan.",
+        fraga: "Vad kostar Facebook-annonsering?",
+        svar: "Meta har ingen fast avgift – annonsplatserna säljs i en auktion. Du bestämmer själv budgeten och betalar direkt till Meta. Vad en förfrågan eller ett köp kostar varierar mycket mellan branscher och målgrupper – testa med en budget du klarar att låta gå i några veckor och utvärdera sedan.",
+      },
+      {
+        fraga: "Vad är sponsrade inlägg på Instagram?",
+        svar: "Det är annonser som visas i flödet, i Reels eller mellan Stories för personer som inte följer dig, märkta som sponsrade. De skapas i Ads Manager precis som Facebook-annonser – inte med knappen för att marknadsföra ett inlägg om du vill ha full kontroll över mål och målgrupp.",
       },
       {
         fraga: "Ska jag annonsera på Facebook eller Instagram?",

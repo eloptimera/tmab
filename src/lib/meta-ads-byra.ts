@@ -39,6 +39,14 @@ export const META_FRAGOR: readonly Fraga[] = [
     svar: "Nej. Annonsbudgeten betalar ni direkt till Meta, från ert eget annonskonto. Vårt pris gäller arbetet med att sätta upp och sköta annonserna.",
   },
   {
+    fraga: "Vad kostar det att annonsera på Facebook och Instagram?",
+    svar: "Meta har ingen fast avgift. Annonsplatserna säljs i en auktion, och ni bestämmer själva dags- eller totalbudgeten och betalar den direkt till Meta. Vad en förfrågan eller ett köp kostar varierar med bransch, målgrupp och annonsernas kvalitet. Vårt arvode för uppsättning och hantering kommer utöver annonsbudgeten.",
+  },
+  {
+    fraga: "Vad är sponsrade inlägg på Instagram?",
+    svar: "Det är annonser: inlägg, Reels eller Stories som visas för personer som inte följer er och märks som sponsrade. De skapas i Metas Ads Manager, på samma sätt som Facebook-annonser, och kan gå på båda plattformarna i samma kampanj.",
+  },
+  {
     fraga: "Hur mycket bör vi lägga på annonser?",
     svar: "Det beror på målet, målgruppen och konkurrensen. Budgeten bestämmer ni, och vi går igenom en rimlig nivå på genomgången. Planera för att låta annonserna gå i minst fyra veckor – de behöver tid att hitta rätt personer, och vi behöver tid att testa vad som fungerar.",
   },
