@@ -61,6 +61,10 @@ export const SEO_FRAGOR: readonly Fraga[] = [
     svar: `Vi följer organiska klick, visningar i sökresultaten, utvecklingen för era viktigaste sidor och förfrågningar som kommer därifrån. Vi kopplar Google Search Console och Bing Webmaster Tools i ert eget namn, så att ni ser samma siffror som vi.`,
   },
   {
+    fraga: "Ska vi anlita en SEO-konsult eller en SEO-byrå?",
+    svar: "Gränsen är flytande. En konsult anlitas ofta för en avgränsad analys eller rådgivning, en byrå för att också genomföra arbetet löpande. Hos oss ingår rådgivningen i SEO-arbetet: ni har en kontaktperson, får förslaget förklarat och prioriterat – och vi genomför ändringarna åt er.",
+  },
+  {
     fraga: "Finns det någon bindningstid?",
     svar: BINDNING_TEXT,
   },
