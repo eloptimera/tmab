@@ -367,13 +367,6 @@ export const TJANSTER: readonly Tjanst[] = [
         efter: [GARANTI_TEXT],
       },
       {
-        rubrik: { text: "AI i bildproduktionen", markera: "AI" },
-        stycken: [
-          "Många av våra bilder tas fram helt eller delvis med AI-verktyg. Då kan vi visa produkten i miljöer som annars kräver studio, resa och rekvisita – till en bråkdel av kostnaden.",
-          "Produkten ska alltid se ut som den gör i verkligheten, så vi utgår från bilder på den riktiga produkten. Kräver en plattform att AI-genererat innehåll märks, hjälper vi er att göra det.",
-        ],
-      },
-      {
         rubrik: { text: "Korta videor för sociala medier", markera: "videor" },
         stycken: [
           "Vi gör korta videor i stående format för Reels, TikTok och annonser – produkten i rörelse, en före och efter, eller en kort presentation av det ni erbjuder. Video prissätts efter innehåll, och ni får ett fast pris innan vi börjar.",
