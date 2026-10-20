@@ -17,6 +17,7 @@ import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as LokalSeoRouteImport } from './routes/lokal-seo'
 import { Route as MetaAdsByraRouteImport } from './routes/meta-ads-byra'
+import { Route as ModerniseraHemsidaRouteImport } from './routes/modernisera-hemsida'
 import { Route as OffertRouteImport } from './routes/offert'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as PriserRouteImport } from './routes/priser'
@@ -71,6 +72,11 @@ const LokalSeoRoute = LokalSeoRouteImport.update({
 const MetaAdsByraRoute = MetaAdsByraRouteImport.update({
   id: '/meta-ads-byra',
   path: '/meta-ads-byra',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModerniseraHemsidaRoute = ModerniseraHemsidaRouteImport.update({
+  id: '/modernisera-hemsida',
+  path: '/modernisera-hemsida',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OffertRoute = OffertRouteImport.update({
@@ -158,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/llms.txt': typeof LlmsDottxtRoute
   '/lokal-seo': typeof LokalSeoRoute
   '/meta-ads-byra': typeof MetaAdsByraRoute
+  '/modernisera-hemsida': typeof ModerniseraHemsidaRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -183,6 +190,7 @@ export interface FileRoutesByTo {
   '/llms.txt': typeof LlmsDottxtRoute
   '/lokal-seo': typeof LokalSeoRoute
   '/meta-ads-byra': typeof MetaAdsByraRoute
+  '/modernisera-hemsida': typeof ModerniseraHemsidaRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -209,6 +217,7 @@ export interface FileRoutesById {
   '/llms.txt': typeof LlmsDottxtRoute
   '/lokal-seo': typeof LokalSeoRoute
   '/meta-ads-byra': typeof MetaAdsByraRoute
+  '/modernisera-hemsida': typeof ModerniseraHemsidaRoute
   '/offert': typeof OffertRoute
   '/om-oss': typeof OmOssRoute
   '/priser': typeof PriserRoute
@@ -236,6 +245,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/lokal-seo'
     | '/meta-ads-byra'
+    | '/modernisera-hemsida'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -261,6 +271,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/lokal-seo'
     | '/meta-ads-byra'
+    | '/modernisera-hemsida'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -286,6 +297,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/lokal-seo'
     | '/meta-ads-byra'
+    | '/modernisera-hemsida'
     | '/offert'
     | '/om-oss'
     | '/priser'
@@ -312,6 +324,7 @@ export interface RootRouteChildren {
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   LokalSeoRoute: typeof LokalSeoRoute
   MetaAdsByraRoute: typeof MetaAdsByraRoute
+  ModerniseraHemsidaRoute: typeof ModerniseraHemsidaRoute
   OffertRoute: typeof OffertRoute
   OmOssRoute: typeof OmOssRoute
   PriserRoute: typeof PriserRoute
@@ -385,6 +398,13 @@ declare module '@tanstack/react-router' {
       path: '/meta-ads-byra'
       fullPath: '/meta-ads-byra'
       preLoaderRoute: typeof MetaAdsByraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modernisera-hemsida': {
+      id: '/modernisera-hemsida'
+      path: '/modernisera-hemsida'
+      fullPath: '/modernisera-hemsida'
+      preLoaderRoute: typeof ModerniseraHemsidaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/offert': {
@@ -504,6 +524,7 @@ const rootRouteChildren: RootRouteChildren = {
   LlmsDottxtRoute: LlmsDottxtRoute,
   LokalSeoRoute: LokalSeoRoute,
   MetaAdsByraRoute: MetaAdsByraRoute,
+  ModerniseraHemsidaRoute: ModerniseraHemsidaRoute,
   OffertRoute: OffertRoute,
   OmOssRoute: OmOssRoute,
   PriserRoute: PriserRoute,
