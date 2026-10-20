@@ -16,7 +16,7 @@ export const HEMSIDA_FORETAG = {
   kortText:
     "Vad en bra företagshemsida behöver, vad som ingår när vi bygger den, hur det går till och vad det kostar.",
   publicerad: "2026-10-19",
-  uppdaterad: "2026-10-19",
+  uppdaterad: "2026-10-20",
 } as const;
 
 export const HEMSIDA_FRAGOR: readonly Fraga[] = [
