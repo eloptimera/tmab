@@ -102,10 +102,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      // Ikoner: .ico för äldre webbläsare, SVG för moderna, 96 px för Google (kräver en
-      // multipel av 48 px), apple-touch-icon för hemskärmen och manifestet för Android.
-      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      // Ikoner: .ico med "Tab" i 16 (ritad pixel för pixel), 32 och 48 px – webbläsaren väljer
+      // storlek efter skärmen. Ingen SVG-favicon: den skulle vinna och bli suddig i 16 px.
+      // 96 px för Google (kräver en multipel av 48 px), apple-touch-icon för hemskärmen och
+      // manifestet för Android.
+      { rel: "icon", href: "/favicon.ico", sizes: "16x16 32x32 48x48" },
       { rel: "icon", href: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },

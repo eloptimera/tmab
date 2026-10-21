@@ -43,7 +43,7 @@ Allt ligger i `public/` och är byggt från samma källa (ordmärket "Tab" och f
 | Fil                                         | Används till                                                |
 | ------------------------------------------- | ----------------------------------------------------------- |
 | `logo/tab-chip.svg`                         | Kortet i sidhuvud och sidfot (`Logo` i `Brand.tsx`)         |
-| `favicon.ico`, `favicon.svg`                | Webbläsarflik. Under 48 px står bara T:et kvar              |
+| `favicon.ico`                               | Webbläsarflik: "Tab" i 16 (pixelritad), 32 och 48 px        |
 | `favicon-96x96.png`                         | Google-sök (kräver en multipel av 48 px)                    |
 | `apple-touch-icon.png`                      | iPhone/iPad hemskärm (180 px, utan transparens)             |
 | `icon-192.png`, `icon-512.png`, `-maskable` | Android/PWA via `site.webmanifest`                          |
