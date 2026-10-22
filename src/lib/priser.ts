@@ -89,7 +89,7 @@ export const LOFTEN: readonly { titel: string; text: string }[] = [
 
 /** 2995 → "2 995 kr" (med hårt mellanslag så att beloppet aldrig bryts). */
 export function kr(belopp: number): string {
-  return `${String(belopp).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} kr`;
+  return `${String(belopp).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0")}\u00a0kr`;
 }
 
 /** En nivå med fast pris – löpande per månad eller ett engångsjobb. */

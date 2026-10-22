@@ -569,8 +569,8 @@ function LokalSeo() {
               Vad kostar lokal SEO för <Mark>företag</Mark>?
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-ink/80">
-              Lokal SEO har inget eget pris hos oss – det ingår i vårt SEO-arbete. För vissa räcker
-              en engångsinsats för profilen och tjänstesidorna. Andra behöver fler lokala sidor och
+              Lokal SEO ingår i Synlighet. För vissa räcker det att få ordning på
+              Google-företagsprofilen och hemsidans grund. Andra behöver nya lokala tjänstesidor och
               uppföljning varje månad.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -582,19 +582,29 @@ function LokalSeo() {
             <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
               <dl className="divide-y divide-white/15">
                 <div className="py-4 first:pt-0">
-                  <dt className="text-white/80">Grundoptimering av SEO och GEO, engång</dt>
-                  <dd className="mt-1 font-display text-4xl">{kr(PRIS.seoGeo)}</dd>
+                  <dt className="text-white/80">Google-företagsprofil, engång</dt>
+                  <dd className="mt-1 font-display text-4xl">{kr(PRIS.foretagsprofil)}</dd>
                 </div>
                 <div className="py-4">
-                  <dt className="text-white/80">Löpande SEO i månadspaketen</dt>
+                  <dt className="text-white/80">Grundoptimering av hemsidan, engång</dt>
                   <dd className="mt-1 font-display text-4xl">
-                    från {kr(PRIS.start)}
+                    <span className="text-2xl">från </span>
+                    {kr(PRIS.grundoptimering)}
+                  </dd>
+                </div>
+                <div className="py-4">
+                  <dt className="text-white/80">Löpande SEO med nya lokala sidor</dt>
+                  <dd className="mt-1 font-display text-4xl">
+                    <span className="text-2xl">från </span>
+                    {kr(PRIS.synlighetBas)}
                     <span className="text-2xl text-white/70">/mån</span>
                   </dd>
                 </div>
                 <div className="py-4">
-                  <dt className="text-white/80">Fler lokala landningssidor</dt>
-                  <dd className="mt-1 font-bold">Pris i offerten</dd>
+                  <dt className="text-white/80">Flera orter eller språk</dt>
+                  <dd className="mt-1 font-bold">
+                    Offert från {kr(PRIS.synlighetSkraddarsytt)}/mån
+                  </dd>
                 </div>
               </dl>
               <p className="mt-4 text-sm text-white/70">

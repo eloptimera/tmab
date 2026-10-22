@@ -34,7 +34,7 @@ import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
 import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { LOKAL_SEO } from "@/lib/lokal-seo";
-import { BINDNING_TEXT, kr, MOMS_TEXT, PAKET, PRIS } from "@/lib/priser";
+import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS, SYNLIGHET } from "@/lib/priser";
 import { SEO_BYRA } from "@/lib/seo-byra";
 import { SOKMOTOROPTIMERING, SOKMOTOROPTIMERING_FRAGOR } from "@/lib/sokmotoroptimering";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
@@ -343,11 +343,6 @@ const VARFOR: readonly Kort[] = [
 ];
 
 function Sokmotoroptimering() {
-  const seoPaket = PAKET.map((p) => ({
-    ...p,
-    seo: p.ingar.find((r) => /SEO/.test(r)) ?? "",
-  }));
-
   return (
     <>
       {/* Hero */}
@@ -825,16 +820,19 @@ function Sokmotoroptimering() {
               <dl className="divide-y divide-white/15">
                 <div className="pb-4">
                   <dt className="text-white/80">Grundoptimering av SEO och GEO, engång</dt>
-                  <dd className="mt-1 font-display text-4xl">{kr(PRIS.seoGeo)}</dd>
+                  <dd className="mt-1 font-display text-4xl">
+                    <span className="text-2xl">från </span>
+                    {kr(PRIS.grundoptimering)}
+                  </dd>
                 </div>
-                {seoPaket.map((p) => (
+                {SYNLIGHET.nivaer.map((p) => (
                   <div
                     key={p.id}
                     className="flex flex-wrap items-baseline justify-between gap-x-4 py-3"
                   >
                     <dt>
                       <span className="font-bold">{p.namn}</span>
-                      <span className="block text-sm text-white/70">{p.seo}</span>
+                      <span className="block text-sm text-white/70">{p.ingar[0]}</span>
                     </dt>
                     <dd className="font-display text-2xl">
                       {kr(p.belopp)}
@@ -844,7 +842,7 @@ function Sokmotoroptimering() {
                 ))}
               </dl>
               <p className="mt-4 text-sm leading-relaxed text-white/70">
-                Månadspaketen innehåller även marknadsföringsbilder och månadsrapport.{" "}
+                Löpande nivå föreslår vi efter genomgången. Rapport varje månad ingår.{" "}
                 {BINDNING_TEXT} {MOMS_TEXT}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">

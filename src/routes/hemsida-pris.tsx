@@ -8,7 +8,6 @@ import {
   Gauge,
   LayoutTemplate,
   Megaphone,
-  Minus,
   Palette,
   RefreshCw,
   Search,
@@ -30,8 +29,8 @@ import {
   BINDNING_TEXT,
   kr,
   MOMS_TEXT,
-  PAKET,
   PRIS,
+  WEBB,
 } from "@/lib/priser";
 import { SEO_BYRA } from "@/lib/seo-byra";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
@@ -73,51 +72,93 @@ export const Route = createFileRoute("/hemsida-pris")({
 const LANK =
   "font-bold text-ink underline decoration-sun decoration-2 underline-offset-4 hover:decoration-ink";
 
-/** En rad ur ett paket som matchar mönstret – hämtas ur paketet självt. */
-const rad = (ingar: readonly string[], monster: RegExp) => ingar.find((r) => monster.test(r));
-
-const NY_HEMSIDA_INGAR = [
-  "Design efter ert varumärke",
-  "Texter och bilder som säljer",
-  "Mobilanpassning för alla skärmar",
-  "SEO-grund: struktur, rubriker och metadata",
-  "Kontaktformulär och tydliga kontaktvägar",
-  "En ändringsrunda innan lansering",
-  "Ni äger sajten, texterna och bilderna",
-] as const;
-
-const NY_HEMSIDA_INGAR_INTE = [
-  "Domän och webbhotell – betalas direkt till leverantören, i ert namn",
-  "Ändringar efter lansering – engångsarbete med fast pris i offerten",
-  "Löpande SEO och annan marknadsföring – i månadspaketen",
-] as const;
+/** Tre nivåer för bygget – priserna kommer från priser.ts. */
+const BYGGEN: readonly {
+  id: string;
+  namn: string;
+  pris: string;
+  passar: string;
+  ingar: readonly string[];
+  utvald?: boolean;
+}[] = [
+  {
+    id: "landningssida",
+    namn: "Landningssida",
+    pris: kr(PRIS.landningssida),
+    passar:
+      "En sida som säljer en sak – till exempel en hantverkare som vill ha offertförfrågningar.",
+    ingar: [
+      "En sida med design efter ert varumärke",
+      "Texter utifrån ert underlag",
+      "Kontakt- eller offertformulär",
+      "Mobilanpassning och SEO-grund",
+      "En ändringsrunda innan lansering",
+    ],
+  },
+  {
+    id: "foretagshemsida",
+    namn: "Företagshemsida",
+    pris: kr(PRIS.foretagshemsida),
+    passar: "Upp till 5 sidor och fler integrationer – för företag med flera tjänster.",
+    ingar: [
+      "Upp till 5 sidor",
+      "Allt i landningssidan",
+      "Fler integrationer och formulär",
+      "Search Console och Bing i ert namn",
+      `Extra sida ${kr(PRIS.extraSida)}`,
+    ],
+    utvald: true,
+  },
+  {
+    id: "skraddarsytt",
+    namn: "Skräddarsytt",
+    pris: `från ${kr(PRIS.webbSkraddarsytt)}`,
+    passar: "Mer avancerade sajter. Ni får en offert med fast pris.",
+    ingar: [
+      "Bokning och inloggning",
+      "Flera språk",
+      "Fler än 10 sidor",
+      "Andra plattformar, som WordPress eller Webflow",
+    ],
+  },
+];
 
 type Cell = { text: string; ingar: boolean };
 const ja = (text = "Ingår"): Cell => ({ text, ingar: true });
 const nej = (text = "Ingår inte"): Cell => ({ text, ingar: false });
-const paketCell = (monster: RegExp) =>
-  PAKET.map((p) => {
-    const r = rad(p.ingar, monster);
-    return r ? ja(r) : nej();
-  });
 
-const KOLUMNER = ["Ny hemsida", ...PAKET.map((p) => p.namn)] as const;
+/** Tre spår efter lansering. */
+const KOLUMNER = [
+  { namn: "Överlämning", pris: "Ingår i bygget" },
+  { namn: "Essential", pris: `${kr(PRIS.essential)}/mån` },
+  { namn: "Total", pris: `${kr(PRIS.total)}/mån` },
+] as const;
 
 const JAMFORELSE: readonly { rad: string; celler: readonly Cell[] }[] = [
-  { rad: "Webbdesign efter ert varumärke", celler: [ja(), nej("—"), nej("—"), nej("—")] },
-  { rad: "Mobilanpassning", celler: [ja(), nej("—"), nej("—"), nej("—")] },
-  { rad: "Kontaktformulär", celler: [ja(), nej("—"), nej("—"), nej("—")] },
-  { rad: "SEO-grund och metadata", celler: [ja(), nej("—"), nej("—"), nej("—")] },
-  { rad: "Ändringsrunda innan lansering", celler: [ja(), nej("—"), nej("—"), nej("—")] },
-  // Hemsidearbete ingår aldrig i paketen – ändringar efter lansering är alltid engångsarbete.
   {
-    rad: "Ändringar efter lansering",
-    celler: [nej("Enligt offert"), ...PAKET.map(() => nej("Enligt offert"))],
+    rad: "Kod, konton och inloggningar till er",
+    celler: [ja(), ja("Ni får dem när ni vill"), ja("Ni får dem när ni vill")],
   },
-  { rad: "Löpande SEO och GEO", celler: [nej("Tillägg"), ...paketCell(/SEO/)] },
-  { rad: "Meta-annonser och cookiebanner", celler: [nej("Tillägg"), ...paketCell(/Meta/)] },
-  { rad: "Marknadsföringsbilder", celler: [nej("Tillägg"), ...paketCell(/bilder/)] },
-  { rad: "Månadsrapport", celler: [nej("—"), ...paketCell(/rapport/i)] },
+  { rad: "Hosting och SSL", celler: [nej("Ni betalar själva"), ja(), ja()] },
+  { rad: "Övervakning och säkerhetsuppdateringar", celler: [nej("Ni sköter själva"), ja(), ja()] },
+  { rad: "Backup", celler: [nej("Ni sköter själva"), ja(), ja()] },
+  { rad: "Domän", celler: [nej("Ni betalar själva"), nej("Ni betalar själva"), ja()] },
+  {
+    rad: "Ändringar",
+    celler: [
+      nej(`Klippkort: 2 h ${kr(PRIS.klippkort2)}, 5 h ${kr(PRIS.klippkort5)}`),
+      nej(`Klippkort: 2 h ${kr(PRIS.klippkort2)}, 5 h ${kr(PRIS.klippkort5)}`),
+      ja(`Upp till 1 h/mån, därefter ${kr(PRIS.extraTimme)}/påbörjad timme`),
+    ],
+  },
+  {
+    rad: "Ändra texter själva",
+    celler: [
+      nej(`Redigeringsverktyg ${kr(PRIS.cms)}`),
+      nej(`Redigeringsverktyg ${kr(PRIS.cms)}`),
+      nej("Behövs inte – vi gör ändringarna"),
+    ],
+  },
 ];
 
 const FAKTORER: readonly Kort[] = [
@@ -138,7 +179,7 @@ const FAKTORER: readonly Kort[] = [
   },
   {
     titel: "Innehåll",
-    text: "Finns texter och bilder, eller ska vi skriva och ta fram dem?",
+    text: "Texterna skriver vi utifrån ett formulär ni fyller i. Bilder använder vi era egna, eller tar fram nya i Studio.",
     ikon: FileText,
   },
   {
@@ -148,23 +189,26 @@ const FAKTORER: readonly Kort[] = [
   },
   {
     titel: "Efter lansering",
-    text: "Ska vi göra ändringarna när de behövs, eller tar ni över själva?",
+    text: "Tar ni över sajten själva, eller ska vi sköta drift och ändringar?",
     ikon: Gauge,
   },
 ];
 
 const KONTROLLERA: readonly { punkt: string; hosOss: string }[] = [
-  { punkt: "Startkostnad", hosOss: `Från ${kr(PRIS.hemsida)}, fast pris i offerten` },
+  {
+    punkt: "Startkostnad",
+    hosOss: `Landningssida ${kr(PRIS.landningssida)}, företagshemsida ${kr(PRIS.foretagshemsida)}`,
+  },
   {
     punkt: "Löpande avgifter",
-    hosOss: "Inga för hemsidan – månadspaket för marknadsföring är frivilliga",
+    hosOss: `Inga om ni tar över – drift från ${kr(PRIS.essential)}/mån om ni vill`,
   },
-  { punkt: "Vad som ingår", hosOss: "Står i offerten innan ni bestämmer er" },
+  { punkt: "Vad som ingår", hosOss: "Står på sajten och i förslaget innan ni bestämmer er" },
   { punkt: "Mobilanpassning", hosOss: "Ingår alltid" },
   { punkt: "Grundläggande SEO", hosOss: "Ingår alltid" },
-  { punkt: "Ändringar", hosOss: "En runda innan lansering, sedan fast pris per ändring i offert" },
-  { punkt: "Ägande", hosOss: "Ni äger sajten, domänen och kontona" },
-  { punkt: "Om ni slutar", hosOss: "Vi lämnar över all åtkomst och allt material" },
+  { punkt: "Ändringar", hosOss: "En runda innan lansering, sedan klippkort eller ingår i Total" },
+  { punkt: "Ägande", hosOss: "Ni äger koden, domänen och kontona" },
+  { punkt: "Om ni vill flytta", hosOss: "Ni får koden och en timmes flytthjälp utan kostnad" },
 ];
 
 const FORETAGSTYPER: readonly { titel: string; text: string }[] = [
@@ -174,7 +218,7 @@ const FORETAGSTYPER: readonly { titel: string; text: string }[] = [
   },
   {
     titel: "Hantverkare",
-    text: "En sida per tjänst och ett tydligt offertformulär ger mest – kunder söker på tjänst och ort.",
+    text: "Ofta räcker en landningssida med ett tydligt offertformulär. Har ni flera tjänster ger en sida per tjänst mest.",
   },
   {
     titel: "Konsulter",
@@ -188,52 +232,52 @@ const FORETAGSTYPER: readonly { titel: string; text: string }[] = [
 
 const TILLVAL: readonly (Kort & { pris: string; till: string; lanktext: string })[] = [
   {
-    titel: "SEO och GEO – grundoptimering",
-    text: "Sökordsanalys, teknisk SEO och strukturerad data för Google och AI-tjänster.",
+    titel: "SEO och GEO",
+    text: "Nya sidor, teknisk bevakning och AI-koll varje månad. Ingen grundoptimering behövs om vi byggt sajten.",
     ikon: Search,
-    pris: kr(PRIS.seoGeo),
+    pris: `från ${kr(PRIS.synlighetBas)}/mån`,
     till: SEO_BYRA.sokvag,
     lanktext: "SEO för företag",
   },
   {
-    titel: "GEO och AI-synlighet",
-    text: "Ingår i grundoptimeringen och löpande i månadspaketen.",
+    titel: "Synlighet i AI-sök",
+    text: "Ingår i Synlighet tillsammans med SEO.",
     ikon: Bot,
     pris: "Ingår i SEO och GEO",
     till: tjanstSokvag("geo"),
     lanktext: "GEO-optimering",
   },
   {
-    titel: "Meta Ads – uppsättning",
-    text: "Konto, spårning och annonser på Facebook och Instagram – med cookiebanner när vi har tillgång till sajten.",
+    titel: "Annonser på Facebook och Instagram",
+    text: "Konto, pixel, samtyckesbanner och första kampanjen ingår i uppsättningen.",
     ikon: Megaphone,
-    pris: kr(PRIS.metaUppsattning),
+    pris: `uppsättning ${kr(PRIS.annonsUppsattning)}`,
     till: tjanstSokvag("meta-annonser"),
     lanktext: "Meta Ads",
   },
   {
-    titel: "Uppfräschning",
-    text: "Förbättringar av en befintlig sajt – design, struktur och hastighet.",
-    ikon: RefreshCw,
-    pris: `från ${kr(PRIS.uppfraschning)}`,
-    till: tjanstSokvag("hemsideoptimering"),
-    lanktext: "Modernisera er hemsida",
-  },
-  {
-    titel: "Marknadsföringsbilder",
+    titel: "Bilder och video",
     text: "Produkt- och kampanjbilder för hemsidan, sociala medier och annonser.",
     ikon: Camera,
-    pris: `från ${kr(PRIS.bilder5)}`,
+    pris: `från ${kr(PRIS.studioS)}/mån`,
     till: tjanstSokvag("marknadsforingsbilder"),
-    lanktext: "Marknadsföringsbilder",
+    lanktext: "Studio",
   },
   {
-    titel: "Fler landningssidor",
-    text: "Sidor för fler tjänster, orter eller sökningar när sajten ska växa.",
-    ikon: LayoutTemplate,
-    pris: "Pris i offerten",
-    till: "/kontakt",
-    lanktext: "Fråga om pris",
+    titel: "Redigeringsverktyg",
+    text: "För er som tar över sajten och vill ändra texterna själva.",
+    ikon: Wrench,
+    pris: kr(PRIS.cms),
+    till: "/priser#webb",
+    lanktext: "Alla webbpriser",
+  },
+  {
+    titel: "Modernisera befintlig hemsida",
+    text: "Förbättringar av en sajt ni redan har – design, struktur och hastighet.",
+    ikon: RefreshCw,
+    pris: `offert från ${kr(PRIS.modernisering)}`,
+    till: tjanstSokvag("hemsideoptimering"),
+    lanktext: "Modernisera er hemsida",
   },
 ];
 
@@ -256,7 +300,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Lansering",
-    text: "En ändringsrunda, sedan publicerar vi. Vill ni marknadsföra er löpande väljer ni ett månadspaket.",
+    text: "En ändringsrunda, sedan publicerar vi. Ni väljer om ni tar över sajten eller låter oss sköta driften.",
   },
 ];
 
@@ -280,9 +324,9 @@ function HemsidaPris() {
               />
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">
-              Ni ska inte behöva gissa vad en ny hemsida kostar. Hos {FORETAG.kortnamn} är en
-              företagshemsida ett engångspris med fast pris i offerten – utan obligatorisk
-              månadsavgift. Här ser ni vad den kostar, vad som ingår och vad ni betalar totalt
+              Ni ska inte behöva gissa vad en ny hemsida kostar. Hos {FORETAG.kortnamn} har bygget
+              fast pris, och efter lansering väljer ni själva om ni tar över sajten eller låter oss
+              sköta driften. Här ser ni vad det kostar, vad som ingår och vad ni betalar totalt
               första året.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -300,23 +344,23 @@ function HemsidaPris() {
             </div>
           </div>
           <div className="kortskugga rounded-[2rem] bg-ink p-8 text-white sm:p-10">
-            <p className="caps text-sun">Företagshemsidor från</p>
+            <p className="caps text-sun">Hemsidor från</p>
             <p className="mt-4 font-display text-6xl leading-none sm:text-7xl">
-              {kr(PRIS.hemsida)}
+              {kr(PRIS.landningssida)}
             </p>
-            <p className="mt-3 text-white/75">Engångspris, exkl. moms</p>
+            <p className="mt-3 text-white/75">Landningssida, engångspris exkl. moms</p>
             <dl className="mt-8 divide-y divide-white/15 border-t border-white/15">
               <div className="flex justify-between gap-4 py-3">
-                <dt className="text-white/80">Uppfräschning</dt>
-                <dd className="font-bold">från {kr(PRIS.uppfraschning)}</dd>
+                <dt className="text-white/80">Företagshemsida, upp till 5 sidor</dt>
+                <dd className="font-bold">{kr(PRIS.foretagshemsida)}</dd>
               </div>
               <div className="flex justify-between gap-4 py-3">
-                <dt className="text-white/80">Ändringar efter lansering</dt>
-                <dd className="font-bold">Fast pris i offert</dd>
+                <dt className="text-white/80">Skräddarsytt</dt>
+                <dd className="font-bold">från {kr(PRIS.webbSkraddarsytt)}</dd>
               </div>
               <div className="flex justify-between gap-4 py-3">
-                <dt className="text-white/80">Marknadsföring (frivilligt)</dt>
-                <dd className="font-bold">från {kr(PRIS.start)}/mån</dd>
+                <dt className="text-white/80">Drift efter lansering (frivilligt)</dt>
+                <dd className="font-bold">från {kr(PRIS.essential)}/mån</dd>
               </div>
               <div className="flex justify-between gap-4 py-3">
                 <dt className="text-white/80">Genomgång och offert</dt>
@@ -339,134 +383,74 @@ function HemsidaPris() {
             Våra priser för <Mark>företagshemsidor</Mark>
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-            Tre sätt att komma igång. Den nya hemsidan, uppfräschningen och senare ändringar är
-            engångspriser. Månadspaketen gäller marknadsföring och kan väljas till när som helst.
+            Tre nivåer för bygget, alla med fast pris. Fasta priser gäller hemsidor vi bygger i vår
+            egen uppsättning – andra plattformar får offert.
           </p>
         </Reveal>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
-          {/* Ny hemsida */}
-          <Reveal className="h-full">
-            <article
-              aria-labelledby="ny-hemsida"
-              className="flex h-full flex-col rounded-[2rem] bg-brand p-8 text-white sm:p-9"
-            >
-              <p className="caps text-white/80">Engångspris</p>
-              <h3 id="ny-hemsida" className="mt-3 font-sans text-2xl font-bold tracking-normal">
-                Ny hemsida
-              </h3>
-              <p className="mt-5 font-display text-5xl leading-none">
-                <span className="text-2xl">från </span>
-                {kr(PRIS.hemsida)}
-              </p>
-              <p className="mt-2 text-sm text-white/75">Ingen månadsavgift till oss</p>
-              <ul className="mt-7 space-y-2.5">
-                {NY_HEMSIDA_INGAR.map((r) => (
-                  <li key={r} className="flex gap-3">
-                    <Check className="mt-0.5 size-5 shrink-0" strokeWidth={3} aria-hidden="true" />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-sm font-bold text-white/85">Ingår inte</p>
-              <ul className="mt-2 flex-1 space-y-2 text-sm text-white/80">
-                {NY_HEMSIDA_INGAR_INTE.map((r) => (
-                  <li key={r} className="flex gap-3">
-                    <Minus className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8">
-                <BokaKnapp
-                  variant="white"
-                  tjanst={TJANST}
-                  onClick={() => bokaKlick(SIDA, "pris-ny")}
+          {BYGGEN.map((b, i) => (
+            <Reveal key={b.id} delay={i * 60} className="h-full">
+              <article
+                aria-labelledby={`bygge-${b.id}`}
+                className={`flex h-full flex-col rounded-[2rem] p-8 sm:p-9 ${
+                  b.utvald ? "bg-brand text-white" : "border-2 border-line bg-white text-ink"
+                }`}
+              >
+                <p className={`caps ${b.utvald ? "text-white/80" : "text-brand"}`}>
+                  {b.id === "skraddarsytt" ? "Offert" : "Fast pris"}
+                </p>
+                <h3
+                  id={`bygge-${b.id}`}
+                  className="mt-3 font-sans text-2xl font-bold tracking-normal"
                 >
-                  Diskutera en ny hemsida
-                </BokaKnapp>
-              </div>
-            </article>
-          </Reveal>
-
-          {/* Uppfräschning */}
-          <Reveal delay={60} className="h-full">
-            <article
-              aria-labelledby="uppfraschning"
-              className="flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-8 text-ink sm:p-9"
-            >
-              <p className="caps text-brand">Engångspris</p>
-              <h3 id="uppfraschning" className="mt-3 font-sans text-2xl font-bold tracking-normal">
-                Uppfräschning av befintlig hemsida
-              </h3>
-              <p className="mt-5 font-display text-5xl leading-none">
-                <span className="text-2xl">från </span>
-                {kr(PRIS.uppfraschning)}
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">Beroende på sajtens skick</p>
-              <p className="mt-7 flex-1 leading-relaxed text-ink/80">
-                Har ni redan en sajt räcker det ofta att förbättra den: snabbare, tydligare och
-                bättre på mobilen. Vi går igenom hela sajten, gör en prioriterad lista och genomför
-                ändringarna åt er.
-              </p>
-              <Link to={tjanstSokvag("hemsideoptimering")} className={`mt-6 ${LANK}`}>
-                Modernisera er hemsida
-              </Link>
-              <div className="mt-8">
-                <BokaKnapp tjanst="hemsideoptimering" onClick={() => bokaKlick(SIDA, "pris-upp")}>
-                  Diskutera uppfräschning
-                </BokaKnapp>
-              </div>
-            </article>
-          </Reveal>
-
-          {/* Löpande */}
-          <Reveal delay={120} className="h-full">
-            <article
-              aria-labelledby="lopande"
-              className="flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-8 text-ink sm:p-9"
-            >
-              <p className="caps text-brand">Per månad · frivilligt</p>
-              <h3 id="lopande" className="mt-3 font-sans text-2xl font-bold tracking-normal">
-                Marknadsföring efter lansering
-              </h3>
-              <p className="mt-5 font-display text-5xl leading-none">
-                <span className="text-2xl">från </span>
-                {kr(PRIS.start)}
-                <span className="text-2xl text-muted-foreground">/mån</span>
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Ingen bindningstid · hemsidearbete ingår inte
-              </p>
-              <ul className="mt-7 flex-1 divide-y divide-line">
-                {PAKET.map((p) => (
-                  <li key={p.id} className="py-3">
-                    <span className="flex items-baseline justify-between gap-3">
-                      <span className="font-bold">{p.namn}</span>
-                      <span className="font-display text-xl">{kr(p.belopp)}/mån</span>
-                    </span>
-                    <span className="mt-1 block text-sm text-muted-foreground">
-                      {[rad(p.ingar, /bilder/), rad(p.ingar, /SEO/), rad(p.ingar, /Meta/)]
-                        .filter(Boolean)
-                        .join(" · ")}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <Link to="/priser" className={`mt-4 ${LANK}`}>
-                Allt som ingår i paketen
-              </Link>
-              <div className="mt-8">
-                <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris-paket")}>
-                  Diskutera paketen
-                </BokaKnapp>
-              </div>
-            </article>
-          </Reveal>
+                  {b.namn}
+                </h3>
+                <p className="mt-5 font-display text-5xl leading-none">{b.pris}</p>
+                <p
+                  className={`mt-3 text-sm ${b.utvald ? "text-white/80" : "text-muted-foreground"}`}
+                >
+                  {b.passar}
+                </p>
+                <ul className="mt-7 flex-1 space-y-2.5">
+                  {b.ingar.map((r) => (
+                    <li key={r} className="flex gap-3">
+                      <Check
+                        className="mt-0.5 size-5 shrink-0"
+                        strokeWidth={3}
+                        aria-hidden="true"
+                      />
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <BokaKnapp
+                    variant={b.utvald ? "white" : "dark"}
+                    tjanst={TJANST}
+                    onClick={() => bokaKlick(SIDA, `pris-${b.id}`)}
+                  >
+                    {b.id === "skraddarsytt" ? "Få en offert" : `Välj ${b.namn.toLowerCase()}`}
+                  </BokaKnapp>
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          {MOMS_TEXT} {BETALNING_TEXT} Uppstart av större månadsabonnemang kostar{" "}
-          {kr(PRIS.uppstart)}.
+        <ul className="mt-6 max-w-3xl space-y-1 text-sm leading-relaxed text-muted-foreground">
+          {WEBB.granser.map((g) => (
+            <li key={g}>{g}</li>
+          ))}
+          <li>
+            {MOMS_TEXT} {BETALNING_TEXT}
+          </li>
+        </ul>
+        <p className="mt-4 text-ink/80">
+          Har ni redan en hemsida? Modernisering är offert från {kr(PRIS.modernisering)} –{" "}
+          <Link to={tjanstSokvag("hemsideoptimering")} className={LANK}>
+            modernisera er hemsida
+          </Link>
+          .
         </p>
       </section>
 
@@ -476,11 +460,11 @@ function HemsidaPris() {
           <Reveal>
             <p className="eyebrow">Vad ingår</p>
             <h2 id="ingar" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-              Vad får ni när ni beställer en hemsida från <Mark>{FORETAG.kortnamn}</Mark>?
+              Efter lansering: <Mark>tre spår</Mark> att välja mellan
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Priset säger lite utan innehållet. Här står vad som ingår i den nya hemsidan och
-              vilken marknadsföring månadspaketen lägger till efter lansering.
+              När sajten är klar väljer ni: ta över allt själva, låt oss sköta tekniken, eller låt
+              oss sköta både tekniken och ändringarna. Ni kan byta spår senare.
             </p>
           </Reveal>
 
@@ -488,9 +472,7 @@ function HemsidaPris() {
           <Reveal delay={80} className="mt-10 hidden md:block">
             <div className="overflow-hidden rounded-2xl border-2 border-line bg-white">
               <table className="w-full text-left">
-                <caption className="sr-only">
-                  Vad som ingår i en ny hemsida och i månadspaketen
-                </caption>
+                <caption className="sr-only">Vad som ingår i de tre spåren efter lansering</caption>
                 <thead>
                   <tr className="border-b-2 border-line">
                     <th scope="col" className="p-4">
@@ -498,15 +480,13 @@ function HemsidaPris() {
                     </th>
                     {KOLUMNER.map((k, i) => (
                       <th
-                        key={k}
+                        key={k.namn}
                         scope="col"
-                        className={`p-4 font-bold ${i === 0 ? "text-brand" : "text-ink"}`}
+                        className={`p-4 font-bold ${i === 2 ? "text-brand" : "text-ink"}`}
                       >
-                        {k}
+                        {k.namn}
                         <span className="block text-sm font-normal text-muted-foreground">
-                          {i === 0
-                            ? `från ${kr(PRIS.hemsida)}`
-                            : `${kr(PAKET[i - 1]?.belopp ?? 0)}/mån`}
+                          {k.pris}
                         </span>
                       </th>
                     ))}
@@ -533,18 +513,14 @@ function HemsidaPris() {
           {/* Mobil: ett kort per alternativ */}
           <div className="mt-10 grid gap-4 md:hidden">
             {KOLUMNER.map((k, i) => (
-              <div key={k} className="rounded-2xl border-2 border-line bg-white p-5">
+              <div key={k.namn} className="rounded-2xl border-2 border-line bg-white p-5">
                 <h3 className="font-sans text-lg font-bold tracking-normal text-ink">
-                  {k}{" "}
-                  <span className="font-normal text-muted-foreground">
-                    {i === 0 ? `från ${kr(PRIS.hemsida)}` : `${kr(PAKET[i - 1]?.belopp ?? 0)}/mån`}
-                  </span>
+                  {k.namn} <span className="font-normal text-muted-foreground">{k.pris}</span>
                 </h3>
                 <dl className="mt-3 space-y-2 text-sm">
                   {JAMFORELSE.map((r) => {
                     const c = r.celler[i];
-                    // Rader som inte gäller alternativet ("—") är bara brus på en liten skärm.
-                    if (!c || c.text === "—") return null;
+                    if (!c) return null;
                     return (
                       <div key={r.rad} className="flex justify-between gap-4">
                         <dt className="text-ink/80">{r.rad}</dt>
@@ -560,8 +536,8 @@ function HemsidaPris() {
           </div>
 
           <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            Domän och webbhotell registreras alltid i ert namn och betalas direkt till leverantören.{" "}
-            {AGANDE_TEXT}
+            Domänen ligger alltid i ert namn. Ligger sajten i vår drift får ni flytta den när ni
+            vill – ni får koden och en timmes flytthjälp utan kostnad. {AGANDE_TEXT} {BINDNING_TEXT}
           </p>
         </div>
       </section>
@@ -577,17 +553,17 @@ function HemsidaPris() {
           </Reveal>
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
-              Hos många leverantörer kostar en hemsida en startavgift plus en månadsavgift för
-              drift, och ibland äger leverantören sajten. Jämför därför alltid totalkostnaden och
-              vad som händer om ni vill byta.
+              Hos många leverantörer kostar en hemsida en startavgift plus en obligatorisk
+              månadsavgift, och ibland äger leverantören sajten. Jämför därför alltid totalkostnaden
+              och vad som händer om ni vill byta.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                `Ni betalar hemsidan en gång – från ${kr(PRIS.hemsida)}.`,
-                "Domän och webbhotell betalar ni direkt till leverantören, i ert namn.",
-                "Ändringar efter lansering är också engångsarbete, med fast pris innan vi börjar.",
-                `Månadspaket för marknadsföring är frivilliga. ${BINDNING_TEXT}`,
-                "Slutar ni hos oss lämnar vi tillbaka all åtkomst och överlämnar materialet.",
+                `Ni betalar bygget en gång – från ${kr(PRIS.landningssida)}. Ingen startavgift.`,
+                "Drift är frivillig. Tar ni över sajten betalar ni ingenting till oss per månad.",
+                `Väljer ni drift: ${BINDNING_TEXT}`,
+                "Domänen ligger alltid i ert namn, och koden är er.",
+                "Vill ni flytta får ni koden och en timmes flytthjälp utan kostnad.",
               ].map((t) => (
                 <li key={t} className="flex gap-3 text-ink/85">
                   <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
@@ -608,8 +584,8 @@ function HemsidaPris() {
               Vad kostar en företagshemsida totalt <Mark>under ett år</Mark>?
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Startkostnad plus tolv månader. Beräknat på våra lägsta priser – det slutliga priset
-              för hemsidan står i offerten.
+              Bygget plus tolv månader. Beräknat på våra fasta priser – mer avancerade sajter får
+              offert.
             </p>
           </Reveal>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -653,9 +629,9 @@ function HemsidaPris() {
             ))}
           </ul>
           <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            {MOMS_TEXT} Tillkommer: domän och webbhotell, som ni betalar direkt till leverantören,
-            och eventuell uppstart av större månadsabonnemang ({kr(PRIS.uppstart)}). Månadspaketen
-            kan avslutas när som helst – räkningen gäller om ni behåller paketet hela året.
+            {MOMS_TEXT} Tar ni över sajten tillkommer hosting och domän, som ni betalar direkt till
+            leverantören. Med Essential tillkommer domänen. Driften kan avslutas när som helst –
+            räkningen gäller om ni behåller den hela året.
           </p>
         </div>
       </section>
@@ -738,8 +714,8 @@ function HemsidaPris() {
             Hemsidor anpassade efter olika <Mark>företags behov</Mark>
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-            Alla börjar på samma grundpris. Det som skiljer är hur många sidor och vilka funktioner
-            som behövs.
+            Det som skiljer är hur många sidor och vilka funktioner som behövs – därför finns tre
+            nivåer.
           </p>
         </Reveal>
         <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -767,7 +743,7 @@ function HemsidaPris() {
               Vill ni utveckla hemsidan <Mark>ytterligare</Mark>?
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Det här ingår inte i hemsidans pris, men kan läggas till nu eller senare.
+              Det här ingår inte i bygget, men kan läggas till nu eller senare – var för sig.
             </p>
           </Reveal>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -842,7 +818,7 @@ function HemsidaPris() {
               , med hur vi arbetar från första mötet till lansering.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Eftersom vi även jobbar med SEO och marknadsföring kan ni fortsätta med oss efter
+              Eftersom vi även jobbar med SEO, bilder och annonser kan ni fortsätta med oss efter
               lansering – till exempel med{" "}
               <Link to={SEO_BYRA.sokvag} className={LANK}>
                 SEO
@@ -875,7 +851,7 @@ function HemsidaPris() {
             Redo att investera i en professionell <Mark>hemsida</Mark>?
           </>
         }
-        text="Första hemsidan eller en ersättare för en gammal – boka en gratis genomgång så får ni en offert med fast pris och allt som ingår."
+        text="Första hemsidan eller en ersättare för en gammal – boka en gratis genomgång så får ni ett förslag med fast pris och allt som ingår."
       />
     </>
   );

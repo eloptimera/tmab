@@ -214,7 +214,12 @@ export const TJANSTER: readonly Tjanst[] = [
       "Löpande optimering av budgeten",
       "Tydlig rapport om vad det gav",
     ],
-    pris: { belopp: PRIS.annonser1, fran: true, manad: true, avser: "Annonser – Facebook och Instagram" },
+    pris: {
+      belopp: PRIS.annonser1,
+      fran: true,
+      manad: true,
+      avser: "Annonser – Facebook och Instagram",
+    },
     iPaket: `Först en annonsuppsättning för ${kr(PRIS.annonsUppsattning)}, inklusive första kampanjen. Annonsbudgeten betalar ni direkt till Meta.`,
     fordjupning: [
       {

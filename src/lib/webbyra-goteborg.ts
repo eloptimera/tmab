@@ -20,7 +20,7 @@ export const WEBBYRA_GOTEBORG = {
   titel: "Webbyrå Göteborg",
   etikett: "Tjänst · Göteborg",
   seoTitel: "Webbyrå i Göteborg – webbdesign för företag",
-  seoBeskrivning: `Söker ni en webbyrå i Göteborg? TAB har säte i Göteborg och bygger moderna, mobilanpassade hemsidor åt företag i Västra Götaland från ${kr(PRIS.hemsida)}.`,
+  seoBeskrivning: `Söker ni en webbyrå i Göteborg? TAB har säte i Göteborg och bygger moderna, mobilanpassade hemsidor åt företag i Västra Götaland från ${kr(PRIS.landningssida)}.`,
   kortText:
     "Vår webbyrå finns i Göteborg. Vad vi gör för företag i Göteborg och Västra Götaland, hur samarbetet går till och vad det kostar.",
   publicerad: "2026-10-20",
@@ -36,7 +36,7 @@ export const OMRADEN = [
 export const GOTEBORG_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Vad kostar en webbyrå i Göteborg?",
-    svar: `Hos oss kostar en ny hemsida från ${kr(PRIS.hemsida)} och en uppfräschning av en befintlig hemsida från ${kr(PRIS.uppfraschning)}. Priset är detsamma i Göteborg som i resten av Sverige, och ni får ett fast pris innan vi börjar. ${MOMS_TEXT}`,
+    svar: `Hos oss kostar en landningssida ${kr(PRIS.landningssida)} och en företagshemsida ${kr(PRIS.foretagshemsida)}. Drift efter lansering finns från ${kr(PRIS.essential)} per månad. Priset är detsamma i Göteborg som i resten av Sverige. ${MOMS_TEXT}`,
   },
   {
     fraga: "Har TAB ett kontor i Göteborg?",
@@ -52,7 +52,7 @@ export const GOTEBORG_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan ni modernisera en hemsida vi redan har?",
-    svar: `Ja. Ofta räcker det att förbättra design, mobilanpassning, innehåll och kontaktvägar i den sajt ni har. En uppfräschning kostar från ${kr(PRIS.uppfraschning)}.`,
+    svar: `Ja. Ofta räcker det att förbättra design, mobilanpassning, innehåll och kontaktvägar i den sajt ni har. Modernisering är offert från ${kr(PRIS.modernisering)}.`,
   },
   {
     fraga: "Behöver vi en webbyrå som finns i Göteborg?",

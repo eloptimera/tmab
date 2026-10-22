@@ -3,10 +3,7 @@
 // en sida per sökavsikt. Facebook och Instagram täcks här, inte på egna sidor.
 // Priser hämtas från priser.ts – skriv aldrig belopp här.
 //
-// TODO(TAB): komplettera när det är bestämt – visas inte på sajten förrän då:
-//  - ingår uppsättningen (metaUppsattning) när kunden väljer Growth eller Premium?
-//  - finns en rekommenderad lägsta annonsbudget per månad?
-//  - hur många kampanjer och annonsvarianter ingår i Growth respektive Premium?
+// TODO(TAB): finns en rekommenderad lägsta annonsbudget per månad? Visas inte förrän det är bestämt.
 import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 export const META_ADS_BYRA = {
@@ -14,7 +11,7 @@ export const META_ADS_BYRA = {
   titel: "Meta Ads-byrå",
   etikett: "Tjänst · Annonser",
   seoTitel: "Meta Ads-byrå – annonser på Facebook & Instagram",
-  seoBeskrivning: `Behöver ni hjälp med Meta Ads? TAB sköter strategi, annonser och optimering på Facebook och Instagram. Uppsättning ${kr(PRIS.metaUppsattning)}. Gratis genomgång.`,
+  seoBeskrivning: `Behöver ni hjälp med Meta Ads? TAB sköter strategi, annonser och optimering på Facebook och Instagram. Från ${kr(PRIS.annonser1)}/mån. Gratis genomgång.`,
   kortText:
     "Hur Meta Ads fungerar, vad vi gör, vad det kostar – och skillnaden mellan vårt arvode och er annonsbudget.",
   publicerad: "2026-10-20",
@@ -28,11 +25,15 @@ export const META_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad gör en Meta Ads-byrå?",
-    svar: "Planerar annonseringen, sätter upp kontot och kampanjerna, tar fram annonsmaterialet, justerar löpande och rapporterar vad budgeten gav. Hos oss ingår även pixel och cookiebanner när vi har tillgång till er hemsida.",
+    svar: "Planerar annonseringen, sätter upp kontot och kampanjerna, tar fram annonsmaterialet, justerar löpande och rapporterar vad budgeten gav. Hos oss ingår pixel och samtyckesbanner i uppsättningen, när vi har tillgång till er hemsida.",
   },
   {
     fraga: "Vad kostar det att anlita er?",
-    svar: `Uppsättningen kostar ${kr(PRIS.metaUppsattning)}. Löpande hantering ingår i Growth (${kr(PRIS.growth)} per månad) och Premium (${kr(PRIS.premium)} per månad). Arvodet är fast – det beror inte på hur mycket ni annonserar för. ${MOMS_TEXT}`,
+    svar: `Uppsättningen kostar ${kr(PRIS.annonsUppsattning)} och första kampanjen ingår. Därefter Annonser 1 för ${kr(PRIS.annonser1)} per månad (1 ny kampanj, budget upp till 10 000 kr) eller Annonser 2 för ${kr(PRIS.annonser2)} per månad (upp till 3 nya kampanjer, budget upp till 25 000 kr). Arvodet styrs av antalet kampanjer, inte av hur mycket ni annonserar för. ${MOMS_TEXT}`,
+  },
+  {
+    fraga: "Vad räknas som en kampanj?",
+    svar: "Ett mål, en målgrupp, upp till 3 annonsvarianter och en löptid på upp till 4 veckor. En kampanj som löper längre räknas som en ny när den förnyas. Vi kontrollerar kampanjerna varje vecka, även när de sköter sig själva.",
   },
   {
     fraga: "Ingår annonsbudgeten?",
@@ -60,7 +61,7 @@ export const META_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Tar ni fram annonsbilder och videor?",
-    svar: "Ja. Growth innehåller 10 och Premium 20 marknadsföringsbilder per månad, som vi anpassar till annonsformaten. Vi gör annonser i bild, video och karusell för flödet, Stories och Reels.",
+    svar: `Varje ny kampanj får upp till 3 varianter av era befintliga bilder eller videor – beskurna, med text och i rätt format. Nytt material köper ni till i Studio, från ${kr(PRIS.studioS)} per månad. Resultatet beror mycket på materialet, så det tar vi upp redan i genomgången.`,
   },
   {
     fraga: "Ingår cookiebanner?",
@@ -100,7 +101,7 @@ export const META_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Finns det bindningstid?",
-    svar: `Uppsättningen är en engångskostnad. För månadspaketen gäller: ${BINDNING_TEXT}`,
+    svar: `Uppsättningen är ett engångsjobb. För det löpande arbetet gäller: ${BINDNING_TEXT}`,
   },
   {
     fraga: "Hur kommer vi igång?",

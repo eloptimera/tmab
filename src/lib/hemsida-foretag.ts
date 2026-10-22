@@ -9,9 +9,9 @@ export const HEMSIDA_FORETAG = {
   titel: "Hemsida till företag",
   etikett: "Tjänst · Ny hemsida",
   /** Sidans titel i sökresultat, utan företagsnamn (läggs till automatiskt). */
-  seoTitel: `Hemsida till företag – från ${kr(PRIS.hemsida)}`,
+  seoTitel: `Hemsida till företag – från ${kr(PRIS.landningssida)}`,
   /** Max ca 155 tecken. */
-  seoBeskrivning: `Ny hemsida till företaget? TAB bygger moderna, mobilanpassade hemsidor för småföretag och växande företag från ${kr(PRIS.hemsida)} exkl. moms. Boka gratis genomgång.`,
+  seoBeskrivning: `Ny hemsida till företaget? TAB bygger moderna, mobilanpassade hemsidor för småföretag och växande företag från ${kr(PRIS.landningssida)} exkl. moms. Boka gratis genomgång.`,
   /** Text på kortet under /guider. */
   kortText:
     "Vad en bra företagshemsida behöver, vad som ingår när vi bygger den, hur det går till och vad det kostar.",
@@ -22,7 +22,7 @@ export const HEMSIDA_FORETAG = {
 export const HEMSIDA_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Vad kostar det att skapa en hemsida till ett företag?",
-    svar: `En ny hemsida hos oss kostar från ${kr(PRIS.hemsida)}. Slutpriset beror på hur många sidor och funktioner ni behöver och hur mycket text och bild vi tar fram. Ni får ett skräddarsytt förslag med pris efter den kostnadsfria genomgången, innan något arbete påbörjas. ${MOMS_TEXT}`,
+    svar: `En landningssida kostar ${kr(PRIS.landningssida)} och en företagshemsida med upp till 5 sidor ${kr(PRIS.foretagshemsida)}. Mer avancerade sajter – bokning, flera språk, inloggning – får offert från ${kr(PRIS.webbSkraddarsytt)}. Efter lansering tar ni över sajten, eller låter oss sköta driften från ${kr(PRIS.essential)} per månad. ${MOMS_TEXT}`,
   },
   {
     fraga: "Hur lång tid tar det att bygga en företagshemsida?",
@@ -42,7 +42,7 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Finns det billiga hemsidor för småföretag?",
-    svar: `Vår enklaste hemsida kostar från ${kr(PRIS.hemsida)}. Skillnaden mellan en billig och en dyr hemsida sitter sällan i utseendet utan i vad som ingår: antal sidor, texter och bilder, funktioner och vem som äger sajten och kontona efteråt. Jämför därför vad som ingår, inte bara priset. ${MOMS_TEXT}`,
+    svar: `Vår enklaste hemsida, en landningssida, kostar ${kr(PRIS.landningssida)}. Skillnaden mellan en billig och en dyr hemsida sitter sällan i utseendet utan i vad som ingår: antal sidor, texter och bilder, funktioner och vem som äger sajten och kontona efteråt. Jämför därför vad som ingår, inte bara priset. ${MOMS_TEXT}`,
   },
   {
     fraga: "Är hemsidorna mobilanpassade?",
@@ -54,11 +54,11 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan ni förbättra vår befintliga hemsida i stället för att bygga en ny?",
-    svar: `Ja. Ofta räcker det att förbättra den sajt ni redan har – en uppfräschning kostar från ${kr(PRIS.uppfraschning)}. Vi går igenom vad som lönar sig mest för er på den kostnadsfria genomgången.`,
+    svar: `Ja. Ibland räcker det att förbättra den sajt ni redan har – modernisering är offert från ${kr(PRIS.modernisering)}. Vi går igenom vad som lönar sig mest för er på den kostnadsfria genomgången.`,
   },
   {
     fraga: "Är hemsidan sökmotoroptimerad?",
-    svar: `En SEO-grund ingår: sidstruktur, rubriker, sidtitlar och beskrivningar, sitemap, snabb laddning och mobilanpassning. Det gör att Google kan förstå och visa sidorna. Placeringar i sökresultaten kan ingen garantera – löpande SEO ingår i alla månadspaket från ${kr(PRIS.start)} per månad.`,
+    svar: `En SEO-grund ingår: sidstruktur, rubriker, sidtitlar och beskrivningar, sitemap, snabb laddning och mobilanpassning. Det gör att Google kan förstå och visa sidorna. Placeringar i sökresultaten kan ingen garantera – löpande SEO kostar från ${kr(PRIS.synlighetBas)} per månad, och har vi byggt sajten behövs ingen grundoptimering först.`,
   },
   {
     fraga: "Ingår cookiebanner och integritetspolicy?",
@@ -70,7 +70,7 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Behöver vi redan ha texter och bilder?",
-    svar: "Nej. Vi kan skriva texterna och ta fram bilderna, eller utgå från det ni redan har. Vi går igenom materialet på genomgången så att ni vet vad som behövs.",
+    svar: `Nej. Texterna skriver vi utifrån ett formulär ni fyller i. Bilder använder vi era egna, eller tar fram nya i Studio – till exempel 10 bilder för ${kr(PRIS.bilder10)}.`,
   },
   {
     fraga: "Vad är skillnaden mellan webbdesign och webbutveckling?",

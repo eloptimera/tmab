@@ -6,33 +6,26 @@
 // TODO(TAB): riktiga före/efter-exempel. Sidan visar i dag en tydligt märkt illustration.
 // Får ni moderniseringsprojekt som kunden godkänner att visa: lägg till skärmbilder före och
 // efter, vad som ändrades och – om ni har dem – mätbara resultat.
-import {
-  AGANDE_TEXT,
-  HEMSIDA_UTANFOR_PAKET_TEXT,
-  kr,
-  MOMS_TEXT,
-  PRIS,
-  type Fraga,
-} from "@/lib/priser";
+import { AGANDE_TEXT, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 export const MODERNISERA_HEMSIDA = {
   sokvag: "/modernisera-hemsida",
   titel: "Modernisera hemsida",
   etikett: "Tjänst · Befintlig hemsida",
   seoTitel: "Modernisera hemsida – uppdatera och förbättra",
-  seoBeskrivning: `Behöver ni modernisera er hemsida? TAB uppdaterar design, mobilanpassning, hastighet och funktioner i den sajt ni har. Uppfräschning från ${kr(PRIS.uppfraschning)}.`,
+  seoBeskrivning: `Behöver ni modernisera er hemsida? TAB uppdaterar design, mobilanpassning, hastighet och funktioner i den sajt ni har. Offert från ${kr(PRIS.modernisering)}.`,
   kortText:
     "Tecken på att hemsidan behöver uppdateras, vad som går att förbättra, när det är bättre att bygga nytt och vad det kostar.",
   publicerad: "2026-10-20",
   uppdaterad: "2026-10-20",
 } as const;
 
-/** Plattformar vi arbetar i – samma lista som på tidigare tjänstesida. */
+/** Plattformar vi moderniserar i (alltid offert). Webbshoppar ingår inte – vi bygger inga. */
 export const PLATTFORMAR = [
   "WordPress",
+  "Webflow",
   "Wix",
   "Squarespace",
-  "Shopify",
   "egenbyggda sajter",
 ] as const;
 
@@ -47,11 +40,11 @@ export const MODERNISERA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar det att modernisera en hemsida?",
-    svar: `En uppfräschning kostar från ${kr(PRIS.uppfraschning)}. Större ändringar och nya sidor får ett fast pris i offerten innan vi börjar. ${HEMSIDA_UTANFOR_PAKET_TEXT} ${MOMS_TEXT}`,
+    svar: `Modernisering är alltid offert, från ${kr(PRIS.modernisering)}, eftersom det beror på sajtens skick och plattform. Ni får ett fast pris efter genomgången – vi tar aldrig betalt per timme. ${MOMS_TEXT}`,
   },
   {
     fraga: "Måste vi bygga en helt ny hemsida?",
-    svar: `Oftast inte – design, innehåll och funktioner går ofta att förbättra i den sajt ni har. Är tekniken för begränsad kan en ny hemsida vara bättre på sikt, och då säger vi det. En ny hemsida kostar från ${kr(PRIS.hemsida)}.`,
+    svar: `Oftast inte – design, innehåll och funktioner går ofta att förbättra i den sajt ni har. Är tekniken för begränsad kan en ny hemsida vara bättre på sikt, och då säger vi det. En ny företagshemsida kostar ${kr(PRIS.foretagshemsida)}.`,
   },
   {
     fraga: "Kan ni förbättra designen utan att ändra hela hemsidan?",
@@ -79,7 +72,7 @@ export const MODERNISERA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan vi behålla våra texter och bilder?",
-    svar: "Ja, det som fungerar behåller vi. Vi föreslår vad som bör skrivas om eller bytas – och kan ta fram nya texter och bilder om det behövs.",
+    svar: "Ja, det som fungerar behåller vi. Vi föreslår vad som bör skrivas om eller bytas. Nya texter skriver vi, och nya bilder kan ni köpa till i Studio.",
   },
   {
     fraga: "Kan ni göra hemsidan snabbare?",

@@ -20,7 +20,7 @@ import { FORETAG } from "@/lib/foretag";
 import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { HEMSIDA_PRIS } from "@/lib/hemsida-pris";
 import { MODERNISERA_FRAGOR, MODERNISERA_HEMSIDA, PLATTFORMAR } from "@/lib/modernisera-hemsida";
-import { AGANDE_TEXT, HEMSIDA_UTANFOR_PAKET_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
+import { AGANDE_TEXT, ANDRINGAR_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
 import { SOKMOTOROPTIMERING } from "@/lib/sokmotoroptimering";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { bokaKlick } from "@/lib/sparning";
@@ -175,7 +175,7 @@ const VAGAR: readonly {
       "Mobilvy och hastighet rättas till",
       "Teknisk SEO och kontaktvägar ses över",
     ],
-    pris: `Från ${kr(PRIS.uppfraschning)}`,
+    pris: `Offert från ${kr(PRIS.modernisering)}`,
     markerad: true,
   },
   {
@@ -186,7 +186,7 @@ const VAGAR: readonly {
       "Ny design i samma plattform",
       "Adresser och omdirigeringar planeras",
     ],
-    pris: "Fast pris i offerten",
+    pris: "Offert – fast pris efter genomgången",
   },
   {
     titel: "Ny hemsida",
@@ -196,7 +196,7 @@ const VAGAR: readonly {
       "Innehåll som fungerar flyttas med",
       "Domän och viktiga adresser behålls",
     ],
-    pris: `Från ${kr(PRIS.hemsida)}`,
+    pris: `Från ${kr(PRIS.landningssida)}`,
     lank: { till: HEMSIDA_FORETAG.sokvag, text: "Hemsida till företag" },
   },
 ];
@@ -230,7 +230,6 @@ const BRANSCHER = [
   "Konsulter och byråer",
   "Restauranger och caféer",
   "Städ- och serviceföretag",
-  "Butiker med webbshop",
 ] as const;
 
 /** Illustrerad före/efter – ingen kundsajt. Ersätts när riktiga, godkända exempel finns. */
@@ -336,7 +335,7 @@ function ModerniseraHemsida() {
           ))}
           <li className="flex items-center gap-3 font-bold text-ink">
             <span className="rounded-full bg-sun px-3 py-1 text-sm">
-              Uppfräschning från {kr(PRIS.uppfraschning)} exkl. moms
+              Offert från {kr(PRIS.modernisering)} exkl. moms
             </span>
           </li>
         </ul>
@@ -574,7 +573,7 @@ function ModerniseraHemsida() {
               mobilvy är ett annat uppdrag än ny struktur, nya sidor och ny design. Vi går igenom
               sajten först, så att ni får ett fast pris för det som faktiskt behövs.
             </p>
-            <p className="mt-5 text-lg leading-relaxed text-ink/80">{HEMSIDA_UTANFOR_PAKET_TEXT}</p>
+            <p className="mt-5 text-lg leading-relaxed text-ink/80">{ANDRINGAR_TEXT}</p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">{AGANDE_TEXT}</p>
             <Link to={HEMSIDA_PRIS.sokvag} className={`mt-6 ${LANK}`}>
               Vad kostar en hemsida? Så räknar vi
@@ -583,13 +582,13 @@ function ModerniseraHemsida() {
           </Reveal>
           <Reveal delay={80}>
             <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
-              <p className="caps text-sun">Uppfräschning av hemsida</p>
+              <p className="caps text-sun">Modernisering av hemsida</p>
               <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">
                 <span className="text-3xl sm:text-4xl">från </span>
-                {kr(PRIS.uppfraschning)}
+                {kr(PRIS.modernisering)}
               </p>
               <p className="mt-3 text-sm text-white/70">
-                {MOMS_TEXT} Större ändringar och nya sidor: fast pris i offerten.
+                {MOMS_TEXT} Alltid offert med fast pris – aldrig timdebitering.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
@@ -599,7 +598,8 @@ function ModerniseraHemsida() {
               <div className="mt-10 border-t border-white/15 pt-8">
                 <p className="font-bold">Behöver ni hellre en ny hemsida?</p>
                 <p className="mt-2 leading-relaxed text-white/80">
-                  En ny hemsida kostar från {kr(PRIS.hemsida)}.
+                  En landningssida kostar {kr(PRIS.landningssida)} och en företagshemsida{" "}
+                  {kr(PRIS.foretagshemsida)}.
                 </p>
                 <Link
                   to={HEMSIDA_FORETAG.sokvag}
@@ -693,7 +693,7 @@ function ModerniseraHemsida() {
         <BokaPanel
           tjanst={TJANST}
           onBoka={() => bokaKlick(SIDA, "avslutning")}
-          prislank={{ href: "#pris", text: `Uppfräschning från ${kr(PRIS.uppfraschning)}` }}
+          prislank={{ href: "#pris", text: `Offert från ${kr(PRIS.modernisering)}` }}
           rubrik={
             <>
               Redo att ge er hemsida <Mark>ett lyft</Mark>?

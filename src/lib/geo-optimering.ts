@@ -10,10 +10,7 @@
 // - Bing Webmaster Tools AI Performance (citeringar i Copilot, inte klick; public preview feb 2026)
 // Kontrollera igen när sidan uppdateras – de här tjänsterna ändras ofta.
 //
-// TODO(TAB): GEO säljs i dag inte separat. Om ni vill erbjuda en fristående GEO-analys eller ett
-// GEO-paket: bestäm pris och omfattning och lägg in det i priser.ts.
-// TODO(TAB): Ingår nyskriven text (nya sidor, nya FAQ-texter) i SEO/GEO-arbetet, eller bara
-// omskrivning av befintliga sidor? Sidan säger i dag bara "omskrivning och förtydligande".
+// GEO säljs inte separat – det ingår i Synlighet (priser.ts), där nya sidor och AI-koll ingår.
 import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 export const GEO_OPTIMERING = {
@@ -21,7 +18,7 @@ export const GEO_OPTIMERING = {
   titel: "GEO-optimering",
   etikett: "Tjänst · GEO",
   seoTitel: "GEO-optimering & AI-sökoptimering för företag",
-  seoBeskrivning: `Vill ni synas i ChatGPT och AI-sök? TAB hjälper företag med GEO-optimering: innehåll, teknik och företagsinformation. Grundoptimering ${kr(PRIS.seoGeo)}.`,
+  seoBeskrivning: `Vill ni synas i ChatGPT och AI-sök? TAB hjälper företag med GEO-optimering: innehåll, teknik och företagsinformation. Från ${kr(PRIS.synlighetBas)}/mån.`,
   kortText:
     "Vad GEO är, hur AI-sök hittar information, vad vi gör, hur det mäts och vad GEO-optimering kostar.",
   publicerad: "2026-10-20",
@@ -55,7 +52,7 @@ export const GEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar GEO-optimering?",
-    svar: `GEO ingår i grundoptimeringen av SEO och GEO, som kostar ${kr(PRIS.seoGeo)}, och löpande i alla månadspaket från ${kr(PRIS.start)} per månad. Det finns inget separat GEO-pris. ${MOMS_TEXT}`,
+    svar: `GEO ingår i Synlighet tillsammans med SEO – det finns inget separat GEO-pris. Först en grundoptimering från ${kr(PRIS.grundoptimering)}, sedan löpande från ${kr(PRIS.synlighetBas)} per månad med AI-koll i varje rapport. Vad ChatGPT svarar om er i dag visar vi gratis i genomgången. ${MOMS_TEXT}`,
   },
   {
     fraga: "Hur lång tid tar det innan GEO ger resultat?",

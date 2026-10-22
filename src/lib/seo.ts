@@ -176,7 +176,7 @@ export function brodsmulor(steg: readonly { namn: string; sokvag: string }[]): S
   };
 }
 
-/** Månadspaketen som erbjudanden – används på prissidan. */
+/** Alla månadsnivåer som erbjudanden – används på prissidan. */
 export function paketSchema(): Schema {
   return {
     "@context": "https://schema.org",

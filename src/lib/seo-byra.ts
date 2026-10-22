@@ -8,7 +8,7 @@ export const SEO_BYRA = {
   titel: "SEO-byrå",
   etikett: "Tjänst · SEO",
   seoTitel: "SEO-byrå för företag – anlita hjälp med SEO",
-  seoBeskrivning: `Vill ni synas bättre på Google? TAB hjälper företag med teknisk SEO, sökordsanalys och innehåll som når rätt kunder. Grundoptimering ${kr(PRIS.seoGeo)}.`,
+  seoBeskrivning: `Vill ni synas bättre på Google? TAB hjälper företag med teknisk SEO, sökordsanalys och innehåll som når rätt kunder. Från ${kr(PRIS.synlighetBas)}/mån.`,
   kortText:
     "Vad SEO är, vad vi gör, hur arbetet går till och vad sökmotoroptimering kostar för ett företag.",
   publicerad: "2026-10-19",
@@ -22,11 +22,11 @@ export const SEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Hur lång tid tar det innan SEO ger resultat?",
-    svar: "Tekniska fel och otydliga sidtitlar kan ge effekt inom några veckor. Placeringar på konkurrensutsatta sökord tar oftast flera månader. Det beror på konkurrensen, hur sajten ser ut i dag och vilka åtgärder som görs – därför ingår löpande SEO i månadspaketen.",
+    svar: "Tekniska fel och otydliga sidtitlar kan ge effekt inom några veckor. Placeringar på konkurrensutsatta sökord tar oftast flera månader. Det beror på konkurrensen, hur sajten ser ut i dag och vilka åtgärder som görs – därför arbetar vi löpande varje månad.",
   },
   {
     fraga: "Vad kostar det att anlita en SEO-byrå?",
-    svar: `Hos oss kostar en grundoptimering av SEO och GEO ${kr(PRIS.seoGeo)}. Löpande SEO ingår i alla månadspaket, från ${kr(PRIS.start)} per månad, utan bindningstid. ${MOMS_TEXT}`,
+    svar: `Först en grundoptimering från ${kr(PRIS.grundoptimering)} som engångsjobb. Därefter löpande SEO och GEO: Bas ${kr(PRIS.synlighetBas)}, Mellan ${kr(PRIS.synlighetMellan)} eller Hög ${kr(PRIS.synlighetHog)} per månad, utan bindningstid. Nivån föreslår vi efter genomgången. ${MOMS_TEXT}`,
   },
   {
     fraga: "Kan SEO hjälpa småföretag att få fler kunder?",
@@ -46,7 +46,7 @@ export const SEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan ni hjälpa oss att synas bättre på Google Maps?",
-    svar: "Vi kan gå igenom er Google-företagsprofil och er hemsida och föreslå vad som bör förbättras, om företaget uppfyller Googles krav för en profil. En viss placering i Google Maps kan ingen garantera.",
+    svar: `Ja. Vi sätter upp eller tar över er Google-företagsprofil för ${kr(PRIS.foretagsprofil)} – verifiering, kategorier, tjänster, serviceområde och bilder – om företaget uppfyller Googles krav för en profil. En viss placering i Google Maps kan ingen garantera.`,
   },
   {
     fraga: "Behöver vi en ny hemsida för att jobba med SEO?",
@@ -62,19 +62,19 @@ export const SEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Erbjuder ni SEO-rådgivning och SEO-konsultation?",
-    svar: "Ja. Första SEO-konsultationen är gratis: 20–25 minuter där vi tittar på er hemsida och hur ni syns i dag, och efteråt får ni ett förbättringsförslag. Därefter ingår rådgivningen i SEO-arbetet – ni har en kontaktperson och får varje prioritering förklarad.",
+    svar: `Ja. Första SEO-konsultationen är gratis: 20–25 minuter där vi tittar på er hemsida och hur ni syns i dag, och efteråt får ni ett förbättringsförslag. Vill ni genomföra ändringarna själva får ni en prioriterad åtgärdslista med instruktioner för ${kr(PRIS.grundoptimeringLista)}. Annars ingår rådgivningen i SEO-arbetet – ni har en kontaktperson och får varje prioritering förklarad.`,
   },
   {
     fraga: "Vad ingår i en SEO-analys?",
-    svar: "En SEO-analys går igenom tekniken (indexering, laddtid, mobil, struktur), innehållet och sidtitlarna, vilka sökord ni syns på i dag och vilka ni borde synas på. Den kostnadsfria genomgången ger en första bild men är ingen fullständig SEO-audit – den djupare analysen ingår i SEO-arbetet.",
+    svar: "En SEO-analys går igenom tekniken (indexering, laddtid, mobil, struktur), innehållet och sidtitlarna, vilka sökord ni syns på i dag och vilka ni borde synas på. Den kostnadsfria genomgången ger en första bild men är ingen fullständig SEO-audit – den görs i grundoptimeringen.",
   },
   {
     fraga: "Kan vi få SEO-hjälp till fast pris?",
-    svar: `Ja. Grundoptimeringen av SEO och GEO kostar ${kr(PRIS.seoGeo)} som engångspris, och löpande SEO ingår i månadspaketen till fast månadspris från ${kr(PRIS.start)}. Ni får priset innan vi börjar. ${MOMS_TEXT}`,
+    svar: `Ja. Grundoptimeringen kostar från ${kr(PRIS.grundoptimering)} som engångspris, och löpande SEO har fast månadspris från ${kr(PRIS.synlighetBas)}. Vi debiterar aldrig per timme. ${MOMS_TEXT}`,
   },
   {
     fraga: "Ska vi anlita en SEO-konsult eller en SEO-byrå?",
-    svar: "Gränsen är flytande. En konsult anlitas ofta för en avgränsad analys eller rådgivning, en byrå för att också genomföra arbetet löpande. Hos oss ingår rådgivningen i SEO-arbetet: ni har en kontaktperson, får förslaget förklarat och prioriterat – och vi genomför ändringarna åt er.",
+    svar: `Gränsen är flytande. En konsult anlitas ofta för en avgränsad analys eller rådgivning, en byrå för att också genomföra arbetet löpande. Hos oss kan ni välja: en åtgärdslista med instruktioner som ni genomför själva (${kr(PRIS.grundoptimeringLista)}), eller att vi gör grundoptimeringen och det löpande arbetet åt er.`,
   },
   {
     fraga: "Finns det någon bindningstid?",
