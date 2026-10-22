@@ -27,7 +27,8 @@ import { GEO_FRAGOR, GEO_OPTIMERING } from "@/lib/geo-optimering";
 import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { LOKAL_SEO } from "@/lib/lokal-seo";
 import { MODERNISERA_HEMSIDA } from "@/lib/modernisera-hemsida";
-import { BINDNING_TEXT, kr, MOMS_TEXT, PAKET, PRIS } from "@/lib/priser";
+import { DelPrisrutor, SYNLIGHET_KORT } from "@/components/Prisrutor";
+import { kr, PRIS, SYNLIGHET } from "@/lib/priser";
 import { SEO_BYRA } from "@/lib/seo-byra";
 import { SOKMOTOROPTIMERING } from "@/lib/sokmotoroptimering";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
@@ -283,11 +284,6 @@ const VARFOR: readonly Kort[] = [
   },
 ];
 
-/** Rader ur månadspaketen som gäller SEO/GEO. */
-function geoRad(ingar: readonly string[]) {
-  return ingar.filter((r) => r.includes("GEO")).join(", ");
-}
-
 /** Illustrerad AI-sökning – inga riktiga företag, inget påstående om att någon rekommenderas. */
 function AiSokning() {
   return (
@@ -391,7 +387,7 @@ function GeoOptimering() {
           ))}
           <li className="flex items-center">
             <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">
-              Ingår i grundoptimering av SEO och GEO, {kr(PRIS.seoGeo)}
+              {SYNLIGHET_KORT}
             </span>
           </li>
         </ul>
@@ -789,64 +785,25 @@ function GeoOptimering() {
           </Reveal>
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
-              GEO säljs inte som en egen tjänst hos oss – det ingår i SEO-arbetet, eftersom grunden
-              är densamma. Ni kan börja med en grundoptimering och sedan välja om ni vill fortsätta
-              löpande.
+              GEO säljs inte som en egen tjänst hos oss – det ingår i Synlighet tillsammans med SEO,
+              eftersom grunden är densamma. Först en grundoptimering, sedan löpande arbete med
+              AI-koll i varje rapport. I den gratis genomgången visar vi vad ChatGPT svarar om er i
+              dag.
             </p>
           </Reveal>
         </div>
-        <div className="mt-12 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal className="h-full">
-            <div
-              id="pris"
-              className="flex h-full scroll-mt-28 flex-col rounded-[2rem] bg-ink p-8 text-white sm:p-10"
-            >
-              <p className="caps text-sun">Engång</p>
-              <h3 className="mt-4 font-sans text-xl font-bold tracking-normal">
-                Grundoptimering av SEO och GEO
-              </h3>
-              <p className="mt-4 font-display text-5xl leading-none sm:text-6xl">
-                {kr(PRIS.seoGeo)}
-              </p>
-              <p className="mt-3 flex-1 text-sm text-white/70">
-                {MOMS_TEXT} Genomgången och förslaget är gratis.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
-                  Få prisförslag på GEO
-                </BokaKnapp>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={80} className="h-full">
-            <div className="h-full rounded-[2rem] border-2 border-line bg-white p-8 sm:p-10">
-              <p className="caps text-brand">Löpande · per månad</p>
-              <h3 className="mt-4 font-sans text-xl font-bold tracking-normal text-ink">
-                SEO och GEO i månadspaketen
-              </h3>
-              <ul className="mt-6 divide-y divide-line">
-                {PAKET.map((p) => (
-                  <li key={p.id} className="flex items-baseline justify-between gap-4 py-4">
-                    <span>
-                      <span className="block font-bold text-ink">{p.namn}</span>
-                      <span className="text-sm text-muted-foreground">{geoRad(p.ingar)}</span>
-                    </span>
-                    <span className="shrink-0 font-display text-2xl text-ink">
-                      {kr(p.belopp)}
-                      <span className="text-sm text-muted-foreground">/mån</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {BINDNING_TEXT} Månadsrapport ingår i alla paket. Uppstart av större
-                månadsabonnemang {kr(PRIS.uppstart)}.
-              </p>
-              <Link to="/priser" className="btn-base btn-outline mt-6">
-                Se vad som ingår i paketen
-              </Link>
-            </div>
-          </Reveal>
+        <div className="mt-12">
+          <DelPrisrutor
+            del={SYNLIGHET}
+            engangIndex={2}
+            engangRubrik="Grundoptimering av SEO och GEO"
+            engangNot="Teknik, sökordsanalys, strukturerad data, Search Console och Bing i ert namn – och en AI-koll som nollmätning."
+            lopandeRubrik="Löpande SEO och GEO"
+            lopandeNot="Nya eller förbättrade sidor, teknisk bevakning och AI-koll varje månad. Nivån föreslår vi efter genomgången."
+            tjanst={TJANST}
+            knapptext="Få prisförslag på GEO"
+            onBoka={() => bokaKlick(SIDA, "pris")}
+          />
         </div>
       </section>
 
@@ -929,7 +886,7 @@ function GeoOptimering() {
         <BokaPanel
           tjanst={TJANST}
           onBoka={() => bokaKlick(SIDA, "avslutning")}
-          prislank={{ href: "#pris", text: `Grundoptimering ${kr(PRIS.seoGeo)}` }}
+          prislank={{ href: "#pris", text: `Från ${kr(PRIS.synlighetBas)}/mån` }}
           rubrik={
             <>
               Vill ni utveckla er synlighet i <Mark>AI-sökningar</Mark>?

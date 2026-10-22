@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Blob } from "@/components/Brand";
 import { Mark, PageHero } from "@/components/Heading";
@@ -7,16 +7,19 @@ import { Loften } from "@/components/Loften";
 import { Reveal } from "@/components/Reveal";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import {
-  ENGANGSTJANSTER,
-  KONSULTATION,
+  DELAR,
+  EN_I_TAGET_TEXT,
+  EXTERN,
+  KOMBINATIONER,
   kr,
+  LAGSTA_MANADSPRIS,
   MOMS_TEXT,
-  PAKET,
-  PAKET_VILLKOR,
   PRIS,
   PRIS_FRAGOR,
   prisText,
-  type Paket,
+  STARTAVGIFT_TEXT,
+  type Del,
+  type Niva,
   type Prisrad,
 } from "@/lib/priser";
 import { faqSchema, paketSchema, sidhuvud } from "@/lib/seo";
@@ -25,79 +28,74 @@ import { tjanstSokvag } from "@/lib/tjanster";
 export const Route = createFileRoute("/priser")({
   head: () =>
     sidhuvud({
-      titel: `Priser från ${kr(PRIS.start)}/mån`,
-      beskrivning: `Månadspaket från ${kr(PRIS.start)} per månad, engångstjänster från ${kr(PRIS.bilder5)} och gratis första genomgång. Ingen bindningstid. ${MOMS_TEXT}`,
+      titel: `Priser – marknadsföring från ${kr(LAGSTA_MANADSPRIS)}/mån`,
+      beskrivning: `Bilder och video från ${kr(PRIS.studioS)}/mån, annonser från ${kr(PRIS.annonser1)}/mån, SEO och GEO från ${kr(PRIS.synlighetBas)}/mån och hemsida från ${kr(PRIS.landningssida)}. Ingen bindningstid. ${MOMS_TEXT}`,
       sokvag: "/priser",
       schema: [paketSchema(), faqSchema(PRIS_FRAGOR)],
     }),
   component: Priser,
 });
 
-function Paketkort({ p }: { p: Paket }) {
-  const utvalt = p.utvalt === true;
+const enhet = (e: "mån" | "engång") => (e === "mån" ? "/mån" : "");
+
+function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
+  const utvald = n.utvald === true;
   return (
     <article
-      aria-labelledby={`paket-${p.id}`}
-      className={`relative flex h-full flex-col rounded-[2rem] p-7 sm:p-9 ${
-        utvalt ? "bg-brand text-white lg:-my-4 lg:py-12" : "border-2 border-line bg-white text-ink"
+      aria-labelledby={`niva-${n.id}`}
+      className={`relative flex h-full flex-col rounded-[2rem] p-7 sm:p-8 ${
+        utvald ? "bg-brand text-white" : "border-2 border-line bg-white text-ink"
       }`}
     >
-      {utvalt && (
-        <span className="absolute -top-3.5 left-7 -rotate-[2deg] rounded-full bg-sun px-4 py-1.5 text-xs font-bold tracking-[0.14em] text-ink uppercase shadow-[3px_3px_0_var(--ink)] sm:left-9">
-          Rekommenderas
+      {utvald && (
+        <span className="absolute -top-3.5 left-7 -rotate-[2deg] rounded-full bg-sun px-4 py-1.5 text-xs font-bold tracking-[0.14em] text-ink uppercase shadow-[3px_3px_0_var(--ink)]">
+          Vi föreslår
         </span>
       )}
-      <h3
-        id={`paket-${p.id}`}
+      <h4
+        id={`niva-${n.id}`}
         className={`font-sans text-xs font-bold tracking-[0.22em] uppercase ${
-          utvalt ? "text-white/85" : "text-brand"
+          utvald ? "text-white/85" : "text-brand"
         }`}
       >
-        {p.namn}
-      </h3>
-      <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">{kr(p.belopp)}</p>
-      <p className={`mt-2 text-sm ${utvalt ? "text-white/80" : "text-muted-foreground"}`}>
-        per månad, exkl. moms · ingen bindningstid
+        {n.namn}
+      </h4>
+      <p className="mt-4 font-display text-4xl leading-none sm:text-5xl">
+        {kr(n.belopp)}
+        <span className="text-xl sm:text-2xl">{enhet(n.enhet)}</span>
       </p>
-
-      <ul
-        className={`mt-8 space-y-3.5 border-t pt-8 ${utvalt ? "border-white/25" : "border-line"}`}
-      >
-        {p.ingar.map((rad) => (
+      <p className={`mt-2 text-sm ${utvald ? "text-white/80" : "text-muted-foreground"}`}>
+        exkl. moms · ingen bindningstid
+      </p>
+      <ul className={`mt-6 space-y-3 border-t pt-6 ${utvald ? "border-white/25" : "border-line"}`}>
+        {n.ingar.map((rad) => (
           <li key={rad} className="flex gap-3">
             <span
               className={`grid size-6 shrink-0 place-items-center rounded-full ${
-                utvalt ? "bg-white text-brand" : "bg-brand text-white"
+                utvald ? "bg-white text-brand" : "bg-brand text-white"
               }`}
             >
               <Check className="size-3.5" strokeWidth={3} aria-hidden="true" />
             </span>
-            <span className={utvalt ? "font-bold" : ""}>{rad}</span>
+            <span className={utvald ? "font-bold" : ""}>{rad}</span>
           </li>
         ))}
       </ul>
-
-      <div className="mt-auto pt-9">
-        <BokaKnapp paket={p.id} variant={utvalt ? "white" : "dark"} className="w-full">
-          Välj {p.namn}
-        </BokaKnapp>
-      </div>
+      {valbar && (
+        <div className="mt-auto pt-8">
+          <BokaKnapp paket={n.id} variant={utvald ? "white" : "dark"} className="w-full">
+            Välj {n.namn}
+          </BokaKnapp>
+        </div>
+      )}
     </article>
   );
 }
 
-function Pristabell({
-  id,
-  rubrik,
-  rader,
-}: {
-  id: string;
-  rubrik: string;
-  rader: readonly Prisrad[];
-}) {
+function Pristabell({ rubrik, rader }: { rubrik: string; rader: readonly Prisrad[] }) {
   return (
-    <div className="rounded-[2rem] border-2 border-line bg-white px-5 py-2 sm:px-9">
-      <table className="w-full border-collapse text-left" aria-labelledby={id}>
+    <div className="rounded-[2rem] border-2 border-line bg-white px-5 py-2 sm:px-8">
+      <table className="w-full border-collapse text-left">
         <caption className="sr-only">{rubrik}</caption>
         <thead className="sr-only">
           <tr>
@@ -106,48 +104,133 @@ function Pristabell({
           </tr>
         </thead>
         <tbody className="divide-y-2 divide-line">
-          {rader.map((r) => {
-            const gratis = r.pris === "Gratis";
-            return (
-              <tr key={r.tjanst}>
-                <th
-                  scope="row"
-                  className="py-5 pr-3 align-middle font-normal break-words hyphens-auto text-ink sm:pr-4 sm:text-lg"
-                >
-                  {r.slug ? (
-                    <Link
-                      to={tjanstSokvag(r.slug)}
-                      className="underline decoration-line decoration-2 underline-offset-4 transition-colors hover:decoration-brand"
-                    >
-                      {r.tjanst}
-                    </Link>
-                  ) : (
-                    r.tjanst
-                  )}
-                </th>
-                <td className="py-5 text-right align-middle">
-                  {gratis ? (
-                    <span className="inline-block rounded-full bg-sun px-3.5 py-1 text-sm font-bold text-ink">
-                      Gratis
-                    </span>
-                  ) : (
-                    <span
-                      className={
-                        typeof r.pris === "number"
-                          ? "font-display text-lg whitespace-nowrap text-ink sm:text-2xl"
-                          : "inline-block max-w-[9rem] text-sm text-muted-foreground"
-                      }
-                    >
-                      {prisText(r)}
-                    </span>
-                  )}
-                </td>
-              </tr>
-            );
-          })}
+          {rader.map((r) => (
+            <tr key={r.tjanst}>
+              <th scope="row" className="py-4 pr-3 align-middle font-normal text-ink sm:pr-4">
+                <span className="block font-bold">{r.tjanst}</span>
+                {r.not && (
+                  <span className="mt-0.5 block text-sm leading-snug text-muted-foreground">
+                    {r.not}
+                  </span>
+                )}
+              </th>
+              <td className="py-4 text-right align-middle">
+                {r.pris === "Gratis" ? (
+                  <span className="inline-block rounded-full bg-sun px-3.5 py-1 text-sm font-bold text-ink">
+                    Gratis
+                  </span>
+                ) : (
+                  <span className="font-display text-lg whitespace-nowrap text-ink sm:text-xl">
+                    {prisText(r)}
+                  </span>
+                )}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
+  );
+}
+
+function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
+  // Synlighetsnivån föreslår vi efter genomgången – kunden väljer den inte själv.
+  const valbar = d.id !== "synlighet";
+  return (
+    <section
+      id={d.id}
+      aria-labelledby={`rubrik-${d.id}`}
+      className={`scroll-mt-24 py-14 sm:py-20 ${nr % 2 === 0 ? "bg-fade-tint" : ""}`}
+    >
+      <div className="container-page">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <Reveal>
+            <p className="eyebrow">
+              0{nr} · {d.vad}
+            </p>
+            <h2 id={`rubrik-${d.id}`} className="mt-4 text-4xl sm:text-5xl">
+              <Mark>{d.namn}</Mark>
+            </h2>
+            <p className="mt-4 text-lg text-ink">
+              Från{" "}
+              <span className="font-display text-2xl">
+                {kr(d.lagsta.belopp)}
+                {enhet(d.lagsta.enhet)}
+              </span>
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="text-lg leading-relaxed text-ink/80">{d.intro}</p>
+            <Link
+              to={tjanstSokvag(d.slug)}
+              className="mt-5 inline-flex items-center gap-2 font-bold text-ink underline decoration-sun decoration-2 underline-offset-4"
+            >
+              Läs mer om tjänsten
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </Reveal>
+        </div>
+
+        <h3 className="mt-12 font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
+          {d.nivaRubrik}
+        </h3>
+        {d.id === "synlighet" && (
+          <p className="mt-2 max-w-2xl text-ink/80">
+            Vilken nivå som passar föreslår vi efter genomgången, utifrån konkurrensen och hur
+            sajten ser ut.
+          </p>
+        )}
+        <div
+          className={`mt-6 grid items-stretch gap-5 ${d.nivaer.length === 2 ? "md:grid-cols-2 lg:max-w-4xl" : "md:grid-cols-3"}`}
+        >
+          {d.nivaer.map((n, i) => (
+            <Reveal key={n.id} delay={i * 70} className="h-full">
+              <Nivakort n={n} valbar={valbar} />
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
+          <Reveal className="min-w-0">
+            <h3 className="font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
+              {d.id === "webb" ? "Bygge och tillägg" : "Engång"}
+            </h3>
+            <div className="mt-4">
+              <Pristabell rubrik={`${d.namn} – engång`} rader={d.engang} />
+            </div>
+            <p className="mt-4 text-sm text-ink/80">
+              <span className="font-bold">Skräddarsytt:</span> offert från {kr(d.skraddarsytt.pris)}
+              {enhet(d.skraddarsytt.enhet)} – {d.skraddarsytt.text}.
+            </p>
+          </Reveal>
+          <Reveal delay={80} className="min-w-0">
+            {d.ingarAlltid && (
+              <>
+                <h3 className="font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
+                  Så fungerar det
+                </h3>
+                <ul className="mt-4 space-y-2.5">
+                  {d.ingarAlltid.map((r) => (
+                    <li key={r} className="flex gap-3 text-ink/85">
+                      <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden="true" />
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            <h3 className="mt-8 font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
+              Bra att veta
+            </h3>
+            <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-muted-foreground">
+              {d.granser.map((r) => (
+                <li key={r}>{r}</li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -158,46 +241,74 @@ function Priser() {
         eyebrow="Priser"
         title={
           <>
-            Tydliga priser, <Mark>inga överraskningar</Mark>
+            Köp det ni behöver – <Mark>inget mer</Mark>
           </>
         }
-        intro="Välj ett månadspaket, köp en enskild tjänst eller börja med en kostnadsfri konsultation där vi går igenom er digitala närvaro."
+        intro="Fyra delar som köps var för sig: bilder och video, annonser, synlighet på Google och i AI-svar, och hemsida. Fasta priser, ingen bindningstid och ingen startavgift."
       >
         <BokaKnapp />
-        <a href="#engangstjanster" className="btn-base btn-outline">
-          Se engångstjänster
+        <a href="#oversikt" className="btn-base btn-outline">
+          Se alla delar
         </a>
       </PageHero>
 
-      {/* Månadspaket */}
-      <section aria-labelledby="manadspaket" className="relative isolate">
+      {/* Översikt */}
+      <section
+        id="oversikt"
+        aria-labelledby="oversikt-rubrik"
+        className="relative isolate scroll-mt-24"
+      >
         <Blob className="absolute top-1/3 -left-56 -z-10 hidden w-[34rem] opacity-35 lg:block" />
-        <div className="container-page pt-14 pb-6 sm:pt-20 sm:pb-8">
+        <div className="container-page pt-14 pb-10 sm:pt-20">
           <Reveal>
-            <p className="eyebrow">01 · Månadspaket</p>
-            <h2 id="manadspaket" className="mt-4 text-4xl sm:text-5xl">
-              Löpande marknadsföring varje <Mark>månad</Mark>
+            <h2 id="oversikt-rubrik" className="text-4xl sm:text-5xl">
+              Fyra delar – <Mark>välj fritt</Mark>
             </h2>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Bilder, SEO/GEO och Meta-annonser. Hemsidor och ändringar på hemsidan köper ni som{" "}
-              <a href="#engangstjanster" className="font-bold text-ink underline">
-                engångstjänster
-              </a>
-              .
-            </p>
           </Reveal>
-          <div className="mt-14 grid items-stretch gap-6 lg:grid-cols-3 lg:gap-5">
-            {PAKET.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80} className="h-full">
-                <Paketkort p={p} />
-              </Reveal>
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {DELAR.map((d, i) => (
+              <li key={d.id}>
+                <Reveal delay={i * 60} className="h-full">
+                  <a
+                    href={`#${d.id}`}
+                    className="kortskugga flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-7 transition-colors hover:border-brand"
+                  >
+                    <span className="font-sans text-xs font-bold tracking-[0.22em] text-brand uppercase">
+                      {d.namn}
+                    </span>
+                    <span className="mt-3 flex-1 font-bold text-ink">{d.vad}</span>
+                    <span className="mt-6 text-sm text-muted-foreground">från</span>
+                    <span className="font-display text-3xl text-ink">
+                      {kr(d.lagsta.belopp)}
+                      <span className="text-lg">{enhet(d.lagsta.enhet)}</span>
+                    </span>
+                  </a>
+                </Reveal>
+              </li>
             ))}
-          </div>
-          <div className="mt-12">
+          </ul>
+          <Reveal delay={80}>
+            <a
+              href="#extern"
+              className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[2rem] bg-ink p-7 text-white"
+            >
+              <span>
+                <span className="font-sans text-xs font-bold tracking-[0.22em] text-sun uppercase">
+                  Allt i ett
+                </span>
+                <span className="mt-2 block font-bold">{EXTERN.namn}</span>
+              </span>
+              <span className="font-display text-3xl">
+                {kr(EXTERN.belopp)}
+                <span className="text-lg">/mån</span>
+              </span>
+            </a>
+          </Reveal>
+          <div className="mt-10">
             <Loften />
           </div>
           <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            {PAKET_VILLKOR}{" "}
+            {MOMS_TEXT} {STARTAVGIFT_TEXT}{" "}
             <Link to="/villkor" className="font-bold text-ink underline">
               Allmänna villkor
             </Link>
@@ -205,33 +316,117 @@ function Priser() {
         </div>
       </section>
 
-      {/* Engångstjänster och konsultation */}
-      <section className="bg-fade-tint pt-8 pb-14 sm:pt-10 sm:pb-20">
-        <div className="container-page grid gap-14 lg:grid-cols-2 lg:gap-10">
-          <Reveal className="min-w-0">
-            <p className="eyebrow">02 · Engångstjänster</p>
-            <h2 id="engangstjanster" className="mt-4 scroll-mt-28 text-3xl sm:text-4xl">
-              Köp det ni behöver, <Mark>en gång</Mark>
+      {DELAR.map((d, i) => (
+        <Delavsnitt key={d.id} d={d} nr={i + 1} />
+      ))}
+
+      {/* Kombinationer */}
+      <section aria-labelledby="kombinationer" className="container-page py-14 sm:py-20">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <Reveal>
+            <p className="eyebrow">Kombinationer</p>
+            <h2 id="kombinationer" className="mt-4 text-4xl sm:text-5xl">
+              Så ser det ut <Mark>tillsammans</Mark>
             </h2>
-            <div className="mt-8">
-              <Pristabell id="engangstjanster" rubrik="Engångstjänster" rader={ENGANGSTJANSTER} />
-            </div>
           </Reveal>
-          <Reveal delay={100} className="min-w-0">
-            <p className="eyebrow">03 · Konsultation och uppstart</p>
-            <h2 id="konsultation" className="mt-4 text-3xl sm:text-4xl">
-              Första steget är <Mark>gratis</Mark>
-            </h2>
-            <div className="mt-8">
-              <Pristabell
-                id="konsultation"
-                rubrik="Konsultation och uppstart"
-                rader={KONSULTATION}
-              />
-            </div>
+          <Reveal delay={80}>
+            <p className="text-lg leading-relaxed text-ink/80">
+              Summan av delarna – ingen rabatt och inget finstilt. Uppstarten är engångsjobben för
+              Annonser ({kr(PRIS.annonsUppsattning)}) och Synlighet ({kr(PRIS.grundoptimering)}).
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-ink/80">{EN_I_TAGET_TEXT}</p>
           </Reveal>
         </div>
-        <p className="container-page mt-8 text-sm text-muted-foreground">{MOMS_TEXT}</p>
+        <Reveal delay={60} className="mt-10">
+          <div className="overflow-x-auto rounded-[2rem] border-2 border-line bg-white px-5 py-2 sm:px-8">
+            <table className="w-full min-w-[34rem] border-collapse text-left">
+              <caption className="sr-only">Vanliga kombinationer</caption>
+              <thead>
+                <tr className="text-sm text-muted-foreground">
+                  <th scope="col" className="py-4 pr-3 font-normal">
+                    Kombination
+                  </th>
+                  <th scope="col" className="py-4 pr-3 text-right font-normal">
+                    Per månad
+                  </th>
+                  <th scope="col" className="py-4 text-right font-normal">
+                    Uppstart (engång)
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y-2 divide-line border-t-2 border-line">
+                {KOMBINATIONER.map((k) => (
+                  <tr key={k.delar}>
+                    <th scope="row" className="py-4 pr-3 font-normal text-ink">
+                      <span className="block font-bold">
+                        {k.namn}
+                        {k.vanligast && (
+                          <span className="ml-2 rounded-full bg-sun px-2.5 py-0.5 align-middle text-xs font-bold">
+                            Vanligast
+                          </span>
+                        )}
+                      </span>
+                      <span className="text-sm text-muted-foreground">{k.delar}</span>
+                    </th>
+                    <td className="py-4 pr-3 text-right font-display text-xl whitespace-nowrap text-ink">
+                      {kr(k.manad)}
+                    </td>
+                    <td className="py-4 text-right whitespace-nowrap text-ink">
+                      {typeof k.uppstart === "number" ? kr(k.uppstart) : k.uppstart}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Ny hemsida räknas för sig: till exempel en företagshemsida för{" "}
+            {kr(PRIS.foretagshemsida)} och drift med ändringar (Total) för {kr(PRIS.total)}/mån.{" "}
+            {MOMS_TEXT}
+          </p>
+        </Reveal>
+      </section>
+
+      {/* Extern marknadsavdelning */}
+      <section id="extern" aria-labelledby="extern-rubrik" className="scroll-mt-24 px-3 sm:px-6">
+        <Reveal>
+          <div className="panel-ink relative isolate mx-auto max-w-[88rem] overflow-hidden rounded-[2rem] px-6 py-14 sm:px-14 sm:py-16">
+            <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+              <div>
+                <p className="caps text-sun">
+                  Allt i ett · högst {EXTERN.maxKunder} kunder åt gången
+                </p>
+                <h2 id="extern-rubrik" className="mt-4 text-4xl sm:text-5xl">
+                  {EXTERN.namn}
+                </h2>
+                <p className="mt-6 font-display text-5xl leading-none sm:text-6xl">
+                  {kr(EXTERN.belopp)}
+                  <span className="text-2xl">/mån</span>
+                </p>
+                <p className="mt-3 text-sm text-white/70">
+                  Exkl. moms · ingen bindningstid · uppstart ingår
+                </p>
+                <p className="mt-6 max-w-md leading-relaxed text-white/80">
+                  För företag som vill ha all marknadsföring på ett ställe utan att anställa. Vi tar
+                  högst {EXTERN.maxKunder} sådana kunder åt gången, så att tiden räcker.
+                </p>
+                <div className="mt-8">
+                  <BokaKnapp variant="white" paket={EXTERN.id}>
+                    Fråga om en plats
+                  </BokaKnapp>
+                </div>
+              </div>
+              <ul className="space-y-3 self-center">
+                {EXTERN.ingar.map((r) => (
+                  <li key={r} className="flex gap-3 text-white/90">
+                    <Check className="mt-1 size-4 shrink-0 text-sun" aria-hidden="true" />
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* Vanliga frågor */}
@@ -252,9 +447,11 @@ function Priser() {
       <BokaPanel
         rubrik={
           <>
-            Osäker på vilket <Mark>paket</Mark>?
+            Osäker på vad ni <Mark>behöver</Mark>?
           </>
         }
+        text="Boka en gratis genomgång på 20–25 minuter. Vi föreslår vilka delar som ger mest för er – ofta räcker det att börja med en."
+        prislank={{ href: "#oversikt", text: "Till översikten" }}
       />
     </>
   );

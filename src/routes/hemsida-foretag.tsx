@@ -122,7 +122,7 @@ const SMAFORETAG_INNEHALL: readonly (readonly [string, string])[] = [
 const INGAR: readonly (Kort & { lank?: { till: string; text: string } })[] = [
   {
     titel: "Design anpassad efter ert varumärke",
-    text: "En enhetlig och professionell design som speglar företagets identitet – med text och bilder som säljer.",
+    text: "En enhetlig och professionell design som speglar företagets identitet – med texter som säljer.",
     ikon: Palette,
   },
   {
@@ -148,7 +148,7 @@ const INGAR: readonly (Kort & { lank?: { till: string; text: string } })[] = [
   },
   {
     titel: "Möjlighet att bygga vidare",
-    text: "Hemsidan kan utvecklas när verksamheten växer – med nya sidor och funktioner, till fast pris per uppdrag.",
+    text: "Hemsidan kan växa med verksamheten. Efter lansering tar ni över den, eller låter oss sköta drift och ändringar.",
     ikon: Puzzle,
     lank: { till: "/priser", text: "Priser" },
   },
@@ -169,14 +169,14 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Lansering och vidare",
-    text: "Vi publicerar hemsidan enligt överenskommelse. Senare ändringar gör vi till fast pris per uppdrag, och vill ni marknadsföra er löpande finns bilder, SEO och Meta-annonser i månadspaketen.",
+    text: "Vi publicerar hemsidan och lämnar över kod och konton – eller sköter driften åt er. Vill ni synas mer finns bilder, SEO och annonser att lägga till, var för sig.",
   },
 ];
 
 const PRISFAKTORER = [
   "Hur många sidor som behövs",
   "Vilken design ni önskar",
-  "Om vi tar fram texter och bilder",
+  "Om ni behöver nya bilder (köps i Studio)",
   "Vilka funktioner hemsidan ska ha",
 ] as const;
 
@@ -232,7 +232,7 @@ function HemsidaForetag() {
           ))}
           <li className="flex items-center gap-3 font-bold text-ink">
             <span className="rounded-full bg-sun px-3 py-1 text-sm">
-              Från {kr(PRIS.hemsida)} exkl. moms
+              Från {kr(PRIS.landningssida)} exkl. moms
             </span>
           </li>
         </ul>
@@ -455,16 +455,30 @@ function HemsidaForetag() {
           <Reveal delay={80}>
             <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
               <p className="caps text-sun">Ny hemsida</p>
-              <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">
-                <span className="text-3xl sm:text-4xl">från </span>
-                {kr(PRIS.hemsida)}
-              </p>
-              <p className="mt-3 text-sm text-white/70">
+              <dl className="mt-5 divide-y divide-white/15">
+                <div className="flex items-baseline justify-between gap-4 pb-3">
+                  <dt className="text-white/80">Landningssida</dt>
+                  <dd className="font-display text-4xl">{kr(PRIS.landningssida)}</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 py-3">
+                  <dt className="text-white/80">Företagshemsida, upp till 5 sidor</dt>
+                  <dd className="font-display text-4xl">{kr(PRIS.foretagshemsida)}</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 py-3">
+                  <dt className="text-white/80">Skräddarsytt</dt>
+                  <dd className="font-bold">från {kr(PRIS.webbSkraddarsytt)}</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 pt-3">
+                  <dt className="text-white/80">Drift efter lansering (frivilligt)</dt>
+                  <dd className="font-bold">från {kr(PRIS.essential)}/mån</dd>
+                </div>
+              </dl>
+              <p className="mt-4 text-sm text-white/70">
                 {MOMS_TEXT} Första genomgången och förslaget är gratis.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
-                  Få en kostnadsfri offert
+                  Få ett fast pris
                 </BokaKnapp>
                 <Link to={HEMSIDA_PRIS.sokvag} className="btn-base btn-outline-white">
                   Se vad en hemsida kostar
@@ -473,8 +487,8 @@ function HemsidaForetag() {
               <div className="mt-10 border-t border-white/15 pt-8">
                 <p className="font-bold">Har ni redan en hemsida?</p>
                 <p className="mt-2 leading-relaxed text-white/80">
-                  Ofta räcker det att modernisera den ni har. En uppfräschning kostar från{" "}
-                  {kr(PRIS.uppfraschning)}.
+                  Ibland räcker det att modernisera den ni har – offert från{" "}
+                  {kr(PRIS.modernisering)}.
                 </p>
                 <Link
                   to={tjanstSokvag("hemsideoptimering")}

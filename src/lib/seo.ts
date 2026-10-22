@@ -84,7 +84,7 @@ export function grundSchema(): Schema {
     image: absolut(DELNINGSBILD.src),
     address: adress,
     areaServed: { "@type": "Country", name: "Sverige" },
-    priceRange: `${PRIS.bilder5}–${PRIS.premium} SEK`,
+    priceRange: `${PRIS.studioS}–${PRIS.extern} SEK`,
     knowsAbout: TJANSTER.map((t) => t.titel),
   };
   if (FORETAG.telefon) foretag["telephone"] = FORETAG.telefonLank;
@@ -141,9 +141,10 @@ export function tjanstSchema(
       description: t.pris.avser,
       priceCurrency: "SEK",
       priceSpecification: {
-        "@type": "PriceSpecification",
+        "@type": t.pris.manad ? "UnitPriceSpecification" : "PriceSpecification",
         priceCurrency: "SEK",
         valueAddedTaxIncluded: false,
+        ...(t.pris.manad ? { unitText: "månad" } : {}),
         ...(t.pris.fran ? { minPrice: t.pris.belopp } : { price: t.pris.belopp }),
       },
     },
@@ -175,12 +176,12 @@ export function brodsmulor(steg: readonly { namn: string; sokvag: string }[]): S
   };
 }
 
-/** Månadspaketen som erbjudanden – används på prissidan. */
+/** Alla månadsnivåer som erbjudanden – används på prissidan. */
 export function paketSchema(): Schema {
   return {
     "@context": "https://schema.org",
     "@type": "OfferCatalog",
-    name: "Månadspaket",
+    name: "Löpande tjänster",
     url: absolut("/priser"),
     itemListElement: PAKET.map((p) => ({
       "@type": "Offer",

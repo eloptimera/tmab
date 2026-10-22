@@ -35,7 +35,7 @@ function Tjanster() {
             Allt ni behöver för att <Mark>synas digitalt</Mark>
           </>
         }
-        intro="Sex tjänster som tillsammans får fler att hitta, välja och kontakta er. Ta en i taget, eller samla marknadsföringen i ett månadspaket."
+        intro="Sex tjänster som tillsammans får fler att hitta, välja och kontakta er. Ta en i taget och lägg till fler när det passar."
       >
         <BokaKnapp />
         <Link to="/priser" className="btn-base btn-outline">
@@ -66,7 +66,8 @@ function Tjanster() {
                 <p className="mt-6 text-sm text-muted-foreground">{t.pris.avser}</p>
                 <p className="mt-1 font-display text-2xl text-ink">
                   {t.pris.fran ? "från " : ""}
-                  {kr(t.pris.belopp)}{" "}
+                  {kr(t.pris.belopp)}
+                  {t.pris.manad ? "/mån" : ""}{" "}
                   <span className="ml-1 font-sans text-sm text-muted-foreground">exkl. moms</span>
                 </p>
               </div>

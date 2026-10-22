@@ -36,7 +36,7 @@ import { FORETAG } from "@/lib/foretag";
 import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { HEMSIDA_PRIS } from "@/lib/hemsida-pris";
 import { META_ADS_BYRA, META_FRAGOR } from "@/lib/meta-ads-byra";
-import { BINDNING_TEXT, kr, MOMS_TEXT, PAKET, PRIS } from "@/lib/priser";
+import { ANNONSER, BINDNING_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
 import { SEO_BYRA } from "@/lib/seo-byra";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { bokaKlick } from "@/lib/sparning";
@@ -76,12 +76,6 @@ export const Route = createFileRoute("/meta-ads-byra")({
 
 const LANK =
   "font-bold text-ink underline decoration-sun decoration-2 underline-offset-4 hover:decoration-ink";
-
-/** Paketen som innehåller Meta-hantering, med de rader som rör annonserna – ur prislistan. */
-const META_PAKET = PAKET.filter((p) => p.ingar.some((r) => /Meta/.test(r))).map((p) => ({
-  ...p,
-  rader: p.ingar.filter((r) => /Meta|bilder|rapport|avstämning/i.test(r)),
-}));
 
 const FORDELAR_HERO = [
   "Annonsering anpassad efter ert företag",
@@ -385,7 +379,7 @@ function MetaAdsByra() {
           ))}
           <li className="flex items-center">
             <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">
-              Uppsättning {kr(PRIS.metaUppsattning)} · annonsbudget betalas till Meta
+              Från {kr(PRIS.annonser1)}/mån · annonsbudget betalas till Meta
             </span>
           </li>
         </ul>
@@ -741,13 +735,13 @@ function MetaAdsByra() {
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 <div className="rounded-[1.5rem] bg-white/8 p-5 ring-1 ring-white/15">
                   <p className="text-sm text-white/75">Uppsättning, engång</p>
-                  <p className="mt-2 font-display text-4xl">{kr(PRIS.metaUppsattning)}</p>
+                  <p className="mt-2 font-display text-4xl">{kr(PRIS.annonsUppsattning)}</p>
                   <p className="mt-3 text-sm leading-relaxed text-white/75">
-                    Konto, kampanjer och mätning – inkl. cookiebanner när vi har tillgång till
-                    sajten.
+                    Konto, pixel, samtyckesbanner och första kampanjen. Hoppas över om det redan är
+                    gjort.
                   </p>
                 </div>
-                {META_PAKET.map((p) => (
+                {ANNONSER.nivaer.map((p) => (
                   <div key={p.id} className="rounded-[1.5rem] bg-white/8 p-5 ring-1 ring-white/15">
                     <p className="text-sm text-white/75">{p.namn}, löpande</p>
                     <p className="mt-2 font-display text-4xl">
@@ -755,7 +749,7 @@ function MetaAdsByra() {
                       <span className="text-xl text-white/70">/mån</span>
                     </p>
                     <ul className="mt-3 space-y-1.5 text-sm text-white/80">
-                      {p.rader.map((r) => (
+                      {p.ingar.map((r) => (
                         <li key={r} className="flex gap-2">
                           <Check className="mt-0.5 size-4 shrink-0 text-sun" aria-hidden="true" />
                           {r}
@@ -766,15 +760,16 @@ function MetaAdsByra() {
                 ))}
               </div>
               <p className="mt-6 text-sm leading-relaxed text-white/70">
-                Fast arvode – det beror inte på hur mycket ni annonserar för. Paketen innehåller
-                även SEO/GEO. {BINDNING_TEXT} {MOMS_TEXT}
+                Arvodet styrs av antalet nya kampanjer, inte av hur mycket ni annonserar för. Högre
+                budget, fler kampanjer eller katalogannonser: offert från{" "}
+                {kr(PRIS.annonserSkraddarsytt)}/mån. {BINDNING_TEXT} {MOMS_TEXT}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
                   Få prisförslag på Meta Ads
                 </BokaKnapp>
                 <Link to="/priser" className="btn-base btn-outline-white">
-                  Allt som ingår i paketen
+                  Allt som ingår
                 </Link>
               </div>
             </div>

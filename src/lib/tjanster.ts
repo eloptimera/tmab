@@ -12,9 +12,9 @@ import type { Steg } from "@/components/Steg";
 import { landningssidaForTjanst } from "@/lib/landningssidor";
 import { BILDER, type Bild } from "@/lib/projekt";
 import {
+  ANDRINGAR_TEXT,
   GARANTI_TEXT,
   GSC_SVAR,
-  HEMSIDA_UTANFOR_PAKET_TEXT,
   kr,
   MOMS_TEXT,
   PRIS,
@@ -54,8 +54,9 @@ export type Tjanst = {
   forklaring: string;
   sjalv: readonly string[];
   medOss: readonly string[];
-  pris: { belopp: number; fran: boolean; avser: string };
-  /** Hur tjänsten ingår i månadspaketen, eller null om den inte gör det. */
+  /** Lägsta pris. `manad` = pris per månad. `avser` = vad priset gäller, t.ex. delens namn. */
+  pris: { belopp: number; fran: boolean; avser: string; manad?: boolean };
+  /** En rad om övriga priser (engångsjobb, alternativ), eller null. */
   iPaket: string | null;
   /** Exempelbilder som visas under rubriken på tjänstesidan. */
   galleri?: readonly Bild[];
@@ -73,7 +74,7 @@ export const TJANSTER: readonly Tjanst[] = [
     iText: "SEO",
     rubrik: { text: "SEO som gör att kunderna hittar er på Google", markera: "hittar er" },
     seoTitel: "SEO för företag – synas på Google",
-    seoBeskrivning: `Sökmotoroptimering som får er att synas på Google. Grundoptimering ${kr(PRIS.seoGeo)}, löpande SEO ingår i alla månadspaket. Gratis genomgång.`,
+    seoBeskrivning: `Sökmotoroptimering som får er att synas på Google. Löpande SEO och GEO från ${kr(PRIS.synlighetBas)}/mån, ingen bindningstid. Gratis genomgång.`,
     vad: "Synas när kunder söker på Google",
     ikon: Search,
     svarighet: 4,
@@ -91,16 +92,16 @@ export const TJANSTER: readonly Tjanst[] = [
       "Innehållsplan som vi skriver",
       "Google Search Console i ert namn och rapport varje månad",
     ],
-    pris: { belopp: PRIS.seoGeo, fran: false, avser: "Grundoptimering av SEO och GEO" },
-    iPaket: `Löpande SEO ingår i alla månadspaket, från ${kr(PRIS.start)} per månad.`,
+    pris: { belopp: PRIS.synlighetBas, fran: true, manad: true, avser: "Synlighet – SEO och GEO" },
+    iPaket: `Först en grundoptimering från ${kr(PRIS.grundoptimering)} som engångsjobb.`,
     fragor: [
       {
         fraga: "Vad kostar SEO?",
-        svar: `En grundoptimering av SEO och GEO kostar ${kr(PRIS.seoGeo)}. Löpande SEO ingår i alla månadspaket från ${kr(PRIS.start)} per månad. ${MOMS_TEXT}`,
+        svar: `Först en grundoptimering från ${kr(PRIS.grundoptimering)} som engångsjobb. Därefter löpande SEO och GEO från ${kr(PRIS.synlighetBas)} per månad, utan bindningstid. ${MOMS_TEXT}`,
       },
       {
         fraga: "Hur lång tid tar det innan SEO ger resultat?",
-        svar: "Oftast syns de första förbättringarna efter några månader. SEO är ett långsiktigt arbete, därför ingår det löpande i månadspaketen.",
+        svar: "Oftast syns de första förbättringarna efter några månader. SEO är ett långsiktigt arbete, därför sker det löpande varje månad.",
       },
       {
         fraga: "Vad är skillnaden mellan SEO och GEO?",
@@ -118,7 +119,7 @@ export const TJANSTER: readonly Tjanst[] = [
       markera: "rekommendera er",
     },
     seoTitel: "GEO – synas i ChatGPT och AI-sök",
-    seoBeskrivning: `Generative Engine Optimization: bli nämnd när kunder frågar ChatGPT, Gemini och Perplexity. Grundoptimering ${kr(PRIS.seoGeo)}. Gratis genomgång.`,
+    seoBeskrivning: `Generative Engine Optimization: bli nämnd när kunder frågar ChatGPT, Gemini och Perplexity. Från ${kr(PRIS.synlighetBas)}/mån. Gratis genomgång.`,
     vad: "Synas när kunder frågar ChatGPT och andra AI-assistenter",
     ikon: Bot,
     svarighet: 5,
@@ -136,8 +137,8 @@ export const TJANSTER: readonly Tjanst[] = [
       "Plan för omnämnanden",
       "Uppföljning av hur ni nämns",
     ],
-    pris: { belopp: PRIS.seoGeo, fran: false, avser: "Grundoptimering av SEO och GEO" },
-    iPaket: `GEO ingår löpande i alla månadspaket, från ${kr(PRIS.start)} per månad.`,
+    pris: { belopp: PRIS.synlighetBas, fran: true, manad: true, avser: "Synlighet – SEO och GEO" },
+    iPaket: `Först en grundoptimering från ${kr(PRIS.grundoptimering)} som engångsjobb.`,
     fordjupning: [
       {
         rubrik: { text: "Så väljer AI-assistenter vilka företag de nämner", markera: "nämner" },
@@ -182,7 +183,7 @@ export const TJANSTER: readonly Tjanst[] = [
       },
       {
         fraga: "Vad kostar GEO?",
-        svar: `GEO ingår i grundoptimeringen av SEO och GEO för ${kr(PRIS.seoGeo)}, och löpande i alla månadspaket. ${MOMS_TEXT}`,
+        svar: `GEO ingår i Synlighet tillsammans med SEO: först en grundoptimering från ${kr(PRIS.grundoptimering)}, sedan löpande från ${kr(PRIS.synlighetBas)} per månad. ${MOMS_TEXT}`,
       },
     ],
   },
@@ -195,7 +196,7 @@ export const TJANSTER: readonly Tjanst[] = [
       markera: "rätt personer",
     },
     seoTitel: "Meta-annonser – Facebook & Instagram",
-    seoBeskrivning: `Vi sätter upp och sköter era annonser på Facebook och Instagram. Uppsättning ${kr(PRIS.metaUppsattning)}, löpande hantering i Growth och Premium.`,
+    seoBeskrivning: `Vi sätter upp och sköter era annonser på Facebook och Instagram. Löpande från ${kr(PRIS.annonser1)}/mån, ingen bindningstid.`,
     vad: "Nå rätt personer på Facebook och Instagram",
     ikon: Megaphone,
     svarighet: 4,
@@ -213,8 +214,13 @@ export const TJANSTER: readonly Tjanst[] = [
       "Löpande optimering av budgeten",
       "Tydlig rapport om vad det gav",
     ],
-    pris: { belopp: PRIS.metaUppsattning, fran: false, avser: "Uppsättning av Meta Ads" },
-    iPaket: `Löpande hantering ingår i Growth (${kr(PRIS.growth)} per månad) och Premium (${kr(PRIS.premium)} per månad).`,
+    pris: {
+      belopp: PRIS.annonser1,
+      fran: true,
+      manad: true,
+      avser: "Annonser – Facebook och Instagram",
+    },
+    iPaket: `Först en annonsuppsättning för ${kr(PRIS.annonsUppsattning)}, inklusive första kampanjen. Annonsbudgeten betalar ni direkt till Meta.`,
     fordjupning: [
       {
         rubrik: { text: "Så sätter vi upp era annonser", markera: "sätter vi upp" },
@@ -247,7 +253,7 @@ export const TJANSTER: readonly Tjanst[] = [
       },
       {
         fraga: "Vad kostar det att komma igång?",
-        svar: `Uppsättningen kostar ${kr(PRIS.metaUppsattning)}. Löpande hantering ingår i Growth (${kr(PRIS.growth)} per månad) och Premium (${kr(PRIS.premium)} per månad). ${MOMS_TEXT}`,
+        svar: `Uppsättningen kostar ${kr(PRIS.annonsUppsattning)} och första kampanjen ingår. Därefter Annonser 1 (${kr(PRIS.annonser1)}/mån, 1 ny kampanj) eller Annonser 2 (${kr(PRIS.annonser2)}/mån, upp till 3). ${MOMS_TEXT}`,
       },
       {
         fraga: "Ingår cookiebanner?",
@@ -269,7 +275,7 @@ export const TJANSTER: readonly Tjanst[] = [
     iText: "hemsideoptimering",
     rubrik: { text: "Hemsideoptimering som gör fler besökare till kunder", markera: "kunder" },
     seoTitel: "Optimering av hemsida för fler kunder",
-    seoBeskrivning: `Vi går igenom er hemsida och gör den snabbare, tydligare och bättre på att sälja. Uppfräschning från ${kr(PRIS.uppfraschning)}. Gratis genomgång.`,
+    seoBeskrivning: `Vi går igenom er hemsida och gör den snabbare, tydligare och bättre på att sälja. Offert från ${kr(PRIS.modernisering)}. Gratis genomgång.`,
     vad: "Få fler besökare att bli kunder",
     ikon: Gauge,
     svarighet: 3,
@@ -287,7 +293,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Vi gör ändringarna åt er",
       "Mätning före och efter",
     ],
-    pris: { belopp: PRIS.uppfraschning, fran: true, avser: "Uppfräschning av hemsida" },
+    pris: { belopp: PRIS.modernisering, fran: true, avser: "Modernisering – offert" },
     iPaket: null,
     fordjupning: [
       {
@@ -309,7 +315,7 @@ export const TJANSTER: readonly Tjanst[] = [
       {
         rubrik: { text: "Vi arbetar i er plattform", markera: "er plattform" },
         stycken: [
-          "WordPress, Wix, Squarespace, Shopify eller en egenbyggd sajt – vi gör ändringarna där sajten redan finns. Ibland lönar det sig mer att bygga nytt än att laga det gamla, och då säger vi det.",
+          "WordPress, Webflow, Wix, Squarespace eller en egenbyggd sajt – vi gör ändringarna där sajten redan finns. Ibland lönar det sig mer att bygga nytt än att laga det gamla, och då säger vi det.",
         ],
         lank: { text: "Läs om att bygga en ny hemsida", till: "/hemsida-foretag" },
       },
@@ -317,11 +323,11 @@ export const TJANSTER: readonly Tjanst[] = [
     fragor: [
       {
         fraga: "Vad kostar det att förbättra vår hemsida?",
-        svar: `En uppfräschning kostar från ${kr(PRIS.uppfraschning)}, beroende på hur mycket som behöver göras. Ni får ett skräddarsytt förslag efter den kostnadsfria genomgången. ${MOMS_TEXT}`,
+        svar: `Modernisering är alltid offert, från ${kr(PRIS.modernisering)}, beroende på hur mycket som behöver göras och vilken plattform sajten ligger på. Ni får ett fast pris efter den kostnadsfria genomgången. ${MOMS_TEXT}`,
       },
       {
-        fraga: "Ingår hemsideförbättringar i månadspaketen?",
-        svar: `Nej. Månadspaketen innehåller marknadsföring: bilder, SEO/GEO och Meta-annonser. ${HEMSIDA_UTANFOR_PAKET_TEXT}`,
+        fraga: "Kan vi få löpande hjälp med ändringar?",
+        svar: ANDRINGAR_TEXT,
       },
     ],
   },
@@ -334,7 +340,7 @@ export const TJANSTER: readonly Tjanst[] = [
       markera: "sluta scrolla",
     },
     seoTitel: "Marknadsföringsbilder och video för företag",
-    seoBeskrivning: `Produkt- och kampanjbilder och korta videor för sociala medier, annonser och hemsida. 5 bilder ${kr(PRIS.bilder5)}, 10 bilder ${kr(PRIS.bilder10)}.`,
+    seoBeskrivning: `Produkt- och kampanjbilder och korta videor för sociala medier, annonser och hemsida. Från ${kr(PRIS.studioS)}/mån eller 5 bilder för ${kr(PRIS.bilder5)}.`,
     vad: "Bilder och video som får folk att sluta scrolla",
     ikon: Camera,
     svarighet: 4,
@@ -342,27 +348,28 @@ export const TJANSTER: readonly Tjanst[] = [
       "Bilden är det första kunden ser i flödet och på sajten. Bra produktbilder kräver idé, ljus, rekvisita och efterarbete, och varje kanal vill ha sitt eget format.",
     sjalv: [
       "Komma på ett koncept som sticker ut",
-      "Ordna fotograf, ljus och rekvisita",
+      "Ordna foto, ljus och rekvisita",
       "Redigera varje bild",
       "Beskära om för varje kanal",
     ],
     medOss: [
-      "Koncept anpassat efter varumärket",
-      "Produktion av bilder och video",
-      "Färdiga format för alla kanaler",
-      "Klara att publicera direkt",
+      "Bildstil och koncept efter varumärket",
+      "Testbilder att godkänna innan produktion",
+      "Upp till 3 format per bild",
+      "Leverans inom 5 arbetsdagar",
     ],
-    pris: { belopp: PRIS.bilder5, fran: true, avser: "Marknadsföringsbilder" },
+    pris: { belopp: PRIS.studioS, fran: true, manad: true, avser: "Studio – bilder och video" },
     galleri: BILDER,
-    iPaket: `5, 10 eller 20 bilder per månad ingår i månadspaketen, från ${kr(PRIS.start)} per månad.`,
+    iPaket: `Eller engångsköp: 5 bilder ${kr(PRIS.bilder5)}, 10 bilder ${kr(PRIS.bilder10)}, 20 bilder ${kr(PRIS.bilder20)}.`,
     fordjupning: [
       {
         rubrik: { text: "Så går det till", markera: "går det till" },
         lista: [
           "Vi går igenom varumärket, målgruppen och var bilderna ska användas.",
           "Ni får förslag på koncept innan vi börjar producera.",
-          "Vi tar fram bilderna och videorna – med kamera, AI-verktyg eller båda.",
-          "Ni får allt i rätt format: stående och kvadratiskt för sociala medier, liggande för hemsidan och de format annonserna kräver.",
+          "Ni skickar produktfoton, och vi tar fram 2–3 testbilder med AI som ni godkänner.",
+          "Därefter producerar vi resten och levererar inom 5 arbetsdagar i en delad mapp.",
+          "Ni får varje bild i upp till 3 format: stående och kvadratiskt för sociala medier, liggande för hemsidan.",
         ],
         efter: [GARANTI_TEXT],
       },
@@ -376,7 +383,7 @@ export const TJANSTER: readonly Tjanst[] = [
     fragor: [
       {
         fraga: "Vad kostar marknadsföringsbilder?",
-        svar: `5 bilder kostar ${kr(PRIS.bilder5)}, 10 bilder ${kr(PRIS.bilder10)} och 20 bilder ${kr(PRIS.bilder20)}. Bilder ingår också i alla månadspaket. ${MOMS_TEXT}`,
+        svar: `Som abonnemang: Studio S ${kr(PRIS.studioS)}/mån (5 bilder), Studio M ${kr(PRIS.studioM)}/mån (10 bilder + 1 video) och Studio L ${kr(PRIS.studioL)}/mån (20 bilder + 3 videor). Som engångsköp: 5 bilder ${kr(PRIS.bilder5)}, 10 bilder ${kr(PRIS.bilder10)} och 20 bilder ${kr(PRIS.bilder20)}. ${MOMS_TEXT}`,
       },
       {
         fraga: "Gör ni video också?",
@@ -394,7 +401,7 @@ export const TJANSTER: readonly Tjanst[] = [
     iText: "nya hemsidor",
     rubrik: { text: "En hemsida som ser ut som ert varumärke och säljer", markera: "säljer" },
     seoTitel: "Skapa ny hemsida för företag",
-    seoBeskrivning: `Vi designar, skriver och bygger er nya hemsida med SEO från start. Från ${kr(PRIS.hemsida)}. Gratis genomgång och skräddarsytt förslag.`,
+    seoBeskrivning: `Vi designar, skriver och bygger er nya hemsida med SEO från start. Från ${kr(PRIS.landningssida)}. Gratis genomgång och fast pris.`,
     vad: "En sajt som ser ut som ert varumärke och säljer",
     ikon: LayoutTemplate,
     svarighet: 5,
@@ -408,12 +415,12 @@ export const TJANSTER: readonly Tjanst[] = [
     ],
     medOss: [
       "Design utifrån ert varumärke",
-      "Text och bilder som säljer",
+      "Texter utifrån ert underlag",
       "Utveckling och lansering",
       "SEO-grund från start",
     ],
-    pris: { belopp: PRIS.hemsida, fran: true, avser: "Ny hemsida" },
-    iPaket: null,
+    pris: { belopp: PRIS.landningssida, fran: true, avser: "Webb – ny hemsida" },
+    iPaket: `Efter lansering: ta över sajten själva, eller drift från ${kr(PRIS.essential)}/mån.`,
     arbetssatt: {
       steg: [
         {
@@ -439,11 +446,11 @@ export const TJANSTER: readonly Tjanst[] = [
       },
       {
         fraga: "Vad kostar en ny hemsida?",
-        svar: `En ny hemsida kostar från ${kr(PRIS.hemsida)}. Det slutliga priset beror på hur många sidor och funktioner ni behöver, och ni får ett skräddarsytt förslag efter den kostnadsfria genomgången. ${MOMS_TEXT}`,
+        svar: `En landningssida kostar ${kr(PRIS.landningssida)} och en företagshemsida med upp till 5 sidor ${kr(PRIS.foretagshemsida)}. Mer avancerade sajter – bokning, flera språk, inloggning – får offert från ${kr(PRIS.webbSkraddarsytt)}. ${MOMS_TEXT}`,
       },
       {
         fraga: "Ska vi bygga nytt eller förbättra den hemsida vi har?",
-        svar: `Ofta räcker det att förbättra den sajt ni redan har – en uppfräschning kostar från ${kr(PRIS.uppfraschning)}. Vi går igenom vilket som passar er på den kostnadsfria genomgången.`,
+        svar: `Ibland räcker det att förbättra den sajt ni redan har – det är offert från ${kr(PRIS.modernisering)}. Vi går igenom vilket som lönar sig för er på den kostnadsfria genomgången.`,
       },
     ],
   },
@@ -489,7 +496,9 @@ export const SPARNING: Delomrade = {
 };
 
 /** Raderna under "Det här krävs för att lyckas digitalt" på startsidan. */
-export const OMRADEN: readonly (Tjanst | Delomrade)[] = [...TJANSTER, SPARNING];
+// "Cookies och spårning" visas inte längre som eget område – samtyckesbannern ingår i
+// annonsuppsättningen. SPARNING finns kvar så att den gamla adressen omdirigeras.
+export const OMRADEN: readonly (Tjanst | Delomrade)[] = [...TJANSTER];
 
 export function hittaDelomrade(slug: string): Delomrade | undefined {
   return SPARNING.slug === slug ? SPARNING : undefined;

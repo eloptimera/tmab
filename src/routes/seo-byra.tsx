@@ -26,7 +26,8 @@ import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
-import { BINDNING_TEXT, kr, MOMS_TEXT, PAKET, PRIS } from "@/lib/priser";
+import { DelPrisrutor, SYNLIGHET_KORT } from "@/components/Prisrutor";
+import { SYNLIGHET } from "@/lib/priser";
 import { SEO_BYRA, SEO_FRAGOR } from "@/lib/seo-byra";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { bokaKlick } from "@/lib/sparning";
@@ -162,14 +163,13 @@ const VARFOR_TAB: readonly Kort[] = [
   },
   {
     titel: "Ingen bindningstid",
-    text: "Löpande SEO ingår i månadspaketen och löper till slutet av betald period.",
+    text: "Löpande SEO och GEO har fast månadspris och löper till slutet av betald period.",
     ikon: LineChart,
   },
 ];
 
 function SeoByra() {
   const seo = hittaTjanst(TJANST);
-  const seoRad = (ingar: readonly string[]) => ingar.find((r) => r.includes("SEO")) ?? "";
 
   return (
     <>
@@ -205,7 +205,7 @@ function SeoByra() {
           ))}
           <li className="pt-2">
             <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">
-              Grundoptimering {kr(PRIS.seoGeo)} · löpande från {kr(PRIS.start)}/mån
+              {SYNLIGHET_KORT}
             </span>
           </li>
         </ul>
@@ -440,72 +440,29 @@ function SeoByra() {
             <Reveal delay={80}>
               <p className="text-lg leading-relaxed text-ink/80">
                 Hur mycket arbete som behövs beror på hur sajten ser ut i dag, hur hård konkurrensen
-                är och hur många tjänster och sökord ni vill synas på. Därför har vi två vägar in:
-                en grundoptimering som engångsinsats, och löpande SEO som ingår i månadspaketen.
+                är och hur många tjänster och sökord ni vill synas på. Därför börjar vi med en
+                grundoptimering som engångsjobb, och fortsätter med löpande SEO och GEO varje månad.
               </p>
               <p className="mt-5 text-lg leading-relaxed text-ink/80">
-                Båda har fast pris: grundoptimeringen ett engångspris och månadspaketen ett fast
-                månadspris, utan bindningstid. På den kostnadsfria genomgången går vi igenom vad som
-                behövs, och ni får ett förslag där det står vad som ingår och varför.
+                Båda har fast pris och ingen bindningstid. Vilken löpande nivå som passar föreslår
+                vi efter den kostnadsfria genomgången – ni får ett skriftligt förslag där det står
+                vad som ingår och varför.
               </p>
             </Reveal>
           </div>
 
-          <div className="mt-12 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal className="h-full">
-              <div
-                id="pris"
-                className="flex h-full scroll-mt-28 flex-col rounded-[2rem] bg-ink p-8 text-white sm:p-10"
-              >
-                <p className="caps text-sun">Engång</p>
-                <h3 className="mt-4 font-sans text-xl font-bold tracking-normal">
-                  Grundoptimering av SEO och GEO
-                </h3>
-                <p className="mt-4 font-display text-5xl leading-none sm:text-6xl">
-                  {kr(PRIS.seoGeo)}
-                </p>
-                <p className="mt-3 flex-1 text-sm text-white/70">
-                  {MOMS_TEXT} Genomgången och förslaget är gratis.
-                </p>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <BokaKnapp
-                    variant="white"
-                    tjanst={TJANST}
-                    onClick={() => bokaKlick(SIDA, "pris")}
-                  >
-                    Få en kostnadsfri SEO-genomgång
-                  </BokaKnapp>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={80} className="h-full">
-              <div className="h-full rounded-[2rem] border-2 border-line bg-white p-8 sm:p-10">
-                <p className="caps text-brand">Löpande · per månad</p>
-                <h3 className="mt-4 font-sans text-xl font-bold tracking-normal text-ink">
-                  SEO i månadspaketen
-                </h3>
-                <ul className="mt-6 divide-y divide-line">
-                  {PAKET.map((p) => (
-                    <li key={p.id} className="flex items-baseline justify-between gap-4 py-4">
-                      <span>
-                        <span className="block font-bold text-ink">{p.namn}</span>
-                        <span className="text-sm text-muted-foreground">{seoRad(p.ingar)}</span>
-                      </span>
-                      <span className="shrink-0 font-display text-2xl text-ink">
-                        {kr(p.belopp)}
-                        <span className="text-sm text-muted-foreground">/mån</span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  {BINDNING_TEXT} Uppstart av större månadsabonnemang {kr(PRIS.uppstart)}.
-                </p>
-                <Link to="/priser" className="btn-base btn-outline mt-6">
-                  Se vad som ingår i paketen
-                </Link>
-              </div>
-            </Reveal>
+          <div className="mt-12">
+            <DelPrisrutor
+              del={SYNLIGHET}
+              engangIndex={2}
+              engangRubrik="Grundoptimering av SEO och GEO"
+              engangNot="Upp till 10 sidor: teknik, sökordsanalys, strukturerad data och Search Console i ert namn. Större sajter och åtgärdslista utan åtkomst finns också."
+              lopandeRubrik="Löpande SEO och GEO"
+              lopandeNot="Nya eller förbättrade sidor varje månad, teknisk bevakning och rapport. Nivån föreslår vi efter genomgången."
+              tjanst={TJANST}
+              knapptext="Få en kostnadsfri SEO-genomgång"
+              onBoka={() => bokaKlick(SIDA, "pris")}
+            />
           </div>
         </div>
       </section>

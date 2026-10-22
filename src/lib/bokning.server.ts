@@ -9,7 +9,8 @@ const BokningSchema = z.object({
   telefon: z.string().trim().max(40),
   webbplats: z.string().trim().max(200),
   tjanster: z.array(z.string().max(60)).max(10),
-  paket: z.string().max(20),
+  // Längsta nivånamnet är "Extern marknadsavdelning" (24 tecken).
+  paket: z.string().max(40),
   meddelande: z.string().trim().max(3000),
   /** Dolt fält som bara robotar fyller i. */
   falla: z.string().max(500),
@@ -33,7 +34,7 @@ export async function hanteraBokning(indata: unknown): Promise<{ ok: true }> {
     `E-post: ${data.epost}`,
     data.telefon && `Telefon: ${data.telefon}`,
     data.webbplats && `Webbplats: ${data.webbplats}`,
-    data.paket && `Intresserad av paket: ${data.paket}`,
+    data.paket && `Intresserad av: ${data.paket}`,
     data.tjanster.length > 0 && `Vill ha hjälp med: ${data.tjanster.join(", ")}`,
     data.meddelande && `\nMeddelande:\n${data.meddelande}`,
   ].filter(Boolean);

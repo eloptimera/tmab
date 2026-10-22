@@ -175,7 +175,7 @@ function Kontakt() {
 
             <div>
               <label htmlFor="paket" className="text-sm font-bold">
-                Månadspaket (valfritt)
+                Nivå ni är intresserade av (valfritt)
               </label>
               <select
                 id="paket"

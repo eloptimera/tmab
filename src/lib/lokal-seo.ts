@@ -1,9 +1,6 @@
 // Landningssidan /lokal-seo – lokal sökmotoroptimering, Google Maps och Google-företagsprofilen.
 // Skild från /seo-byra (SEO generellt).
-// Lokal SEO har inget eget pris – den ingår i SEO-arbetet. Priser hämtas från priser.ts.
-//
-// TODO(TAB): har ni ett eget pris eller paket för lokal SEO (t.ex. genomgång av
-// Google-företagsprofilen eller lokala landningssidor)? Lägg det i priser.ts så visas det här.
+// Lokal SEO ingår i Synlighet; Google-företagsprofilen har eget pris. Priser hämtas från priser.ts.
 import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 
 export const LOKAL_SEO = {
@@ -34,7 +31,7 @@ export const LOKAL_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar lokal SEO?",
-    svar: `Lokal SEO ingår i vårt SEO-arbete. En grundoptimering av SEO och GEO kostar ${kr(PRIS.seoGeo)}, och löpande SEO ingår i alla månadspaket från ${kr(PRIS.start)} per månad. Vad som ingår för er står i förslaget efter den kostnadsfria genomgången. ${MOMS_TEXT}`,
+    svar: `Google-företagsprofilen sätter vi upp eller tar över för ${kr(PRIS.foretagsprofil)}. Hemsidan: en grundoptimering från ${kr(PRIS.grundoptimering)}, och därefter löpande SEO från ${kr(PRIS.synlighetBas)} per månad med nya lokala tjänstesidor varje månad. Flera orter eller språk får offert. ${MOMS_TEXT}`,
   },
   {
     fraga: "Hur lång tid tar det innan lokal SEO ger resultat?",
@@ -74,7 +71,7 @@ export const LOKAL_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Finns det bindningstid?",
-    svar: `En grundoptimering är en engångsinsats. För månadspaketen gäller: ${BINDNING_TEXT}`,
+    svar: `Företagsprofilen och grundoptimeringen är engångsjobb. För det löpande arbetet gäller: ${BINDNING_TEXT}`,
   },
   {
     fraga: "Hur kommer vi igång?",

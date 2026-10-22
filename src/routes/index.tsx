@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { Tusch } from "@/components/Tusch";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
-import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
+import { BINDNING_TEXT, kr, LAGSTA_MANADSPRIS, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 import { faqSchema, sidhuvud } from "@/lib/seo";
 import { avstava } from "@/lib/text";
 
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
   head: () =>
     sidhuvud({
       titel: "Marknadsföringsbyrå för företag",
-      beskrivning: `Vi tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger hemsidor åt företag. Marknadsföring från ${kr(PRIS.start)}/mån. Boka gratis genomgång.`,
+      beskrivning: `Vi tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger hemsidor åt företag. Marknadsföring från ${kr(LAGSTA_MANADSPRIS)}/mån. Boka gratis genomgång.`,
       sokvag: "/",
       schema: [faqSchema(HEM_FRAGOR)],
     }),
@@ -35,11 +35,11 @@ const HEM_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar det att anlita er?",
-    svar: `Månadspaketen kostar ${kr(PRIS.start)}, ${kr(PRIS.growth)} eller ${kr(PRIS.premium)} per månad. En ny hemsida kostar från ${kr(PRIS.hemsida)} som engångspris. ${MOMS_TEXT} Första genomgången är gratis.`,
+    svar: `Ni köper det ni behöver: bilder och video från ${kr(PRIS.studioS)}/mån, annonser från ${kr(PRIS.annonser1)}/mån, SEO och GEO från ${kr(PRIS.synlighetBas)}/mån och en ny hemsida från ${kr(PRIS.landningssida)}. Ingen startavgift. ${MOMS_TEXT} Första genomgången är gratis.`,
   },
   {
     fraga: "Arbetar ni med företag i hela Sverige?",
-    svar: "Ja. Vi arbetar digitalt, så det spelar ingen roll var ert företag finns.",
+    svar: "Ja. Vi har säte i Göteborg och arbetar digitalt, så det spelar ingen roll var ert företag finns.",
   },
   {
     fraga: "Finns det någon bindningstid?",
@@ -110,7 +110,7 @@ function Start() {
             <p className="text-lg leading-relaxed text-ink/80">
               Vi tar fram marknadsföringsbilder och video, sköter SEO, GEO och Meta-annonser och
               bygger hemsidor som säljer – för företag i hela Sverige. Marknadsföring från{" "}
-              {kr(PRIS.start)} i månaden, exkl. moms.
+              {kr(LAGSTA_MANADSPRIS)} i månaden, exkl. moms.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <BokaKnapp />
