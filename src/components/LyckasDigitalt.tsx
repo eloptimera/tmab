@@ -104,6 +104,7 @@ function Innehall({ o }: { o: Tjanst | Delomrade }) {
             <span className="font-display text-xl text-ink">
               {o.pris.fran ? "från " : ""}
               {kr(o.pris.belopp)}
+              {o.pris.manad ? "/mån" : ""}
             </span>{" "}
             <span className="text-sm text-muted-foreground">exkl. moms</span>
           </p>

@@ -64,6 +64,7 @@ function TjanstSida() {
         <a href="#pris" className="btn-base btn-outline">
           Pris: {t.pris.fran ? "från " : ""}
           {kr(t.pris.belopp)}
+          {t.pris.manad ? "/mån" : ""}
         </a>
       </PageHero>
 
@@ -214,6 +215,7 @@ function Pris({ t }: { t: Tjanst }) {
       <p className="mt-2 font-display text-5xl leading-none sm:text-6xl">
         {t.pris.fran ? <span className="text-3xl sm:text-4xl">från </span> : null}
         {kr(t.pris.belopp)}
+        {t.pris.manad ? <span className="text-3xl sm:text-4xl">/mån</span> : null}
       </p>
       <p className="mt-3 text-sm text-white/70">{MOMS_TEXT}</p>
       {t.iPaket && <p className="mt-8 leading-relaxed text-white/85">{t.iPaket}</p>}

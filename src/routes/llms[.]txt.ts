@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { absolut, FORETAG } from "@/lib/foretag";
 import {
-  ENGANGSTJANSTER,
+  BINDNING_TEXT,
+  DELAR,
+  EN_I_TAGET_TEXT,
+  EXTERN,
   kr,
-  MOMS_TEXT,
-  PAKET,
-  PAKET_VILLKOR,
-  PRIS_FRAGOR,
   LOFTEN,
+  MOMS_TEXT,
+  PRIS_FRAGOR,
   prisText,
+  STARTAVGIFT_TEXT,
 } from "@/lib/priser";
 import { GUIDER } from "@/lib/guider";
 import { LANDNINGSSIDOR, landningssidaForTjanst } from "@/lib/landningssidor";
@@ -52,18 +54,29 @@ function llmsText(): string {
     "",
     ...TJANSTER.map(
       (t) =>
-        `- [${t.titel}](${absolut(tjanstSokvag(t))}): ${t.vad}. ${t.pris.avser}: ${t.pris.fran ? "från " : ""}${kr(t.pris.belopp)}.`,
+        `- [${t.titel}](${absolut(tjanstSokvag(t))}): ${t.vad}. ${t.pris.avser}: ${t.pris.fran ? "från " : ""}${kr(t.pris.belopp)}${t.pris.manad ? " per månad" : ""}.`,
     ),
     "",
-    "## Månadspaket",
+    "## Priser",
     "",
-    ...PAKET.map((p) => `- ${p.namn}: ${kr(p.belopp)} per månad – ${p.ingar.join(", ")}.`),
+    `Erbjudandet består av fyra delar som köps var för sig. ${BINDNING_TEXT} ${STARTAVGIFT_TEXT} ${EN_I_TAGET_TEXT}`,
     "",
-    PAKET_VILLKOR,
+    ...DELAR.flatMap((d) => [
+      `### ${d.namn} – ${d.vad}`,
+      "",
+      d.intro,
+      "",
+      ...d.engang.map((r) => `- ${r.tjanst}: ${prisText(r)}${r.not ? ` (${r.not})` : ""}`),
+      ...d.nivaer.map(
+        (n) =>
+          `- ${n.namn}: ${kr(n.belopp)}${n.enhet === "mån" ? " per månad" : ""} – ${n.ingar.join(", ")}.`,
+      ),
+      `- Skräddarsytt: offert från ${kr(d.skraddarsytt.pris)}${d.skraddarsytt.enhet === "mån" ? " per månad" : ""} – ${d.skraddarsytt.text}.`,
+      "",
+    ]),
+    `### ${EXTERN.namn}`,
     "",
-    "## Engångstjänster",
-    "",
-    ...ENGANGSTJANSTER.map((r) => `- ${r.tjanst}: ${prisText(r)}`),
+    `- ${kr(EXTERN.belopp)} per månad, högst ${EXTERN.maxKunder} kunder samtidigt – ${EXTERN.ingar.join(", ")}.`,
     "",
     "## Guider",
     "",
