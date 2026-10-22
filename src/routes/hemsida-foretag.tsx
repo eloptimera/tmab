@@ -17,6 +17,7 @@ import { KortVy, type Kort } from "@/components/Kort";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
 import { ProjektLista } from "@/components/Projekt";
+import { ProjektVideo } from "@/components/ProjektVideo";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
@@ -24,7 +25,8 @@ import { FORETAG } from "@/lib/foretag";
 import { HEMSIDA_PRIS } from "@/lib/hemsida-pris";
 import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
 import { AGANDE_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
-import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
+import { PROJEKT_VIDEO } from "@/lib/projekt";
+import { brodsmulor, faqSchema, sidhuvud, tjanstSchema, videoSchema } from "@/lib/seo";
 import { bokaKlick } from "@/lib/sparning";
 import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
 import { WEBBYRA_GOTEBORG } from "@/lib/webbyra-goteborg";
@@ -42,6 +44,7 @@ export const Route = createFileRoute("/hemsida-foretag")({
       schema: [
         ...(t ? [tjanstSchema(t)] : []),
         faqSchema(HEMSIDA_FRAGOR),
+        videoSchema(PROJEKT_VIDEO.hemsida),
         brodsmulor([
           { namn: "Hem", sokvag: "/" },
           { namn: "Tjänster", sokvag: "/tjanster" },
@@ -420,7 +423,10 @@ function HemsidaForetag() {
             design, innehåll och funktioner. Här är några av våra tidigare projekt.
           </p>
         </Reveal>
-        <ProjektLista className="mt-10" />
+        <Reveal className="mt-10">
+          <ProjektVideo video={PROJEKT_VIDEO.hemsida} />
+        </Reveal>
+        <ProjektLista className="mt-12" />
       </section>
 
       {/* 7. Pris */}

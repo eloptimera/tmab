@@ -105,3 +105,34 @@ export const BILDER: readonly Bild[] = [
     hojd: 1376,
   },
 ];
+
+/** Visningsfilmer av sajter vi byggt (public/video/). Ljudlösa loopar – texten bredvid bär innehållet. */
+export type ProjektVideo = {
+  namn: string;
+  /** Kort beskrivning – visas under filmen och i VideoObject-schemat. */
+  beskrivning: string;
+  /** Filnamn utan ändelse i public/video/ – .webm, .mp4 och .webp (stillbild) måste finnas. */
+  fil: string;
+  /** ISO 8601-längd, t.ex. "PT23S". */
+  langd: string;
+  publicerad: string;
+};
+
+export const PROJEKT_VIDEO = {
+  startsida: {
+    namn: "Hemsidor byggda av TAB Marketing – Treatly och Scudaro",
+    beskrivning:
+      "Ett varv genom två hemsidor vi har byggt: Treatlys hemsida och kundplattform för personaluppvaktning och Scudaros webbshop för streetwear.",
+    fil: "projekt-hemsidor",
+    langd: "PT23S",
+    publicerad: "2026-10-22",
+  },
+  hemsida: {
+    namn: "Hemsidor på dator och mobil – Treatly och Scudaro",
+    beskrivning:
+      "Samma sajter på dator och mobil sida vid sida: Treatlys hemsida och kundplattform och Scudaros webbshop, byggda för att fungera lika bra i mobilen.",
+    fil: "projekt-hemsidor-mobil",
+    langd: "PT21S",
+    publicerad: "2026-10-22",
+  },
+} as const satisfies Record<string, ProjektVideo>;

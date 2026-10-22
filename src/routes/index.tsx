@@ -5,12 +5,14 @@ import { Blob, Linjer } from "@/components/Brand";
 import { Heading, Mark } from "@/components/Heading";
 import { LyckasDigitalt } from "@/components/LyckasDigitalt";
 import { BildGalleri, ProjektLista } from "@/components/Projekt";
+import { ProjektVideo } from "@/components/ProjektVideo";
 import { Reveal } from "@/components/Reveal";
 import { Tusch } from "@/components/Tusch";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
 import { BINDNING_TEXT, kr, LAGSTA_MANADSPRIS, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
-import { faqSchema, sidhuvud } from "@/lib/seo";
+import { PROJEKT_VIDEO } from "@/lib/projekt";
+import { faqSchema, sidhuvud, videoSchema } from "@/lib/seo";
 import { avstava } from "@/lib/text";
 
 export const Route = createFileRoute("/")({
@@ -19,7 +21,7 @@ export const Route = createFileRoute("/")({
       titel: "Marknadsföringsbyrå för företag",
       beskrivning: `Vi tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger hemsidor åt företag. Marknadsföring från ${kr(LAGSTA_MANADSPRIS)}/mån. Boka gratis genomgång.`,
       sokvag: "/",
-      schema: [faqSchema(HEM_FRAGOR)],
+      schema: [faqSchema(HEM_FRAGOR), videoSchema(PROJEKT_VIDEO.startsida)],
     }),
   component: Start,
 });
@@ -203,7 +205,10 @@ function Start() {
               </span>
             </Heading>
           </Reveal>
-          <ProjektLista className="mt-10" />
+          <Reveal className="mt-10">
+            <ProjektVideo video={PROJEKT_VIDEO.startsida} />
+          </Reveal>
+          <ProjektLista className="mt-12" />
 
           <Reveal className="mt-14">
             <h3 className="text-3xl sm:text-4xl">

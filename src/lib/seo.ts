@@ -3,6 +3,7 @@
 // delningsbild och strukturerad data likadana överallt.
 import { absolut, FORETAG, SAJT_URL } from "@/lib/foretag";
 import type { Guide } from "@/lib/guider";
+import type { ProjektVideo } from "@/lib/projekt";
 import { PAKET, PRIS, type Fraga } from "@/lib/priser";
 import { TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
 
@@ -148,6 +149,23 @@ export function tjanstSchema(
         ...(t.pris.fran ? { minPrice: t.pris.belopp } : { price: t.pris.belopp }),
       },
     },
+  };
+}
+
+/** VideoObject för en visningsfilm på sidan. Ger ingen videominiatyr i Google (filmen är inte
+ * sidans huvudinnehåll), men beskriver filmen för sökmotorer och AI-tjänster. */
+export function videoSchema(v: ProjektVideo): Schema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: v.namn,
+    description: v.beskrivning,
+    thumbnailUrl: absolut(`/video/${v.fil}.webp`),
+    contentUrl: absolut(`/video/${v.fil}.mp4`),
+    uploadDate: v.publicerad,
+    duration: v.langd,
+    inLanguage: "sv-SE",
+    publisher: { "@id": FORETAG_ID },
   };
 }
 
