@@ -118,7 +118,11 @@ void main() {
   float sken = exp(-r / (k * .45)) * 1.1 + exp(-r / (k * 2.2)) * .3 + exp(-r * 4.) * .05;
   sken += pow(abs(cos(atan(v.y, v.x) * 2.)), 80.) * exp(-r / (k * 3.)) * .3;
 
-  gl_FragColor = vec4(LJUS * (strale * .85 + sken), 1.);
+  // Genomskinligt där inget ljus finns (förmultiplicerad alfa), så att canvasen aldrig blir en
+  // svart ruta utanför kortets rundade hörn.
+  vec3 ljus = LJUS * (strale * .85 + sken);
+  float alfa = clamp(max(ljus.r, max(ljus.g, ljus.b)), 0., 1.);
+  gl_FragColor = vec4(min(ljus, vec3(alfa)), alfa);
 }
 `;
 
@@ -161,7 +165,6 @@ export function Fyrscen() {
 
     const tandHela = () => tand.style.setProperty("--strale", "linear-gradient(#000, #000)");
     const gl = canvas.getContext("webgl", {
-      alpha: false,
       antialias: false,
       depth: false,
       stencil: false,
@@ -407,10 +410,12 @@ export function Fyrscen() {
             className="fyr-bild absolute inset-0 -z-20 size-full object-cover"
           />
         </picture>
+        {/* Egna rundade hörn: Chrome klipper inte alltid ett WebGL-lager med blandningsläge
+            mot förälderns hörn. */}
         <canvas
           ref={canvasRef}
           aria-hidden="true"
-          className="absolute inset-0 -z-10 size-full mix-blend-screen"
+          className="absolute inset-0 -z-10 size-full rounded-t-[2rem] mix-blend-screen"
         />
         {/* Botten tonas ut i sidfotens färg. */}
         <div
