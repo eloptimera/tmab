@@ -3,6 +3,7 @@ import { Pause, Play } from "lucide-react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { BokaKnapp } from "@/components/Boka";
 import { Mark } from "@/components/Heading";
+import { skapaDjur } from "@/components/masterverket-djur";
 import { FORETAG } from "@/lib/foretag";
 import { kr, LAGSTA_MANADSPRIS } from "@/lib/priser";
 import { tjanstSokvag } from "@/lib/tjanster";
@@ -313,6 +314,13 @@ export function Masterverket() {
     let sistaSlapp = 0;
     let nastaAuto = 0;
     let pekare: { x: number; y: number } | null = null;
+    let pekareKlient: { x: number; y: number } | null = null;
+    const djur = skapaDjur({
+      lager,
+      duk,
+      smal,
+      blommor: () => BLOMMOR[smal.matches ? "smal" : "bred"],
+    });
     let bredd = 0;
     let hojd = 0;
     let skala = 1;
@@ -331,6 +339,7 @@ export function Masterverket() {
         return p;
       });
       ritaDamm(0);
+      djur.stillbild();
     };
 
     // Kornen föds på en slumpad plats inne i strålen (polärt från dukens övre vänstra hörn).
@@ -492,7 +501,10 @@ export function Masterverket() {
         if (!kvar) b.el.remove();
         return kvar;
       });
-      if (!stopp) ritaDamm(dt);
+      if (!stopp) {
+        ritaDamm(dt);
+        djur.uppdatera(dt, tid, pekareKlient);
+      } else djur.stillbild();
       // Pausat: bladen som redan faller får landa, sedan vilar loopen helt.
       if (!stopp || blad.length) vacka();
       else forra = 0;
@@ -511,6 +523,7 @@ export function Masterverket() {
     const onMove = (e: PointerEvent) => {
       const r = ljus.getBoundingClientRect();
       pekare = { x: e.clientX - r.left, y: e.clientY - r.top };
+      pekareKlient = { x: e.clientX, y: e.clientY };
       if (stilla.matches) return;
       if (sistaX !== null) vind = Math.max(-1, Math.min(1, vind + (e.clientX - sistaX) / 900));
       sistaX = e.clientX;
@@ -523,6 +536,11 @@ export function Masterverket() {
     };
     const onDown = (e: PointerEvent) => {
       if (stilla.matches || (e.target instanceof Element && e.target.closest("a, button"))) return;
+      // Pekskärm: ett tryck nära ett djur skrämmer det en kort stund, som en mus som passerar.
+      if (e.pointerType !== "mouse") {
+        pekareKlient = { x: e.clientX, y: e.clientY };
+        window.setTimeout(() => (pekareKlient = null), 700);
+      }
       if (inomBuketten(e.clientX, e.clientY)) {
         slapp(e.clientX, e.clientY);
         vacka();
@@ -531,6 +549,7 @@ export function Masterverket() {
     const onLeave = () => {
       sistaX = null;
       pekare = null;
+      pekareKlient = null;
     };
     const onFlik = () => (document.visibilityState === "visible" ? vacka() : stanna());
     const onStilla = () => {
@@ -570,6 +589,7 @@ export function Masterverket() {
       stilla.removeEventListener("change", onStilla);
       smal.removeEventListener("change", matLjus);
       for (const b of blad) b.el.remove();
+      djur.taBort();
       blad = [];
     };
   }, []);
