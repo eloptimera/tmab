@@ -108,6 +108,20 @@ export function Masterverket() {
       for (const src of KRONBLAD) new Image().src = src;
     };
 
+    // Ett dammkorn: ljus kärna som tonar ut helt mjukt. Ritas en gång och återanvänds.
+    const korn = document.createElement("canvas");
+    korn.width = korn.height = 32;
+    const kctx = korn.getContext("2d");
+    if (kctx) {
+      const g = kctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      g.addColorStop(0, "rgba(255,248,228,1)");
+      g.addColorStop(0.18, "rgba(255,240,205,0.85)");
+      g.addColorStop(0.45, "rgba(255,226,170,0.22)");
+      g.addColorStop(1, "rgba(255,226,170,0)");
+      kctx.fillStyle = g;
+      kctx.fillRect(0, 0, 32, 32);
+    }
+
     let blad: Kronblad[] = [];
     let damm: Damm[] = [];
     let raf = 0;
@@ -201,16 +215,12 @@ export function Masterverket() {
         }
         const glimt = 0.6 + 0.4 * Math.sin(p.fas * 3);
         const alfa = Math.min(1, p.alder / 0.8) * Math.min(1, s * 1.6) * glimt;
-        // Ett mjukt sken runt varje korn gör det synligt även mot den ljusa strålen.
-        ctx.fillStyle = `rgba(255,226,170,${(alfa * 0.22).toFixed(3)})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 3.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = `rgba(255,246,222,${(alfa * 0.95).toFixed(3)})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
+        // Kornet är ett förritat mjukt sken utan kant (inga skarpa skivor som ser ut som ringar).
+        const d = p.r * 6;
+        ctx.globalAlpha = alfa;
+        ctx.drawImage(korn, p.x - d / 2, p.y - d / 2, d, d);
       }
+      ctx.globalAlpha = 1;
     };
 
     const slapp = (kx: number | null, ky: number | null) => {
