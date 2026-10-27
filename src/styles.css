@@ -545,15 +545,6 @@
   perspective: 700px;
   pointer-events: none;
 }
-.tavla-djur {
-  position: absolute;
-  top: 0;
-  left: 0;
-  max-width: none;
-  height: auto;
-  will-change: transform;
-  filter: drop-shadow(0 3px 3px rgb(20 12 4 / 0.35));
-}
 .tavla-kronblad {
   position: absolute;
   top: 0;
@@ -756,7 +747,7 @@ main:has(.fyr-panel) + footer > div {
     -webkit-mask-image: none;
     mask-image: none;
   }
-  /* Lagret med djuren syns ändå: de sitter stilla på sina platser i målningen. */
+  .tavla-blad,
   .tavla-paus {
     display: none;
   }
