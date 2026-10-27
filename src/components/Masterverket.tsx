@@ -37,11 +37,191 @@ const STRALE = {
   bred: { mitt: 37, halv: 22, rackvidd: 0.5 },
   smal: { mitt: 52, halv: 24, rackvidd: 1.05 },
 } as const;
-/** Var buketten är, som andel av dukbilden: där lossnar kronbladen. */
+/** Var buketten är, som andel av dukbilden: bara där skakar pekaren loss kronblad. */
 const BUKETT = {
-  bred: { x0: 0.5, x1: 0.95, y0: 0.1, y1: 0.7 },
-  smal: { x0: 0.1, x1: 0.9, y0: 0.08, y1: 0.62 },
+  bred: { x0: 0.46, x1: 0.98, y0: 0.05, y1: 0.85 },
+  smal: { x0: 0.03, x1: 0.97, y0: 0.02, y1: 0.85 },
 } as const;
+/**
+ * Blommor i varje färg, uppmätta i målningarna (andel av dukbilden). Index = kronbladsbild:
+ * ett kronblad lossnar alltid från en blomma i sin egen färg.
+ */
+const BLOMMOR: Record<"bred" | "smal", readonly (readonly (readonly [number, number])[])[]> = {
+  bred: [
+    // blå (kronblad-1)
+    [
+      [0.604, 0.115],
+      [0.657, 0.115],
+      [0.591, 0.14],
+      [0.631, 0.166],
+      [0.644, 0.166],
+      [0.578, 0.191],
+      [0.657, 0.217],
+      [0.631, 0.268],
+      [0.671, 0.293],
+      [0.644, 0.344],
+      [0.564, 0.471],
+      [0.578, 0.522],
+      [0.511, 0.548],
+      [0.498, 0.624],
+    ],
+    // lila (kronblad-2)
+    [
+      [0.684, 0.242],
+      [0.777, 0.268],
+      [0.803, 0.268],
+      [0.75, 0.318],
+      [0.75, 0.369],
+      [0.764, 0.369],
+      [0.803, 0.369],
+      [0.83, 0.369],
+      [0.817, 0.395],
+      [0.936, 0.752],
+      [0.923, 0.777],
+      [0.936, 0.803],
+      [0.95, 0.828],
+      [0.95, 0.854],
+    ],
+    // rosa (kronblad-3)
+    [
+      [0.91, 0.242],
+      [0.71, 0.369],
+      [0.644, 0.42],
+      [0.604, 0.446],
+      [0.618, 0.446],
+      [0.604, 0.471],
+      [0.71, 0.471],
+      [0.644, 0.497],
+      [0.684, 0.497],
+      [0.644, 0.522],
+      [0.631, 0.548],
+      [0.657, 0.548],
+      [0.604, 0.675],
+      [0.896, 0.879],
+    ],
+    // orange (kronblad-4)
+    [
+      [0.777, 0.013],
+      [0.79, 0.115],
+      [0.803, 0.166],
+      [0.91, 0.293],
+      [0.564, 0.395],
+      [0.87, 0.497],
+      [0.923, 0.497],
+      [0.777, 0.573],
+      [0.883, 0.573],
+      [0.896, 0.573],
+      [0.923, 0.624],
+      [0.936, 0.65],
+      [0.923, 0.701],
+      [0.95, 0.701],
+    ],
+    // gul (kronblad-5)
+    [
+      [0.538, 0.293],
+      [0.525, 0.318],
+      [0.538, 0.318],
+      [0.578, 0.318],
+      [0.578, 0.344],
+      [0.564, 0.369],
+      [0.618, 0.369],
+      [0.485, 0.395],
+      [0.618, 0.395],
+      [0.75, 0.573],
+      [0.817, 0.599],
+      [0.817, 0.65],
+      [0.83, 0.65],
+      [0.79, 0.675],
+    ],
+  ],
+  smal: [
+    // blå (kronblad-1)
+    [
+      [0.375, 0.11],
+      [0.349, 0.13],
+      [0.401, 0.13],
+      [0.297, 0.17],
+      [0.323, 0.17],
+      [0.323, 0.19],
+      [0.401, 0.23],
+      [0.401, 0.291],
+      [0.375, 0.351],
+      [0.116, 0.471],
+      [0.168, 0.511],
+      [0.065, 0.691],
+      [0.09, 0.711],
+      [0.142, 0.772],
+    ],
+    // lila (kronblad-2)
+    [
+      [0.659, 0.271],
+      [0.711, 0.291],
+      [0.581, 0.311],
+      [0.607, 0.311],
+      [0.607, 0.351],
+      [0.711, 0.391],
+      [0.711, 0.411],
+      [0.891, 0.431],
+      [0.866, 0.671],
+      [0.866, 0.691],
+      [0.866, 0.752],
+      [0.891, 0.772],
+      [0.943, 0.772],
+      [0.943, 0.832],
+    ],
+    // rosa (kronblad-3)
+    [
+      [0.866, 0.23],
+      [0.866, 0.331],
+      [0.375, 0.391],
+      [0.426, 0.411],
+      [0.245, 0.451],
+      [0.297, 0.471],
+      [0.478, 0.471],
+      [0.271, 0.491],
+      [0.53, 0.491],
+      [0.478, 0.511],
+      [0.297, 0.531],
+      [0.401, 0.531],
+      [0.271, 0.631],
+      [0.245, 0.651],
+    ],
+    // orange (kronblad-4)
+    [
+      [0.53, 0.05],
+      [0.659, 0.13],
+      [0.711, 0.21],
+      [0.866, 0.271],
+      [0.168, 0.431],
+      [0.84, 0.491],
+      [0.788, 0.511],
+      [0.814, 0.551],
+      [0.891, 0.551],
+      [0.969, 0.551],
+      [0.581, 0.571],
+      [0.891, 0.591],
+      [0.943, 0.591],
+      [0.943, 0.611],
+    ],
+    // gul (kronblad-5)
+    [
+      [0.168, 0.251],
+      [0.194, 0.251],
+      [0.194, 0.271],
+      [0.297, 0.271],
+      [0.271, 0.311],
+      [0.323, 0.311],
+      [0.245, 0.331],
+      [0.297, 0.351],
+      [0.556, 0.531],
+      [0.478, 0.591],
+      [0.53, 0.611],
+      [0.685, 0.651],
+      [0.711, 0.651],
+      [0.711, 0.711],
+    ],
+  ],
+};
 
 type Kronblad = {
   el: HTMLImageElement;
@@ -131,7 +311,6 @@ export function Masterverket() {
     let vind = 0;
     let sistaX: number | null = null;
     let sistaSlapp = 0;
-    let nasta = 0;
     let nastaAuto = 0;
     let pekare: { x: number; y: number } | null = null;
     let bredd = 0;
@@ -225,21 +404,32 @@ export function Masterverket() {
 
     const slapp = (kx: number | null, ky: number | null) => {
       if (blad.length >= MAX_KRONBLAD) return;
-      const b = smal.matches ? BUKETT.smal : BUKETT.bred;
       const d = duk.getBoundingClientRect();
       const l = lager.getBoundingClientRect();
-      const x0 = d.left + d.width * b.x0;
-      const x1 = d.left + d.width * b.x1;
-      const y0 = d.top + d.height * b.y0;
-      const y1 = d.top + d.height * b.y1;
-      const x =
-        (kx === null ? x0 + Math.random() * (x1 - x0) : Math.min(x1, Math.max(x0, kx))) - l.left;
-      const y =
-        (ky === null ? y0 + Math.random() * (y1 - y0) : Math.min(y1, Math.max(y0, ky))) - l.top;
+      const blommor = BLOMMOR[smal.matches ? "smal" : "bred"];
+      // Pekaren: blomman närmast pekaren. Av sig själv: en slumpad blomma i en slumpad färg.
+      let farg = Math.floor(Math.random() * blommor.length);
+      let punkt = blommor[farg]?.[Math.floor(Math.random() * (blommor[farg]?.length ?? 0))];
+      if (kx !== null && ky !== null) {
+        let bast = Infinity;
+        blommor.forEach((lista, f) =>
+          lista.forEach((q) => {
+            const avst = Math.hypot(d.left + q[0] * d.width - kx, d.top + q[1] * d.height - ky);
+            if (avst < bast) {
+              bast = avst;
+              farg = f;
+              punkt = q;
+            }
+          }),
+        );
+      }
+      if (!punkt) return;
+      const x = d.left + punkt[0] * d.width - l.left;
+      const y = d.top + punkt[1] * d.height - l.top;
       const liten = window.innerWidth < 640;
       const storlek = (liten ? 32 : 46) + Math.random() * (liten ? 18 : 30);
       const el = document.createElement("img");
-      el.src = KRONBLAD[nasta++ % KRONBLAD.length] ?? "";
+      el.src = KRONBLAD[farg] ?? "";
       el.alt = "";
       el.decoding = "async";
       el.className = "tavla-kronblad";
