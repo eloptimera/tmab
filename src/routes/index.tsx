@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Check, Clapperboard, Megaphone, Search } from "lucide-react";
-import { BokaKnapp } from "@/components/Boka";
-import { Blob, Linjer } from "@/components/Brand";
+import { ArrowUpRight, Clapperboard, Megaphone, Search } from "lucide-react";
+import { Blob } from "@/components/Brand";
 import { Fyrscen } from "@/components/Fyrscen";
+import { Masterverket } from "@/components/Masterverket";
 import { Heading, Mark } from "@/components/Heading";
 import { LyckasDigitalt } from "@/components/LyckasDigitalt";
 import { BildGalleri, ProjektLista } from "@/components/Projekt";
@@ -14,7 +14,6 @@ import { FORETAG } from "@/lib/foretag";
 import { BINDNING_TEXT, kr, LAGSTA_MANADSPRIS, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 import { PROJEKT_VIDEO } from "@/lib/projekt";
 import { faqSchema, sidhuvud, videoSchema } from "@/lib/seo";
-import { avstava } from "@/lib/text";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -26,8 +25,6 @@ export const Route = createFileRoute("/")({
     }),
   component: Start,
 });
-
-const LOFTEN_KORT = ["Gratis genomgång", "Fasta priser", "Ingen bindningstid"] as const;
 
 // Vanliga frågor på startsidan – svarar på det man undrar innan man anlitar en byrå.
 // Visas längst ner och som FAQPage-schema.
@@ -87,51 +84,8 @@ const OMRADEN = [
 function Start() {
   return (
     <>
-      {/* Hero: en stark rubrik är det största på sidan – den bär sökordet och säger direkt
-          vad vi gör. Blobben och linjerna är samma bildspråk som tidigare ordbilden. */}
-      <section aria-labelledby="hero-rubrik" className="relative isolate overflow-hidden">
-        <div className="mx-auto flex max-w-[88rem] flex-col px-6 pt-6 pb-14 sm:px-10 lg:min-h-[min(46rem,calc(100svh-4.5rem))] lg:pb-16">
-          <div className="caps flex items-start justify-between gap-6 text-ink max-sm:justify-center">
-            <span className="hidden sm:inline">Marknadsföringsbyrå för företag</span>
-            <span>Fasta priser · Gratis genomgång</span>
-          </div>
-
-          <div className="relative my-14 flex items-center justify-center sm:my-16 lg:flex-1">
-            <Blob className="absolute top-1/2 left-1/2 -z-10 w-[min(80vw,46rem)] -translate-x-1/2 -translate-y-[55%]" />
-            {/* Höjden i em mot rubrikens egen textstorlek, så att linjerna ramar in rubriken
-                och ellipsen aldrig når ner i brödtexten: 3 rader på mobil, 2 från sm. */}
-            <Linjer className="absolute inset-x-[-1.5rem] top-1/2 -z-10 h-[5.2em] w-[calc(100%+3rem)] -translate-y-1/2 text-[clamp(2.3rem,7.2vw,6.5rem)] text-ink/70 sm:inset-x-[-2.5rem] sm:h-[3.7em] sm:w-[calc(100%+5rem)]" />
-            <h1
-              id="hero-rubrik"
-              className="max-w-[15ch] text-center text-[clamp(2.3rem,7.2vw,6.5rem)] sm:max-w-[21ch] leading-[1.02] text-balance"
-            >
-              {avstava("Marknadsföringsbyrå")} som <Mark>gör jobbet åt er</Mark>
-            </h1>
-          </div>
-
-          <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-            <p className="text-lg leading-relaxed text-ink/80">
-              Vi tar fram marknadsföringsbilder och video, sköter SEO, GEO och Meta-annonser och
-              bygger hemsidor som säljer – för företag i hela Sverige. Marknadsföring från{" "}
-              {kr(LAGSTA_MANADSPRIS)} i månaden, exkl. moms.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <BokaKnapp />
-              <Link to="/priser" className="btn-base btn-outline">
-                Se priser
-              </Link>
-            </div>
-            <ul className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-bold text-ink/80">
-              {LOFTEN_KORT.map((t) => (
-                <li key={t} className="flex items-center gap-2">
-                  <Check className="size-4 text-brand" strokeWidth={3} aria-hidden="true" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      {/* Hero: en inramad målning – rubriken (H1) bär sökfrasen och står på dukens mörka del. */}
+      <Masterverket />
 
       {/* Tjänster */}
       <section id="tjanster" className="relative isolate">
