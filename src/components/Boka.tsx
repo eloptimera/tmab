@@ -36,22 +36,55 @@ export function BokaKnapp({
   );
 }
 
-/** Mörk avslutningsruta längst ner på sidorna. */
-export function BokaPanel({
-  rubrik = (
+/** Standardrubriken i avslutningsrutan och fyrscenen. */
+export function BokaRubrik() {
+  return (
     <>
       Redo att <Mark>synas</Mark>?
     </>
-  ),
-  text = "20–25 minuter där vi går igenom er digitala närvaro. Ni får ett skräddarsytt förslag efteråt – helt utan kostnad.",
+  );
+}
+
+export const BOKA_PANEL_TEXT =
+  "20–25 minuter där vi går igenom er digitala närvaro. Ni får ett skräddarsytt förslag efteråt – helt utan kostnad.";
+
+/** Bokningsknappen och prislänken i avslutningsrutan och fyrscenen. */
+export function BokaKnappar({
   onBoka,
   prislank = { href: "/priser", text: "Se priser" },
+  ...val
+}: Val & {
+  onBoka?: () => void;
+  /** Den andra knappen – som standard /priser, t.ex. ett ankare (#priser) på en prissida. */
+  prislank?: { href: string; text: string };
+}) {
+  return (
+    <div className="mt-9 flex flex-wrap gap-3">
+      <BokaKnapp variant="white" {...(onBoka ? { onClick: onBoka } : {})} {...val} />
+      {prislank.href.startsWith("#") ? (
+        <a href={prislank.href} className="btn-base btn-outline-white">
+          {prislank.text}
+        </a>
+      ) : (
+        <Link to={prislank.href} className="btn-base btn-outline-white">
+          {prislank.text}
+        </Link>
+      )}
+    </div>
+  );
+}
+
+/** Mörk avslutningsruta längst ner på sidorna. */
+export function BokaPanel({
+  rubrik = <BokaRubrik />,
+  text = BOKA_PANEL_TEXT,
+  onBoka,
+  prislank,
   ...val
 }: Val & {
   rubrik?: ReactNode;
   text?: string;
   onBoka?: () => void;
-  /** Den andra knappen – som standard /priser, t.ex. ett ankare (#priser) på en prissida. */
   prislank?: { href: string; text: string };
 }) {
   return (
@@ -64,18 +97,11 @@ export function BokaPanel({
             {rubrik}
           </h2>
           <p className="mt-5 max-w-xl text-white/80">{text}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <BokaKnapp variant="white" {...(onBoka ? { onClick: onBoka } : {})} {...val} />
-            {prislank.href.startsWith("#") ? (
-              <a href={prislank.href} className="btn-base btn-outline-white">
-                {prislank.text}
-              </a>
-            ) : (
-              <Link to={prislank.href} className="btn-base btn-outline-white">
-                {prislank.text}
-              </Link>
-            )}
-          </div>
+          <BokaKnappar
+            {...(onBoka ? { onBoka } : {})}
+            {...(prislank ? { prislank } : {})}
+            {...val}
+          />
         </div>
       </Reveal>
     </section>

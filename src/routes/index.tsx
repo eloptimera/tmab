@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Check, Clapperboard, Megaphone, Search } from "lucide-react";
-import { BokaKnapp, BokaPanel } from "@/components/Boka";
+import { BokaKnapp } from "@/components/Boka";
 import { Blob, Linjer } from "@/components/Brand";
+import { Fyrscen } from "@/components/Fyrscen";
 import { Heading, Mark } from "@/components/Heading";
 import { LyckasDigitalt } from "@/components/LyckasDigitalt";
 import { BildGalleri, ProjektLista } from "@/components/Projekt";
@@ -278,7 +279,7 @@ function Start() {
         </div>
       </section>
 
-      <BokaPanel />
+      <Fyrscen />
     </>
   );
 }

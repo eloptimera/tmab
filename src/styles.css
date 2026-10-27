@@ -333,6 +333,57 @@
   stroke-dashoffset: 0;
 }
 
+/* Fyrscenen i slutet av startsidan (Fyrscen.tsx). Under 1024 px används den stående bilden,
+   och kortet är så högt att lyktan hamnar under texten. */
+.fyr-kort {
+  min-height: 54rem;
+}
+.fyr-bild {
+  object-position: 50% 50%;
+}
+@media (min-width: 1024px) {
+  /* Fast bredd: annars förs minsta höjden över via bildformatet och gör kortet bredare än
+     sidfoten. */
+  .fyr-kort {
+    width: 100%;
+    min-height: 37.5rem;
+    aspect-ratio: 1916 / 821;
+  }
+  /* Beskär från vänster (himmel och vatten), så att fyren och stugorna får plats. */
+  .fyr-bild {
+    object-position: 70% 50%;
+  }
+}
+.fyr-skugga {
+  text-shadow: 0 1px 16px rgb(8 10 30 / 0.55);
+}
+/* Den genomskinliga knappen ligger över horisonten; en svag mörk yta håller den läsbar. */
+.fyr-panel .btn-outline-white:not(:hover) {
+  background-color: rgb(16 17 20 / 0.28);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+/* Det tända lagret av rubriken syns bara inom strålen. Masken sätts från Fyrscen.tsx; tills
+   dess (och utan JS) syns bara den vanliga rubriken. Lagret sticker ut 3rem runt texten så att
+   glöden inte klipps av maskens kant. */
+.fyr-tand {
+  position: absolute;
+  inset: -3rem;
+  padding: 3rem;
+  pointer-events: none;
+  color: #ffffff;
+  text-shadow:
+    0 0 18px rgb(255 230 160 / 0.95),
+    0 0 48px rgb(255 210 130 / 0.6);
+  -webkit-mask-image: var(--strale, linear-gradient(transparent, transparent));
+  mask-image: var(--strale, linear-gradient(transparent, transparent));
+}
+/* Scenen går rakt över i sidfoten: ett kort i stället för två mörka rutor med en skarv. */
+main:has(.fyr-panel) + footer > div {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 /* Svävande bubblor i hero */
 @keyframes float-y {
   from {
