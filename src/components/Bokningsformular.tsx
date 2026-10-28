@@ -187,7 +187,7 @@ export function Bokningsformular({
               varde={svar.namn}
               onAndra={(v) => satt("namn", v)}
               autoComplete="organization"
-              platshallare="t.ex. Treatly AB, Edvin Tell"
+              platshallare="t.ex. Café Linnéa AB, Anna Berg"
               kravs
             />
           </Fraga>
