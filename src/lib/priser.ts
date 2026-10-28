@@ -75,6 +75,10 @@ export const GARANTI_TEXT = `Fel från vår sida gör vi alltid om utan kostnad.
 export const AGANDE_TEXT =
   "Ni äger konton, domän, texter och kod. För bilder och videor vi tar fram med AI får ni fri kommersiell användningsrätt.";
 
+/** Domän i Total – samma text överallt där frågan kan uppstå. */
+export const DOMAN_TEXT =
+  "I Total ingår en domän med vanlig ändelse, som .se, .nu eller .com. Väljer ni ett dyrare domännamn kan det tillkomma en kostnad – den stämmer vi av med er innan vi köper domänen.";
+
 export const BETALNING_TEXT = "Faktura i förskott för varje period, 15 dagars betalningstid.";
 
 export const RESULTAT_TEXT =
@@ -402,7 +406,7 @@ export const WEBB: Del = {
       utvald: true,
       ingar: [
         "Allt i Essential",
-        "Domän",
+        "Domän (dyrare domännamn kan kosta extra)",
         "Upp till 1 timme ändringar per månad",
         `Därutöver ${kr(PRIS.extraTimme)} per påbörjad timme`,
       ],

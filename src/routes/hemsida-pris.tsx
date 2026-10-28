@@ -141,7 +141,14 @@ const JAMFORELSE: readonly { rad: string; celler: readonly Cell[] }[] = [
   { rad: "Hosting och SSL", celler: [nej("Ni betalar själva"), ja(), ja()] },
   { rad: "Övervakning och säkerhetsuppdateringar", celler: [nej("Ni sköter själva"), ja(), ja()] },
   { rad: "Backup", celler: [nej("Ni sköter själva"), ja(), ja()] },
-  { rad: "Domän", celler: [nej("Ni betalar själva"), nej("Ni betalar själva"), ja()] },
+  {
+    rad: "Domän",
+    celler: [
+      nej("Ni betalar själva"),
+      nej("Ni betalar själva"),
+      ja("Ingår – dyrare domännamn kan kosta extra"),
+    ],
+  },
   {
     rad: "Ändringar",
     celler: [
