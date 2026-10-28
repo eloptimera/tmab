@@ -23,7 +23,7 @@ export type Mastare = {
 
 // Tavlans storlek på väggen (andel av scenen) och hur långt in man kliver.
 const SKALA_VAGG = 0.6;
-const SKALA_INNE = 1.2;
+const SKALA_INNE = 1.28;
 // Hur mycket närmare mästaren kommer än landskapet när man kliver in.
 const FIGUR_NARMARE = 0.1;
 const BAKGRUND_BORT = 0.08;
@@ -145,7 +145,6 @@ export function MastarHero({
             decoding="async"
             className="mastar-figur"
           />
-          <span className="mastar-ram" aria-hidden="true" />
         </div>
         <div className="mastar-kort">
           <p className="mastar-plats">
