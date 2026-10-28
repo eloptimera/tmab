@@ -9,6 +9,7 @@ import {
   ANDRINGAR_TEXT,
   BETALNING_TEXT,
   BINDNING_TEXT,
+  DOMAN_TEXT,
   kr,
   MOMS_TEXT,
   PRIS,
@@ -24,7 +25,7 @@ export const HEMSIDA_PRIS = {
   kortText:
     "Vad en företagshemsida kostar hos oss, vad som ingår, löpande kostnader och vad ni betalar totalt första året.",
   publicerad: "2026-10-19",
-  uppdaterad: "2026-10-22",
+  uppdaterad: "2026-10-28",
 } as const;
 
 /** Årskostnad hos oss: bygget + tolv månader drift. Moms ingår inte. */
@@ -74,7 +75,7 @@ export const HEMSIDA_PRIS_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Ingår domän och hosting i priset?",
-    svar: `Hosting ingår i både Essential och Total, och domänen ingår i Total. Tar ni över sajten betalar ni båda direkt till leverantören. Domänen ligger alltid i ert namn.`,
+    svar: `Hosting ingår i både Essential och Total, och domänen ingår i Total. ${DOMAN_TEXT} Tar ni över sajten betalar ni båda direkt till leverantören. Domänen ligger alltid i ert namn.`,
   },
   {
     fraga: "Ingår SEO i hemsidans pris?",
