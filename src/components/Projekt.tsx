@@ -17,22 +17,22 @@ export function ProjektLista({ className = "" }: { className?: string }) {
               onClick={() => projektKlick(p.namn)}
               className="skylt group flex h-full flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1"
             >
-              <div className="relative isolate grid aspect-[16/10] place-items-center overflow-hidden bg-tint">
+              <div className="relative isolate grid aspect-[16/10] place-items-center overflow-hidden bg-[#14100b]">
                 <span
                   aria-hidden="true"
-                  className="absolute top-[18%] left-[16%] -z-10 size-[58%] rounded-full blur-2xl transition-transform duration-500 group-hover:scale-110"
+                  className="absolute top-[18%] left-[16%] -z-10 size-[58%] rounded-full opacity-35 blur-2xl transition-transform duration-500 group-hover:scale-110"
                   style={{
                     backgroundImage: `radial-gradient(circle, ${p.farger[0]} 0%, transparent 70%)`,
                   }}
                 />
                 <span
                   aria-hidden="true"
-                  className="absolute right-[12%] bottom-[8%] -z-10 size-[54%] rounded-full blur-2xl transition-transform duration-500 group-hover:scale-110"
+                  className="absolute right-[12%] bottom-[8%] -z-10 size-[54%] rounded-full opacity-35 blur-2xl transition-transform duration-500 group-hover:scale-110"
                   style={{
                     backgroundImage: `radial-gradient(circle, ${p.farger[1]} 0%, transparent 70%)`,
                   }}
                 />
-                <span className="px-4 text-center font-display text-[clamp(1.75rem,2.7vw,2.6rem)] tracking-[0.04em] text-ink uppercase">
+                <span className="px-4 text-center font-display text-[clamp(1.75rem,2.7vw,2.6rem)] tracking-[0.04em] text-elfenben uppercase">
                   {p.namn}
                 </span>
               </div>

@@ -469,7 +469,7 @@ function MetaAdsByra() {
         </Reveal>
         <Reveal delay={80} className="h-full">
           <article aria-labelledby="instagram" className="inramad h-full p-8 text-elfenben sm:p-10">
-            <span className="grid size-12 place-items-center rounded-full bg-white/10 text-sun">
+            <span className="grid size-12 place-items-center rounded-full border border-guld text-guld">
               <Heart className="size-6" aria-hidden="true" />
             </span>
             <h2 id="instagram" className="mt-6 text-3xl sm:text-4xl">
@@ -566,7 +566,7 @@ function MetaAdsByra() {
                 </span>
                 {i < KUNDRESA.length - 1 && (
                   <ArrowRight
-                    className="absolute top-1/2 -right-4 z-10 hidden size-5 -translate-y-1/2 rounded-full bg-sun p-0.5 text-ink lg:block"
+                    className="absolute top-1/2 -right-4 z-10 hidden size-5 -translate-y-1/2 rounded-full border border-guld bg-background p-0.5 text-guld-mork lg:block"
                     aria-hidden="true"
                   />
                 )}
@@ -579,7 +579,7 @@ function MetaAdsByra() {
           {MAL.map((m) => (
             <span
               key={m}
-              className="rounded-full border-2 border-line bg-white px-4 py-1.5 text-sm font-bold text-ink"
+              className="rounded-full border border-guld/60 bg-[#f3f0e7] px-4 py-1.5 text-sm font-bold text-ink"
             >
               {m}
             </span>
@@ -725,7 +725,7 @@ function MetaAdsByra() {
             <div className="inramad h-full p-8 text-elfenben sm:p-10">
               <p className="caps text-sun">1 · Vårt arvode</p>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-[1.5rem] bg-white/8 p-5 ring-1 ring-white/15">
+                <div className="bg-white/8 p-5 ring-1 ring-guld/35">
                   <p className="text-sm text-white/75">Uppsättning, engång</p>
                   <p className="mt-2 font-display text-4xl">{kr(PRIS.annonsUppsattning)}</p>
                   <p className="mt-3 text-sm leading-relaxed text-white/75">
@@ -734,7 +734,7 @@ function MetaAdsByra() {
                   </p>
                 </div>
                 {ANNONSER.nivaer.map((p) => (
-                  <div key={p.id} className="rounded-[1.5rem] bg-white/8 p-5 ring-1 ring-white/15">
+                  <div key={p.id} className="bg-white/8 p-5 ring-1 ring-guld/35">
                     <p className="text-sm text-white/75">{p.namn}, löpande</p>
                     <p className="mt-2 font-display text-4xl">
                       {kr(p.belopp)}

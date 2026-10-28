@@ -228,10 +228,10 @@
   }
 }
 
-/* Vit knapp – för blå ytor */
+/* Vit knapp – för mörka ytor (inramade rutor, fyren) */
 @utility btn-white {
   background-color: #ffffff;
-  color: var(--brand-deep);
+  color: var(--ink);
   &:hover {
     background-color: var(--sun);
     color: var(--ink);
@@ -243,7 +243,7 @@
   background-color: var(--ink);
   color: #ffffff;
   &:hover {
-    background-color: var(--brand);
+    background-color: #3d3324;
   }
 }
 
@@ -252,7 +252,7 @@
   color: #ffffff;
   &:hover {
     background-color: #ffffff;
-    color: var(--brand-deep);
+    color: var(--ink);
   }
 }
 
@@ -1157,6 +1157,11 @@ main:has(.fyr-panel) + footer > div {
   box-shadow: 0 12px 28px -22px rgb(30 20 5 / 0.5);
 }
 /* Mindre rader och listor: papper med en förgylld kant till vänster i stället för en hel ram. */
+/* KortVy: rubrikens storlek följer kortets bredd (cqi), så långa ord som
+   "Karusellannonser" får plats i fem kolumner. */
+.kort-skylt {
+  container-type: inline-size;
+}
 .skylt-liten {
   background-color: #f3f0e7;
   border-left: 2px solid #b8913f;

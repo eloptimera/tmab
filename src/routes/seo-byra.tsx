@@ -407,7 +407,7 @@ function SeoByra() {
         </Reveal>
         <Reveal delay={80} className="h-full">
           <article aria-labelledby="seo-geo" className="inramad h-full p-8 text-elfenben sm:p-10">
-            <span className="grid size-12 place-items-center rounded-full bg-white/10 text-sun">
+            <span className="grid size-12 place-items-center rounded-full border border-guld text-guld">
               <Bot className="size-6" aria-hidden="true" />
             </span>
             <h2 id="seo-geo" className="mt-6 text-3xl sm:text-4xl">

@@ -444,8 +444,8 @@ function GeoOptimering() {
             {FLODE.map((s, i) => (
               <li key={s.titel}>
                 <Reveal delay={i * 70} className="h-full">
-                  <div className="h-full rounded-[1.5rem] border border-white/15 bg-white/5 p-6">
-                    <span className="grid size-9 place-items-center rounded-full bg-sun font-bold text-ink">
+                  <div className="h-full border border-guld/35 bg-white/5 p-6">
+                    <span className="grid size-9 place-items-center rounded-full border border-guld font-display text-lg text-guld italic">
                       {i + 1}
                     </span>
                     <h3 className="mt-5 font-sans text-lg font-bold tracking-normal text-white">

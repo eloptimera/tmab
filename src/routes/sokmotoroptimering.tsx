@@ -678,7 +678,7 @@ function Sokmotoroptimering() {
                         <li key={s.till}>
                           <Link
                             to={s.till}
-                            className="inline-block rounded-full border-2 border-line bg-tint px-4 py-1.5 text-sm font-bold text-ink transition-colors hover:border-ink"
+                            className="inline-block rounded-full border border-guld/60 bg-[#f3f0e7] px-4 py-1.5 text-sm font-bold text-ink transition-colors hover:border-ink"
                           >
                             {s.namn}
                           </Link>

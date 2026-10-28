@@ -41,7 +41,7 @@ export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
           {o.sjalv.map((s, i) => (
             <li
               key={s}
-              className={`rounded-md bg-white p-4 text-[0.95rem] leading-snug text-ink shadow-[4px_5px_0_rgb(17_18_22/0.08)] ${LUTNING[i % LUTNING.length]}`}
+              className={`bg-[#fbf8f1] p-4 text-[0.95rem] leading-snug text-ink shadow-[2px_3px_0_rgb(30_20_5/0.08)] outline outline-1 outline-guld/30 ${LUTNING[i % LUTNING.length]}`}
             >
               {s}
             </li>
@@ -54,7 +54,7 @@ export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
 
       <span
         aria-hidden="true"
-        className="mx-auto grid size-14 rotate-90 place-items-center rounded-full bg-sun text-ink shadow-[4px_4px_0_var(--ink)] lg:rotate-0"
+        className="mx-auto grid size-14 rotate-90 place-items-center rounded-full border border-guld bg-background text-guld-mork lg:rotate-0"
       >
         <ArrowRight className="size-6" />
       </span>
@@ -78,7 +78,7 @@ export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
             </li>
           ))}
         </ol>
-        <p className="mt-7 inline-block -rotate-[1.2deg] rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white shadow-[3px_3px_0_rgb(255_255_255/0.35)]">
+        <p className="mt-7 inline-block -rotate-[1.2deg] border border-guld/70 px-5 py-2.5 text-sm font-bold text-sun">
           Ni godkänner. Vi gör resten.
         </p>
       </div>

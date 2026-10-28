@@ -234,7 +234,7 @@ const JAMFORELSE = [
   {
     titel: "Gemensamt",
     text: "Teknisk SEO, en användarvänlig hemsida, relevant innehåll och tydliga kontaktvägar.",
-    stil: "inramad text-elfenben",
+    stil: "skylt skylt-markerad",
   },
 ] as const;
 

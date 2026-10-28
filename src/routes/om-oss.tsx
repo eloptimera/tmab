@@ -24,13 +24,13 @@ const VARDERINGAR = [
     ikon: Receipt,
     titel: "Fasta priser",
     text: "Ni ser vad det kostar innan vi börjar. Alla grundpriser står på sajten, och arbete utanför det avtalade stämmer vi av först.",
-    stil: "inramad text-elfenben",
+    stil: "skylt text-ink",
   },
   {
     ikon: Unlock,
     titel: "Ingen bindningstid",
     text: BINDNING_TEXT.replace("Ingen bindningstid. ", ""),
-    stil: "inramad text-elfenben",
+    stil: "skylt text-ink",
   },
   {
     ikon: FileCheck,
@@ -101,7 +101,7 @@ function OmOss() {
         {VARDERINGAR.map((v, i) => (
           <Reveal key={v.titel} delay={i * 90}>
             <article className={`h-full p-8 ${v.stil}`}>
-              <span className="grid size-14 place-items-center rounded-full bg-white/20">
+              <span className="grid size-14 place-items-center rounded-full border border-guld text-guld-mork">
                 <v.ikon className="size-6" aria-hidden="true" />
               </span>
               <h2 className="mt-8 text-3xl">{v.titel}</h2>

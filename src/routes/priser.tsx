@@ -386,7 +386,7 @@ function Priser() {
       {/* Extern marknadsavdelning */}
       <section id="extern" aria-labelledby="extern-rubrik" className="scroll-mt-24 px-3 sm:px-6">
         <Reveal>
-          <div className="inramad relative isolate mx-auto max-w-[88rem] overflow-hidden px-6 py-14 sm:px-14 sm:py-16">
+          <div className="inramad relative isolate mx-auto max-w-[88rem] overflow-hidden px-6 py-14 text-elfenben sm:px-14 sm:py-16">
             <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
               <div>
                 <p className="caps text-sun">
