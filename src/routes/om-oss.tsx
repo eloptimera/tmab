@@ -61,6 +61,7 @@ function OmOss() {
   return (
     <>
       <PageHero
+        tavla={{ src: "/galleri/detalj-pion.webp", bredd: 905, hojd: 1119 }}
         eyebrow="Om oss"
         title={
           <>

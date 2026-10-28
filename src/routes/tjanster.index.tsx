@@ -29,6 +29,7 @@ function Tjanster() {
   return (
     <>
       <PageHero
+        tavla={{ src: "/galleri/caesar-1080.webp", bredd: 1080, hojd: 1350 }}
         eyebrow="Tjänster"
         title={
           <>

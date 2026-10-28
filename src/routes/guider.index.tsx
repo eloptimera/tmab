@@ -34,6 +34,7 @@ function Resurser() {
   return (
     <>
       <PageHero
+        tavla={{ src: "/galleri/detalj-iris.webp", bredd: 768, hojd: 948 }}
         eyebrow="Resurser"
         title={
           <>

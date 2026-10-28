@@ -20,7 +20,6 @@ import {
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { KortVy, type Kort } from "@/components/Kort";
 import { Markerad, Mark } from "@/components/Heading";
-import { Blob } from "@/components/Brand";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
@@ -266,8 +265,7 @@ function LokalSeo() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden">
-        <Blob className="absolute top-1/2 -right-32 -z-10 hidden w-[34rem] -translate-y-1/2 opacity-60 lg:block" />
+      <section className="vagg-ljus relative isolate overflow-hidden">
         <span
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"

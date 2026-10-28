@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
-import { Blob } from "@/components/Brand";
 import { Mark, PageHero } from "@/components/Heading";
 import { Loften } from "@/components/Loften";
 import { Reveal } from "@/components/Reveal";
@@ -238,6 +237,7 @@ function Priser() {
   return (
     <>
       <PageHero
+        tavla={{ src: "/galleri/detalj-urna.webp", bredd: 822, hojd: 1020 }}
         eyebrow="Priser"
         title={
           <>
@@ -258,7 +258,6 @@ function Priser() {
         aria-labelledby="oversikt-rubrik"
         className="relative isolate scroll-mt-24"
       >
-        <Blob className="absolute top-1/3 -left-56 -z-10 hidden w-[34rem] opacity-35 lg:block" />
         <div className="container-page pt-14 pb-10 sm:pt-20">
           <Reveal>
             <h2 id="oversikt-rubrik" className="text-4xl sm:text-5xl">

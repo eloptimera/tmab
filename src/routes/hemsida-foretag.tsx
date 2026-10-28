@@ -207,6 +207,7 @@ function HemsidaForetag() {
   return (
     <>
       <PageHero
+        tavla={{ src: "/galleri/davinci-840.webp", bredd: 840, hojd: 1050 }}
         eyebrow={`Tjänster · ${HEMSIDA_FORETAG.titel}`}
         title={
           <Markerad

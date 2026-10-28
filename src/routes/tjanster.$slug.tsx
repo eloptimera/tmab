@@ -47,6 +47,16 @@ export const Route = createFileRoute("/tjanster/$slug")({
   component: TjanstSida,
 });
 
+/** Mästarens verk från startsidans Sal II (galleri/{namn}-840.webp), per tjänst. */
+const MASTARE: Record<string, string> = {
+  seo: "linne",
+  geo: "sokrates",
+  "meta-annonser": "aristoteles",
+  hemsideoptimering: "nightingale",
+  marknadsforingsbilder: "vermeer",
+  hemsida: "davinci",
+};
+
 function TjanstSida() {
   const { slug } = Route.useParams();
   const t = hittaTjanst(slug);
@@ -56,6 +66,9 @@ function TjanstSida() {
   return (
     <>
       <PageHero
+        {...(MASTARE[t.slug]
+          ? { tavla: { src: `/galleri/${MASTARE[t.slug]}-840.webp`, bredd: 840, hojd: 1050 } }
+          : {})}
         eyebrow={`Tjänster · ${t.titel}`}
         title={<Markerad text={t.rubrik.text} markera={t.rubrik.markera} />}
         intro={t.forklaring}

@@ -134,6 +134,7 @@ function WebbyraGoteborg() {
   return (
     <>
       <PageHero
+        tavla={{ src: "/galleri/davinci-840.webp", bredd: 840, hojd: 1050 }}
         eyebrow={`Tjänster · ${WEBBYRA_GOTEBORG.titel}`}
         title={
           <Markerad

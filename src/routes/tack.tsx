@@ -19,6 +19,7 @@ export const Route = createFileRoute("/tack")({
 function Tack() {
   return (
     <PageHero
+      tavla={{ src: "/fyr/fyr-hog.webp", bredd: 940, hojd: 1672 }}
       eyebrow="Tack"
       title={
         <>

@@ -52,6 +52,7 @@ function Kontakt() {
   return (
     <>
       <PageHero
+        tavla={{ src: "/fyr/fyr-hog.webp", bredd: 940, hojd: 1672 }}
         eyebrow="Gratis genomgång"
         title={
           <>

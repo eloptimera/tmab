@@ -306,6 +306,7 @@ function ModerniseraHemsida() {
   return (
     <>
       <PageHero
+        tavla={{ src: "/galleri/nightingale-840.webp", bredd: 840, hojd: 1050 }}
         eyebrow={`Tjänster · ${MODERNISERA_HEMSIDA.titel}`}
         title={
           <Markerad

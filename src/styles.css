@@ -1199,3 +1199,8 @@ main:has(.fyr-panel) + footer > div {
     position: relative;
   }
 }
+
+/* Galleriväggen i sidhuvudena: mjukt ljus uppifrån i stället för färgklumpen. */
+.vagg-ljus {
+  background: radial-gradient(ellipse 70% 60% at 70% 0%, rgb(255 250 235 / 0.75), transparent 70%);
+}
