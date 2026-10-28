@@ -235,7 +235,7 @@ function Start() {
               >
                 <p className="mt-2 leading-relaxed text-muted-foreground">{m.text}</p>
                 {m.citat && (
-                  <p className="mt-3 font-display text-[1.05rem] text-ink italic">
+                  <p className="mt-3 font-display text-[1.05rem] leading-snug text-ink italic">
                     <span lang="la">”{m.citat.text}”</span> – {m.citat.oversattning}{" "}
                     <span className="font-sans text-xs text-muted-foreground not-italic">
                       {m.citat.kalla}
@@ -285,13 +285,16 @@ function Start() {
               </Link>
             </Reveal>
             <Reveal delay={120}>
-              <dl className="grid gap-4">
+              <dl className="vaggtext">
                 {[
-                  ["Fokus", "Marknadsföring"],
-                  ["Område", "Hela Sverige"],
-                  ["Arbetssätt", "Idé · Produktion · Uppföljning"],
-                ].map(([dt, dd]) => (
-                  <div key={dt} className="massing">
+                  ["I", "Fokus", "Marknadsföring"],
+                  ["II", "Område", "Hela Sverige"],
+                  ["III", "Arbetssätt", "Idé\u00a0· Produktion\u00a0· Uppföljning"],
+                ].map(([nr, dt, dd]) => (
+                  <div key={dt} className="vaggtext-rad">
+                    <span className="vaggtext-nr" aria-hidden="true">
+                      {nr}
+                    </span>
                     <dt>{dt}</dt>
                     <dd>{dd}</dd>
                   </div>
