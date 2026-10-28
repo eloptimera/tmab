@@ -43,8 +43,8 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
   return (
     <article
       aria-labelledby={`niva-${n.id}`}
-      className={`relative flex h-full flex-col rounded-[2rem] p-7 sm:p-8 ${
-        utvald ? "bg-brand text-white" : "border-2 border-line bg-white text-ink"
+      className={`relative flex h-full flex-col p-7 sm:p-8 ${
+        utvald ? "inramad text-elfenben" : "skylt text-ink"
       }`}
     >
       {utvald && (
@@ -55,7 +55,7 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
       <h4
         id={`niva-${n.id}`}
         className={`font-sans text-xs font-bold tracking-[0.22em] uppercase ${
-          utvald ? "text-white/85" : "text-brand"
+          utvald ? "text-white/85" : "text-guld-mork"
         }`}
       >
         {n.namn}
@@ -72,7 +72,7 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
           <li key={rad} className="flex gap-3">
             <span
               className={`grid size-6 shrink-0 place-items-center rounded-full ${
-                utvald ? "bg-white text-brand" : "bg-brand text-white"
+                utvald ? "border border-guld text-guld" : "border border-guld text-guld-mork"
               }`}
             >
               <Check className="size-3.5" strokeWidth={3} aria-hidden="true" />
@@ -94,7 +94,7 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
 
 function Pristabell({ rubrik, rader }: { rubrik: string; rader: readonly Prisrad[] }) {
   return (
-    <div className="rounded-[2rem] border-2 border-line bg-white px-5 py-2 sm:px-8">
+    <div className="skylt-liten px-5 py-2 sm:px-8">
       <table className="w-full border-collapse text-left">
         <caption className="sr-only">{rubrik}</caption>
         <thead className="sr-only">
@@ -212,7 +212,7 @@ function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
                 <ul className="mt-4 space-y-2.5">
                   {d.ingarAlltid.map((r) => (
                     <li key={r} className="flex gap-3 text-ink/85">
-                      <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden="true" />
+                      <Check className="mt-1 size-4 shrink-0 text-guld-mork" aria-hidden="true" />
                       {r}
                     </li>
                   ))}
@@ -269,11 +269,8 @@ function Priser() {
             {DELAR.map((d, i) => (
               <li key={d.id}>
                 <Reveal delay={i * 60} className="h-full">
-                  <a
-                    href={`#${d.id}`}
-                    className="kortskugga flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-7 transition-colors hover:border-brand"
-                  >
-                    <span className="font-sans text-xs font-bold tracking-[0.22em] text-brand uppercase">
+                  <a href={`#${d.id}`} className="skylt flex h-full flex-col p-7">
+                    <span className="font-sans text-xs font-bold tracking-[0.22em] text-guld-mork uppercase">
                       {d.namn}
                     </span>
                     <span className="mt-3 flex-1 font-bold text-ink">{d.vad}</span>
@@ -290,7 +287,7 @@ function Priser() {
           <Reveal delay={80}>
             <a
               href="#extern"
-              className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[2rem] bg-ink p-7 text-white"
+              className="inramad mt-4 flex flex-wrap items-center justify-between gap-4 p-7 text-elfenben"
             >
               <span>
                 <span className="font-sans text-xs font-bold tracking-[0.22em] text-sun uppercase">
@@ -338,7 +335,7 @@ function Priser() {
           </Reveal>
         </div>
         <Reveal delay={60} className="mt-10">
-          <div className="overflow-x-auto rounded-[2rem] border-2 border-line bg-white px-5 py-2 sm:px-8">
+          <div className="skylt-liten overflow-x-auto px-5 py-2 sm:px-8">
             <table className="w-full min-w-[34rem] border-collapse text-left">
               <caption className="sr-only">Vanliga kombinationer</caption>
               <thead>
@@ -390,7 +387,7 @@ function Priser() {
       {/* Extern marknadsavdelning */}
       <section id="extern" aria-labelledby="extern-rubrik" className="scroll-mt-24 px-3 sm:px-6">
         <Reveal>
-          <div className="panel-ink relative isolate mx-auto max-w-[88rem] overflow-hidden rounded-[2rem] px-6 py-14 sm:px-14 sm:py-16">
+          <div className="inramad relative isolate mx-auto max-w-[88rem] overflow-hidden px-6 py-14 sm:px-14 sm:py-16">
             <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
               <div>
                 <p className="caps text-sun">

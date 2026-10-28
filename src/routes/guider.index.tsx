@@ -11,8 +11,7 @@ import { avstava } from "@/lib/text";
 // Resurser: två tydligt skilda delar – guider (gör det själv) och sidor om tjänsterna
 // (landningssidorna). Blanda dem inte i samma lista, då ser säljsidor ut som guider.
 
-const KORT =
-  "kortskugga group flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-7 transition-colors hover:border-ink sm:p-8";
+const KORT = "skylt group flex h-full flex-col p-7 sm:p-8";
 
 export const Route = createFileRoute("/guider/")({
   head: () =>

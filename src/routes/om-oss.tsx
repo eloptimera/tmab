@@ -24,19 +24,19 @@ const VARDERINGAR = [
     ikon: Receipt,
     titel: "Fasta priser",
     text: "Ni ser vad det kostar innan vi börjar. Alla grundpriser står på sajten, och arbete utanför det avtalade stämmer vi av först.",
-    stil: "bg-brand text-white kortskugga-brand",
+    stil: "inramad text-elfenben",
   },
   {
     ikon: Unlock,
     titel: "Ingen bindningstid",
     text: BINDNING_TEXT.replace("Ingen bindningstid. ", ""),
-    stil: "bg-ink text-white kortskugga",
+    stil: "inramad text-elfenben",
   },
   {
     ikon: FileCheck,
     titel: "Ni äger allt",
     text: AGANDE_TEXT,
-    stil: "border-2 border-line bg-white text-ink kortskugga",
+    stil: "skylt text-ink",
   },
 ] as const;
 
@@ -99,7 +99,7 @@ function OmOss() {
       >
         {VARDERINGAR.map((v, i) => (
           <Reveal key={v.titel} delay={i * 90}>
-            <article className={`h-full rounded-[2rem] p-8 ${v.stil}`}>
+            <article className={`h-full p-8 ${v.stil}`}>
               <span className="grid size-14 place-items-center rounded-full bg-white/20">
                 <v.ikon className="size-6" aria-hidden="true" />
               </span>
@@ -120,10 +120,10 @@ function OmOss() {
               <Heading className="mt-4 text-4xl sm:text-5xl">Ledningen</Heading>
               <ul className="mt-8 space-y-3">
                 {FORETAG.personer.map((p) => (
-                  <li key={p.namn} className="flex items-center gap-4 rounded-3xl bg-white p-4">
+                  <li key={p.namn} className="skylt-liten flex items-center gap-4 p-4">
                     <span
                       aria-hidden="true"
-                      className="grid size-14 shrink-0 place-items-center rounded-full bg-brand font-display text-xl text-white"
+                      className="grid size-14 shrink-0 place-items-center rounded-full font-display text-xl text-guld-mork border border-guld"
                     >
                       {initialer(p.namn)}
                     </span>
@@ -138,7 +138,7 @@ function OmOss() {
           )}
           <Reveal delay={100}>
             <p className="eyebrow">Fakta om företaget</p>
-            <dl className="mt-6 divide-y-2 divide-line rounded-[2rem] bg-white px-6 py-2 sm:px-8">
+            <dl className="skylt-liten mt-6 divide-y-2 divide-line px-6 py-2 sm:px-8">
               {FAKTA.filter((f) => f.varde).map((f) => (
                 <div key={f.rubrik} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
                   <dt className="text-sm font-bold text-ink">{f.rubrik}</dt>

@@ -227,7 +227,7 @@ function HemsidaForetag() {
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               {f}
@@ -308,7 +308,7 @@ function HemsidaForetag() {
             {MALGRUPPER.map((m, i) => (
               <li key={m.titel}>
                 <Reveal delay={i * 50} className="h-full">
-                  <div className="h-full rounded-[1.5rem] bg-white/80 p-6">
+                  <div className="skylt h-full p-6">
                     <h4 className="font-sans text-lg font-bold tracking-normal text-ink">
                       {m.titel}
                     </h4>
@@ -320,7 +320,7 @@ function HemsidaForetag() {
           </ul>
 
           <Reveal delay={60} className="mt-14">
-            <div className="grid gap-8 rounded-[2rem] bg-white/80 p-8 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+            <div className="skylt grid gap-8 p-8 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
               <div>
                 <h3 className="text-3xl sm:text-4xl">
                   Vad ska finnas på en hemsida för småföretag?
@@ -333,8 +333,8 @@ function HemsidaForetag() {
               </div>
               <ul className="grid gap-3 sm:grid-cols-2">
                 {SMAFORETAG_INNEHALL.map(([t, x]) => (
-                  <li key={t} className="flex gap-3 rounded-2xl bg-tint p-4">
-                    <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+                  <li key={t} className="skylt-liten flex gap-3 p-4">
+                    <Check className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                     <span>
                       <span className="block font-bold text-ink">{t}</span>
                       <span className="text-muted-foreground">{x}</span>
@@ -380,7 +380,7 @@ function HemsidaForetag() {
         </ul>
         <Reveal delay={80}>
           <p className="mt-8 flex max-w-3xl gap-3 text-lg leading-relaxed text-ink/80">
-            <FileCheck className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+            <FileCheck className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
             {AGANDE_TEXT} Domän och konton registreras i ert namn.
           </p>
         </Reveal>
@@ -445,8 +445,8 @@ function HemsidaForetag() {
             </p>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {PRISFAKTORER.map((p) => (
-                <li key={p} className="flex items-center gap-3 rounded-2xl bg-white p-4 text-ink">
-                  <Check className="size-5 shrink-0 text-brand" aria-hidden="true" />
+                <li key={p} className="skylt-liten flex items-center gap-3 p-4 text-ink">
+                  <Check className="size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                   {p}
                 </li>
               ))}
@@ -459,7 +459,7 @@ function HemsidaForetag() {
           </Reveal>
 
           <Reveal delay={80}>
-            <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+            <div id="pris" className="inramad scroll-mt-28 p-8 text-elfenben sm:p-10">
               <p className="caps text-sun">Ny hemsida</p>
               <dl className="mt-5 divide-y divide-white/15">
                 <div className="flex items-baseline justify-between gap-4 pb-3">

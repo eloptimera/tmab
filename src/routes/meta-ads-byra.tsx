@@ -248,7 +248,7 @@ const JAMFORELSE = [
       "Annonsmaterial och målgrupper",
       "Kostar så länge annonserna går",
     ],
-    stil: "bg-brand text-white",
+    stil: "inramad text-elfenben",
   },
   {
     titel: "SEO",
@@ -258,7 +258,7 @@ const JAMFORELSE = [
       "Sökord, innehåll och teknik",
       "Byggs upp över tid och fortsätter ge",
     ],
-    stil: "border-2 border-line bg-white text-ink",
+    stil: "skylt text-ink",
   },
 ] as const;
 
@@ -371,7 +371,7 @@ function MetaAdsByra() {
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               {f}
@@ -451,11 +451,8 @@ function MetaAdsByra() {
       {/* Facebook och Instagram */}
       <section className="container-page grid gap-6 py-14 sm:py-20 lg:grid-cols-2">
         <Reveal className="h-full">
-          <article
-            aria-labelledby="facebook"
-            className="h-full rounded-[2rem] border-2 border-line bg-white p-8 sm:p-10"
-          >
-            <span className="grid size-12 place-items-center rounded-full bg-tint text-brand">
+          <article aria-labelledby="facebook" className="skylt h-full p-8 sm:p-10">
+            <span className="grid size-12 place-items-center rounded-full text-guld-mork border border-guld/60">
               <MessageCircle className="size-6" aria-hidden="true" />
             </span>
             <h2 id="facebook" className="mt-6 text-3xl sm:text-4xl">
@@ -473,10 +470,7 @@ function MetaAdsByra() {
           </article>
         </Reveal>
         <Reveal delay={80} className="h-full">
-          <article
-            aria-labelledby="instagram"
-            className="h-full rounded-[2rem] bg-ink p-8 text-white sm:p-10"
-          >
+          <article aria-labelledby="instagram" className="inramad h-full p-8 text-elfenben sm:p-10">
             <span className="grid size-12 place-items-center rounded-full bg-white/10 text-sun">
               <Heart className="size-6" aria-hidden="true" />
             </span>
@@ -560,8 +554,8 @@ function MetaAdsByra() {
         <Reveal delay={80}>
           <ol className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {KUNDRESA.map((s, i) => (
-              <li key={s.titel} className="relative flex gap-4 rounded-[1.5rem] bg-tint p-6">
-                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <li key={s.titel} className="skylt relative flex gap-4 p-6">
+                <span className="grid size-11 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                   <s.ikon className="size-5" aria-hidden="true" />
                 </span>
                 <span>
@@ -652,14 +646,14 @@ function MetaAdsByra() {
           </Reveal>
           <Reveal delay={80}>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-[1.5rem] bg-brand p-6 text-white">
+              <div className="inramad p-6 text-elfenben">
                 <p className="font-bold">Med tillgång till hemsidan</p>
                 <p className="mt-2 text-sm leading-relaxed text-white/85">
                   Meta-pixeln och vid behov Conversions API, tillsammans med en cookiebanner och
                   texten i integritetspolicyn. Pixeln laddas först efter ett ja.
                 </p>
               </div>
-              <div className="rounded-[1.5rem] border-2 border-line bg-white p-6">
+              <div className="skylt p-6">
                 <p className="font-bold text-ink">Utan tillgång till hemsidan</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   Ingen banner behövs. Vi märker annonslänkarna med spårningslänkar och använder
@@ -673,8 +667,8 @@ function MetaAdsByra() {
           {NYCKELTAL.map((n, i) => (
             <li key={n.kort}>
               <Reveal delay={i * 50} className="h-full">
-                <div className="h-full rounded-[1.5rem] bg-tint p-6">
-                  <p className="font-display text-3xl text-brand">{n.kort}</p>
+                <div className="skylt h-full p-6">
+                  <p className="font-display text-3xl text-guld-mork">{n.kort}</p>
                   <h3 className="mt-2 font-sans text-base font-bold tracking-normal text-ink">
                     {n.namn}
                   </h3>
@@ -730,7 +724,7 @@ function MetaAdsByra() {
 
         <div id="pris" className="mt-12 grid scroll-mt-28 gap-4 lg:grid-cols-[1.4fr_0.6fr]">
           <Reveal className="h-full">
-            <div className="h-full rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+            <div className="inramad h-full p-8 text-elfenben sm:p-10">
               <p className="caps text-sun">1 · Vårt arvode</p>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 <div className="rounded-[1.5rem] bg-white/8 p-5 ring-1 ring-white/15">
@@ -775,9 +769,9 @@ function MetaAdsByra() {
             </div>
           </Reveal>
           <Reveal delay={80} className="h-full">
-            <div className="flex h-full flex-col rounded-[2rem] border-2 border-dashed border-ink/40 bg-white p-8 sm:p-10">
-              <p className="caps text-brand">2 · Er annonsbudget</p>
-              <Wallet className="mt-6 size-10 text-brand" aria-hidden="true" />
+            <div className="skylt flex h-full flex-col p-8 sm:p-10">
+              <p className="caps text-guld-mork">2 · Er annonsbudget</p>
+              <Wallet className="mt-6 size-10 text-guld-mork" aria-hidden="true" />
               <p className="mt-4 font-display text-3xl text-ink">Betalas direkt till Meta</p>
               <p className="mt-4 flex-1 leading-relaxed text-ink/80">
                 Ni bestämmer beloppet och kan ändra eller pausa när som helst. Kontot och
@@ -818,7 +812,7 @@ function MetaAdsByra() {
             {JAMFORELSE.map((j, i) => (
               <li key={j.titel}>
                 <Reveal delay={i * 60} className="h-full">
-                  <div className={`h-full rounded-[2rem] p-8 ${j.stil}`}>
+                  <div className={`h-full p-8 ${j.stil}`}>
                     <h3 className="font-sans text-2xl font-bold tracking-normal">{j.titel}</h3>
                     <ul className="mt-5 space-y-2.5">
                       {j.rader.map((r) => (
@@ -892,7 +886,7 @@ function MetaAdsByra() {
             {BRANSCHER.map((b, i) => (
               <li key={b.titel}>
                 <Reveal delay={i * 50} className="h-full">
-                  <div className="h-full rounded-[1.5rem] bg-white/80 p-6">
+                  <div className="skylt h-full p-6">
                     <h3 className="font-sans text-lg font-bold tracking-normal text-ink">
                       {b.titel}
                     </h3>

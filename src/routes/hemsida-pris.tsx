@@ -343,7 +343,7 @@ function HemsidaPris() {
               </Link>
             </div>
           </div>
-          <div className="kortskugga rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+          <div className="inramad p-8 text-elfenben sm:p-10">
             <p className="caps text-sun">Hemsidor från</p>
             <p className="mt-4 font-display text-6xl leading-none sm:text-7xl">
               {kr(PRIS.landningssida)}
@@ -393,11 +393,11 @@ function HemsidaPris() {
             <Reveal key={b.id} delay={i * 60} className="h-full">
               <article
                 aria-labelledby={`bygge-${b.id}`}
-                className={`flex h-full flex-col rounded-[2rem] p-8 sm:p-9 ${
-                  b.utvald ? "bg-brand text-white" : "border-2 border-line bg-white text-ink"
+                className={`flex h-full flex-col p-8 sm:p-9 ${
+                  b.utvald ? "inramad text-elfenben" : "skylt text-ink"
                 }`}
               >
-                <p className={`caps ${b.utvald ? "text-white/80" : "text-brand"}`}>
+                <p className={`caps ${b.utvald ? "text-white/80" : "text-guld-mork"}`}>
                   {b.id === "skraddarsytt" ? "Offert" : "Fast pris"}
                 </p>
                 <h3
@@ -470,7 +470,7 @@ function HemsidaPris() {
 
           {/* Dator: tabell */}
           <Reveal delay={80} className="mt-10 hidden md:block">
-            <div className="overflow-hidden rounded-2xl border-2 border-line bg-white">
+            <div className="skylt overflow-hidden">
               <table className="w-full text-left">
                 <caption className="sr-only">Vad som ingår i de tre spåren efter lansering</caption>
                 <thead>
@@ -482,7 +482,7 @@ function HemsidaPris() {
                       <th
                         key={k.namn}
                         scope="col"
-                        className={`p-4 font-bold ${i === 2 ? "text-brand" : "text-ink"}`}
+                        className={`p-4 font-bold ${i === 2 ? "text-guld-mork" : "text-ink"}`}
                       >
                         {k.namn}
                         <span className="block text-sm font-normal text-muted-foreground">
@@ -513,7 +513,7 @@ function HemsidaPris() {
           {/* Mobil: ett kort per alternativ */}
           <div className="mt-10 grid gap-4 md:hidden">
             {KOLUMNER.map((k, i) => (
-              <div key={k.namn} className="rounded-2xl border-2 border-line bg-white p-5">
+              <div key={k.namn} className="skylt-liten p-5">
                 <h3 className="font-sans text-lg font-bold tracking-normal text-ink">
                   {k.namn} <span className="font-normal text-muted-foreground">{k.pris}</span>
                 </h3>
@@ -566,7 +566,7 @@ function HemsidaPris() {
                 "Vill ni flytta får ni koden och en timmes flytthjälp utan kostnad.",
               ].map((t) => (
                 <li key={t} className="flex gap-3 text-ink/85">
-                  <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+                  <Check className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                   {t}
                 </li>
               ))}
@@ -593,8 +593,8 @@ function HemsidaPris() {
               <li key={a.namn}>
                 <Reveal delay={i * 60} className="h-full">
                   <div
-                    className={`flex h-full flex-col rounded-[2rem] p-6 ${
-                      i === 0 ? "bg-ink text-white" : "border-2 border-line bg-white text-ink"
+                    className={`flex h-full flex-col p-6 ${
+                      i === 0 ? "inramad text-elfenben" : "skylt text-ink"
                     }`}
                   >
                     <h3 className="font-sans text-lg font-bold tracking-normal">{a.namn}</h3>
@@ -675,7 +675,7 @@ function HemsidaPris() {
             </p>
           </Reveal>
           <Reveal delay={80}>
-            <div className="overflow-hidden rounded-2xl border-2 border-line bg-white">
+            <div className="skylt overflow-hidden">
               <table className="w-full text-left text-sm sm:text-base">
                 <caption className="sr-only">
                   Vad ni bör kontrollera och hur det ser ut hos oss
@@ -685,7 +685,7 @@ function HemsidaPris() {
                     <th scope="col" className="p-4 font-bold text-ink">
                       Kontrollera
                     </th>
-                    <th scope="col" className="p-4 font-bold text-brand">
+                    <th scope="col" className="p-4 font-bold text-guld-mork">
                       Hos {FORETAG.kortnamn}
                     </th>
                   </tr>
@@ -722,7 +722,7 @@ function HemsidaPris() {
           {FORETAGSTYPER.map((f, i) => (
             <li key={f.titel}>
               <Reveal delay={i * 50} className="h-full">
-                <div className="h-full rounded-[1.5rem] bg-tint p-6">
+                <div className="skylt h-full p-6">
                   <h3 className="font-sans text-lg font-bold tracking-normal text-ink">
                     Hemsida för {f.titel.toLowerCase()}
                   </h3>
@@ -800,7 +800,7 @@ function HemsidaPris() {
                 "Hemsida, SEO och marknadsföring på ett ställe",
               ].map((t) => (
                 <li key={t} className="flex items-center gap-3 font-bold text-ink">
-                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+                  <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                     <Check className="size-4" strokeWidth={3} aria-hidden="true" />
                   </span>
                   {t}
@@ -860,7 +860,7 @@ function HemsidaPris() {
 function CellVy({ c }: { c: Cell }) {
   return c.ingar ? (
     <span className="inline-flex items-start gap-2 text-ink">
-      <Check className="mt-0.5 size-4 shrink-0 text-brand" strokeWidth={3} aria-hidden="true" />
+      <Check className="mt-0.5 size-4 shrink-0 text-guld-mork" strokeWidth={3} aria-hidden="true" />
       {c.text}
     </span>
   ) : (

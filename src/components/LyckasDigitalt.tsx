@@ -33,8 +33,8 @@ export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
   return (
     <div className="grid items-center gap-5 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
       {/* Gör det själv */}
-      <div className="h-full rounded-[1.75rem] bg-tint p-6 sm:p-8">
-        <p className="text-[0.7rem] font-bold tracking-[0.18em] text-brand uppercase">
+      <div className="skylt h-full p-6 sm:p-8">
+        <p className="text-[0.7rem] font-bold tracking-[0.18em] text-guld-mork uppercase">
           Gör det själv · det blir ett extrajobb
         </p>
         <ul className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -47,7 +47,7 @@ export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
             </li>
           ))}
         </ul>
-        <p className="mt-6 inline-block font-bold text-ink underline decoration-brand decoration-2 underline-offset-[6px]">
+        <p className="mt-6 inline-block font-bold text-ink underline decoration-guld decoration-2 underline-offset-[6px]">
           Och det tar tid från det ni egentligen ska göra.
         </p>
       </div>
@@ -60,7 +60,7 @@ export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
       </span>
 
       {/* Med oss */}
-      <div className="h-full rounded-[1.75rem] bg-brand p-6 text-white sm:p-8">
+      <div className="inramad h-full p-6 text-elfenben sm:p-8">
         <p className="text-[0.7rem] font-bold tracking-[0.18em] text-white/80 uppercase">
           Med {FORETAG.kortnamn} · det bara händer
         </p>
@@ -71,7 +71,7 @@ export function SjalvMotOss({ o }: { o: Pick<Tjanst, "sjalv" | "medOss"> }) {
           />
           {o.medOss.map((m) => (
             <li key={m} className="relative flex items-center gap-4">
-              <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white text-brand">
+              <span className="grid size-9 shrink-0 place-items-center rounded-full text-guld border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               <span className="font-bold">{m}</span>
@@ -156,7 +156,7 @@ export function LyckasDigitalt() {
           key={o.slug}
           value={o.slug}
           data-omrade={o.slug}
-          className="overflow-hidden rounded-[2rem] border-2 border-line bg-white/80 transition-colors data-[state=open]:border-ink/80 data-[state=open]:bg-white"
+          className="skylt overflow-hidden"
         >
           <Accordion.Header className="font-sans leading-normal font-normal tracking-normal">
             <Accordion.Trigger className="group flex w-full cursor-pointer items-center gap-4 px-5 py-5 text-left sm:gap-6 sm:px-8 sm:py-6">
@@ -166,7 +166,7 @@ export function LyckasDigitalt() {
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="grid size-12 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-12 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <o.ikon className="size-5" aria-hidden="true" />
               </span>
               <span className="min-w-0 flex-1">

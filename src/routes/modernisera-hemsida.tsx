@@ -238,7 +238,7 @@ function ForeEfter() {
     <figure className="mt-10">
       <div className="grid gap-5 md:grid-cols-2" aria-hidden="true">
         {/* Före */}
-        <div className="rounded-[1.5rem] border-2 border-line bg-white p-4">
+        <div className="skylt-liten p-4">
           <p className="caps text-muted-foreground">Före</p>
           <div className="mt-3 overflow-hidden rounded-xl border border-line bg-neutral-100">
             <div className="flex items-center gap-2 bg-neutral-300 px-3 py-2">
@@ -269,8 +269,8 @@ function ForeEfter() {
           </ul>
         </div>
         {/* Efter */}
-        <div className="rounded-[1.5rem] border-2 border-ink bg-white p-4">
-          <p className="caps text-brand">Efter</p>
+        <div className="skylt-liten skylt-markerad p-4">
+          <p className="caps text-guld-mork">Efter</p>
           <div className="mt-3 overflow-hidden rounded-xl border border-line bg-cream">
             <div className="flex items-center gap-3 px-3 py-2">
               <span className="h-3 w-12 rounded-full bg-ink" />
@@ -327,7 +327,7 @@ function ModerniseraHemsida() {
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               {f}
@@ -380,8 +380,10 @@ function ModerniseraHemsida() {
             {TECKEN.map((t, i) => (
               <li key={t.titel}>
                 <Reveal delay={i * 50} className="h-full">
-                  <div className="flex h-full gap-4 rounded-[1.5rem] bg-white/80 p-6">
-                    <span className="font-display text-3xl leading-none text-brand">{i + 1}</span>
+                  <div className="skylt flex h-full gap-4 p-6">
+                    <span className="font-display text-3xl leading-none text-guld-mork">
+                      {i + 1}
+                    </span>
                     <div>
                       <h3 className="font-sans text-lg font-bold tracking-normal text-ink">
                         {t.titel}
@@ -451,7 +453,7 @@ function ModerniseraHemsida() {
               det går att förbättra beror på plattformen ni har.
             </p>
             <p className="mt-5 flex gap-3 text-lg leading-relaxed text-ink/80">
-              <Accessibility className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+              <Accessibility className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
               Vi ser också över tillgänglighet: kontrast, textstorlek och att sajten går att använda
               med tangentbord.
             </p>
@@ -485,8 +487,8 @@ function ModerniseraHemsida() {
           {SEO_SKYDD.map((s, i) => (
             <li key={s.titel}>
               <Reveal delay={i * 50} className="h-full">
-                <div className="flex h-full gap-4 rounded-[1.5rem] border-2 border-line bg-white p-6">
-                  <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+                <div className="skylt flex h-full gap-4 p-6">
+                  <Check className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                   <div>
                     <h3 className="font-sans text-lg font-bold tracking-normal text-ink">
                       {s.titel}
@@ -531,7 +533,7 @@ function ModerniseraHemsida() {
               <li key={v.titel}>
                 <Reveal delay={i * 60} className="h-full">
                   <div
-                    className={`flex h-full flex-col rounded-[2rem] border-2 bg-white p-7 ${v.markerad ? "border-ink" : "border-line"}`}
+                    className={`skylt flex h-full flex-col p-7 ${v.markerad ? "skylt-markerad" : ""}`}
                   >
                     <h3 className="font-sans text-xl font-bold tracking-normal text-ink">
                       {v.titel}
@@ -540,7 +542,10 @@ function ModerniseraHemsida() {
                     <ul className="mt-5 flex-1 space-y-2">
                       {v.punkter.map((p) => (
                         <li key={p} className="flex gap-3 text-ink">
-                          <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden="true" />
+                          <Check
+                            className="mt-1 size-4 shrink-0 text-guld-mork"
+                            aria-hidden="true"
+                          />
                           {p}
                         </li>
                       ))}
@@ -581,7 +586,7 @@ function ModerniseraHemsida() {
             </Link>
           </Reveal>
           <Reveal delay={80}>
-            <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+            <div id="pris" className="inramad scroll-mt-28 p-8 text-elfenben sm:p-10">
               <p className="caps text-sun">Modernisering av hemsida</p>
               <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">
                 <span className="text-3xl sm:text-4xl">från </span>
@@ -664,8 +669,8 @@ function ModerniseraHemsida() {
             <h3 className="text-2xl sm:text-3xl">Vi hjälper bland annat</h3>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {BRANSCHER.map((b) => (
-                <li key={b} className="flex items-center gap-3 rounded-2xl bg-tint p-4 text-ink">
-                  <Check className="size-5 shrink-0 text-brand" aria-hidden="true" />
+                <li key={b} className="skylt-liten flex items-center gap-3 p-4 text-ink">
+                  <Check className="size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                   {b}
                 </li>
               ))}

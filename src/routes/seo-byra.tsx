@@ -219,7 +219,7 @@ function SeoByra() {
         <ul className="space-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               {f}
@@ -378,11 +378,8 @@ function SeoByra() {
       {/* Lokal SEO och GEO */}
       <section className="container-page grid gap-6 py-14 sm:py-20 lg:grid-cols-2">
         <Reveal className="h-full">
-          <article
-            aria-labelledby="lokal-seo"
-            className="h-full rounded-[2rem] border-2 border-line bg-white p-8 sm:p-10"
-          >
-            <span className="grid size-12 place-items-center rounded-full bg-tint text-brand">
+          <article aria-labelledby="lokal-seo" className="skylt h-full p-8 sm:p-10">
+            <span className="grid size-12 place-items-center rounded-full text-guld-mork border border-guld/60">
               <MapPin className="size-6" aria-hidden="true" />
             </span>
             <h2 id="lokal-seo" className="mt-6 text-3xl sm:text-4xl">
@@ -409,10 +406,7 @@ function SeoByra() {
           </article>
         </Reveal>
         <Reveal delay={80} className="h-full">
-          <article
-            aria-labelledby="seo-geo"
-            className="h-full rounded-[2rem] bg-ink p-8 text-white sm:p-10"
-          >
+          <article aria-labelledby="seo-geo" className="inramad h-full p-8 text-elfenben sm:p-10">
             <span className="grid size-12 place-items-center rounded-full bg-white/10 text-sun">
               <Bot className="size-6" aria-hidden="true" />
             </span>
@@ -577,7 +571,7 @@ function SeoByra() {
 /** Stiliserat sökresultat och klickkurva. Rent illustration – inga verkliga kundsiffror. */
 function Sokresultat() {
   return (
-    <figure className="kortskugga relative rounded-[2rem] border-2 border-line bg-white p-5 sm:p-7">
+    <figure className="skylt relative p-5 sm:p-7">
       <div aria-hidden="true">
         <div className="flex items-center gap-3 rounded-full border-2 border-line px-5 py-3">
           <Search className="size-4 text-muted-foreground" />

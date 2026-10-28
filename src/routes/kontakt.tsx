@@ -75,7 +75,7 @@ function Kontakt() {
             <ul className="mt-8 space-y-3">
               {FORETAG.telefon && (
                 <li className="flex items-center gap-3">
-                  <Phone className="size-5 text-brand" aria-hidden="true" />
+                  <Phone className="size-5 text-guld-mork" aria-hidden="true" />
                   <a href={`tel:${FORETAG.telefonLank}`} className="font-bold text-ink underline">
                     {FORETAG.telefon}
                   </a>
@@ -83,7 +83,7 @@ function Kontakt() {
               )}
               {FORETAG.epost && (
                 <li className="flex items-center gap-3">
-                  <Mail className="size-5 text-brand" aria-hidden="true" />
+                  <Mail className="size-5 text-guld-mork" aria-hidden="true" />
                   <a href={`mailto:${FORETAG.epost}`} className="font-bold text-ink underline">
                     {FORETAG.epost}
                   </a>

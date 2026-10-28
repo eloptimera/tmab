@@ -288,19 +288,16 @@ const VARFOR: readonly Kort[] = [
 function AiSokning() {
   return (
     <figure>
-      <div
-        aria-hidden="true"
-        className="kortskugga rounded-[2rem] border-2 border-ink bg-white p-5 sm:p-6"
-      >
+      <div aria-hidden="true" className="skylt skylt-markerad p-5 sm:p-6">
         <div className="flex items-center gap-3 rounded-full border border-line bg-cream px-4 py-3">
           <Search className="size-4 shrink-0 text-muted-foreground" />
           <span className="text-sm text-ink">Vilka företag hjälper småföretag med SEO?</span>
         </div>
         <div className="mt-5 flex items-center gap-2">
-          <span className="grid size-7 place-items-center rounded-full bg-brand text-white">
+          <span className="grid size-7 place-items-center rounded-full text-guld-mork border border-guld">
             <Sparkles className="size-4" />
           </span>
-          <span className="caps text-brand">AI-svar</span>
+          <span className="caps text-guld-mork">AI-svar</span>
         </div>
         <div className="mt-4 space-y-2">
           <span className="block h-2.5 w-full rounded bg-ink/15" />
@@ -310,7 +307,7 @@ function AiSokning() {
         <ul className="mt-5 space-y-2">
           {["Företag A", "Företag B", "Företag C"].map((f, i) => (
             <li key={f} className="flex items-center gap-3">
-              <span className="grid size-6 place-items-center rounded-full bg-tint text-xs font-bold text-brand">
+              <span className="grid size-6 place-items-center rounded-full text-xs font-bold text-guld-mork border border-guld/60">
                 {i + 1}
               </span>
               <span className="text-sm font-bold text-ink">{f}</span>
@@ -379,7 +376,7 @@ function GeoOptimering() {
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               {f}
@@ -504,7 +501,7 @@ function GeoOptimering() {
         </ul>
 
         <Reveal delay={60} className="mt-14">
-          <div className="grid gap-8 rounded-[2rem] bg-tint p-8 sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+          <div className="skylt grid gap-8 p-8 sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
             <div>
               <h3 className="text-3xl sm:text-4xl">GEO-optimering för småföretag</h3>
               <p className="mt-4 leading-relaxed text-ink/80">
@@ -519,8 +516,8 @@ function GeoOptimering() {
                 ["Prioritera rätt frågor", "Det era kunder faktiskt vill veta."],
                 ["Kombinera med SEO", "Inte ett isolerat sidoprojekt."],
               ].map(([t, x]) => (
-                <li key={t} className="flex gap-3 rounded-2xl bg-white p-4">
-                  <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+                <li key={t} className="skylt-liten flex gap-3 p-4">
+                  <Check className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                   <span>
                     <span className="block font-bold text-ink">{t}</span>
                     <span className="text-muted-foreground">{x}</span>
@@ -583,7 +580,7 @@ function GeoOptimering() {
                 "Kontroll av robotarnas åtkomst",
               ].map((r) => (
                 <li key={r} className="flex gap-3 text-ink">
-                  <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden="true" />
+                  <Check className="mt-1 size-4 shrink-0 text-guld-mork" aria-hidden="true" />
                   {r}
                 </li>
               ))}
@@ -615,7 +612,7 @@ function GeoOptimering() {
                 ["Teknisk kvalitet", "Grundläggande SEO, struktur och funktion som fungerar."],
               ].map(([t, x]) => (
                 <li key={t} className="flex gap-3">
-                  <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden="true" />
+                  <Check className="mt-1 size-4 shrink-0 text-guld-mork" aria-hidden="true" />
                   <span>
                     <span className="font-bold text-ink">{t}:</span>{" "}
                     <span className="text-ink/80">{x}</span>
@@ -645,16 +642,17 @@ function GeoOptimering() {
             {JAMFORELSE.map((k, i) => (
               <li key={k.titel}>
                 <Reveal delay={i * 60} className="h-full">
-                  <div
-                    className={`h-full rounded-[2rem] border-2 bg-white p-7 ${k.markerad ? "border-ink" : "border-line"}`}
-                  >
+                  <div className={`skylt h-full p-7 ${k.markerad ? "skylt-markerad" : ""}`}>
                     <h3 className="font-sans text-xl font-bold tracking-normal text-ink">
                       {k.titel}
                     </h3>
                     <ul className="mt-5 space-y-3">
                       {k.rader.map((r) => (
                         <li key={r} className="flex gap-3 text-ink/80">
-                          <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden="true" />
+                          <Check
+                            className="mt-1 size-4 shrink-0 text-guld-mork"
+                            aria-hidden="true"
+                          />
                           {r}
                         </li>
                       ))}
@@ -698,8 +696,8 @@ function GeoOptimering() {
             </p>
             <ol className="mt-6 space-y-3">
               {PRINCIPER.map((p, i) => (
-                <li key={p.titel} className="flex gap-4 rounded-2xl border-2 border-line p-4">
-                  <span className="font-display text-2xl leading-none text-brand">{i + 1}</span>
+                <li key={p.titel} className="skylt-liten flex gap-4 p-4">
+                  <span className="font-display text-2xl leading-none text-guld-mork">{i + 1}</span>
                   <span>
                     <span className="block font-bold text-ink">{p.titel}</span>
                     <span className="text-muted-foreground">{p.text}</span>
@@ -720,8 +718,8 @@ function GeoOptimering() {
             </p>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {FORETAGSINFO.map((f) => (
-                <li key={f} className="flex items-center gap-3 rounded-2xl bg-tint p-4 text-ink">
-                  <Check className="size-5 shrink-0 text-brand" aria-hidden="true" />
+                <li key={f} className="skylt-liten flex items-center gap-3 p-4 text-ink">
+                  <Check className="size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                   {f}
                 </li>
               ))}

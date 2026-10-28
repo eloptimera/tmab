@@ -44,16 +44,14 @@ function Tjanster() {
       </PageHero>
 
       <div className="container-page grid gap-5 py-14 sm:py-20">
-        {TJANSTER.map((t, i) => (
+        {TJANSTER.map((t) => (
           <Reveal key={t.slug}>
             <section
               aria-labelledby={`${t.slug}-rubrik`}
-              className={`grid gap-8 rounded-[2rem] p-7 sm:p-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16 ${
-                i % 2 === 0 ? "bg-tint" : "border-2 border-line bg-white"
-              }`}
+              className="skylt grid gap-8 p-7 sm:p-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16"
             >
               <div>
-                <span className="grid size-16 place-items-center rounded-full bg-brand text-white">
+                <span className="grid size-16 place-items-center rounded-full text-guld-mork border border-guld">
                   <t.ikon className="size-7" aria-hidden="true" />
                 </span>
                 <h2 id={`${t.slug}-rubrik`} className="mt-6 text-3xl sm:text-4xl">
@@ -74,12 +72,9 @@ function Tjanster() {
               <div>
                 <ul className="space-y-3">
                   {t.medOss.map((p) => (
-                    <li
-                      key={p}
-                      className="flex gap-3 rounded-2xl bg-white p-4 text-ink shadow-sm shadow-brand/10"
-                    >
+                    <li key={p} className="skylt-liten flex gap-3 p-4 text-ink">
                       <Check
-                        className="mt-0.5 size-5 shrink-0 text-brand"
+                        className="mt-0.5 size-5 shrink-0 text-guld-mork"
                         strokeWidth={3}
                         aria-hidden="true"
                       />

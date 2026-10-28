@@ -382,7 +382,7 @@ function Sokmotoroptimering() {
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               {f}
@@ -445,9 +445,9 @@ function Sokmotoroptimering() {
           <Reveal delay={80}>
             <ol className="mt-10 grid gap-3 md:grid-cols-3">
               {GOOGLE_STEG.map((s, i) => (
-                <li key={s.titel} className="relative rounded-[1.75rem] bg-white p-7">
+                <li key={s.titel} className="skylt relative p-7">
                   <span className="flex items-center gap-3">
-                    <span className="grid size-11 place-items-center rounded-full bg-brand text-white">
+                    <span className="grid size-11 place-items-center rounded-full text-guld-mork border border-guld">
                       <s.ikon className="size-5" aria-hidden="true" />
                     </span>
                     <span className="font-display text-2xl text-ink">
@@ -520,7 +520,7 @@ function Sokmotoroptimering() {
               </p>
             </Reveal>
             <Reveal delay={80}>
-              <div className="rounded-[2rem] border-2 border-line bg-white p-6 sm:p-8">
+              <div className="skylt p-6 sm:p-8">
                 <p className="text-sm font-bold text-muted-foreground">Från fråga till köp</p>
                 <ol className="mt-5 space-y-3">
                   {AVSIKT.map((a, i) => (
@@ -530,12 +530,12 @@ function Sokmotoroptimering() {
                         style={{ width: `${(i + 1) * 1.25}rem`, opacity: 0.35 + i * 0.2 }}
                         aria-hidden="true"
                       />
-                      <span className="flex flex-1 flex-wrap items-center justify-between gap-2 rounded-xl bg-tint px-4 py-2.5">
+                      <span className="skylt-liten flex flex-1 flex-wrap items-center justify-between gap-2 px-4 py-2.5">
                         <span className="flex items-center gap-2 text-ink">
                           <Search className="size-4 text-muted-foreground" aria-hidden="true" />
                           {a.sok}
                         </span>
-                        <span className="text-xs font-bold text-brand uppercase">{a.typ}</span>
+                        <span className="text-xs font-bold text-guld-mork uppercase">{a.typ}</span>
                       </span>
                     </li>
                   ))}
@@ -600,7 +600,7 @@ function Sokmotoroptimering() {
           <Reveal delay={80}>
             <dl className="grid gap-3 sm:grid-cols-2">
               {ON_PAGE.map((o) => (
-                <div key={o.del} className="rounded-[1.25rem] bg-white p-5">
+                <div key={o.del} className="skylt-liten p-5">
                   <dt className="font-bold text-ink">{o.del}</dt>
                   <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{o.text}</dd>
                 </div>
@@ -625,8 +625,8 @@ function Sokmotoroptimering() {
               för att andra litar på er. Det som räknas är äkta länkar och omnämnanden med koppling
               till verksamheten.
             </p>
-            <p className="mt-5 flex gap-3 rounded-2xl bg-tint p-4 leading-relaxed text-ink">
-              <X className="mt-0.5 size-5 shrink-0 text-brand" aria-hidden="true" />
+            <p className="skylt-liten mt-5 flex gap-3 p-4 leading-relaxed text-ink">
+              <X className="mt-0.5 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
               Att köpa länkar eller bygga stora mängder konstgjorda länkar för att påverka
               sökresultaten strider mot Googles riktlinjer och kan få motsatt effekt.
             </p>
@@ -667,12 +667,12 @@ function Sokmotoroptimering() {
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <figure className="rounded-[2rem] border-2 border-line bg-white p-6 sm:p-8">
+            <figure className="skylt p-6 sm:p-8">
               <ol className="space-y-2">
                 {STRUKTUR.map((n, i) => (
                   <li key={n.niva}>
                     {i > 0 && <span className="ml-5 block h-4 w-px bg-ink/30" aria-hidden="true" />}
-                    <p className="text-xs font-bold tracking-[0.14em] text-brand uppercase">
+                    <p className="text-xs font-bold tracking-[0.14em] text-guld-mork uppercase">
                       {n.niva}
                     </p>
                     <ul className="mt-2 flex flex-wrap gap-2">
@@ -716,8 +716,8 @@ function Sokmotoroptimering() {
             </p>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {INNEHALL.map((t) => (
-                <li key={t} className="flex gap-3 rounded-2xl bg-tint p-4 text-ink">
-                  <Check className="mt-0.5 size-5 shrink-0 text-brand" aria-hidden="true" />
+                <li key={t} className="skylt-liten flex gap-3 p-4 text-ink">
+                  <Check className="mt-0.5 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                   {t}
                 </li>
               ))}
@@ -730,10 +730,7 @@ function Sokmotoroptimering() {
       <section className="bg-fade-tint py-14 sm:py-20">
         <div className="container-page grid gap-6 lg:grid-cols-2">
           <Reveal className="h-full">
-            <article
-              aria-labelledby="lokal"
-              className="h-full rounded-[2rem] border-2 border-line bg-white p-8 sm:p-10"
-            >
+            <article aria-labelledby="lokal" className="skylt h-full p-8 sm:p-10">
               <h2 id="lokal" className="text-3xl sm:text-4xl">
                 Lokal sökmotoroptimering – syns där <Mark>kunderna finns</Mark>
               </h2>
@@ -752,10 +749,7 @@ function Sokmotoroptimering() {
             </article>
           </Reveal>
           <Reveal delay={80} className="h-full">
-            <article
-              aria-labelledby="geo"
-              className="h-full rounded-[2rem] bg-ink p-8 text-white sm:p-10"
-            >
+            <article aria-labelledby="geo" className="inramad h-full p-8 text-elfenben sm:p-10">
               <h2 id="geo" className="text-3xl sm:text-4xl">
                 SEO och AI-sökoptimering – hur <Mark>hänger det ihop</Mark>?
               </h2>
@@ -816,7 +810,7 @@ function Sokmotoroptimering() {
             </p>
           </Reveal>
           <Reveal delay={80}>
-            <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+            <div id="pris" className="inramad scroll-mt-28 p-8 text-elfenben sm:p-10">
               <dl className="divide-y divide-white/15">
                 <div className="pb-4">
                   <dt className="text-white/80">Grundoptimering av SEO och GEO, engång</dt>
@@ -911,7 +905,7 @@ function Sokmotoroptimering() {
             </p>
           </Reveal>
           <Reveal delay={80}>
-            <div className="overflow-x-auto rounded-2xl border-2 border-line bg-white">
+            <div className="skylt overflow-x-auto">
               <table className="w-full min-w-[30rem] text-left">
                 <caption className="sr-only">
                   Jämförelse mellan sökmotoroptimering och Google Ads
@@ -921,7 +915,7 @@ function Sokmotoroptimering() {
                     <th scope="col" className="p-4">
                       <span className="sr-only">Faktor</span>
                     </th>
-                    <th scope="col" className="p-4 font-bold text-brand">
+                    <th scope="col" className="p-4 font-bold text-guld-mork">
                       SEO
                     </th>
                     <th scope="col" className="p-4 font-bold text-ink">
@@ -1026,7 +1020,7 @@ function Sokresultat() {
   ];
   return (
     <figure>
-      <div className="kortskugga rounded-[2rem] border-2 border-line bg-white p-5 sm:p-7">
+      <div className="skylt p-5 sm:p-7">
         <div
           className="flex items-center gap-3 rounded-full border-2 border-line px-5 py-3"
           aria-hidden="true"
@@ -1041,7 +1035,7 @@ function Sokresultat() {
           </div>
           <div className="flex items-center gap-2">
             <span className="rounded-md bg-sun px-1.5 text-[0.65rem] font-bold text-ink">2</span>
-            <p className="font-bold text-brand">
+            <p className="font-bold text-guld-mork">
               Redovisningsbyrå för småföretag – fast månadspris
             </p>
           </div>

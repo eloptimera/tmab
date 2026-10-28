@@ -153,7 +153,7 @@ function WebbyraGoteborg() {
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {FAKTA.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               {f}
@@ -192,8 +192,8 @@ function WebbyraGoteborg() {
           {TJANSTER.map((k, i) => (
             <li key={k.titel}>
               <Reveal delay={i * 60} className="h-full">
-                <div className="kortskugga flex h-full flex-col rounded-[2rem] border-2 border-line bg-white p-7">
-                  <span className="grid size-12 place-items-center rounded-full bg-tint text-brand">
+                <div className="skylt flex h-full flex-col p-7">
+                  <span className="grid size-12 place-items-center rounded-full text-guld-mork border border-guld/60">
                     <k.ikon className="size-6" aria-hidden="true" />
                   </span>
                   <h3 className="mt-6 font-sans text-lg leading-snug font-bold tracking-normal text-ink">
@@ -236,7 +236,7 @@ function WebbyraGoteborg() {
                   { ikon: Check, text: "Svar inom en arbetsdag" },
                 ].map((r) => (
                   <li key={r.text} className="flex gap-3 text-ink">
-                    <r.ikon className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+                    <r.ikon className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                     {r.text}
                   </li>
                 ))}
@@ -321,7 +321,7 @@ function WebbyraGoteborg() {
             </Link>
           </Reveal>
           <Reveal delay={80}>
-            <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+            <div id="pris" className="inramad scroll-mt-28 p-8 text-elfenben sm:p-10">
               <p className="caps text-sun">Ny hemsida</p>
               <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">
                 <span className="text-3xl sm:text-4xl">från </span>

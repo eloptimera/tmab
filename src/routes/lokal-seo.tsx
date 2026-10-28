@@ -225,17 +225,17 @@ const JAMFORELSE = [
   {
     titel: "Vanlig SEO",
     text: "Sökningar oavsett plats. Innehåll efter tjänsterna och målgruppen.",
-    stil: "border-2 border-line bg-white",
+    stil: "skylt",
   },
   {
     titel: "Lokal SEO",
     text: "Sökningar där platsen spelar roll. Lokalt innehåll, Google-företagsprofil och omdömen.",
-    stil: "bg-brand text-white",
+    stil: "inramad text-elfenben",
   },
   {
     titel: "Gemensamt",
     text: "Teknisk SEO, en användarvänlig hemsida, relevant innehåll och tydliga kontaktvägar.",
-    stil: "bg-ink text-white",
+    stil: "inramad text-elfenben",
   },
 ] as const;
 
@@ -304,7 +304,7 @@ function LokalSeo() {
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+              <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                 <Check className="size-4" strokeWidth={3} aria-hidden="true" />
               </span>
               {f}
@@ -368,9 +368,7 @@ function LokalSeo() {
               <li key={k.titel}>
                 <Reveal delay={i * 60} className="h-full">
                   <KortVy k={k}>
-                    <p className="mt-5 rounded-xl bg-tint px-4 py-3 text-sm font-bold text-ink">
-                      {k.kan}
-                    </p>
+                    <p className="skylt-liten mt-5 px-4 py-3 text-sm font-bold text-ink">{k.kan}</p>
                   </KortVy>
                 </Reveal>
               </li>
@@ -433,7 +431,7 @@ function LokalSeo() {
           </Reveal>
           <Reveal delay={80}>
             <figure>
-              <div className="kortskugga overflow-hidden rounded-[2rem] border-2 border-line bg-white">
+              <div className="skylt overflow-hidden">
                 <div
                   className="h-24 bg-[linear-gradient(135deg,var(--tint),var(--line))]"
                   aria-hidden="true"
@@ -442,13 +440,13 @@ function LokalSeo() {
                   <p className="font-sans text-xl font-bold text-ink" aria-hidden="true">
                     Er företagsprofil
                   </p>
-                  <h3 className="mt-4 text-xs font-bold tracking-[0.14em] text-brand uppercase">
+                  <h3 className="mt-4 text-xs font-bold tracking-[0.14em] text-guld-mork uppercase">
                     Checklista
                   </h3>
                   <ul className="mt-3 divide-y divide-line">
                     {PROFIL_CHECK.map((c) => (
                       <li key={c} className="flex items-center gap-3 py-2.5 text-ink">
-                        <span className="grid size-6 shrink-0 place-items-center rounded-full bg-brand text-white">
+                        <span className="grid size-6 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
                           <Check className="size-3.5" strokeWidth={3} aria-hidden="true" />
                         </span>
                         {c}
@@ -484,10 +482,10 @@ function LokalSeo() {
             </p>
           </Reveal>
           <Reveal delay={80}>
-            <div className="rounded-[2rem] border-2 border-line bg-white p-6 sm:p-8">
+            <div className="skylt p-6 sm:p-8">
               <p className="text-sm font-bold text-muted-foreground">Så ser en lokal sökning ut</p>
               <p className="mt-4 flex flex-wrap items-center gap-2 text-lg">
-                <span className="rounded-full bg-brand px-4 py-1.5 font-bold text-white">
+                <span className="rounded-full px-4 py-1.5 font-bold text-guld-mork border border-guld">
                   tjänst
                 </span>
                 <span aria-hidden="true">+</span>
@@ -497,11 +495,11 @@ function LokalSeo() {
                 {SOKEXEMPEL.map(([tjanst, ort]) => (
                   <li
                     key={tjanst}
-                    className="flex items-center gap-2 rounded-xl bg-tint px-4 py-3 text-ink"
+                    className="skylt-liten flex items-center gap-2 px-4 py-3 text-ink"
                   >
                     <Search className="size-4 text-muted-foreground" aria-hidden="true" />
                     <span>
-                      <span className="font-bold text-brand">{tjanst.toLowerCase()}</span> i{" "}
+                      <span className="font-bold text-guld-mork">{tjanst.toLowerCase()}</span> i{" "}
                       <span className="font-bold">{ort}</span>
                     </span>
                   </li>
@@ -531,7 +529,7 @@ function LokalSeo() {
             {BRANSCHER.map((b, i) => (
               <li key={b.titel}>
                 <Reveal delay={i * 50} className="h-full">
-                  <div className="h-full rounded-[1.5rem] bg-white/80 p-6">
+                  <div className="skylt h-full p-6">
                     <h3 className="font-sans text-lg font-bold tracking-normal text-ink">
                       {b.titel}
                     </h3>
@@ -579,7 +577,7 @@ function LokalSeo() {
             </p>
           </Reveal>
           <Reveal delay={80}>
-            <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+            <div id="pris" className="inramad scroll-mt-28 p-8 text-elfenben sm:p-10">
               <dl className="divide-y divide-white/15">
                 <div className="py-4 first:pt-0">
                   <dt className="text-white/80">Google-företagsprofil, engång</dt>
@@ -643,7 +641,7 @@ function LokalSeo() {
           {JAMFORELSE.map((j, i) => (
             <li key={j.titel}>
               <Reveal delay={i * 60} className="h-full">
-                <div className={`h-full rounded-[2rem] p-7 ${j.stil}`}>
+                <div className={`h-full p-7 ${j.stil}`}>
                   <h3 className="font-sans text-xl font-bold tracking-normal">{j.titel}</h3>
                   <p className="mt-3 leading-relaxed opacity-85">{j.text}</p>
                 </div>
@@ -675,7 +673,7 @@ function LokalSeo() {
                 "Köp aldrig recensioner och skriv inga själva",
               ].map((t) => (
                 <li key={t} className="flex gap-3 text-ink/85">
-                  <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+                  <Check className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                   {t}
                 </li>
               ))}
@@ -772,10 +770,7 @@ function LokalSokning() {
   ];
   return (
     <figure>
-      <div
-        className="kortskugga overflow-hidden rounded-[2rem] border-2 border-line bg-white"
-        aria-hidden="true"
-      >
+      <div className="skylt overflow-hidden" aria-hidden="true">
         <div className="flex items-center gap-3 border-b border-line px-5 py-3.5">
           <Search className="size-4 text-muted-foreground" />
           <span className="text-ink">snickare uppsala</span>

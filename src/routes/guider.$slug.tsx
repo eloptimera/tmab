@@ -87,7 +87,7 @@ function GuideSida() {
         </div>
 
         {tjanst && (
-          <aside className="mt-14 max-w-3xl rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+          <aside className="inramad mt-14 max-w-3xl p-8 text-elfenben sm:p-10">
             <p className="caps text-sun">Vill du slippa göra det själv?</p>
             <p className="mt-4 text-2xl leading-snug sm:text-3xl">
               Vi sköter {tjanst.iText} åt dig – från första analysen till uppföljningen varje månad.
@@ -126,7 +126,7 @@ function GuideSida() {
               <Link
                 to="/guider/$slug"
                 params={{ slug: o.slug }}
-                className="group flex h-full items-center justify-between gap-3 rounded-[1.5rem] border-2 border-line bg-white/80 p-5 transition-colors hover:border-ink"
+                className="skylt group flex h-full items-center justify-between gap-3 p-5"
               >
                 <span className="font-bold text-ink">{o.titel}</span>
                 <ArrowRight
@@ -155,7 +155,7 @@ function AvsnittVy({ a }: { a: Avsnitt }) {
       ))}
       {a.lista && <Lista {...a.lista} />}
       {a.tabell && (
-        <div className="mt-6 overflow-x-auto rounded-2xl border-2 border-line bg-white">
+        <div className="skylt mt-6 overflow-x-auto">
           <table className="w-full min-w-[32rem] text-left">
             <thead>
               <tr className="border-b-2 border-line">
@@ -202,17 +202,17 @@ function Lista({ numrerad, rader }: { numrerad?: boolean; rader: readonly Rad[] 
       {rader.map((r, i) => (
         <li
           key={typeof r === "string" ? r : r.titel}
-          className="flex gap-4 rounded-2xl bg-white p-4 text-lg leading-relaxed text-ink shadow-sm shadow-brand/10 sm:p-5"
+          className="skylt-liten flex gap-4 p-4 text-lg leading-relaxed text-ink sm:p-5"
         >
           {numrerad ? (
             <span
-              className="grid size-8 shrink-0 place-items-center rounded-full bg-brand text-sm font-bold text-white"
+              className="grid size-8 shrink-0 place-items-center rounded-full text-sm font-bold text-guld-mork border border-guld"
               aria-hidden="true"
             >
               {i + 1}
             </span>
           ) : (
-            <Check className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+            <Check className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
           )}
           {typeof r === "string" ? (
             <span>{r}</span>

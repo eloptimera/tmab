@@ -6,8 +6,8 @@ export function Loften({ kompakt = false }: { kompakt?: boolean }) {
   return (
     <ul className={`grid gap-3 ${kompakt ? "" : "sm:grid-cols-2 lg:grid-cols-4"}`}>
       {LOFTEN.map((l) => (
-        <li key={l.titel} className="flex gap-3 rounded-[1.5rem] bg-white/80 p-5">
-          <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand text-white">
+        <li key={l.titel} className="skylt-liten flex gap-3 p-5">
+          <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
             <Check className="size-4" strokeWidth={3} aria-hidden="true" />
           </span>
           <span>

@@ -15,7 +15,7 @@ export function ProjektLista({ className = "" }: { className?: string }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => projektKlick(p.namn)}
-              className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-line bg-white transition-transform duration-300 hover:-translate-y-1"
+              className="skylt group flex h-full flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="relative isolate grid aspect-[16/10] place-items-center overflow-hidden bg-tint">
                 <span
@@ -37,7 +37,7 @@ export function ProjektLista({ className = "" }: { className?: string }) {
                 </span>
               </div>
               <div className="flex flex-1 flex-col p-7">
-                <p className="text-xs font-bold tracking-[0.14em] text-brand uppercase">
+                <p className="text-xs font-bold tracking-[0.14em] text-guld-mork uppercase">
                   {p.kategori}
                 </p>
                 <p className="mt-3 leading-relaxed text-muted-foreground">{p.text}</p>
@@ -48,7 +48,7 @@ export function ProjektLista({ className = "" }: { className?: string }) {
                       {p.gjorde.map((g) => (
                         <li key={g} className="flex gap-2">
                           <Check
-                            className="mt-0.5 size-4 shrink-0 text-brand"
+                            className="mt-0.5 size-4 shrink-0 text-guld-mork"
                             strokeWidth={3}
                             aria-hidden="true"
                           />
@@ -88,7 +88,7 @@ export function BildGalleri({
         <li key={b.src}>
           <Reveal delay={i * 70}>
             <figure>
-              <div className="overflow-hidden rounded-[1.5rem] bg-tint">
+              <div className="overflow-hidden bg-tint">
                 <img
                   src={b.src}
                   alt={b.alt}

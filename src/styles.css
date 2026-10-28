@@ -48,7 +48,8 @@
   --color-ink: var(--ink);
   --color-sun: var(--sun);
   --color-guld: #b8913f;
-  --color-guld-mork: #9a7631;
+  /* Mörkt guld för text: 5:1 mot papperet (WCAG AA). */
+  --color-guld-mork: #7a5c22;
   --color-elfenben: #efe6d2;
   --color-cream: var(--cream);
 }
@@ -1154,6 +1155,16 @@ main:has(.fyr-panel) + footer > div {
   outline: 1px solid rgb(184 145 63 / 0.55);
   outline-offset: -8px;
   box-shadow: 0 12px 28px -22px rgb(30 20 5 / 0.5);
+}
+/* Mindre rader och listor: papper med en förgylld kant till vänster i stället för en hel ram. */
+.skylt-liten {
+  background-color: #f3f0e7;
+  border-left: 2px solid #b8913f;
+}
+/* Den markerade skylten (t.ex. rekommenderat val): tjockare guldlinje. */
+.skylt-markerad {
+  outline-width: 2px;
+  outline-color: #b8913f;
 }
 .inramad {
   border: 18px solid transparent;

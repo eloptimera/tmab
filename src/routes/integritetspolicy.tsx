@@ -48,7 +48,7 @@ function Integritetspolicy() {
             {FORETAG.orgnr && `, org.nr ${FORETAG.orgnr}`}
             {FORETAG.adress && `, ${FORETAG.adress}`}, som driver {FORETAG.namn}, är
             personuppgiftsansvarig för behandlingen. Du når oss via{" "}
-            <Link className="font-bold text-brand underline" to="/kontakt">
+            <Link className="font-bold text-ink underline decoration-guld" to="/kontakt">
               kontaktformuläret
             </Link>
             {FORETAG.epost && ` eller på ${FORETAG.epost}`}
@@ -129,7 +129,7 @@ function Integritetspolicy() {
                 <button
                   type="button"
                   onClick={oppnaInstallningar}
-                  className="font-bold text-brand underline"
+                  className="font-bold text-ink underline decoration-guld"
                 >
                   Cookieinställningar
                 </button>
@@ -155,7 +155,7 @@ function Integritetspolicy() {
           <p>
             Kontakta oss så hjälper vi dig. Du har också rätt att klaga hos{" "}
             <a
-              className="font-bold text-brand underline"
+              className="font-bold text-ink underline decoration-guld"
               href="https://www.imy.se"
               target="_blank"
               rel="noopener noreferrer"
@@ -168,7 +168,7 @@ function Integritetspolicy() {
 
         <p className="mt-14 text-sm text-muted-foreground">
           Har du frågor?{" "}
-          <Link to="/kontakt" className="font-bold text-brand underline">
+          <Link to="/kontakt" className="font-bold text-ink underline decoration-guld">
             Kontakta oss
           </Link>
           .

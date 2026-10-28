@@ -35,11 +35,14 @@ function Villkor() {
         ))}
         <p className="mt-14 text-sm text-muted-foreground">
           Frågor om villkoren?{" "}
-          <a href={`mailto:${FORETAG.epost}`} className="font-bold text-brand underline">
+          <a
+            href={`mailto:${FORETAG.epost}`}
+            className="font-bold text-ink underline decoration-guld"
+          >
             {FORETAG.epost}
           </a>{" "}
           · Se även{" "}
-          <Link to="/integritetspolicy" className="font-bold text-brand underline">
+          <Link to="/integritetspolicy" className="font-bold text-ink underline decoration-guld">
             integritetspolicyn
           </Link>
           .

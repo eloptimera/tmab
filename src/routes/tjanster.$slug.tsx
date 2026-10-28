@@ -105,7 +105,7 @@ function TjanstSida() {
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-8 flex max-w-3xl gap-3 text-lg leading-relaxed text-ink/80">
-              <FileCheck className="mt-1 size-5 shrink-0 text-brand" aria-hidden="true" />
+              <FileCheck className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
               {t.arbetssatt.underlag}
             </p>
           </Reveal>
@@ -132,11 +132,8 @@ function TjanstSida() {
             {f.lista && (
               <ul className="mt-6 space-y-3">
                 {f.lista.map((r) => (
-                  <li
-                    key={r}
-                    className="flex gap-3 rounded-2xl bg-white p-4 text-ink shadow-sm shadow-brand/10"
-                  >
-                    <Check className="mt-0.5 size-5 shrink-0 text-brand" aria-hidden="true" />
+                  <li key={r} className="skylt-liten flex gap-3 p-4 text-ink">
+                    <Check className="mt-0.5 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
                     {r}
                   </li>
                 ))}
@@ -184,7 +181,7 @@ function TjanstSida() {
             <li key={o.slug}>
               <Link
                 to={tjanstSokvag(o)}
-                className="group flex h-full items-center justify-between gap-3 rounded-[1.5rem] border-2 border-line bg-white/80 p-5 transition-colors hover:border-ink"
+                className="skylt group flex h-full items-center justify-between gap-3 p-5"
               >
                 <span>
                   <span className="block font-bold text-ink">{o.titel}</span>
@@ -209,7 +206,7 @@ function TjanstSida() {
 
 function Pris({ t }: { t: Tjanst }) {
   return (
-    <div id="pris" className="scroll-mt-28 rounded-[2rem] bg-ink p-8 text-white sm:p-10">
+    <div id="pris" className="inramad scroll-mt-28 p-8 text-elfenben sm:p-10">
       <p className="caps text-sun">Pris</p>
       <p className="mt-5 text-white/80">{t.pris.avser}</p>
       <p className="mt-2 font-display text-5xl leading-none sm:text-6xl">
