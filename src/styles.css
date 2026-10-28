@@ -969,3 +969,107 @@ main:has(.fyr-panel) + footer > div {
     border-width: 11px;
   }
 }
+
+/* Mästarhero på tjänstesidorna (MastarHero.tsx): landskapet som bakgrund, mästaren och stenen
+   som eget lager framför, texten i den ljusa himlen. Botten tonas ut i papperet. */
+.mastar-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(52rem, calc(100svh - 4.5rem));
+}
+.mastar-bakgrund {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 40% 35%;
+  transform: scale(1.06);
+  will-change: transform;
+}
+.mastar-figur {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  width: min(34vw, 36rem);
+  height: auto;
+  max-width: none;
+  will-change: transform;
+}
+/* Ljus slöja bakom texten (vänster) och mjuk övergång till papperet längst ner. */
+.mastar-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgb(235 234 230 / 0.82) 0%,
+      rgb(235 234 230 / 0.55) 38%,
+      transparent 62%
+    ),
+    linear-gradient(0deg, var(--background) 0%, rgb(235 234 230 / 0) 16%);
+}
+.mastar-text {
+  position: relative;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding: 4.5rem 2.5rem 6rem;
+}
+.mastar-text > * {
+  max-width: 46rem;
+}
+.mastar-skylt {
+  margin-top: 3rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid #b8913f;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+/* Mobil: målningen som ett band överst (mästaren syns direkt), texten under på papperet. */
+@media (max-width: 1023px) {
+  .mastar-hero {
+    --band: min(100vw, 46rem);
+    min-height: 0;
+  }
+  .mastar-bakgrund {
+    bottom: auto;
+    height: var(--band);
+    object-position: 45% 60%;
+  }
+  .mastar-figur {
+    /* Figuren (900 × 1082) slutar vid bandets nederkant, inne i toningen. */
+    top: calc(var(--band) * (1 - 0.62 * 1082 / 900) + 0.5rem);
+    bottom: auto;
+    width: calc(var(--band) * 0.62);
+  }
+  .mastar-hero::before {
+    bottom: auto;
+    height: calc(var(--band) + 1px);
+    background: linear-gradient(0deg, var(--background) 0%, rgb(235 234 230 / 0) 18%);
+  }
+  /* Texten börjar där bandet slutar; papperet under täcker bilden när den förskjuts. */
+  .mastar-text {
+    margin-top: var(--band);
+    padding: 1.5rem 1.5rem 2rem;
+    background-color: var(--background);
+  }
+  .mastar-skylt {
+    margin-top: 2rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mastar-bakgrund,
+  .mastar-figur {
+    transform: none !important;
+  }
+}

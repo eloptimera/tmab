@@ -20,7 +20,8 @@ import {
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { KortVy, type Kort } from "@/components/Kort";
 import { FramtidaLank } from "@/components/FramtidaLank";
-import { Markerad, Mark, PageHero } from "@/components/Heading";
+import { Markerad, Mark } from "@/components/Heading";
+import { MastarHero } from "@/components/MastarHero";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
@@ -168,12 +169,30 @@ const VARFOR_TAB: readonly Kort[] = [
   },
 ];
 
+// SEO:s mästare: Carl von Linné, som gav varje växt ett namn och en plats så att allt gick att
+// hitta. Bilderna är AI-genererade (oktober 2026).
+const LINNE = {
+  person: "Carl von Linné",
+  bakgrund: {
+    src: "/mastare/linne-bakgrund.webp",
+    srcSet: "/mastare/linne-bakgrund-1000.webp 1000w, /mastare/linne-bakgrund.webp 1672w",
+    alt: "Målning av ett svenskt landskap i morgondimma, med blomsteräng, björkskog och sjöar",
+  },
+  figur: {
+    src: "/mastare/linne-900.webp",
+    srcSet: "/mastare/linne-560.webp 560w, /mastare/linne-900.webp 900w",
+    bredd: 900,
+    hojd: 1082,
+  },
+};
+
 function SeoByra() {
   const seo = hittaTjanst(TJANST);
 
   return (
     <>
-      <PageHero
+      <MastarHero
+        mastare={LINNE}
         eyebrow={`Tjänster · ${SEO_BYRA.titel}`}
         title={
           <Markerad
@@ -187,7 +206,7 @@ function SeoByra() {
         <a href="#process" className="btn-base btn-outline">
           Se hur vi arbetar
         </a>
-      </PageHero>
+      </MastarHero>
 
       {/* Fördelar och illustration */}
       <section
