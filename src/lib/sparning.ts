@@ -31,6 +31,11 @@ export function bokningSkickad(tjanster: readonly string[]) {
   });
 }
 
+/** Ett avklarat steg i bokningsformuläret, så att vi ser var besökare hoppar av. */
+export function bokningSteg(steg: string) {
+  skicka("bokning_steg", { steg });
+}
+
 /** Vilken tjänst besökaren fällde ut under "Det här krävs för att lyckas digitalt". */
 export function tjanstOppnad(tjanst: string) {
   skicka("tjanst_oppnad", { tjanst });
