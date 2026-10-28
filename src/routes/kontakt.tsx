@@ -1,17 +1,14 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Mail, Phone } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { Bokningsformular } from "@/components/Bokningsformular";
 import { Mark, PageHero } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { Loften } from "@/components/Loften";
 import { Stegliste, type Steg } from "@/components/Steg";
-import { skickaBokning } from "@/lib/bokning";
 import { FORETAG } from "@/lib/foretag";
 import { PAKET } from "@/lib/priser";
-import { metaKonvertering } from "@/lib/samtycke";
 import { sidhuvud } from "@/lib/seo";
-import { bokningSkickad } from "@/lib/sparning";
-import { hittaTjanst, TJANSTER } from "@/lib/tjanster";
+import { hittaTjanst } from "@/lib/tjanster";
 
 type Sok = { tjanst?: string; paket?: string };
 
@@ -36,8 +33,8 @@ export const Route = createFileRoute("/kontakt")({
 
 const STEG: readonly Steg[] = [
   {
-    titel: "Ni skickar formuläret",
-    text: "Berätta kort vilka ni är och vad ni vill ha hjälp med.",
+    titel: "Ni svarar på fem korta frågor",
+    text: "Vad ni vill ha hjälp med och hur vi når er. Det tar under en minut.",
   },
   {
     titel: "Vi bokar en tid",
@@ -51,41 +48,6 @@ const STEG: readonly Steg[] = [
 
 function Kontakt() {
   const sok = Route.useSearch();
-  const [skickar, setSkickar] = useState(false);
-  const navigate = useNavigate();
-  const [fel, setFel] = useState(false);
-
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setFel(false);
-    setSkickar(true);
-    const fd = new FormData(e.currentTarget);
-    const text = (namn: string) => String(fd.get(namn) ?? "");
-    const tjanster = fd.getAll("tjanster").map(String);
-    try {
-      await skickaBokning({
-        data: {
-          namn: text("namn"),
-          foretag: text("foretag"),
-          epost: text("epost"),
-          telefon: text("telefon"),
-          webbplats: text("webbplats"),
-          tjanster,
-          paket: text("paket"),
-          meddelande: text("meddelande"),
-          falla: text("falla"),
-        },
-      });
-      bokningSkickad(tjanster);
-      metaKonvertering("Lead");
-      // Egen tacksida: varje besök där räknas som en bokning i statistiken.
-      await navigate({ to: "/tack" });
-    } catch {
-      setFel(true);
-    } finally {
-      setSkickar(false);
-    }
-  }
 
   return (
     <>
@@ -131,139 +93,13 @@ function Kontakt() {
           )}
         </Reveal>
 
-        <Reveal delay={100}>
-          <form
-            onSubmit={onSubmit}
-            // Clarity spelar aldrig in det som skrivs här, oavsett inställningar.
-            data-clarity-mask="true"
-            className="grid gap-6 rounded-[2rem] border-2 border-line bg-white p-7 sm:p-10"
-          >
-            <div className="grid gap-6 sm:grid-cols-2">
-              <Falt id="namn" etikett="Namn" autoComplete="name" kravs />
-              <Falt id="foretag" etikett="Företag" autoComplete="organization" kravs />
-              <Falt id="epost" etikett="E-post" typ="email" autoComplete="email" kravs />
-              <Falt id="telefon" etikett="Telefon (valfritt)" typ="tel" autoComplete="tel" />
-            </div>
-            <Falt
-              id="webbplats"
-              etikett="Er nuvarande hemsida (valfritt)"
-              typ="url"
-              autoComplete="url"
-              platshallare="https://"
-            />
-
-            <fieldset>
-              <legend className="text-sm font-bold">Vad vill ni ha hjälp med? (valfritt)</legend>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {TJANSTER.map((t) => (
-                  <label
-                    key={t.slug}
-                    className="flex min-h-11 cursor-pointer items-center rounded-full border-2 border-line px-4 py-2 text-sm font-bold transition-colors duration-200 hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand has-[:checked]:text-white has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-light"
-                  >
-                    <input
-                      type="checkbox"
-                      name="tjanster"
-                      value={t.titel}
-                      defaultChecked={sok.tjanst === t.slug}
-                      className="sr-only"
-                    />
-                    {t.titel}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-
-            <div>
-              <label htmlFor="paket" className="text-sm font-bold">
-                Nivå ni är intresserade av (valfritt)
-              </label>
-              <select
-                id="paket"
-                name="paket"
-                defaultValue={PAKET.find((p) => p.id === sok.paket)?.namn ?? ""}
-                className="field mt-2"
-              >
-                <option value="">Vet inte än</option>
-                {PAKET.map((p) => (
-                  <option key={p.id} value={p.namn}>
-                    {p.namn}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="meddelande" className="text-sm font-bold">
-                Något vi bör veta? (valfritt)
-              </label>
-              <textarea id="meddelande" name="meddelande" rows={4} className="field mt-2" />
-            </div>
-
-            {/* Dolt fält mot skräppost – riktiga besökare ser det aldrig. */}
-            <div aria-hidden="true" className="absolute -left-[9999px] h-0 overflow-hidden">
-              <label htmlFor="falla">Lämna tomt</label>
-              <input id="falla" name="falla" tabIndex={-1} autoComplete="off" />
-            </div>
-
-            <label className="flex items-start gap-3 text-sm text-muted-foreground">
-              <input type="checkbox" required className="mt-0.5 size-5 shrink-0 accent-brand" />
-              <span>
-                Jag har läst hur {FORETAG.namn} hanterar mina uppgifter för att boka genomgången i{" "}
-                <Link to="/integritetspolicy" className="font-bold text-brand underline">
-                  integritetspolicyn
-                </Link>
-                .
-              </span>
-            </label>
-
-            {fel && (
-              <p role="alert" className="text-sm font-bold text-destructive">
-                Förfrågan kunde inte skickas. Försök igen om en stund
-                {FORETAG.epost ? ` eller mejla ${FORETAG.epost}` : ""}.
-              </p>
-            )}
-
-            <div>
-              <button type="submit" disabled={skickar} className="btn-base btn-dark">
-                {skickar ? "Skickar …" : "Boka gratis genomgång"}
-              </button>
-            </div>
-          </form>
+        <Reveal delay={100} className="order-first lg:order-none">
+          <Bokningsformular
+            tjanst={sok.tjanst}
+            paket={PAKET.find((p) => p.id === sok.paket)?.namn}
+          />
         </Reveal>
       </section>
     </>
-  );
-}
-
-function Falt({
-  id,
-  etikett,
-  typ = "text",
-  autoComplete,
-  platshallare,
-  kravs = false,
-}: {
-  id: string;
-  etikett: string;
-  typ?: "text" | "email" | "tel" | "url";
-  autoComplete: string;
-  platshallare?: string;
-  kravs?: boolean;
-}) {
-  return (
-    <div>
-      <label htmlFor={id} className="text-sm font-bold">
-        {etikett}
-      </label>
-      <input
-        id={id}
-        name={id}
-        type={typ}
-        autoComplete={autoComplete}
-        placeholder={platshallare}
-        required={kravs}
-        className="field mt-2"
-      />
-    </div>
   );
 }
