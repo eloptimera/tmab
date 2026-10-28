@@ -36,12 +36,12 @@ export function DelPrisrutor({
       <Reveal className="h-full">
         <div
           id="pris"
-          className="flex h-full scroll-mt-28 flex-col rounded-[2rem] bg-ink p-8 text-white sm:p-10"
+          className="inramad flex h-full scroll-mt-28 flex-col p-8 text-elfenben sm:p-10"
         >
           <p className="caps text-sun">Först · engång</p>
-          <h3 className="mt-4 font-sans text-xl font-bold tracking-normal">{engangRubrik}</h3>
+          <h3 className="mt-4 text-2xl leading-tight">{engangRubrik}</h3>
           <p className="mt-4 font-display text-5xl leading-none sm:text-6xl">{prisText(engang)}</p>
-          <p className="mt-3 flex-1 text-sm leading-relaxed text-white/75">
+          <p className="mt-3 flex-1 text-sm leading-relaxed text-elfenben/75">
             {engangNot} {MOMS_TEXT}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -52,12 +52,10 @@ export function DelPrisrutor({
         </div>
       </Reveal>
       <Reveal delay={80} className="h-full">
-        <div className="h-full rounded-[2rem] border-2 border-line bg-white p-8 sm:p-10">
-          <p className="caps text-brand">Sedan · löpande</p>
-          <h3 className="mt-4 font-sans text-xl font-bold tracking-normal text-ink">
-            {lopandeRubrik}
-          </h3>
-          <ul className="mt-6 divide-y divide-line">
+        <div className="skylt h-full p-8 sm:p-10">
+          <p className="caps text-guld-mork">Sedan · löpande</p>
+          <h3 className="mt-4 text-2xl leading-tight text-ink">{lopandeRubrik}</h3>
+          <ul className="mt-6 divide-y divide-ink/15">
             {del.nivaer.map((n) => (
               <li key={n.id} className="flex items-baseline justify-between gap-4 py-4">
                 <span>

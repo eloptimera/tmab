@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { BOKA_PANEL_TEXT, BokaKnappar, BokaRubrik } from "@/components/Boka";
 import { Reveal } from "@/components/Reveal";
 
 /**
- * Avslutningen på startsidan: en målad fyr i Göteborgs skärgård i skymningen.
+ * Avslutningen på alla sidor (startsidan direkt, övriga via BokaPanel): en målad fyr i
+ * Göteborgs skärgård i skymningen.
  * - Bilderna (AI-genererade, oktober 2026, målade i holländsk marinstil som resten av startsidan)
  *   har tänd lykta men ingen stråle. Strålen ritas i
  *   WebGL ovanpå och tänder rubriken där den går – samma kon i shadern och i CSS-masken.
@@ -151,7 +152,21 @@ const skillnad = (a: number, b: number) =>
 
 const RUBRIK = "text-[clamp(2.2rem,5vw,4.25rem)] leading-[1.05]";
 
-export function Fyrscen() {
+type Val = { tjanst?: string; paket?: string };
+
+/** Samma innehåll som BokaPanel – rubrik, text och knappar kan bytas per sida. */
+export function Fyrscen({
+  rubrik = <BokaRubrik />,
+  text = BOKA_PANEL_TEXT,
+  onBoka,
+  prislank,
+  ...val
+}: Val & {
+  rubrik?: ReactNode;
+  text?: string;
+  onBoka?: () => void;
+  prislank?: { href: string; text: string };
+} = {}) {
   const kortRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rubrikRef = useRef<HTMLHeadingElement>(null);
@@ -428,14 +443,18 @@ export function Fyrscen() {
             <p className="caps fyr-skugga text-white/75">Gratis genomgång</p>
             <div className="relative mt-5 max-w-2xl">
               <h2 ref={rubrikRef} id="fyr-rubrik" className={`${RUBRIK} fyr-skugga text-white/70`}>
-                <BokaRubrik />
+                {rubrik}
               </h2>
               <div ref={tandRef} aria-hidden="true" className={`fyr-tand font-display ${RUBRIK}`}>
-                <BokaRubrik />
+                {rubrik}
               </div>
             </div>
-            <p className="fyr-skugga mt-5 max-w-xl text-white/85">{BOKA_PANEL_TEXT}</p>
-            <BokaKnappar />
+            <p className="fyr-skugga mt-5 max-w-xl text-white/85">{text}</p>
+            <BokaKnappar
+              {...(onBoka ? { onBoka } : {})}
+              {...(prislank ? { prislank } : {})}
+              {...val}
+            />
           </Reveal>
         </div>
       </div>

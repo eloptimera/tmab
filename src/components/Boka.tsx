@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { Blob } from "@/components/Brand";
+import { Fyrscen } from "@/components/Fyrscen";
 import { Mark } from "@/components/Heading";
-import { Reveal } from "@/components/Reveal";
 
 /** Sajtens enda primära nästa steg. Används i header, på alla sidor och i avslutningsrutan. */
 export const BOKA_TEXT = "Boka gratis genomgång";
@@ -74,36 +73,11 @@ export function BokaKnappar({
   );
 }
 
-/** Mörk avslutningsruta längst ner på sidorna. */
-export function BokaPanel({
-  rubrik = <BokaRubrik />,
-  text = BOKA_PANEL_TEXT,
-  onBoka,
-  prislank,
-  ...val
-}: Val & {
-  rubrik?: ReactNode;
-  text?: string;
-  onBoka?: () => void;
-  prislank?: { href: string; text: string };
-}) {
-  return (
-    <section className="px-3 pb-3 sm:px-6">
-      <Reveal>
-        <div className="panel-ink relative isolate mx-auto max-w-[88rem] overflow-hidden rounded-[2rem] px-6 py-16 sm:px-14 sm:py-20">
-          <Blob className="absolute top-1/2 -right-24 -z-10 hidden w-[34rem] -translate-y-1/2 lg:block" />
-          <p className="caps text-white/70">Gratis genomgång</p>
-          <h2 className="mt-5 max-w-2xl text-[clamp(2.2rem,5vw,4.25rem)] leading-[1.05]">
-            {rubrik}
-          </h2>
-          <p className="mt-5 max-w-xl text-white/80">{text}</p>
-          <BokaKnappar
-            {...(onBoka ? { onBoka } : {})}
-            {...(prislank ? { prislank } : {})}
-            {...val}
-          />
-        </div>
-      </Reveal>
-    </section>
-  );
+/**
+ * Avslutningen längst ner på sidorna: fyrscenen (samma som på startsidan) med sidans egen
+ * rubrik, text och knappar. Fyrscen importerar härifrån – cirkeln är ofarlig eftersom båda
+ * bara används när sidan ritas.
+ */
+export function BokaPanel(props: Parameters<typeof Fyrscen>[0]) {
+  return <Fyrscen {...props} />;
 }
