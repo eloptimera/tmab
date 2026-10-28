@@ -1,19 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Clapperboard, Megaphone, Search } from "lucide-react";
-import { Blob } from "@/components/Brand";
 import { Fyrscen } from "@/components/Fyrscen";
+import { SalRubrik, Verk } from "@/components/Galleri";
+import { Mark } from "@/components/Heading";
 import { Masterverket } from "@/components/Masterverket";
-import { Heading, Mark } from "@/components/Heading";
-import { LyckasDigitalt } from "@/components/LyckasDigitalt";
 import { BildGalleri, ProjektLista } from "@/components/Projekt";
 import { ProjektVideo } from "@/components/ProjektVideo";
 import { Reveal } from "@/components/Reveal";
-import { Tusch } from "@/components/Tusch";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
 import { BINDNING_TEXT, kr, LAGSTA_MANADSPRIS, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
 import { PROJEKT_VIDEO } from "@/lib/projekt";
 import { faqSchema, sidhuvud, videoSchema } from "@/lib/seo";
+import { avstava } from "@/lib/text";
+import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -55,31 +54,98 @@ const HEM_FRAGOR: readonly Fraga[] = [
   },
 ];
 
-// Tre övergripande områden på startsidan. Detaljerna per tjänst ligger i listan längre ner
-// och på /tjanster – här ska besökaren bara snabbt förstå vad vi hjälper till med.
+// Tre övergripande områden på startsidan, var och en med en detalj ur målningen överst.
+// Detaljerna i resten av sidan finns på tjänstesidorna.
 const OMRADEN = [
   {
     titel: "Synas på Google & i AI",
+    overrad: "Detalj I · Synlighet",
     text: "SEO och GEO som gör att kunderna hittar er – på Google och i ChatGPT.",
-    ikon: Search,
-    stil: "bg-brand text-white kortskugga-brand",
-    till: { to: "/seo-byra" },
+    bild: {
+      src: "/galleri/detalj-iris.webp",
+      bredd: 280,
+      hojd: 346,
+      alt: "Detalj ur målningen: iris och humla",
+    },
+    till: "/seo-byra",
   },
   {
     titel: "Innehåll & sociala medier",
+    overrad: "Detalj II · Innehåll",
     text: "Bilder och korta videor som får er målgrupp att stanna upp.",
-    ikon: Clapperboard,
-    stil: "border-2 border-line bg-white text-ink kortskugga",
-    till: { to: "/tjanster/$slug", params: { slug: "marknadsforingsbilder" } },
+    bild: {
+      src: "/galleri/detalj-pion.webp",
+      bredd: 330,
+      hojd: 408,
+      alt: "Detalj ur målningen: rosa pion",
+    },
+    till: tjanstSokvag("marknadsforingsbilder"),
   },
   {
     titel: "Kampanjer & annonsering",
+    overrad: "Detalj III · Annonser",
     text: "Kampanjer som når rätt personer och går att mäta.",
-    ikon: Megaphone,
-    stil: "bg-ink text-white kortskugga",
-    till: { to: "/meta-ads-byra" },
+    bild: {
+      src: "/galleri/detalj-urna.webp",
+      bredd: 300,
+      hojd: 372,
+      alt: "Detalj ur målningen: bronsurnan",
+    },
+    till: "/meta-ads-byra",
   },
 ] as const;
+
+// Hantverken och deras mästare. Bilderna är AI-genererade stilleben (oktober 2026) med
+// föremål som hör till personen – inga porträtt. Citat bara där de går att belägga.
+const MASTARE: readonly {
+  slug: string;
+  person: string;
+  bild: string;
+  text: string;
+  citat?: { text: string; oversattning: string; kalla: string };
+}[] = [
+  {
+    slug: "seo",
+    person: "Carl von Linné",
+    bild: "linne",
+    text: "Linné gav varje växt ett namn och en plats, så att allt gick att hitta. Vi gör samma sak med er sajt, så att Google hittar den.",
+    citat: {
+      text: "Nomina si nescis, perit et cognitio rerum",
+      oversattning: "Om du inte kan namnen går kunskapen förlorad.",
+      kalla: "Philosophia Botanica, 1751",
+    },
+  },
+  {
+    slug: "geo",
+    person: "Sokrates",
+    bild: "sokrates",
+    text: "Sokrates lärde ut genom frågor och svar. Det är precis så folk söker hos ChatGPT i dag – vi ser till att svaret blir ni.",
+  },
+  {
+    slug: "meta-annonser",
+    person: "Aristoteles",
+    bild: "aristoteles",
+    text: "Aristoteles skrev boken om att övertyga: ethos, pathos och logos – och om att tala till rätt publik. Det är annonsering.",
+  },
+  {
+    slug: "hemsideoptimering",
+    person: "Florence Nightingale",
+    bild: "nightingale",
+    text: "Nightingale mätte, ritade diagram och ändrade efter vad siffrorna visade. Vi gör samma sak tills fler besökare blir kunder.",
+  },
+  {
+    slug: "marknadsforingsbilder",
+    person: "Johannes Vermeer",
+    bild: "vermeer",
+    text: "Ljusets mästare. Varje bild han målade började med hur ljuset föll – det gör våra också.",
+  },
+  {
+    slug: "hemsida",
+    person: "Leonardo da Vinci",
+    bild: "davinci",
+    text: "Konst och teknik i samma hand. En bra hemsida är båda: design som säljer och kod som fungerar.",
+  },
+];
 
 function Start() {
   return (
@@ -87,151 +153,168 @@ function Start() {
       {/* Hero: en inramad målning – rubriken (H1) bär sökfrasen och står på dukens mörka del. */}
       <Masterverket />
 
-      {/* Tjänster */}
-      <section id="tjanster" className="relative isolate">
-        <Blob className="absolute -top-10 -right-40 -z-10 w-[30rem] opacity-35 sm:-right-24" />
-        <div className="container-page py-12 sm:py-16">
+      {/* Galleriet: salarna bakom målningen. Varje sal har sin rubrik, verken har museiskyltar. */}
+      <div className="galleri overflow-x-clip">
+        {/* Sal I – Tjänster: tre detaljer ur samma målning */}
+        <section id="tjanster" aria-labelledby="tjanster-rubrik" className="container-page sal">
           <Reveal>
-            <p className="eyebrow">Tjänster</p>
-            <Heading className="mt-8 max-w-3xl text-4xl sm:text-5xl">
-              Från idé till{" "}
-              <Tusch className="ml-[0.1em] px-[0.3em]">
-                <Mark>synlighet</Mark>
-              </Tusch>
-            </Heading>
+            <SalRubrik nummer="I" etikett="Tjänster" id="tjanster-rubrik">
+              Från idé till <Mark>synlighet</Mark>
+            </SalRubrik>
           </Reveal>
-
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {OMRADEN.map((o, i) => (
-              <Reveal key={o.titel} delay={i * 70}>
-                <Link
-                  {...o.till}
-                  className={`group flex h-full min-h-[18rem] flex-col justify-between rounded-[2rem] p-7 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 sm:p-8 ${o.stil}`}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="grid size-14 place-items-center rounded-full bg-white/20 ring-1 ring-current/15">
-                      <o.ikon className="size-6" aria-hidden="true" />
-                    </span>
-                    <span className="grid size-11 place-items-center rounded-full bg-white text-brand transition-colors group-hover:bg-sun group-hover:text-ink">
-                      <ArrowUpRight className="size-5" aria-hidden="true" />
-                    </span>
-                  </div>
-                  <div className="mt-10">
-                    <h3 className="text-3xl">{o.titel}</h3>
-                    <p className="mt-3 leading-relaxed opacity-90">{o.text}</p>
-                  </div>
-                </Link>
-              </Reveal>
+          <div className="sal-tre">
+            {OMRADEN.map((o) => (
+              <Verk
+                key={o.titel}
+                bild={o.bild}
+                overrad={o.overrad}
+                titel={o.titel}
+                till={o.till}
+                lanktext="Se tjänsten"
+              >
+                <p className="mt-2 leading-relaxed text-muted-foreground">{o.text}</p>
+              </Verk>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Varför TAB – vad som krävs för att lyckas digitalt */}
-      <section aria-labelledby="lyckas-rubrik" className="bg-fade-tint py-12 sm:py-16">
-        <div className="container-page">
+        {/* Sal II – Varför TAB: Caesar och de sex hantverkens mästare */}
+        <section aria-labelledby="lyckas-rubrik" className="container-page sal">
           <Reveal>
-            <p className="eyebrow">Varför {FORETAG.kortnamn}</p>
-            <Heading className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-              <span id="lyckas-rubrik">
-                Det här krävs för att <Mark>lyckas</Mark> digitalt
-              </span>
-            </Heading>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Digital marknadsföring är många hantverk på en gång. Ni kan lära er alla själva, eller
-              låta oss sköta dem medan ni driver företaget.
-            </p>
+            <SalRubrik
+              nummer="II"
+              etikett={`Varför ${FORETAG.kortnamn}`}
+              id="lyckas-rubrik"
+              ingress="Digital marknadsföring är många hantverk på en gång. Varje hantverk har haft sin mästare. Ni kan lära er dem själva, eller låta oss sköta dem medan ni driver företaget."
+            >
+              Det här krävs för att <Mark>lyckas</Mark> digitalt
+            </SalRubrik>
           </Reveal>
-          <Reveal delay={100} className="mt-10">
-            <LyckasDigitalt />
-          </Reveal>
-        </div>
-      </section>
+          <div className="caesar">
+            <Verk
+              bild={{
+                src: "/galleri/caesar-720.webp",
+                srcSet: "/galleri/caesar-720.webp 720w, /galleri/caesar-1080.webp 1080w",
+                bredd: 720,
+                hojd: 900,
+                alt: "Stilleben tillägnat Julius Caesar: lagerkrans, svärd och romersk örn på en marmorhylla",
+              }}
+              sizes="(min-width: 1024px) 30rem, 90vw"
+              overrad="Tillägnad Julius Caesar"
+              titel="Veni, vidi, vici"
+              className="caesar-verk"
+            />
+            <Reveal className="caesar-text">
+              <p className="caps text-muted-foreground">Julius Caesar · 47 f.Kr.</p>
+              <blockquote lang="la" className="caesar-citat">
+                Veni, vidi, vici.
+              </blockquote>
+              <p className="mt-3 font-display text-2xl text-muted-foreground">
+                Jag kom, jag såg, jag segrade.
+              </p>
+              <p className="caesar-poang">
+                Ingen segrar osynlig. Innan ni kan vinna kunderna måste de se er – och det är de här
+                sex hantverken som gör att de gör det.
+              </p>
+            </Reveal>
+          </div>
+          <div className="sal-tre mastare">
+            {MASTARE.map((m) => (
+              <Verk
+                key={m.slug}
+                bild={{
+                  src: `/galleri/${m.bild}-560.webp`,
+                  srcSet: `/galleri/${m.bild}-560.webp 560w, /galleri/${m.bild}-840.webp 840w`,
+                  bredd: 560,
+                  hojd: 700,
+                  alt: `Stilleben tillägnat ${m.person}`,
+                }}
+                overrad={`Tillägnad ${m.person}`}
+                titel={hittaTjanst(m.slug)?.titel ?? m.slug}
+                till={tjanstSokvag(m.slug)}
+              >
+                <p className="mt-2 leading-relaxed text-muted-foreground">{m.text}</p>
+                {m.citat && (
+                  <p className="mt-3 font-display text-[1.05rem] text-ink italic">
+                    <span lang="la">”{m.citat.text}”</span> – {m.citat.oversattning}{" "}
+                    <span className="font-sans text-xs text-muted-foreground not-italic">
+                      {m.citat.kalla}
+                    </span>
+                  </p>
+                )}
+              </Verk>
+            ))}
+          </div>
+        </section>
 
-      {/* Tidigare projekt */}
-      <section aria-labelledby="projekt-rubrik" className="relative isolate">
-        <Blob className="absolute top-1/2 -left-48 -z-10 w-[32rem] -translate-y-1/2 opacity-35" />
-        <div className="container-page py-12 sm:py-16">
+        {/* Sal III – Tidigare projekt */}
+        <section aria-labelledby="projekt-rubrik" className="container-page sal">
           <Reveal>
-            <p className="eyebrow">Projekt</p>
-            <Heading className="mt-4 max-w-2xl text-4xl sm:text-5xl">
-              <span id="projekt-rubrik">
-                Några av våra <Mark>tidigare projekt</Mark>
-              </span>
-            </Heading>
+            <SalRubrik nummer="III" etikett="Projekt" id="projekt-rubrik">
+              Några av våra <Mark>tidigare projekt</Mark>
+            </SalRubrik>
           </Reveal>
-          <Reveal className="mt-10">
-            <ProjektVideo video={PROJEKT_VIDEO.startsida} />
+          <Reveal>
+            <div className="galleri-ram galleri-ram-bred">
+              <ProjektVideo video={PROJEKT_VIDEO.startsida} />
+            </div>
           </Reveal>
-          <ProjektLista className="mt-12" />
+          <ProjektLista className="mt-14" />
 
-          <Reveal className="mt-14">
+          <Reveal className="mt-16">
             <h3 className="text-3xl sm:text-4xl">
               Marknadsföringsbilder vi <Mark>tagit fram</Mark>
             </h3>
           </Reveal>
           <BildGalleri className="mt-8" />
-        </div>
-      </section>
+        </section>
 
-      {/* Om oss */}
-      <section className="relative isolate">
-        <Blob className="absolute top-1/2 -right-40 -z-10 hidden w-[30rem] -translate-y-1/2 opacity-35 lg:block" />
-        <div className="container-page grid gap-12 py-12 sm:py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-16">
-          <Reveal>
-            <p className="eyebrow">Om {FORETAG.kortnamn}</p>
-            <Heading className="mt-4 max-w-2xl text-4xl sm:text-5xl">
-              Marknadsföring utan <Mark>krångel</Mark>
-            </Heading>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              {FORETAG.namn} hjälper företag i hela Sverige med bilder, synlighet och hemsidor. Ni
-              får fasta priser, en kontakt och ett jobb som blir gjort.
-            </p>
-            <Link to="/om-oss" className="btn-base btn-outline mt-8">
-              Läs mer om oss
-            </Link>
-          </Reveal>
-          <Reveal delay={120}>
-            <dl className="grid grid-cols-2 gap-4">
-              <div className="rounded-[2rem] bg-brand p-6 text-white">
-                <dt className="text-xs font-bold tracking-[0.14em] text-white/85 uppercase">
-                  Fokus
-                </dt>
-                <dd className="mt-3 font-display text-2xl sm:text-4xl">Marknadsföring</dd>
-              </div>
-              <div className="rounded-[2rem] bg-ink p-6 text-white">
-                <dt className="text-xs font-bold tracking-[0.14em] text-sun uppercase">Område</dt>
-                <dd className="mt-3 font-display text-2xl sm:text-4xl">Hela Sverige</dd>
-              </div>
-              <div className="col-span-2 rounded-[2rem] bg-tint p-6">
-                <dt className="text-xs font-bold tracking-[0.14em] text-brand uppercase">
-                  Arbetssätt
-                </dt>
-                <dd className="mt-3 font-display text-3xl text-ink">
-                  Idé · Produktion · Uppföljning
-                </dd>
-              </div>
-            </dl>
-          </Reveal>
-        </div>
-      </section>
+        {/* Sal IV – Om TAB: faktarutorna som mässingsskyltar */}
+        <section aria-labelledby="om-rubrik" className="container-page sal">
+          <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+            <Reveal>
+              <SalRubrik nummer="IV" etikett={`Om ${FORETAG.kortnamn}`} id="om-rubrik">
+                Marknadsföring utan <Mark>krångel</Mark>
+              </SalRubrik>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/80">
+                {FORETAG.namn} hjälper företag i hela Sverige med bilder, synlighet och hemsidor. Ni
+                får fasta priser, en kontakt och ett jobb som blir gjort.
+              </p>
+              <Link to="/om-oss" className="btn-base btn-outline mt-8">
+                Läs mer om oss
+              </Link>
+            </Reveal>
+            <Reveal delay={120}>
+              <dl className="grid gap-4">
+                {[
+                  ["Fokus", "Marknadsföring"],
+                  ["Område", "Hela Sverige"],
+                  ["Arbetssätt", "Idé · Produktion · Uppföljning"],
+                ].map(([dt, dd]) => (
+                  <div key={dt} className="massing">
+                    <dt>{dt}</dt>
+                    <dd>{dd}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+          </div>
+        </section>
 
-      {/* Vanliga frågor */}
-      <section aria-labelledby="fragor-rubrik" className="bg-fade-tint py-12 sm:py-16">
-        <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-          <Reveal>
-            <p className="eyebrow">Vanliga frågor</p>
-            <Heading className="mt-4 text-4xl sm:text-5xl">
-              <span id="fragor-rubrik">
-                Innan ni anlitar en <Mark>marknadsföringsbyrå</Mark>
-              </span>
-            </Heading>
-          </Reveal>
-          <Reveal delay={80}>
-            <VanligaFragor fragor={HEM_FRAGOR} />
-          </Reveal>
-        </div>
-      </section>
+        {/* Sal V – Vanliga frågor */}
+        <section aria-labelledby="fragor-rubrik" className="container-page sal">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <SalRubrik nummer="V" etikett="Vanliga frågor" id="fragor-rubrik">
+                Innan ni anlitar en <Mark>{avstava("marknadsföringsbyrå")}</Mark>
+              </SalRubrik>
+            </Reveal>
+            <Reveal delay={80}>
+              <VanligaFragor fragor={HEM_FRAGOR} />
+            </Reveal>
+          </div>
+        </section>
+      </div>
 
       <Fyrscen />
     </>

@@ -752,3 +752,181 @@ main:has(.fyr-panel) + footer > div {
     display: none;
   }
 }
+
+/* Galleriet på startsidan (Galleri.tsx): salar med inramade verk och museiskyltar.
+   Ramen är samma förgyllda ram som målningen överst, i mindre format. */
+.sal {
+  padding-block: 5.5rem 1rem;
+}
+.sal-rubrik {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 1.25rem;
+  align-items: baseline;
+  margin-bottom: 3rem;
+}
+.sal-rubrik > :not(.sal-nummer) {
+  grid-column: 2;
+}
+.sal-nummer {
+  grid-row: span 3;
+  font-family: var(--font-display);
+  font-size: 4.4rem;
+  font-style: italic;
+  line-height: 0.8;
+  color: #b8913f;
+}
+.galleri-ram {
+  position: relative;
+  border: 16px solid transparent;
+  border-image: url("/masterverk/ram-hog.webp") 84 85 90 82 / 1 stretch;
+  background-color: #14100b;
+  box-shadow:
+    0 2px 3px rgb(30 20 5 / 0.3),
+    0 22px 40px -16px rgb(40 28 8 / 0.45);
+}
+.galleri-ram-bred {
+  border-width: clamp(14px, 1.8vw, 24px);
+  border-image-source: url("/masterverk/ram-bred.webp");
+  border-image-slice: 74 82 82 84;
+}
+/* Filmens egen rundning och bildtext passar inte i en ram. */
+.galleri-ram-bred figure > div {
+  border-radius: 0;
+}
+.galleri-ram-bred figcaption {
+  display: none;
+}
+.galleri-verk {
+  position: relative;
+}
+/* Galleriljus: en svag ljuskägla över varje verk */
+.galleri-verk::before {
+  content: "";
+  position: absolute;
+  top: -3.5rem;
+  left: 50%;
+  z-index: -1;
+  width: 130%;
+  height: calc(100% + 4rem);
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 45% at 50% 30%, rgb(255 250 235 / 0.85), transparent 70%);
+}
+.galleri-skylt {
+  margin-top: 1.1rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid #b8913f;
+}
+.galleri-pil {
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.galleri-verk a:hover .galleri-titel {
+  text-decoration: underline;
+  text-decoration-color: var(--sun);
+  text-underline-offset: 0.15em;
+}
+.sal-tre {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4rem 3rem;
+  align-items: start;
+}
+.sal-tre > :nth-child(3n + 2) {
+  margin-top: 3rem;
+}
+.caesar {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+.caesar-verk .galleri-skylt {
+  display: none;
+}
+.caesar-citat {
+  margin: 1rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  font-style: italic;
+  line-height: 1;
+}
+.caesar-poang {
+  max-width: 30rem;
+  margin-top: 2rem;
+  padding-left: 1rem;
+  border-left: 2px solid #b8913f;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: rgb(16 17 20 / 0.8);
+}
+.massing {
+  padding: 1.1rem 1.4rem;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ecd48e, #c39b47 55%, #9a7631);
+  color: #3b2a0e;
+  box-shadow:
+    inset 0 1px 0 rgb(255 245 210 / 0.7),
+    inset 0 -1px 0 rgb(60 40 10 / 0.5),
+    0 6px 14px -6px rgb(40 28 8 / 0.5);
+}
+.massing dt {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.massing dd {
+  margin-top: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  text-shadow: 0 1px 0 rgb(255 240 200 / 0.5);
+}
+@media (max-width: 1023px) {
+  .sal-tre {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 1.5rem;
+  }
+  .sal-tre > :nth-child(3n + 2) {
+    margin-top: 0;
+  }
+  .sal-tre > :nth-child(even) {
+    margin-top: 2.5rem;
+  }
+  .caesar {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 639px) {
+  .sal {
+    padding-top: 4rem;
+  }
+  .sal-nummer {
+    font-size: 3rem;
+  }
+  .sal-rubrik {
+    column-gap: 0.9rem;
+  }
+  .sal-rubrik .sal-ingress {
+    grid-column: 1 / -1;
+  }
+  .sal-tre {
+    grid-template-columns: 1fr;
+    max-width: 24rem;
+    margin-inline: auto;
+  }
+  .sal-tre > :nth-child(even) {
+    margin-top: 0;
+  }
+  .galleri-ram {
+    border-width: 11px;
+  }
+}
