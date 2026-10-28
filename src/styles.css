@@ -660,6 +660,31 @@
     object-position: 70% 50%;
   }
 }
+/* Den målade himlen är ljus bakom texten: en svag mörkning håller den läsbar. Ligger mellan
+   bilden (-z-20) och strålen (-z-10), så strålen lyser fortfarande fullt. */
+.fyr-kort picture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -15;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgb(12 10 26 / 0.6) 0%,
+    rgb(12 10 26 / 0.35) 40%,
+    transparent 58%
+  );
+}
+@media (min-width: 1024px) {
+  .fyr-kort picture::after {
+    background: linear-gradient(
+      90deg,
+      rgb(12 10 26 / 0.62) 0%,
+      rgb(12 10 26 / 0.4) 35%,
+      transparent 58%
+    );
+  }
+}
 .fyr-skugga {
   text-shadow: 0 1px 16px rgb(8 10 30 / 0.55);
 }

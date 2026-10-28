@@ -4,7 +4,8 @@ import { Reveal } from "@/components/Reveal";
 
 /**
  * Avslutningen på startsidan: en målad fyr i Göteborgs skärgård i skymningen.
- * - Bilderna (AI-genererade, oktober 2026) har tänd lykta men ingen stråle. Strålen ritas i
+ * - Bilderna (AI-genererade, oktober 2026, målade i holländsk marinstil som resten av startsidan)
+ *   har tänd lykta men ingen stråle. Strålen ritas i
  *   WebGL ovanpå och tänder rubriken där den går – samma kon i shadern och i CSS-masken.
  * - Strålen sveper en gång över rubriken när scenen syns och följer sedan muspekaren (på mobil:
  *   dit man trycker). När ingen rör sig står allt still, så inget rör sig längre än fem sekunder
@@ -34,21 +35,21 @@ const BRED: Bild = {
   src: "/fyr/fyr-bred.webp",
   bredd: 1916,
   hojd: 821,
-  lyktaX: 0.7478,
-  lyktaY: 0.2812,
-  horisont: 0.51,
-  lyktstorlek: 0.02,
+  lyktaX: 0.8108,
+  lyktaY: 0.2355,
+  horisont: 0.588,
+  lyktstorlek: 0.026,
   posX: 0.7,
 };
 
 const HOG: Bild = {
   src: "/fyr/fyr-hog.webp",
-  bredd: 941,
+  bredd: 940,
   hojd: 1672,
-  lyktaX: 0.6523,
-  lyktaY: 0.4998,
-  horisont: 0.59,
-  lyktstorlek: 0.0096,
+  lyktaX: 0.6874,
+  lyktaY: 0.5535,
+  horisont: 0.688,
+  lyktstorlek: 0.016,
   posX: 0.5,
 };
 
