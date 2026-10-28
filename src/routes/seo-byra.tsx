@@ -173,6 +173,8 @@ const VARFOR_TAB: readonly Kort[] = [
 // hitta. Bilderna är AI-genererade (oktober 2026).
 const LINNE = {
   person: "Carl von Linné",
+  levde: "1707–1778",
+  bildtext: "Gav varje växt ett namn och en plats, så att allt gick att hitta.",
   bakgrund: {
     src: "/mastare/linne-bakgrund.webp",
     srcSet: "/mastare/linne-bakgrund-1000.webp 1000w, /mastare/linne-bakgrund.webp 1672w",
@@ -193,7 +195,8 @@ function SeoByra() {
     <>
       <MastarHero
         mastare={LINNE}
-        eyebrow={`Tjänster · ${SEO_BYRA.titel}`}
+        plats="Sal II · Verk nr 1"
+        hantverk={SEO_BYRA.titel}
         title={
           <Markerad
             text="SEO-byrå som hjälper ert företag att synas på Google"

@@ -970,106 +970,189 @@ main:has(.fyr-panel) + footer > div {
   }
 }
 
-/* Mästarhero på tjänstesidorna (MastarHero.tsx): landskapet som bakgrund, mästaren och stenen
-   som eget lager framför, texten i den ljusa himlen. Botten tonas ut i papperet. */
+/* Mästarhero på tjänstesidorna (MastarHero.tsx): mästarens målning hänger inramad på
+   museiväggen med ett utställningskort bredvid. På stor skärm är scenen fast medan man
+   scrollar en extra sträcka, och JS skalar tavlan tills ramen gått ut ur bild (--inne 0 → 1).
+   Startläget nedan är samma som JS räknar fram vid 0, så sidan ser rätt ut innan JS kört. */
 .mastar-hero {
+  --scen: calc(100svh - 4.5rem);
+  --inne: 0;
   position: relative;
   isolation: isolate;
+  background:
+    radial-gradient(ellipse 60% 70% at 66% 42%, #f6f4ee 0%, transparent 70%), var(--background);
+}
+.mastar-scen {
+  position: relative;
   overflow: hidden;
-  min-height: min(52rem, calc(100svh - 4.5rem));
+  height: min(56rem, var(--scen));
+  min-height: 38rem;
+}
+.mastar-tavla {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #14100b;
+  transform: translate3d(calc(20vw - 48px), 0, 0) scale(0.6);
+  box-shadow:
+    0 3px 5px rgb(30 20 5 / 0.3),
+    0 40px 70px -24px rgb(40 28 8 / 0.5);
+  will-change: transform;
 }
 .mastar-bakgrund {
   position: absolute;
   inset: 0;
-  z-index: -3;
   width: 100%;
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: 40% 35%;
-  transform: scale(1.06);
-  will-change: transform;
+  object-position: 40% 40%;
+  transform: scale(1.04);
 }
 .mastar-figur {
   position: absolute;
-  right: 0;
+  right: 5%;
   bottom: 0;
-  z-index: -2;
-  width: min(34vw, 36rem);
-  height: auto;
+  height: 70%;
+  width: auto;
   max-width: none;
-  will-change: transform;
+  transform-origin: 70% 100%;
 }
-/* Ljus slöja bakom texten (vänster) och mjuk övergång till papperet längst ner. */
-.mastar-hero::before {
-  content: "";
+.mastar-ram {
   position: absolute;
   inset: 0;
-  z-index: -1;
   pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgb(235 234 230 / 0.82) 0%,
-      rgb(235 234 230 / 0.55) 38%,
-      transparent 62%
-    ),
-    linear-gradient(0deg, var(--background) 0%, rgb(235 234 230 / 0) 16%);
+  border-style: solid;
+  border-color: transparent;
+  border-width: 56px 62px 62px 63px;
+  border-image: url("/masterverk/ram-bred.webp") 74 82 82 84 / 1 stretch;
 }
-.mastar-text {
-  position: relative;
-  max-width: 88rem;
-  margin-inline: auto;
-  padding: 4.5rem 2.5rem 6rem;
+/* Inne i tavlan tonas scenens nederkant ut i papperet, så att sidan fortsätter mjukt. */
+.mastar-scen::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 18%;
+  pointer-events: none;
+  opacity: var(--inne);
+  background: linear-gradient(0deg, var(--background), rgb(235 234 230 / 0));
 }
-.mastar-text > * {
-  max-width: 46rem;
+/* Utställningskortet: platt papper med en tunn förgylld linje – en skylt, inte ett webbkort. */
+.mastar-kort {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: max(2.5rem, calc(50% - 41rem));
+  width: min(35rem, 41vw);
+  transform: translateY(-50%);
+  padding: 2.4rem 2.6rem 2rem;
+  background-color: #f3f0e7;
+  outline: 1px solid rgb(184 145 63 / 0.55);
+  outline-offset: -10px;
+  box-shadow: 0 18px 36px -22px rgb(30 20 5 / 0.45);
 }
-.mastar-skylt {
-  margin-top: 3rem;
-  padding-left: 0.9rem;
-  border-left: 2px solid #b8913f;
+.mastar-plats {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--muted-foreground);
 }
-/* Mobil: målningen som ett band överst (mästaren syns direkt), texten under på papperet. */
+.mastar-plats > :last-child {
+  color: #9a7631;
+}
+.mastar-verk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.2rem 1rem;
+  align-items: baseline;
+  margin-top: 1.8rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(16 17 20 / 0.14);
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+.mastar-person {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.mastar-bildtext {
+  grid-column: 1 / -1;
+  font-style: italic;
+}
+/* Låga skärmar (laptops): kortet måste rymmas på höjden. */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .mastar-kort {
+    padding: 1.6rem 2rem 1.4rem;
+  }
+  .mastar-kort h1 {
+    margin-top: 0.9rem;
+    font-size: clamp(2rem, 6.2svh, 3rem);
+  }
+  .mastar-kort h1 + p {
+    margin-top: 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .mastar-kort h1 ~ div {
+    margin-top: 1.2rem;
+  }
+  .mastar-verk {
+    margin-top: 1.2rem;
+    padding-top: 0.75rem;
+  }
+}
+/* Stor skärm med rörelse: en extra scrollsträcka medan scenen står fast och man kliver in. */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .mastar-hero {
+    height: calc(min(56rem, var(--scen)) + 70svh);
+  }
+  .mastar-scen {
+    position: sticky;
+    top: 4.5rem;
+  }
+}
+/* Mobil: tavlan hänger överst i full bredd, kortet under. Ingen inzoomning. */
 @media (max-width: 1023px) {
   .mastar-hero {
-    --band: min(100vw, 46rem);
-    min-height: 0;
+    padding: 1.25rem 1rem 2rem;
   }
-  .mastar-bakgrund {
-    bottom: auto;
-    height: var(--band);
-    object-position: 45% 60%;
+  .mastar-scen {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+  .mastar-tavla {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 1672 / 941;
+    transform: none;
+  }
+  .mastar-ram {
+    border-width: 22px 24px 24px 25px;
   }
   .mastar-figur {
-    /* Figuren (900 × 1082) slutar vid bandets nederkant, inne i toningen. */
-    top: calc(var(--band) * (1 - 0.62 * 1082 / 900) + 0.5rem);
-    bottom: auto;
-    width: calc(var(--band) * 0.62);
+    height: 74%;
   }
-  .mastar-hero::before {
-    bottom: auto;
-    height: calc(var(--band) + 1px);
-    background: linear-gradient(0deg, var(--background) 0%, rgb(235 234 230 / 0) 18%);
-  }
-  /* Texten börjar där bandet slutar; papperet under täcker bilden när den förskjuts. */
-  .mastar-text {
-    margin-top: var(--band);
-    padding: 1.5rem 1.5rem 2rem;
-    background-color: var(--background);
-  }
-  .mastar-skylt {
-    margin-top: 2rem;
+  .mastar-kort {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    max-width: 40rem;
+    margin: 1.25rem auto 0;
+    transform: none;
+    padding: 1.75rem 1.4rem 1.5rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .mastar-tavla,
   .mastar-bakgrund,
   .mastar-figur {
-    transform: none !important;
+    will-change: auto;
   }
 }
