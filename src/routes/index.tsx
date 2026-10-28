@@ -63,8 +63,8 @@ const OMRADEN = [
     text: "SEO och GEO som gör att kunderna hittar er – på Google och i ChatGPT.",
     bild: {
       src: "/galleri/detalj-iris.webp",
-      bredd: 280,
-      hojd: 346,
+      bredd: 768,
+      hojd: 948,
       alt: "Detalj ur målningen: iris och humla",
     },
     till: "/seo-byra",
@@ -75,8 +75,8 @@ const OMRADEN = [
     text: "Bilder och korta videor som får er målgrupp att stanna upp.",
     bild: {
       src: "/galleri/detalj-pion.webp",
-      bredd: 330,
-      hojd: 408,
+      bredd: 905,
+      hojd: 1119,
       alt: "Detalj ur målningen: rosa pion",
     },
     till: tjanstSokvag("marknadsforingsbilder"),
@@ -87,8 +87,8 @@ const OMRADEN = [
     text: "Kampanjer som når rätt personer och går att mäta.",
     bild: {
       src: "/galleri/detalj-urna.webp",
-      bredd: 300,
-      hojd: 372,
+      bredd: 822,
+      hojd: 1020,
       alt: "Detalj ur målningen: bronsurnan",
     },
     till: "/meta-ads-byra",
