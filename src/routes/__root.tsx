@@ -106,8 +106,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       // storlek efter skärmen. Ingen SVG-favicon: den skulle vinna och bli suddig i 16 px.
       // 96 px för Google (kräver en multipel av 48 px), apple-touch-icon för hemskärmen och
       // manifestet för Android.
-      { rel: "icon", href: "/favicon.ico", sizes: "16x16 32x32 48x48" },
-      { rel: "icon", href: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      // ?v= tvingar webbläsare och Google att hämta ikonen på nytt. Höj den vid nästa byte.
+      { rel: "icon", href: "/favicon.ico?v=tab2", sizes: "16x16 32x32 48x48" },
+      { rel: "icon", href: "/favicon-96x96.png?v=tab2", type: "image/png", sizes: "96x96" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
     ],
