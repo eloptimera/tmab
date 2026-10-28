@@ -23,7 +23,7 @@ type Svar = {
   falla: string;
 };
 
-const STEG = ["hjalp", "hemsida", "foretag", "namn", "kontakt"] as const;
+const STEG = ["hjalp", "hemsida", "vem", "kontakt"] as const;
 type StegId = (typeof STEG)[number];
 
 export function Bokningsformular({
@@ -183,29 +183,26 @@ export function Bokningsformular({
           </Fraga>
         )}
 
-        {id === "foretag" && (
-          <Fraga rubrik="Vad heter företaget?">
-            <Inmatning
-              id="foretag"
-              etikett="Företagets namn"
-              varde={svar.foretag}
-              onAndra={(v) => satt("foretag", v)}
-              autoComplete="organization"
-              kravs
-            />
-          </Fraga>
-        )}
-
-        {id === "namn" && (
-          <Fraga rubrik="Och vad heter du?">
-            <Inmatning
-              id="namn"
-              etikett="Ditt namn"
-              varde={svar.namn}
-              onAndra={(v) => satt("namn", v)}
-              autoComplete="name"
-              kravs
-            />
+        {id === "vem" && (
+          <Fraga rubrik="Vilka är ni?">
+            <div className="grid gap-5">
+              <Inmatning
+                id="namn"
+                etikett="Ditt namn"
+                varde={svar.namn}
+                onAndra={(v) => satt("namn", v)}
+                autoComplete="name"
+                kravs
+              />
+              <Inmatning
+                id="foretag"
+                etikett="Företagets namn"
+                varde={svar.foretag}
+                onAndra={(v) => satt("foretag", v)}
+                autoComplete="organization"
+                kravs
+              />
+            </div>
           </Fraga>
         )}
 

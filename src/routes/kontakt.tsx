@@ -33,7 +33,7 @@ export const Route = createFileRoute("/kontakt")({
 
 const STEG: readonly Steg[] = [
   {
-    titel: "Ni svarar på fem korta frågor",
+    titel: "Ni svarar på fyra korta frågor",
     text: "Vad ni vill ha hjälp med och hur vi når er. Det tar under en minut.",
   },
   {
