@@ -16,7 +16,6 @@ type Svar = {
   tjanster: string[];
   meddelande: string;
   webbplats: string;
-  foretag: string;
   namn: string;
   epost: string;
   telefon: string;
@@ -41,7 +40,6 @@ export function Bokningsformular({
     tjanster: TJANSTER.filter((t) => t.slug === tjanst).map((t) => t.titel),
     meddelande: "",
     webbplats: "",
-    foretag: "",
     namn: "",
     epost: "",
     telefon: "",
@@ -102,8 +100,6 @@ export function Bokningsformular({
       setSkickar(false);
     }
   }
-
-  const fornamn = svar.namn.trim().split(/\s+/)[0];
 
   return (
     <form
@@ -184,31 +180,22 @@ export function Bokningsformular({
         )}
 
         {id === "vem" && (
-          <Fraga rubrik="Vilka är ni?">
-            <div className="grid gap-5">
-              <Inmatning
-                id="namn"
-                etikett="Ditt namn"
-                varde={svar.namn}
-                onAndra={(v) => satt("namn", v)}
-                autoComplete="name"
-                kravs
-              />
-              <Inmatning
-                id="foretag"
-                etikett="Företagets namn"
-                varde={svar.foretag}
-                onAndra={(v) => satt("foretag", v)}
-                autoComplete="organization"
-                kravs
-              />
-            </div>
+          <Fraga rubrik="Vem bokar?" hjalp="Företaget, ditt namn eller båda – skriv som ni vill.">
+            <Inmatning
+              id="namn"
+              etikett="Företag/namn"
+              varde={svar.namn}
+              onAndra={(v) => satt("namn", v)}
+              autoComplete="organization"
+              platshallare="t.ex. Treatly AB, Edvin Tell"
+              kravs
+            />
           </Fraga>
         )}
 
         {id === "kontakt" && (
           <Fraga
-            rubrik={fornamn ? `Tack ${fornamn}! Var når vi dig?` : "Var når vi dig?"}
+            rubrik="Sist: var når vi dig?"
             hjalp="Vi hör av oss inom en arbetsdag för att boka en tid."
           >
             <div className="grid gap-5">

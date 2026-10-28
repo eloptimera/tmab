@@ -10,8 +10,8 @@
 import { createServerFn } from "@tanstack/react-start";
 
 export type Bokning = {
+  /** Företag, namn eller båda – besökaren skriver fritt. */
   namn: string;
-  foretag: string;
   epost: string;
   telefon: string;
   webbplats: string;

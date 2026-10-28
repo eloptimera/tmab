@@ -3,8 +3,8 @@
 import { z } from "zod";
 
 const BokningSchema = z.object({
-  namn: z.string().trim().min(1).max(120),
-  foretag: z.string().trim().min(1).max(160),
+  /** Företag, namn eller båda – besökaren skriver fritt. */
+  namn: z.string().trim().min(1).max(200),
   epost: z.string().trim().email().max(200),
   telefon: z.string().trim().max(40),
   webbplats: z.string().trim().max(200),
@@ -29,8 +29,7 @@ export async function hanteraBokning(indata: unknown): Promise<{ ok: true }> {
   }
 
   const rader = [
-    `Namn: ${data.namn}`,
-    `Företag: ${data.foretag}`,
+    `Företag/namn: ${data.namn}`,
     `E-post: ${data.epost}`,
     data.telefon && `Telefon: ${data.telefon}`,
     data.webbplats && `Webbplats: ${data.webbplats}`,
@@ -46,7 +45,7 @@ export async function hanteraBokning(indata: unknown): Promise<{ ok: true }> {
       from: process.env["KONTAKT_FRAN"] ?? "Webbplatsen <onboarding@resend.dev>",
       to: till.split(",").map((a) => a.trim()),
       reply_to: data.epost,
-      subject: `Ny bokning av gratis genomgång – ${data.foretag}`,
+      subject: `Ny bokning av gratis genomgång – ${data.namn}`,
       text: rader.join("\n"),
     }),
   });
