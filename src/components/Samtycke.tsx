@@ -107,32 +107,29 @@ function Banner() {
         </fieldset>
       )}
 
-      {/* Neka och Godkänn ser likadana ut – det ska vara lika lätt att säga nej. */}
+      {/* Välj själv och Godkänn alla överst, Neka alla som egen knapp under. Neka och Godkänn
+          har samma stil – det ska vara lika lätt att säga nej som ja. */}
       <div className="mt-5 grid grid-cols-2 gap-2">
-        <button type="button" onClick={() => spara(INGET)} className="btn-base btn-white">
-          Neka alla
-        </button>
+        {valjSjalv ? (
+          <button type="button" onClick={() => spara(val)} className="btn-base btn-outline-white">
+            Spara mitt val
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setValjSjalv(true)}
+            className="btn-base btn-outline-white"
+          >
+            Välj själv
+          </button>
+        )}
         <button type="button" onClick={() => spara(ALLT)} className="btn-base btn-white">
           Godkänn alla
         </button>
       </div>
-      {valjSjalv ? (
-        <button
-          type="button"
-          onClick={() => spara(val)}
-          className="btn-base btn-outline-white mt-2 w-full"
-        >
-          Spara mitt val
-        </button>
-      ) : (
-        <button
-          type="button"
-          onClick={() => setValjSjalv(true)}
-          className="mt-3 w-full rounded-sm py-1 text-sm font-bold text-white/85 underline underline-offset-2 hover:text-white"
-        >
-          Välj själv
-        </button>
-      )}
+      <button type="button" onClick={() => spara(INGET)} className="btn-base btn-white mt-2 w-full">
+        Neka alla
+      </button>
     </div>
   );
 }
