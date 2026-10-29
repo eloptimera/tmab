@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/Brand";
 import { FORETAG } from "@/lib/foretag";
-import { BEHOVER_SAMTYCKE, oppnaInstallningar } from "@/lib/samtycke";
+import { BEHOVER_SAMTYCKE, VISA_BANNER, oppnaInstallningar } from "@/lib/samtycke";
 import { mejlKlick } from "@/lib/sparning";
 import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
@@ -67,7 +67,7 @@ export function Footer() {
                   Integritetspolicy
                 </Link>
               </li>
-              {BEHOVER_SAMTYCKE && (
+              {(VISA_BANNER || BEHOVER_SAMTYCKE) && (
                 <li>
                   <button type="button" onClick={oppnaInstallningar} className={LANK}>
                     Cookieinställningar

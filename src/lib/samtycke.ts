@@ -86,6 +86,14 @@ export const AKTIVA_KATEGORIER = (Object.keys(KATEGORIER) as Kategori[]).filter(
   AKTIVA_VERKTYG.some((v) => v.kategori === k),
 );
 
+// Bannern visas alltid, även innan något spårverktyg är påslaget. Är inget påslaget frågar den
+// om alla kategorier; valet sparas, och när ett verktyg slås på ändras versionen och besökaren
+// får frågan igen. Sätt till false för att bara visa bannern när ett verktyg kräver samtycke.
+export const VISA_BANNER = true;
+export const BANNER_KATEGORIER: Kategori[] = AKTIVA_KATEGORIER.length
+  ? AKTIVA_KATEGORIER
+  : (Object.keys(KATEGORIER) as Kategori[]);
+
 export const INGET: Val = { statistik: false, marknadsforing: false };
 export const ALLT: Val = { statistik: true, marknadsforing: true };
 

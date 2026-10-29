@@ -1,9 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
-  AKTIVA_KATEGORIER,
+  BANNER_KATEGORIER,
   ALLT,
   BEHOVER_SAMTYCKE,
+  VISA_BANNER,
   INGET,
   KATEGORIER,
   lasVal,
@@ -14,9 +15,9 @@ import {
   type Val,
 } from "@/lib/samtycke";
 
-/** Cookiebanner. Visas bara när ett spårverktyg som kräver samtycke är påslaget. */
+/** Cookiebanner. Visas alltid när VISA_BANNER är på, annars bara när ett spårverktyg kräver samtycke. */
 export function Samtycke() {
-  return BEHOVER_SAMTYCKE ? <Banner /> : null;
+  return VISA_BANNER || BEHOVER_SAMTYCKE ? <Banner /> : null;
 }
 
 function Banner() {
@@ -56,7 +57,7 @@ function Banner() {
 
   if (!visa) return null;
 
-  const syften = AKTIVA_KATEGORIER.map((k) => KATEGORIER[k].syfte).join(" och ");
+  const syften = BANNER_KATEGORIER.map((k) => KATEGORIER[k].syfte).join(" och ");
 
   return (
     <div
@@ -86,7 +87,7 @@ function Banner() {
       {valjSjalv && (
         <fieldset className="mt-5 space-y-3">
           <legend className="sr-only">Välj vilka cookies du godkänner</legend>
-          {AKTIVA_KATEGORIER.map((k) => (
+          {BANNER_KATEGORIER.map((k) => (
             <label
               key={k}
               className="flex cursor-pointer gap-3 rounded-2xl bg-white/10 p-4 text-sm leading-snug"
