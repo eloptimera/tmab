@@ -6,11 +6,11 @@ import { Reveal } from "@/components/Reveal";
 import { Loften } from "@/components/Loften";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { FORETAG } from "@/lib/foretag";
-import { PAKET } from "@/lib/priser";
+import { ENGANGSJOBB, engangMeddelande, PAKET } from "@/lib/priser";
 import { sidhuvud } from "@/lib/seo";
 import { hittaTjanst } from "@/lib/tjanster";
 
-type Sok = { tjanst?: string; paket?: string };
+type Sok = { tjanst?: string; paket?: string; engang?: string };
 
 export const Route = createFileRoute("/kontakt")({
   validateSearch: (sok: Record<string, unknown>): Sok => {
@@ -18,6 +18,10 @@ export const Route = createFileRoute("/kontakt")({
     if (typeof sok["tjanst"] === "string" && hittaTjanst(sok["tjanst"])) ut.tjanst = sok["tjanst"];
     if (typeof sok["paket"] === "string" && PAKET.some((p) => p.id === sok["paket"])) {
       ut.paket = sok["paket"];
+    }
+    if (typeof sok["engang"] === "string") {
+      const ids = sok["engang"].split(",").filter((id) => ENGANGSJOBB.some((j) => j.id === id));
+      if (ids.length > 0) ut.engang = ids.join(",");
     }
     return ut;
   },
@@ -98,6 +102,7 @@ function Kontakt() {
           <Bokningsformular
             tjanst={sok.tjanst}
             paket={PAKET.find((p) => p.id === sok.paket)?.namn}
+            meddelande={sok.engang ? engangMeddelande(sok.engang.split(",")) : undefined}
           />
         </Reveal>
       </section>

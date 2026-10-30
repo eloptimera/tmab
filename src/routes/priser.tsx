@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
+import { Engangsvaljare } from "@/components/Engangsvaljare";
 import { Mark, PageHero } from "@/components/Heading";
 import { Loften } from "@/components/Loften";
 import { Reveal } from "@/components/Reveal";
@@ -15,11 +16,9 @@ import {
   MOMS_TEXT,
   PRIS,
   PRIS_FRAGOR,
-  prisText,
   STARTAVGIFT_TEXT,
   type Del,
   type Niva,
-  type Prisrad,
 } from "@/lib/priser";
 import { faqSchema, paketSchema, sidhuvud } from "@/lib/seo";
 import { tjanstSokvag } from "@/lib/tjanster";
@@ -91,47 +90,6 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
   );
 }
 
-function Pristabell({ rubrik, rader }: { rubrik: string; rader: readonly Prisrad[] }) {
-  return (
-    <div className="skylt-liten px-5 py-2 sm:px-8">
-      <table className="w-full border-collapse text-left">
-        <caption className="sr-only">{rubrik}</caption>
-        <thead className="sr-only">
-          <tr>
-            <th scope="col">Tjänst</th>
-            <th scope="col">Pris</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y-2 divide-line">
-          {rader.map((r) => (
-            <tr key={r.tjanst}>
-              <th scope="row" className="py-4 pr-3 align-middle font-normal text-ink sm:pr-4">
-                <span className="block font-bold">{r.tjanst}</span>
-                {r.not && (
-                  <span className="mt-0.5 block text-sm leading-snug text-muted-foreground">
-                    {r.not}
-                  </span>
-                )}
-              </th>
-              <td className="py-4 text-right align-middle">
-                {r.pris === "Gratis" ? (
-                  <span className="inline-block rounded-full bg-sun px-3.5 py-1 text-sm font-bold text-ink">
-                    Gratis
-                  </span>
-                ) : (
-                  <span className="font-display text-lg whitespace-nowrap text-ink sm:text-xl">
-                    {prisText(r)}
-                  </span>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
 function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
   // Synlighetsnivån föreslår vi efter genomgången – kunden väljer den inte själv.
   const valbar = d.id !== "synlighet";
@@ -190,35 +148,23 @@ function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
-          <Reveal className="min-w-0">
-            <h3 className="font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
-              {d.id === "webb" ? "Bygge och tillägg" : "Engång"}
-            </h3>
-            <div className="mt-4">
-              <Pristabell rubrik={`${d.namn} – engång`} rader={d.engang} />
-            </div>
-            <p className="mt-4 text-sm text-ink/80">
-              <span className="font-bold">Skräddarsytt:</span> offert från {kr(d.skraddarsytt.pris)}
-              {enhet(d.skraddarsytt.enhet)} – {d.skraddarsytt.text}.
-            </p>
-          </Reveal>
+          {d.ingarAlltid && (
+            <Reveal className="min-w-0">
+              <h3 className="font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
+                Så fungerar det
+              </h3>
+              <ul className="mt-4 space-y-2.5">
+                {d.ingarAlltid.map((r) => (
+                  <li key={r} className="flex gap-3 text-ink/85">
+                    <Check className="mt-1 size-4 shrink-0 text-guld-mork" aria-hidden="true" />
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          )}
           <Reveal delay={80} className="min-w-0">
-            {d.ingarAlltid && (
-              <>
-                <h3 className="font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
-                  Så fungerar det
-                </h3>
-                <ul className="mt-4 space-y-2.5">
-                  {d.ingarAlltid.map((r) => (
-                    <li key={r} className="flex gap-3 text-ink/85">
-                      <Check className="mt-1 size-4 shrink-0 text-guld-mork" aria-hidden="true" />
-                      {r}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-            <h3 className="mt-8 font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
+            <h3 className="font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
               Bra att veta
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-muted-foreground">
@@ -316,6 +262,34 @@ function Priser() {
         <Delavsnitt key={d.id} d={d} nr={i + 1} />
       ))}
 
+      {/* Engångsjobb */}
+      <section
+        id="engang"
+        aria-labelledby="engang-rubrik"
+        className="scroll-mt-24 bg-fade-tint py-14 sm:py-20"
+      >
+        <div className="container-page">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <Reveal>
+              <p className="eyebrow">Engångsjobb</p>
+              <h2 id="engang-rubrik" className="mt-4 text-4xl sm:text-5xl">
+                Välj det ni <Mark>behöver</Mark>
+              </h2>
+            </Reveal>
+            <Reveal delay={80}>
+              <p className="text-lg leading-relaxed text-ink/80">
+                Bilder, uppsättningar och hemsidor som köps en gång. Kryssa i det ni vill ha – ju
+                fler jobb, desto större mängdrabatt. Ni får en bekräftelse med fast pris innan vi
+                börjar.
+              </p>
+            </Reveal>
+          </div>
+          <div className="mt-10">
+            <Engangsvaljare />
+          </div>
+        </div>
+      </section>
+
       {/* Kombinationer */}
       <section aria-labelledby="kombinationer" className="container-page py-14 sm:py-20">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
@@ -327,8 +301,9 @@ function Priser() {
           </Reveal>
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
-              Summan av delarna – ingen rabatt och inget finstilt. Uppstarten är engångsjobben för
-              Annonser ({kr(PRIS.annonsUppsattning)}) och Synlighet ({kr(PRIS.grundoptimering)}).
+              Summan av delarna – ingen rabatt på månadspriserna och inget finstilt. Uppstarten är
+              engångsjobben för Annonser ({kr(PRIS.annonsUppsattning)}) och Synlighet (
+              {kr(PRIS.grundoptimering)}).
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink/80">{EN_I_TAGET_TEXT}</p>
           </Reveal>

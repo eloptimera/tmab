@@ -462,6 +462,167 @@ export const PAKET: readonly Niva[] = [
   },
 ];
 
+/**
+ * Engångsjobb som kunden kan klicka ihop på prissidan. Jobb med samma `grupp` utesluter
+ * varandra (t.ex. 5, 10 eller 20 bilder). Jobb med `fran` är offert och räknas inte in i
+ * summan eller mängdrabatten.
+ */
+export type Engangsjobb = {
+  id: string;
+  del: DelId;
+  namn: string;
+  not?: string;
+  belopp: number;
+  fran?: boolean;
+  grupp?: string;
+};
+
+export const ENGANGSJOBB: readonly Engangsjobb[] = [
+  // Studio
+  { id: "bilder-5", del: "studio", namn: "5 bilder", belopp: PRIS.bilder5, grupp: "bilder" },
+  { id: "bilder-10", del: "studio", namn: "10 bilder", belopp: PRIS.bilder10, grupp: "bilder" },
+  { id: "bilder-20", del: "studio", namn: "20 bilder", belopp: PRIS.bilder20, grupp: "bilder" },
+  {
+    id: "videor-3",
+    del: "studio",
+    namn: "3 korta videor",
+    not: "15–30 sekunder, stående format",
+    belopp: PRIS.videor3,
+  },
+  // Annonser
+  {
+    id: "annonsuppsattning",
+    del: "annonser",
+    namn: "Annonsuppsättning",
+    not: "Business Manager, annonskonto, pixel, samtyckesbanner och första kampanjen",
+    belopp: PRIS.annonsUppsattning,
+  },
+  // Synlighet
+  {
+    id: "foretagsprofil",
+    del: "synlighet",
+    namn: "Google-företagsprofil",
+    not: "Verifiering, kategorier, tjänster, serviceområde och bilder",
+    belopp: PRIS.foretagsprofil,
+  },
+  {
+    id: "grundoptimering",
+    del: "synlighet",
+    namn: "Grundoptimering, upp till 10 sidor",
+    not: "Teknik, sökordsanalys, strukturerad data, Search Console och Bing",
+    belopp: PRIS.grundoptimering,
+    grupp: "grundoptimering",
+  },
+  {
+    id: "grundoptimering-stor",
+    del: "synlighet",
+    namn: "Grundoptimering, 11–30 sidor",
+    belopp: PRIS.grundoptimeringStor,
+    grupp: "grundoptimering",
+  },
+  {
+    id: "grundoptimering-lista",
+    del: "synlighet",
+    namn: "Grundoptimering som åtgärdslista",
+    not: "Ni genomför själva utifrån vår lista",
+    belopp: PRIS.grundoptimeringLista,
+    grupp: "grundoptimering",
+  },
+  // Webb
+  {
+    id: "landningssida",
+    del: "webb",
+    namn: "Landningssida",
+    not: "En sida med design, texter, formulär och SEO-grund",
+    belopp: PRIS.landningssida,
+    grupp: "bygge",
+  },
+  {
+    id: "foretagshemsida",
+    del: "webb",
+    namn: "Företagshemsida",
+    not: "Upp till 5 sidor",
+    belopp: PRIS.foretagshemsida,
+    grupp: "bygge",
+  },
+  { id: "extra-sida", del: "webb", namn: "Extra sida", belopp: PRIS.extraSida },
+  {
+    id: "cms",
+    del: "webb",
+    namn: "Redigeringsverktyg (CMS)",
+    not: "För er som vill ändra texter själva",
+    belopp: PRIS.cms,
+  },
+  {
+    id: "klippkort-2",
+    del: "webb",
+    namn: "Klippkort, 2 timmar ändringar",
+    belopp: PRIS.klippkort2,
+    grupp: "klippkort",
+  },
+  {
+    id: "klippkort-5",
+    del: "webb",
+    namn: "Klippkort, 5 timmar ändringar",
+    belopp: PRIS.klippkort5,
+    grupp: "klippkort",
+  },
+  {
+    id: "modernisering",
+    del: "webb",
+    namn: "Modernisera befintlig hemsida",
+    not: "Fast pris efter genomgången",
+    belopp: PRIS.modernisering,
+    fran: true,
+  },
+];
+
+/**
+ * Mängdrabatt på engångsjobb, efter hur många jobb med fast pris som väljs.
+ * TODO(TAB): utkast – stäm av nivåerna mot marginalen innan det går live.
+ */
+export const MANGDRABATT: readonly { antal: number; procent: number }[] = [
+  { antal: 2, procent: 5 },
+  { antal: 3, procent: 10 },
+  { antal: 4, procent: 15 },
+];
+
+export function mangdrabattProcent(antal: number): number {
+  let procent = 0;
+  for (const steg of MANGDRABATT) if (antal >= steg.antal) procent = steg.procent;
+  return procent;
+}
+
+export function raknaEngang(valda: readonly Engangsjobb[]) {
+  const fasta = valda.filter((j) => !j.fran);
+  const offert = valda.filter((j) => j.fran);
+  const summa = fasta.reduce((s, j) => s + j.belopp, 0);
+  const procent = mangdrabattProcent(fasta.length);
+  // Avrunda rabatten till hela kronor.
+  const rabatt = Math.round((summa * procent) / 100);
+  const nasta = MANGDRABATT.find((s) => s.antal > fasta.length);
+  return { antal: fasta.length, summa, procent, rabatt, total: summa - rabatt, offert, nasta };
+}
+
+export function hittaEngangsjobb(ids: readonly string[]): Engangsjobb[] {
+  return ENGANGSJOBB.filter((j) => ids.includes(j.id));
+}
+
+/** Text som förifyller meddelandet i bokningsformuläret när kunden kommer från väljaren. */
+export function engangMeddelande(ids: readonly string[]): string {
+  const valda = hittaEngangsjobb(ids);
+  if (valda.length === 0) return "";
+  const r = raknaEngang(valda);
+  const rader = valda.map(
+    (j) => `- ${j.namn}: ${j.fran ? `offert (från ${kr(j.belopp)})` : kr(j.belopp)}`,
+  );
+  const pris =
+    r.antal > 0
+      ? `Pris: ${kr(r.total)} exkl. moms${r.procent > 0 ? ` (mängdrabatt ${r.procent} %, −${kr(r.rabatt)})` : ""}.`
+      : "";
+  return ["Vi vill ha följande engångsjobb:", ...rader, pris].filter(Boolean).join("\n");
+}
+
 /** Vanliga kombinationer – summan av delarna, utan rabatt. */
 export const KOMBINATIONER: readonly {
   namn: string;

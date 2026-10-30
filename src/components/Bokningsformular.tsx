@@ -28,9 +28,12 @@ type StegId = (typeof STEG)[number];
 export function Bokningsformular({
   tjanst,
   paket,
+  meddelande,
 }: {
   tjanst?: string | undefined;
   paket?: string | undefined;
+  /** Förifyllt meddelande, t.ex. valda engångsjobb från prissidan. */
+  meddelande?: string | undefined;
 }) {
   const navigate = useNavigate();
   const [steg, setSteg] = useState(0);
@@ -38,7 +41,7 @@ export function Bokningsformular({
   const [fel, setFel] = useState(false);
   const [svar, setSvar] = useState<Svar>(() => ({
     tjanster: TJANSTER.filter((t) => t.slug === tjanst).map((t) => t.titel),
-    meddelande: "",
+    meddelande: meddelande ?? "",
     webbplats: "",
     namn: "",
     epost: "",
