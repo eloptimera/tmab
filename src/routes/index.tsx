@@ -97,15 +97,14 @@ const OMRADEN = [
 
 // Hantverken och deras mästare. Bilderna är AI-genererade stilleben (oktober 2026) med
 // föremål som hör till personen – inga porträtt.
-// Citat: `kalla` anger hur säkert citatet är. Belagda citat får verk och år. Övriga märks
-// "Fritt efter …" (omskrivning av personens idé) eller "Tillskrivs …" (spritt men utan belagd
-// källa) – skriv aldrig ett verk som källa om citatet inte står där.
+// Citat: `kalla` (verk och år) bara när citatet går att belägga i det verket – skriv aldrig
+// ett verk som källa om citatet inte står där.
 const MASTARE: readonly {
   slug: string;
   person: string;
   bild: string;
   text: string;
-  citat?: { text: string; lang: "la" | "en"; oversattning: string; kalla: string };
+  citat?: { text: string; lang: "la" | "en"; oversattning: string; kalla?: string };
 }[] = [
   {
     slug: "seo",
@@ -128,7 +127,6 @@ const MASTARE: readonly {
       text: "Ad inquirendam veritatem quaerendum est",
       lang: "la",
       oversattning: "För att utforska sanningen måste man ställa frågor.",
-      kalla: "Fritt efter Sokrates",
     },
   },
   {
@@ -140,7 +138,6 @@ const MASTARE: readonly {
       text: "Persuasio est ars movendi animos",
       lang: "la",
       oversattning: "Övertalning är konsten att röra vid sinnena.",
-      kalla: "Fritt efter Aristoteles, Retoriken",
     },
   },
   {
@@ -152,7 +149,6 @@ const MASTARE: readonly {
       text: "I use the figures freely to prove my case.",
       lang: "en",
       oversattning: "Jag använder siffrorna fritt för att bevisa min sak.",
-      kalla: "Tillskrivs Florence Nightingale",
     },
   },
   {
@@ -164,7 +160,6 @@ const MASTARE: readonly {
       text: "Painting is the silent poetry of light and shadow.",
       lang: "en",
       oversattning: "Måleriet är ljusets och skuggans tysta poesi.",
-      kalla: "Fritt efter Simonides av Keos",
     },
   },
   {
@@ -176,7 +171,6 @@ const MASTARE: readonly {
       text: "Details make perfection, and perfection is not a detail.",
       lang: "en",
       oversattning: "Detaljer skapar perfektion, och perfektion är ingen detalj.",
-      kalla: "Tillskrivs Leonardo da Vinci",
     },
   },
 ];
@@ -270,10 +264,15 @@ function Start() {
                 <p className="mt-2 leading-relaxed text-muted-foreground">{m.text}</p>
                 {m.citat && (
                   <p className="mt-3 font-display text-[1.05rem] leading-snug text-ink italic">
-                    <span lang={m.citat.lang}>”{m.citat.text}”</span> – {m.citat.oversattning}{" "}
-                    <span className="font-sans text-xs text-muted-foreground not-italic">
-                      {m.citat.kalla}
-                    </span>
+                    <span lang={m.citat.lang}>”{m.citat.text}”</span> – {m.citat.oversattning}
+                    {m.citat.kalla && (
+                      <>
+                        {" "}
+                        <span className="font-sans text-xs text-muted-foreground not-italic">
+                          {m.citat.kalla}
+                        </span>
+                      </>
+                    )}
                   </p>
                 )}
               </Verk>
