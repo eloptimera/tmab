@@ -6,7 +6,9 @@ import { projektKlick } from "@/lib/sparning";
 /** Tidigare projekt som kort – på startsidan och på /hemsida-foretag. Bara verkliga projekt. */
 export function ProjektLista({ className = "" }: { className?: string }) {
   return (
-    <ul className={`grid gap-4 md:grid-cols-3 ${className}`}>
+    <ul
+      className={`grid gap-4 md:grid-cols-2 ${PROJEKT.length % 3 === 0 ? "lg:grid-cols-3" : ""} ${className}`}
+    >
       {PROJEKT.map((p, i) => (
         <li key={p.url} className="h-full">
           <Reveal delay={i * 80} className="h-full">

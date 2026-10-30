@@ -294,8 +294,8 @@ function WebbyraGoteborg() {
               Hemsidor vi har <Mark>byggt</Mark>
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Treatly är vårt eget moderbolag i Göteborg – hemsidan och kundplattformen har vi
-              byggt. Här är det och våra andra projekt.
+              Hvittfeldt Invest i Göteborg har vi byggt hemsidan åt och sköter den i dag. Treatly är
+              vårt eget moderbolag – där har vi byggt hemsidan och kundplattformen.
             </p>
           </Reveal>
           <ProjektLista className="mt-10" />

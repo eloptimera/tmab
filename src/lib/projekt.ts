@@ -19,6 +19,20 @@ export type Projekt = {
 
 export const PROJEKT: readonly Projekt[] = [
   {
+    namn: "Hvittfeldt Invest",
+    kategori: "Styrelsearbete",
+    text: "Ankie Hvittfeldt – styrelseordförande och styrelseledamot med över 30 styrelseuppdrag i ägarledda, statligt ägda och noterade bolag.",
+    url: "https://www.hvittfeldtinvest.se",
+    doman: "hvittfeldtinvest.se",
+    farger: ["#ff7ad9", "#a0237a"],
+    // TODO(TAB): stämmer listan? Skrev ni texterna också – lägg i så fall till det.
+    gjorde: [
+      "Hemsida – design och utveckling",
+      "Sökmotoranpassade titlar, beskrivningar och delningsbild",
+      "Drift och administration av sajten",
+    ],
+  },
+  {
     namn: "Treatly",
     kategori: "Personaluppvaktning",
     text: "Födelsedagar, jubileum och fredagsfika från lokala bagerier – godkänt i ett klick.",
