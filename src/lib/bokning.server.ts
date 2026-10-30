@@ -1,7 +1,7 @@
 // Serverdelen av bokningsformuläret: kontroll av indata och utskick via Resend.
 // Laddas bara på servern (se bokning.ts), så zod och nycklar når aldrig webbläsaren.
 import { z } from "zod";
-import { ENGANGSJOBB, hittaEngangsjobb, kr, raknaEngang } from "@/lib/priser";
+import { kr, raknaVal, VAL, type Val } from "@/lib/priser";
 
 const BokningSchema = z.object({
   /** Företag, namn eller båda – besökaren skriver fritt. */
@@ -72,16 +72,20 @@ const EngangsSchema = z.object({
   telefon: z.string().trim().max(40),
   webbplats: z.string().trim().max(200),
   meddelande: z.string().trim().max(3000),
+  /** Id:n för nivåer, bygge och engångsjobb (VAL i priser.ts). */
   jobb: z
-    .array(z.string().refine((id) => ENGANGSJOBB.some((j) => j.id === id)))
+    .array(z.string().refine((id) => VAL.some((v) => v.id === id)))
     .min(1)
-    .max(ENGANGSJOBB.length),
+    .max(VAL.length),
   falla: z.string().max(500),
 });
 
+const valRad = (v: Val) =>
+  `- ${v.namn}: ${v.fran ? `offert (från ${kr(v.belopp)})` : `${kr(v.belopp)}${v.enhet === "mån" ? "/mån" : ""}`}`;
+
 /**
- * Förfrågan från engångsväljaren. Priset räknas om här från priser.ts – det som kommer
- * från webbläsaren är bara vilka jobb som valts, aldrig belopp.
+ * Förfrågan från prissidan. Priset räknas om här från priser.ts – det som kommer från
+ * webbläsaren är bara vilka val som gjorts, aldrig belopp.
  */
 export async function hanteraEngangsforfragan(indata: unknown): Promise<{ ok: true }> {
   const data = EngangsSchema.parse(indata);
@@ -91,21 +95,33 @@ export async function hanteraEngangsforfragan(indata: unknown): Promise<{ ok: tr
   const till = process.env["KONTAKT_TILL"];
   if (!nyckel || !till) {
     console.error(
-      "Engångsförfrågan: RESEND_API_KEY eller KONTAKT_TILL saknas – inget mejl skickades.",
+      "Prisförfrågan: RESEND_API_KEY eller KONTAKT_TILL saknas – inget mejl skickades.",
     );
     throw new Error("Formuläret är inte kopplat till någon mottagare ännu.");
   }
 
-  const valda = hittaEngangsjobb(data.jobb);
-  const r = raknaEngang(valda);
-  const jobbrader = valda.map(
-    (j) => `- ${j.namn}: ${j.fran ? `offert (från ${kr(j.belopp)})` : kr(j.belopp)}`,
-  );
-  const prisrader = [
-    `Summa: ${kr(r.summa)}`,
-    r.procent > 0 && `Mängdrabatt ${r.procent} %: −${kr(r.rabatt)}`,
-    `Totalt: ${kr(r.total)} exkl. moms`,
-  ].filter(Boolean);
+  const r = raknaVal(data.jobb);
+  const urval: string[] = [];
+  if (r.manad.length > 0) {
+    urval.push("Per månad:", ...r.manad.map(valRad), `Totalt per månad: ${kr(r.manadSumma)}`, "");
+  }
+  if (r.engang.length > 0) {
+    urval.push(
+      "Engång:",
+      ...r.engang.map(valRad),
+      ...(r.procent > 0 ? [`Mängdrabatt ${r.procent} % på engångsjobben: −${kr(r.rabatt)}`] : []),
+      `Totalt engång: ${kr(r.engangTotal)}`,
+      "",
+    );
+  }
+  urval.push("Alla priser exkl. moms.");
+
+  const sammanfattning = [
+    r.manadSumma > 0 ? `${kr(r.manadSumma)}/mån` : null,
+    r.engangTotal > 0 ? `${kr(r.engangTotal)} engång` : null,
+  ]
+    .filter(Boolean)
+    .join(" + ");
 
   const internt = [
     `Företag/namn: ${data.namn}`,
@@ -113,17 +129,14 @@ export async function hanteraEngangsforfragan(indata: unknown): Promise<{ ok: tr
     data.telefon ? `Telefon: ${data.telefon}` : null,
     data.webbplats ? `Webbplats: ${data.webbplats}` : null,
     "",
-    "Valda engångsjobb:",
-    ...jobbrader,
-    "",
-    ...prisrader,
+    ...urval,
     data.meddelande ? `\nMeddelande:\n${data.meddelande}` : null,
-  ].filter((r): r is string => r !== null);
+  ].filter((rad): rad is string => rad !== null);
 
   await skickaMejl(nyckel, {
     to: till.split(",").map((a) => a.trim()),
     reply_to: data.epost,
-    subject: `Förfrågan om engångsjobb – ${data.namn} – ${kr(r.total)}`,
+    subject: `Förfrågan från prissidan – ${data.namn}${sammanfattning ? ` – ${sammanfattning}` : ""}`,
     text: internt.join("\n"),
   });
 
@@ -139,11 +152,9 @@ export async function hanteraEngangsforfragan(indata: unknown): Promise<{ ok: tr
         text: [
           `Hej ${data.namn},`,
           "",
-          "Tack för er förfrågan. Så här ser det ut:",
+          "Tack för er förfrågan. Så här ser den ut:",
           "",
-          ...jobbrader,
-          "",
-          ...prisrader,
+          ...urval,
           "",
           "Vi återkommer inom en arbetsdag med en bekräftelse. Inget är beställt förrän ni har godkänt den.",
           "",
@@ -151,7 +162,7 @@ export async function hanteraEngangsforfragan(indata: unknown): Promise<{ ok: tr
         ].join("\n"),
       });
     } catch (fel) {
-      console.error("Engångsförfrågan: kopian till kunden kunde inte skickas", fel);
+      console.error("Prisförfrågan: kopian till kunden kunde inte skickas", fel);
     }
   }
   return { ok: true as const };

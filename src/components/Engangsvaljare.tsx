@@ -1,6 +1,6 @@
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Engangsforfragan } from "@/components/Engangsforfragan";
+import { usePrisval } from "@/components/Prisval";
 import {
   DELAR,
   ENGANGSJOBB,
@@ -14,24 +14,17 @@ import {
 /**
  * Engångsjobben på prissidan: en utfällbar lista per del där kunden kryssar i det hen vill ha.
  * Jobb i samma grupp utesluter varandra. Sammanfattningen visar summa, mängdrabatt och vad
- * nästa jobb skulle ge, och skickar valen vidare till bokningsformuläret.
+ * nästa jobb skulle ge. Valen delas med resten av prissidan (Prisval).
  */
 export function Engangsvaljare() {
-  const [valda, setValda] = useState<readonly string[]>([]);
+  const { valda, vaxla: vaxlaId, oppnaFormular } = usePrisval();
   const [oppen, setOppen] = useState<string | null>(DELAR[0]?.id ?? null);
-  const [formular, setFormular] = useState(false);
 
   const valdaJobb = useMemo(() => ENGANGSJOBB.filter((j) => valda.includes(j.id)), [valda]);
   const r = raknaEngang(valdaJobb);
 
   function vaxla(j: Engangsjobb) {
-    setValda((nu) => {
-      if (nu.includes(j.id)) return nu.filter((id) => id !== j.id);
-      const utanGrupp = j.grupp
-        ? nu.filter((id) => ENGANGSJOBB.find((x) => x.id === id)?.grupp !== j.grupp)
-        : nu;
-      return [...utanGrupp, j.id];
-    });
+    vaxlaId(j.id);
   }
 
   return (
@@ -190,15 +183,14 @@ export function Engangsvaljare() {
 
         <button
           type="button"
-          disabled={valdaJobb.length === 0}
-          onClick={() => setFormular(true)}
+          disabled={valda.length === 0}
+          onClick={oppnaFormular}
           className="btn-base btn-white mt-6 w-full disabled:cursor-default disabled:opacity-60"
         >
-          {valdaJobb.length > 0 ? "Skicka förfrågan" : "Välj minst ett jobb"}
-          {valdaJobb.length > 0 && <ArrowRight className="size-4" aria-hidden="true" />}
+          {valda.length > 0 ? "Skicka förfrågan" : "Välj minst ett jobb"}
+          {valda.length > 0 && <ArrowRight className="size-4" aria-hidden="true" />}
         </button>
       </aside>
-      <Engangsforfragan oppen={formular} onOppen={setFormular} valda={valdaJobb} />
     </div>
   );
 }

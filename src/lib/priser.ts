@@ -654,6 +654,91 @@ export function engangMeddelande(ids: readonly string[]): string {
   return ["Vi vill ha följande engångsjobb:", ...rader, pris].filter(Boolean).join("\n");
 }
 
+/**
+ * Allt som kan väljas på prissidan och skickas i en förfrågan: nivåer, bygge och
+ * engångsjobb. `grupp` gör att bara ett val per grupp kan vara aktivt (t.ex. en
+ * Studio-nivå). `rabatterbar` styr vad mängdrabatten räknas på – bara engångsjobben.
+ */
+export type Val = {
+  id: string;
+  namn: string;
+  del: DelId;
+  belopp: number;
+  enhet: "mån" | "engång";
+  fran?: boolean;
+  grupp?: string;
+  rabatterbar: boolean;
+};
+
+export const VAL: readonly Val[] = [
+  ...DELAR.flatMap((d) => [
+    ...(d.bygge ?? []).map((n): Val => ({
+      id: n.id,
+      namn: n.namn,
+      del: d.id,
+      belopp: n.belopp,
+      enhet: n.enhet,
+      ...(n.fran ? { fran: true } : {}),
+      grupp: `${d.id}-bygge`,
+      rabatterbar: false,
+    })),
+    ...d.nivaer.map((n): Val => ({
+      id: n.id,
+      namn: n.namn,
+      del: d.id,
+      belopp: n.belopp,
+      enhet: n.enhet,
+      grupp: `${d.id}-niva`,
+      rabatterbar: false,
+    })),
+  ]),
+  ...ENGANGSJOBB.map((j): Val => ({
+    id: j.id,
+    namn: j.namn,
+    del: j.del,
+    belopp: j.belopp,
+    enhet: "engång",
+    ...(j.fran ? { fran: true } : {}),
+    ...(j.grupp ? { grupp: `jobb-${j.grupp}` } : {}),
+    rabatterbar: true,
+  })),
+];
+
+export function hittaVal(ids: readonly string[]): Val[] {
+  return VAL.filter((v) => ids.includes(v.id));
+}
+
+/** Lägger till eller tar bort ett val. Ett nytt val ersätter ett annat i samma grupp. */
+export function vaxlaVal(nu: readonly string[], id: string): string[] {
+  if (nu.includes(id)) return nu.filter((x) => x !== id);
+  const grupp = VAL.find((v) => v.id === id)?.grupp;
+  const kvar = grupp ? nu.filter((x) => VAL.find((v) => v.id === x)?.grupp !== grupp) : [...nu];
+  return [...kvar, id];
+}
+
+/** Summerar ett urval: per månad, engång (med mängdrabatt på engångsjobben) och offerter. */
+export function raknaVal(ids: readonly string[]) {
+  const valda = hittaVal(ids);
+  const manad = valda.filter((v) => v.enhet === "mån");
+  const engang = valda.filter((v) => v.enhet === "engång");
+  const jobb = raknaEngang(hittaEngangsjobb(engang.filter((v) => v.rabatterbar).map((v) => v.id)));
+  const bygge = engang.filter((v) => !v.rabatterbar && !v.fran);
+  const byggeSumma = bygge.reduce((s, v) => s + v.belopp, 0);
+  return {
+    valda,
+    manad,
+    engang,
+    manadSumma: manad.reduce((s, v) => s + v.belopp, 0),
+    engangSumma: byggeSumma + jobb.summa,
+    rabatt: jobb.rabatt,
+    procent: jobb.procent,
+    nasta: jobb.nasta,
+    jobbAntal: jobb.antal,
+    engangTotal: byggeSumma + jobb.total,
+    offert: engang.filter((v) => v.fran),
+  };
+}
+
 /** Vanliga kombinationer – summan av delarna, utan rabatt. */
 export const KOMBINATIONER: readonly {
   namn: string;

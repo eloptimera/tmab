@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { skickaEngangsforfragan } from "@/lib/bokning";
 import { FORETAG } from "@/lib/foretag";
-import { kr, MOMS_TEXT, raknaEngang, type Engangsjobb } from "@/lib/priser";
+import { kr, MOMS_TEXT, raknaVal, type Val } from "@/lib/priser";
 import { metaKonvertering } from "@/lib/samtycke";
 import { bokningSkickad } from "@/lib/sparning";
 
@@ -27,8 +27,9 @@ const TOM: Uppgifter = {
 };
 
 /**
- * Popupen som öppnas från engångsväljaren. Kunden fyller i sina uppgifter och de valda
- * jobben följer med i förfrågan. Bara jobbens id skickas – priset räknas om på servern.
+ * Popupen för förfrågan från prissidan. Kunden fyller i sina uppgifter och allt som är
+ * valt – nivåer, bygge och engångsjobb – följer med. Bara id:n skickas; priset räknas
+ * om på servern.
  */
 export function Engangsforfragan({
   oppen,
@@ -37,13 +38,13 @@ export function Engangsforfragan({
 }: {
   oppen: boolean;
   onOppen: (oppen: boolean) => void;
-  valda: readonly Engangsjobb[];
+  valda: readonly string[];
 }) {
   const navigate = useNavigate();
   const [u, setU] = useState<Uppgifter>(TOM);
   const [skickar, setSkickar] = useState(false);
   const [fel, setFel] = useState(false);
-  const r = raknaEngang(valda);
+  const r = raknaVal(valda);
 
   function satt<K extends keyof Uppgifter>(nyckel: K, varde: string) {
     setU((nu) => ({ ...nu, [nyckel]: varde }));
@@ -54,8 +55,8 @@ export function Engangsforfragan({
     setFel(false);
     setSkickar(true);
     try {
-      await skickaEngangsforfragan({ data: { ...u, jobb: valda.map((j) => j.id) } });
-      bokningSkickad(["Engångsjobb"]);
+      await skickaEngangsforfragan({ data: { ...u, jobb: [...valda] } });
+      bokningSkickad(r.valda.map((v) => v.namn));
       metaKonvertering("Lead");
       onOppen(false);
       await navigate({ to: "/tack" });
@@ -73,29 +74,29 @@ export function Engangsforfragan({
           Skicka förfrågan
         </DialogTitle>
         <DialogDescription className="text-base text-ink/80">
-          Era valda jobb följer med. Vi återkommer inom en arbetsdag med en bekräftelse – inget är
+          Det ni har valt följer med. Vi återkommer inom en arbetsdag med en bekräftelse – inget är
           beställt förrän ni har godkänt den.
         </DialogDescription>
 
-        <div className="rounded-2xl bg-elfenben p-5">
-          <ul className="space-y-1.5 text-sm">
-            {valda.map((j) => (
-              <li key={j.id} className="flex justify-between gap-4">
-                <span className="flex gap-2">
-                  <Check className="mt-0.5 size-4 shrink-0 text-guld-mork" aria-hidden="true" />
-                  {j.namn}
-                </span>
-                <span className="whitespace-nowrap">{j.fran ? "offert" : kr(j.belopp)}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-3 flex items-baseline justify-between gap-4 border-t border-line pt-3">
-            <span className="text-sm">
-              Totalt{r.procent > 0 ? ` efter ${r.procent} % mängdrabatt` : ""}
-            </span>
-            <span className="font-display text-2xl text-ink">{kr(r.total)}</span>
-          </div>
-          <p className="mt-1 text-xs text-muted-foreground">{MOMS_TEXT}</p>
+        <div className="space-y-4 rounded-2xl bg-elfenben p-5">
+          {r.manad.length > 0 && (
+            <Lista rubrik="Per månad" rader={r.manad} summa={`${kr(r.manadSumma)}/mån`} />
+          )}
+          {r.engang.length > 0 && (
+            <Lista
+              rubrik="Engång"
+              rader={r.engang}
+              summa={kr(r.engangTotal)}
+              not={
+                r.procent > 0
+                  ? `Mängdrabatt ${r.procent} % på engångsjobben: −${kr(r.rabatt)}`
+                  : undefined
+              }
+            />
+          )}
+          <p className="text-xs text-muted-foreground">
+            {MOMS_TEXT} Månadstjänsterna har ingen bindningstid.
+          </p>
         </div>
 
         <form
@@ -203,6 +204,42 @@ function Falt({
         {kravs && <span className="sr-only"> (obligatoriskt)</span>}
       </label>
       <div className="mt-1.5">{children}</div>
+    </div>
+  );
+}
+
+function Lista({
+  rubrik,
+  rader,
+  summa,
+  not,
+}: {
+  rubrik: string;
+  rader: readonly Val[];
+  summa: string;
+  not?: string | undefined;
+}) {
+  return (
+    <div>
+      <p className="text-xs font-bold tracking-[0.18em] text-guld-mork uppercase">{rubrik}</p>
+      <ul className="mt-2 space-y-1.5 text-sm">
+        {rader.map((v) => (
+          <li key={v.id} className="flex justify-between gap-4">
+            <span className="flex gap-2">
+              <Check className="mt-0.5 size-4 shrink-0 text-guld-mork" aria-hidden="true" />
+              {v.namn}
+            </span>
+            <span className="whitespace-nowrap">
+              {v.fran ? "offert" : `${kr(v.belopp)}${v.enhet === "mån" ? "/mån" : ""}`}
+            </span>
+          </li>
+        ))}
+      </ul>
+      {not && <p className="mt-2 text-sm text-guld-mork">{not}</p>}
+      <div className="mt-2 flex items-baseline justify-between gap-4 border-t border-line pt-2">
+        <span className="text-sm">Totalt</span>
+        <span className="font-display text-2xl text-ink">{summa}</span>
+      </div>
     </div>
   );
 }

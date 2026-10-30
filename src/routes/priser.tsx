@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Engangsvaljare } from "@/components/Engangsvaljare";
+import { PrisvalProvider, usePrisval } from "@/components/Prisval";
 import { Mark, PageHero } from "@/components/Heading";
 import { Loften } from "@/components/Loften";
 import { Reveal } from "@/components/Reveal";
@@ -35,6 +36,29 @@ export const Route = createFileRoute("/priser")({
 });
 
 const enhet = (e: "mån" | "engång") => (e === "mån" ? "/mån" : "");
+
+/** Lägger till eller tar bort nivån i urvalet. Ett nytt val ersätter ett annat i samma del. */
+function Valknapp({ n, utvald }: { n: Niva; utvald: boolean }) {
+  const { arVald, vaxla } = usePrisval();
+  const vald = arVald(n.id);
+  return (
+    <button
+      type="button"
+      aria-pressed={vald}
+      onClick={() => vaxla(n.id)}
+      className={`btn-base w-full ${vald ? "bg-sun text-ink" : utvald ? "btn-white" : "btn-dark"}`}
+    >
+      {vald ? (
+        <>
+          <Check className="size-4" strokeWidth={3} aria-hidden="true" />
+          Vald
+        </>
+      ) : (
+        `Välj ${n.namn}`
+      )}
+    </button>
+  );
+}
 
 function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
   const utvald = n.utvald === true;
@@ -87,9 +111,7 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
       </ul>
       {valbar && (
         <div className="mt-auto pt-8">
-          <BokaKnapp paket={n.id} variant={utvald ? "white" : "dark"} className="w-full">
-            Välj {n.namn}
-          </BokaKnapp>
+          <Valknapp n={n} utvald={utvald} />
         </div>
       )}
     </article>
@@ -127,8 +149,7 @@ function Nivarad({
 }
 
 function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
-  // Synlighetsnivån föreslår vi efter genomgången – kunden väljer den inte själv.
-  const valbar = d.id !== "synlighet";
+  const valbar = true;
   return (
     <section
       id={d.id}
@@ -171,7 +192,7 @@ function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
           valbar={valbar}
           not={
             d.id === "synlighet"
-              ? "Vilken nivå som passar föreslår vi efter genomgången, utifrån konkurrensen och hur sajten ser ut."
+              ? "Osäker på nivå? Välj den som verkar rimlig – vi föreslår rätt nivå i genomgången, utifrån konkurrensen och hur sajten ser ut."
               : undefined
           }
         />
@@ -210,7 +231,7 @@ function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
 
 function Priser() {
   return (
-    <>
+    <PrisvalProvider>
       <PageHero
         tavla={{ src: "/galleri/detalj-urna.webp", bredd: 822, hojd: 1020 }}
         eyebrow="Priser"
@@ -452,6 +473,6 @@ function Priser() {
         text="Boka en gratis genomgång på 20–25 minuter. Vi föreslår vilka delar som ger mest för er – ofta räcker det att börja med en."
         prislank={{ href: "#oversikt", text: "Till översikten" }}
       />
-    </>
+    </PrisvalProvider>
   );
 }
