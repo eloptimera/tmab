@@ -141,6 +141,8 @@ export type Del = {
   /** Rubrik för nivåerna, t.ex. "Abonnemang". */
   nivaRubrik: string;
   nivaer: readonly Niva[];
+  /** Engångsbygge som visas som egna nivåer före de löpande (bara Webb). */
+  bygge?: readonly Niva[];
   skraddarsytt: { pris: number; enhet: "mån" | "engång"; text: string };
   /** Vad som ingår i varje beställning. */
   ingarAlltid?: readonly string[];
@@ -389,6 +391,32 @@ export const WEBB: Del = {
       slug: "hemsideoptimering",
     },
   ],
+  bygge: [
+    {
+      id: "webb-landningssida",
+      namn: "Landningssida",
+      belopp: PRIS.landningssida,
+      enhet: "engång",
+      ingar: [
+        "En sida med design och texter",
+        "Kontakt- eller offertformulär",
+        "SEO-grund och en ändringsrunda",
+      ],
+    },
+    {
+      id: "webb-foretagshemsida",
+      namn: "Företagshemsida",
+      belopp: PRIS.foretagshemsida,
+      enhet: "engång",
+      utvald: true,
+      ingar: [
+        "Upp till 5 sidor",
+        "Fler integrationer",
+        "Search Console och Bing i ert namn",
+        "En ändringsrunda",
+      ],
+    },
+  ],
   nivaRubrik: "Efter lansering",
   nivaer: [
     {
@@ -462,6 +490,9 @@ export const PAKET: readonly Niva[] = [
   },
 ];
 
+/** Allt som kan väljas med ?paket=… i bokningsformuläret: månadsnivåerna plus bygget. */
+export const BOKNINGSBARA: readonly Niva[] = [...PAKET, ...(WEBB.bygge ?? [])];
+
 /**
  * Engångsjobb som kunden kan klicka ihop på prissidan. Jobb med samma `grupp` utesluter
  * varandra (t.ex. 5, 10 eller 20 bilder). Jobb med `fran` är offert och räknas inte in i
@@ -529,22 +560,6 @@ export const ENGANGSJOBB: readonly Engangsjobb[] = [
     grupp: "grundoptimering",
   },
   // Webb
-  {
-    id: "landningssida",
-    del: "webb",
-    namn: "Landningssida",
-    not: "En sida med design, texter, formulär och SEO-grund",
-    belopp: PRIS.landningssida,
-    grupp: "bygge",
-  },
-  {
-    id: "foretagshemsida",
-    del: "webb",
-    namn: "Företagshemsida",
-    not: "Upp till 5 sidor",
-    belopp: PRIS.foretagshemsida,
-    grupp: "bygge",
-  },
   { id: "extra-sida", del: "webb", namn: "Extra sida", belopp: PRIS.extraSida },
   {
     id: "cms",

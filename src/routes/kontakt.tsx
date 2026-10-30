@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { Loften } from "@/components/Loften";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { FORETAG } from "@/lib/foretag";
-import { ENGANGSJOBB, engangMeddelande, PAKET } from "@/lib/priser";
+import { BOKNINGSBARA, ENGANGSJOBB, engangMeddelande } from "@/lib/priser";
 import { sidhuvud } from "@/lib/seo";
 import { hittaTjanst } from "@/lib/tjanster";
 
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/kontakt")({
   validateSearch: (sok: Record<string, unknown>): Sok => {
     const ut: Sok = {};
     if (typeof sok["tjanst"] === "string" && hittaTjanst(sok["tjanst"])) ut.tjanst = sok["tjanst"];
-    if (typeof sok["paket"] === "string" && PAKET.some((p) => p.id === sok["paket"])) {
+    if (typeof sok["paket"] === "string" && BOKNINGSBARA.some((p) => p.id === sok["paket"])) {
       ut.paket = sok["paket"];
     }
     if (typeof sok["engang"] === "string") {
@@ -101,7 +101,7 @@ function Kontakt() {
         <Reveal delay={100} className="order-first lg:order-none">
           <Bokningsformular
             tjanst={sok.tjanst}
-            paket={PAKET.find((p) => p.id === sok.paket)?.namn}
+            paket={BOKNINGSBARA.find((p) => p.id === sok.paket)?.namn}
             meddelande={sok.engang ? engangMeddelande(sok.engang.split(",")) : undefined}
           />
         </Reveal>

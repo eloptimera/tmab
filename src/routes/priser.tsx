@@ -63,7 +63,7 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
         <span className="text-xl sm:text-2xl">{enhet(n.enhet)}</span>
       </p>
       <p className={`mt-2 text-sm ${utvald ? "text-white/80" : "text-muted-foreground"}`}>
-        exkl. moms · ingen bindningstid
+        {n.enhet === "mån" ? "exkl. moms · ingen bindningstid" : "exkl. moms · engångspris"}
       </p>
       <ul className={`mt-6 space-y-3 border-t pt-6 ${utvald ? "border-white/25" : "border-line"}`}>
         {n.ingar.map((rad) => (
@@ -90,6 +90,36 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
   );
 }
 
+function Nivarad({
+  rubrik,
+  nivaer,
+  valbar,
+  not,
+}: {
+  rubrik: string;
+  nivaer: readonly Niva[];
+  valbar: boolean;
+  not?: string | undefined;
+}) {
+  return (
+    <>
+      <h3 className="mt-8 font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
+        {rubrik}
+      </h3>
+      {not && <p className="mt-2 max-w-2xl text-ink/80">{not}</p>}
+      <div
+        className={`mt-6 grid items-stretch gap-5 ${nivaer.length === 2 ? "md:grid-cols-2 lg:max-w-4xl" : "md:grid-cols-3"}`}
+      >
+        {nivaer.map((n, i) => (
+          <Reveal key={n.id} delay={i * 70} className="h-full">
+            <Nivakort n={n} valbar={valbar} />
+          </Reveal>
+        ))}
+      </div>
+    </>
+  );
+}
+
 function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
   // Synlighetsnivån föreslår vi efter genomgången – kunden väljer den inte själv.
   const valbar = d.id !== "synlighet";
@@ -97,7 +127,7 @@ function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
     <section
       id={d.id}
       aria-labelledby={`rubrik-${d.id}`}
-      className={`scroll-mt-24 py-14 sm:py-20 ${nr % 2 === 0 ? "bg-fade-tint" : ""}`}
+      className={`scroll-mt-24 py-10 sm:py-14 ${nr % 2 === 0 ? "bg-fade-tint" : ""}`}
     >
       <div className="container-page">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
@@ -128,26 +158,19 @@ function Delavsnitt({ d, nr }: { d: Del; nr: number }) {
           </Reveal>
         </div>
 
-        <h3 className="mt-12 font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
-          {d.nivaRubrik}
-        </h3>
-        {d.id === "synlighet" && (
-          <p className="mt-2 max-w-2xl text-ink/80">
-            Vilken nivå som passar föreslår vi efter genomgången, utifrån konkurrensen och hur
-            sajten ser ut.
-          </p>
-        )}
-        <div
-          className={`mt-6 grid items-stretch gap-5 ${d.nivaer.length === 2 ? "md:grid-cols-2 lg:max-w-4xl" : "md:grid-cols-3"}`}
-        >
-          {d.nivaer.map((n, i) => (
-            <Reveal key={n.id} delay={i * 70} className="h-full">
-              <Nivakort n={n} valbar={valbar} />
-            </Reveal>
-          ))}
-        </div>
+        {d.bygge && <Nivarad rubrik="Bygge" nivaer={d.bygge} valbar />}
+        <Nivarad
+          rubrik={d.nivaRubrik}
+          nivaer={d.nivaer}
+          valbar={valbar}
+          not={
+            d.id === "synlighet"
+              ? "Vilken nivå som passar föreslår vi efter genomgången, utifrån konkurrensen och hur sajten ser ut."
+              : undefined
+          }
+        />
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
+        <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-10">
           {d.ingarAlltid && (
             <Reveal className="min-w-0">
               <h3 className="font-sans text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase">
@@ -266,7 +289,7 @@ function Priser() {
       <section
         id="engang"
         aria-labelledby="engang-rubrik"
-        className="scroll-mt-24 bg-fade-tint py-14 sm:py-20"
+        className="scroll-mt-24 bg-fade-tint py-10 sm:py-14"
       >
         <div className="container-page">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
