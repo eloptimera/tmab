@@ -1,6 +1,6 @@
-import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import { useMemo, useState } from "react";
+import { Engangsforfragan } from "@/components/Engangsforfragan";
 import {
   DELAR,
   ENGANGSJOBB,
@@ -19,6 +19,7 @@ import {
 export function Engangsvaljare() {
   const [valda, setValda] = useState<readonly string[]>([]);
   const [oppen, setOppen] = useState<string | null>(DELAR[0]?.id ?? null);
+  const [formular, setFormular] = useState(false);
 
   const valdaJobb = useMemo(() => ENGANGSJOBB.filter((j) => valda.includes(j.id)), [valda]);
   const r = raknaEngang(valdaJobb);
@@ -187,21 +188,17 @@ export function Engangsvaljare() {
         )}
         <p className="mt-3 text-xs text-white/60">{MOMS_TEXT} Engångspris, ingen bindning.</p>
 
-        {valdaJobb.length > 0 ? (
-          <Link
-            to="/kontakt"
-            search={{ engang: valda.join(",") }}
-            className="btn-base btn-white mt-6 w-full"
-          >
-            Skicka förfrågan
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-        ) : (
-          <span className="btn-base btn-outline-white mt-6 w-full cursor-default opacity-60">
-            Välj minst ett jobb
-          </span>
-        )}
+        <button
+          type="button"
+          disabled={valdaJobb.length === 0}
+          onClick={() => setFormular(true)}
+          className="btn-base btn-white mt-6 w-full disabled:cursor-default disabled:opacity-60"
+        >
+          {valdaJobb.length > 0 ? "Skicka förfrågan" : "Välj minst ett jobb"}
+          {valdaJobb.length > 0 && <ArrowRight className="size-4" aria-hidden="true" />}
+        </button>
       </aside>
+      <Engangsforfragan oppen={formular} onOppen={setFormular} valda={valdaJobb} />
     </div>
   );
 }

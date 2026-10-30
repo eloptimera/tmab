@@ -29,3 +29,22 @@ export const skickaBokning = createServerFn({ method: "POST" })
     const { hanteraBokning } = await import("@/lib/bokning.server");
     return hanteraBokning(data);
   });
+
+/** Förfrågan från engångsväljaren på /priser. Bara id:n skickas – priset räknas på servern. */
+export type Engangsforfragan = {
+  namn: string;
+  epost: string;
+  telefon: string;
+  webbplats: string;
+  meddelande: string;
+  /** Id:n från ENGANGSJOBB i priser.ts. */
+  jobb: string[];
+  falla: string;
+};
+
+export const skickaEngangsforfragan = createServerFn({ method: "POST" })
+  .validator((data: Engangsforfragan) => data)
+  .handler(async ({ data }) => {
+    const { hanteraEngangsforfragan } = await import("@/lib/bokning.server");
+    return hanteraEngangsforfragan(data);
+  });
