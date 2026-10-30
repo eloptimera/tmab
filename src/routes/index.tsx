@@ -96,13 +96,16 @@ const OMRADEN = [
 ] as const;
 
 // Hantverken och deras mästare. Bilderna är AI-genererade stilleben (oktober 2026) med
-// föremål som hör till personen – inga porträtt. Citat bara där de går att belägga.
+// föremål som hör till personen – inga porträtt.
+// Citat: `kalla` anger hur säkert citatet är. Belagda citat får verk och år. Övriga märks
+// "Fritt efter …" (omskrivning av personens idé) eller "Tillskrivs …" (spritt men utan belagd
+// källa) – skriv aldrig ett verk som källa om citatet inte står där.
 const MASTARE: readonly {
   slug: string;
   person: string;
   bild: string;
   text: string;
-  citat?: { text: string; oversattning: string; kalla: string };
+  citat?: { text: string; lang: "la" | "en"; oversattning: string; kalla: string };
 }[] = [
   {
     slug: "seo",
@@ -111,6 +114,7 @@ const MASTARE: readonly {
     text: "Linné gav varje växt ett namn och en plats, så att allt gick att hitta. Vi gör samma sak med er sajt, så att Google hittar den.",
     citat: {
       text: "Nomina si nescis, perit et cognitio rerum",
+      lang: "la",
       oversattning: "Om du inte kan namnen går kunskapen förlorad.",
       kalla: "Philosophia Botanica, 1751",
     },
@@ -120,30 +124,60 @@ const MASTARE: readonly {
     person: "Sokrates",
     bild: "sokrates",
     text: "Sokrates lärde ut genom frågor och svar. Det är precis så folk söker hos ChatGPT i dag – vi ser till att svaret blir ni.",
+    citat: {
+      text: "Ad inquirendam veritatem quaerendum est",
+      lang: "la",
+      oversattning: "För att utforska sanningen måste man ställa frågor.",
+      kalla: "Fritt efter Sokrates",
+    },
   },
   {
     slug: "meta-annonser",
     person: "Aristoteles",
     bild: "aristoteles",
     text: "Aristoteles skrev boken om att övertyga: ethos, pathos och logos – och om att tala till rätt publik. Det är annonsering.",
+    citat: {
+      text: "Persuasio est ars movendi animos",
+      lang: "la",
+      oversattning: "Övertalning är konsten att röra vid sinnena.",
+      kalla: "Fritt efter Aristoteles, Retoriken",
+    },
   },
   {
     slug: "hemsideoptimering",
     person: "Florence Nightingale",
     bild: "nightingale",
     text: "Nightingale mätte, ritade diagram och ändrade efter vad siffrorna visade. Vi gör samma sak tills fler besökare blir kunder.",
+    citat: {
+      text: "I use the figures freely to prove my case.",
+      lang: "en",
+      oversattning: "Jag använder siffrorna fritt för att bevisa min sak.",
+      kalla: "Tillskrivs Florence Nightingale",
+    },
   },
   {
     slug: "marknadsforingsbilder",
     person: "Johannes Vermeer",
     bild: "vermeer",
     text: "Ljusets mästare. Varje bild han målade började med hur ljuset föll – det gör våra också.",
+    citat: {
+      text: "Painting is the silent poetry of light and shadow.",
+      lang: "en",
+      oversattning: "Måleriet är ljusets och skuggans tysta poesi.",
+      kalla: "Fritt efter Simonides av Keos",
+    },
   },
   {
     slug: "hemsida",
     person: "Leonardo da Vinci",
     bild: "davinci",
     text: "Konst och teknik i samma hand. En bra hemsida är båda: design som säljer och kod som fungerar.",
+    citat: {
+      text: "Details make perfection, and perfection is not a detail.",
+      lang: "en",
+      oversattning: "Detaljer skapar perfektion, och perfektion är ingen detalj.",
+      kalla: "Tillskrivs Leonardo da Vinci",
+    },
   },
 ];
 
@@ -236,7 +270,7 @@ function Start() {
                 <p className="mt-2 leading-relaxed text-muted-foreground">{m.text}</p>
                 {m.citat && (
                   <p className="mt-3 font-display text-[1.05rem] leading-snug text-ink italic">
-                    <span lang="la">”{m.citat.text}”</span> – {m.citat.oversattning}{" "}
+                    <span lang={m.citat.lang}>”{m.citat.text}”</span> – {m.citat.oversattning}{" "}
                     <span className="font-sans text-xs text-muted-foreground not-italic">
                       {m.citat.kalla}
                     </span>
