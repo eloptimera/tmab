@@ -39,6 +39,12 @@ export const PRIS = {
   synlighetSkraddarsytt: 12995,
   // Webb – bygge
   landningssida: 4995,
+  // Webb – bygge (nytt sortiment 2026-10-30)
+  tjanstesida: 4970,
+  ehandel: 9970,
+  /** Avbetalning, bunden i 12 månader. */
+  tjanstesidaManad: 500,
+  ehandelManad: 1000,
   foretagshemsida: 6995,
   extraSida: 1995,
   webbSkraddarsytt: 14995,
@@ -107,6 +113,8 @@ export type Niva = {
   ingar: readonly string[];
   /** Den nivå som lyfts fram visuellt. */
   utvald?: boolean;
+  /** Kort rad under priset, t.ex. ett avbetalningsalternativ. */
+  alternativ?: string;
 };
 
 /** En rad i en pristabell. `pris` är ett belopp i kronor, "Gratis" eller en kort text. */
@@ -361,7 +369,7 @@ export const WEBB: Del = {
   namn: "Webb",
   vad: "Ny hemsida, drift och ändringar",
   slug: "hemsida",
-  lagsta: { belopp: PRIS.landningssida, enhet: "engång" },
+  lagsta: { belopp: PRIS.tjanstesida, enhet: "engång" },
   intro:
     "Vi bygger hemsidan till fast pris. Efter lansering väljer ni själva: ta över allt, eller låt oss sköta drift och ändringar.",
   engang: [
@@ -394,27 +402,42 @@ export const WEBB: Del = {
   ],
   bygge: [
     {
-      id: "webb-landningssida",
-      namn: "Landningssida",
-      belopp: PRIS.landningssida,
+      id: "webb-tjanstesida",
+      namn: "Tjänstesida",
+      belopp: PRIS.tjanstesida,
       enhet: "engång",
+      utvald: true,
+      alternativ: `eller ${kr(PRIS.tjanstesidaManad)}/mån i 12 månader`,
       ingar: [
-        "En sida med design och texter",
+        "Upp till 5 sidor med design och texter",
         "Kontakt- eller offertformulär",
-        "SEO-grund och en ändringsrunda",
+        "SEO-grund, Search Console och Bing i ert namn",
+        "En ändringsrunda innan lansering",
       ],
     },
     {
-      id: "webb-foretagshemsida",
-      namn: "Företagshemsida",
-      belopp: PRIS.foretagshemsida,
+      id: "webb-ehandel",
+      namn: "E-handel",
+      belopp: PRIS.ehandel,
       enhet: "engång",
-      utvald: true,
+      alternativ: `eller ${kr(PRIS.ehandelManad)}/mån i 12 månader`,
+      // TODO(TAB): bestäm vad E-handel innehåller (plattform, antal produkter, betalning).
       ingar: [
-        "Upp till 5 sidor",
-        "Fler integrationer",
-        "Search Console och Bing i ert namn",
-        "En ändringsrunda",
+        "Allt i Tjänstesida",
+        "Webbshop med produkter och betalning",
+        "En ändringsrunda innan lansering",
+      ],
+    },
+    {
+      id: "webb-frascha-upp",
+      namn: "Fräscha upp",
+      belopp: PRIS.modernisering,
+      enhet: "engång",
+      fran: true,
+      ingar: [
+        "Ny design och struktur för er befintliga hemsida",
+        "Gamla adresser skickas vidare, så att ni behåller er synlighet på Google",
+        "Fast pris efter genomgången",
       ],
     },
   ],
@@ -453,7 +476,7 @@ export const WEBB: Del = {
   ],
   granser: [
     "Fasta priser gäller hemsidor vi bygger i vår egen uppsättning. Andra plattformar, som WordPress eller Webflow, på offert.",
-    "Vi bygger inte webbshoppar.",
+    "Avbetalning binder i 12 månader. Månadstjänsterna har ingen bindningstid.",
     "Ingår inte: bilder (köps i Studio) och löpande SEO (köps i Synlighet).",
   ],
 };
@@ -582,14 +605,6 @@ export const ENGANGSJOBB: readonly Engangsjobb[] = [
     namn: "Klippkort, 5 timmar ändringar",
     belopp: PRIS.klippkort5,
     grupp: "klippkort",
-  },
-  {
-    id: "modernisering",
-    del: "webb",
-    namn: "Modernisera befintlig hemsida",
-    not: "Fast pris efter genomgången",
-    belopp: PRIS.modernisering,
-    fran: true,
   },
 ];
 

@@ -27,7 +27,7 @@ export const Route = createFileRoute("/priser")({
   head: () =>
     sidhuvud({
       titel: `Priser – marknadsföring från ${kr(LAGSTA_MANADSPRIS)}/mån`,
-      beskrivning: `Bilder och video från ${kr(PRIS.studioS)}/mån, annonser från ${kr(PRIS.annonser1)}/mån, SEO och GEO från ${kr(PRIS.synlighetBas)}/mån och hemsida från ${kr(PRIS.landningssida)}. Ingen bindningstid. ${MOMS_TEXT}`,
+      beskrivning: `Bilder och video från ${kr(PRIS.studioS)}/mån, annonser från ${kr(PRIS.annonser1)}/mån, SEO och GEO från ${kr(PRIS.synlighetBas)}/mån och hemsida från ${kr(PRIS.tjanstesida)}. Ingen bindningstid. ${MOMS_TEXT}`,
       sokvag: "/priser",
       schema: [paketSchema(), faqSchema(PRIS_FRAGOR)],
     }),
@@ -59,12 +59,18 @@ function Nivakort({ n, valbar }: { n: Niva; valbar: boolean }) {
         {n.namn}
       </h4>
       <p className="mt-4 font-display text-4xl leading-none sm:text-5xl">
+        {n.fran && <span className="text-xl sm:text-2xl">från </span>}
         {kr(n.belopp)}
         <span className="text-xl sm:text-2xl">{enhet(n.enhet)}</span>
       </p>
       <p className={`mt-2 text-sm ${utvald ? "text-white/80" : "text-muted-foreground"}`}>
         {n.enhet === "mån" ? "exkl. moms · ingen bindningstid" : "exkl. moms · engångspris"}
       </p>
+      {n.alternativ && (
+        <p className={`mt-1 text-sm font-bold ${utvald ? "text-sun" : "text-ink"}`}>
+          {n.alternativ}
+        </p>
+      )}
       <ul className={`mt-6 space-y-3 border-t pt-6 ${utvald ? "border-white/25" : "border-line"}`}>
         {n.ingar.map((rad) => (
           <li key={rad} className="flex gap-3">
@@ -374,9 +380,8 @@ function Priser() {
             </table>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">
-            Ny hemsida räknas för sig: till exempel en företagshemsida för{" "}
-            {kr(PRIS.foretagshemsida)} och drift med ändringar (Total) för {kr(PRIS.total)}/mån.{" "}
-            {MOMS_TEXT}
+            Ny hemsida räknas för sig: till exempel en tjänstesida för {kr(PRIS.tjanstesida)} och
+            drift med ändringar (Total) för {kr(PRIS.total)}/mån. {MOMS_TEXT}
           </p>
         </Reveal>
       </section>
