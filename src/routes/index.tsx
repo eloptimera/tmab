@@ -97,14 +97,12 @@ const OMRADEN = [
 
 // Hantverken och deras mästare. Bilderna är AI-genererade stilleben (oktober 2026) med
 // föremål som hör till personen – inga porträtt.
-// Citat: `kalla` (verk och år) bara när citatet går att belägga i det verket – skriv aldrig
-// ett verk som källa om citatet inte står där.
 const MASTARE: readonly {
   slug: string;
   person: string;
   bild: string;
   text: string;
-  citat?: { text: string; lang: "la" | "en"; oversattning: string; kalla?: string };
+  citat?: { text: string; lang: "la" | "en"; oversattning: string };
 }[] = [
   {
     slug: "seo",
@@ -115,7 +113,6 @@ const MASTARE: readonly {
       text: "Nomina si nescis, perit et cognitio rerum",
       lang: "la",
       oversattning: "Om du inte kan namnen går kunskapen förlorad.",
-      kalla: "Philosophia Botanica, 1751",
     },
   },
   {
@@ -265,14 +262,6 @@ function Start() {
                 {m.citat && (
                   <p className="mt-3 font-display text-[1.05rem] leading-snug text-ink italic">
                     <span lang={m.citat.lang}>”{m.citat.text}”</span> – {m.citat.oversattning}
-                    {m.citat.kalla && (
-                      <>
-                        {" "}
-                        <span className="font-sans text-xs text-muted-foreground not-italic">
-                          {m.citat.kalla}
-                        </span>
-                      </>
-                    )}
                   </p>
                 )}
               </Verk>
