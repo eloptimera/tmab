@@ -28,8 +28,9 @@ All text som återkommer på flera ställen har en enda källa:
 
 - Varje sida sätter titel, beskrivning, canonical, delningsbild och JSON-LD via `sidhuvud()`.
 - `/sitemap.xml`, `/robots.txt` och `/llms.txt` genereras av servern från samma data.
-- Sajtens adress är `https://www.treatlymarketing.se` (konstanten `DOMAN` i `vite.config.ts`).
-  Domänen utan www skickas vidare dit i Vercel. Byter ni håll i Vercel måste konstanten följa med.
+- Sajtens adress är `https://www.tabmarketing.se` (konstanten `DOMAN` i `vite.config.ts`).
+  Domänen utan www och den gamla domänen treatlymarketing.se (med och utan www) skickas
+  vidare dit i Vercel. Behåll de omdirigeringarna och förnya treatlymarketing.se. Byter ni håll i Vercel måste konstanten följa med.
   Alla byggen på Vercel använder den i canonical, sitemap och schema, så vercel.app-adressen
   räknas som en kopia. `SAJT_URL` överstyr vid behov.
 - `robots.txt` släpper in alla sökmotorer och AI-tjänsternas robotar med namn.
@@ -56,8 +57,8 @@ innan sökresultaten visar den nya.
 
 ### Koppla domänen (Strato → Vercel)
 
-1. Vercel → projektet → Settings → Domains: lägg till `treatlymarketing.se` och
-   `www.treatlymarketing.se`, och låt domänen utan www omdirigera till www.
+1. Vercel → projektet → Settings → Domains: lägg till `tabmarketing.se` och
+   `www.tabmarketing.se`, och låt domänen utan www omdirigera till www.
 2. Strato → DNS för domänen: lägg in exakt de A- och CNAME-poster som Vercel visar.
    **Behåll namnservrarna hos Strato och rör inte MX-posterna** – annars slutar mejlen
    till edvin@treatlymarketing.se att fungera.
@@ -66,9 +67,10 @@ innan sökresultaten visar den nya.
 ### Google Search Console och Bing Webmaster Tools
 
 1. Lägg till egendomen i [Google Search Console](https://search.google.com/search-console)
-   som typen **Domän** (`treatlymarketing.se`) och verifiera med TXT-posten Google visar,
+   som typen **Domän** (`tabmarketing.se`) och verifiera med TXT-posten Google visar,
    i Stratos DNS. Den täcker www, utan www, http och https på en gång.
-2. Skicka in `https://treatlymarketing.se/sitemap.xml` under Webbplatskartor.
+2. Skicka in `https://www.tabmarketing.se/sitemap.xml` under Webbplatskartor.
+   Flytten från treatlymarketing.se görs med Adressändring i den gamla egendomen.
 3. I [Bing Webmaster Tools](https://www.bing.com/webmasters) väljer du import från
    Google Search Console.
 

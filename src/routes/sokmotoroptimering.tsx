@@ -238,7 +238,7 @@ const OFF_PAGE: readonly Kort[] = [
 
 /** TAB:s egen sajt som exempel på struktur – alla sidor finns. */
 const STRUKTUR = [
-  { niva: "Startsida", sidor: [{ namn: "treatlymarketing.se", till: "/" }] },
+  { niva: "Startsida", sidor: [{ namn: "tabmarketing.se", till: "/" }] },
   {
     niva: "Tjänstesidor",
     sidor: [
