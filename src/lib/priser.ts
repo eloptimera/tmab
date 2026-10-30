@@ -20,22 +20,22 @@ export const PRIS = {
   studioSkraddarsytt: 9995,
   omtagPerBild: 195,
   // Studio – abonnemang
-  studioS: 1795,
-  studioM: 3495,
-  studioL: 6495,
+  studioS: 1770,
+  studioM: 3450,
+  studioL: 6430,
   // Annonser
   annonsUppsattning: 3995,
-  annonser1: 2995,
-  annonser2: 5995,
+  annonser1: 2970,
+  annonser2: 5930,
   annonserSkraddarsytt: 8995,
   // Synlighet
   foretagsprofil: 1995,
   grundoptimering: 5995,
   grundoptimeringStor: 9995,
   grundoptimeringLista: 3995,
-  synlighetBas: 3995,
-  synlighetMellan: 6995,
-  synlighetHog: 9995,
+  synlighetBas: 3930,
+  synlighetMellan: 6970,
+  synlighetHog: 9930,
   synlighetSkraddarsytt: 12995,
   // Webb – bygge
   landningssida: 4995,
@@ -44,15 +44,15 @@ export const PRIS = {
   webbSkraddarsytt: 14995,
   cms: 4995,
   /** Modernisering av en befintlig sajt – alltid offert, det här är offertens från-pris. */
-  modernisering: 3995,
+  modernisering: 3970,
   // Webb – efter lansering
   klippkort2: 1995,
   klippkort5: 4495,
-  essential: 495,
-  total: 1295,
+  essential: 480,
+  total: 1230,
   extraTimme: 995,
   // Toppaket
-  extern: 37995,
+  extern: 44770,
 } as const;
 
 /** Lägsta månadspris på sajten – "marknadsföring från …/mån". */
@@ -258,7 +258,7 @@ export const ANNONSER: Del = {
   skraddarsytt: {
     pris: PRIS.annonserSkraddarsytt,
     enhet: "mån",
-    text: "Högre budget, fler kampanjer, flera marknader, katalogannonser för e-handel",
+    text: "Annonser 3 med upp till 5 nya kampanjer per månad, högre budget, flera marknader, katalogannonser för e-handel",
   },
   ingarAlltid: [
     "En kampanj = ett mål, en målgrupp, upp till 3 annonsvarianter och upp till 4 veckors löptid",
@@ -317,14 +317,15 @@ export const SYNLIGHET: Del = {
       namn: "Synlighet Bas",
       belopp: PRIS.synlighetBas,
       enhet: "mån",
-      ingar: ["1 ny eller förbättrad sida per månad", "Teknisk bevakning, AI-koll och rapport"],
+      ingar: ["3 nya eller förbättrade sidor per månad", "Teknisk bevakning, AI-koll och rapport"],
     },
     {
       id: "synlighet-mellan",
       namn: "Synlighet Mellan",
       belopp: PRIS.synlighetMellan,
       enhet: "mån",
-      ingar: ["3 nya eller förbättrade sidor per månad", "Teknisk bevakning, AI-koll och rapport"],
+      // TODO(TAB): "avancerade" sidor i Mellan och Hög är inte definierat än – lägg till när det är bestämt.
+      ingar: ["5 nya eller förbättrade sidor per månad", "Teknisk bevakning, AI-koll och rapport"],
     },
     {
       id: "synlighet-hog",
@@ -332,7 +333,7 @@ export const SYNLIGHET: Del = {
       belopp: PRIS.synlighetHog,
       enhet: "mån",
       ingar: [
-        "4 nya eller förbättrade sidor per månad",
+        "10 nya eller förbättrade sidor per månad",
         "Konkurrentbevakning och utökad AI-koll",
         "Avstämning varje månad",
       ],
@@ -469,7 +470,7 @@ export const EXTERN = {
     "Studio: 30 bilder + 6 korta videor per månad, innehållsplan per kvartal",
     "Annonser: upp till 5 nya kampanjer per månad, budget upp till 50 000 kr/mån",
     "Synlighet: nivå Hög",
-    "Webb: Total – drift och ändringar för en sajt vi byggt",
+    "Webb: drift och upp till 10 ändringar på hemsidan per månad, för en sajt vi byggt",
     "Avstämning varje vecka och svar inom 4 timmar på vardagar",
     "Annonsuppsättning och grundoptimering ingår",
   ],
