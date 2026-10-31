@@ -125,7 +125,7 @@ const NYTTOR: readonly Kort[] = [
   },
   {
     titel: "Bättre innehållsstruktur",
-    text: "Viktig information blir lättare att hitta – på sajten och för söktjänsterna.",
+    text: "Viktig information blir lättare att hitta, på sajten och för söktjänsterna.",
     ikon: Layers,
   },
   {
@@ -143,12 +143,12 @@ const TJANSTER: readonly Kort[] = [
   },
   {
     titel: "AI-anpassad innehållsstrategi",
-    text: "En plan för vilka frågor sajten ska besvara – om tjänster, priser, område och hur det går till.",
+    text: "En plan för vilka frågor sajten ska besvara, om tjänster, priser, område och hur det går till.",
     ikon: ListChecks,
   },
   {
     titel: "Teknisk SEO och åtkomst",
-    text: "Indexering, struktur, interna länkar, robots.txt och att texten finns i sidans kod – så att inga tekniska hinder står i vägen.",
+    text: "Indexering, struktur, interna länkar, robots.txt och att texten finns i sidans kod, så att inga tekniska hinder står i vägen.",
     ikon: Code2,
   },
   {
@@ -158,12 +158,12 @@ const TJANSTER: readonly Kort[] = [
   },
   {
     titel: "Innehåll och struktur",
-    text: "Tydligare rubriker, tjänstebeskrivningar och vanliga frågor – och strukturerad data där den stämmer med sidan.",
+    text: "Tydligare rubriker, tjänstebeskrivningar och vanliga frågor, och strukturerad data där den stämmer med sidan.",
     ikon: FileText,
   },
   {
     titel: "Uppföljning",
-    text: "Citeringar, besök från AI-tjänster och återkommande kontroller – redovisade i månadsrapporten.",
+    text: "Citeringar, besök från AI-tjänster och återkommande kontroller, redovisade i månadsrapporten.",
     ikon: BarChart3,
   },
 ];
@@ -232,7 +232,7 @@ const MATNING: readonly Kort[] = [
   },
   {
     titel: "Förfrågningar",
-    text: "Kontakter och köp – där det går att se varifrån de kommer.",
+    text: "Kontakter och köp, där det går att se varifrån de kommer.",
     ikon: MessageSquareText,
   },
 ];
@@ -244,7 +244,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "GEO-analys",
-    text: "Sajtens innehåll, teknik och företagsinformation – och hur ni beskrivs i AI-tjänsterna i dag.",
+    text: "Sajtens innehåll, teknik och företagsinformation, och hur ni beskrivs i AI-tjänsterna i dag.",
   },
   {
     titel: "Prioriteringar",
@@ -327,7 +327,7 @@ function AiSokning() {
         </div>
       </div>
       <figcaption className="mt-3 text-sm text-muted-foreground">
-        Illustration av ett AI-svar med källor. Påhittade företag – inte ett riktigt resultat.
+        Illustration av ett AI-svar med källor. Påhittade företag, inte ett riktigt resultat.
       </figcaption>
     </figure>
   );
@@ -354,7 +354,7 @@ function GeoOptimering() {
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">
               Allt fler frågar ChatGPT, Googles AI-funktioner eller Copilot när de jämför företag.
               Med GEO-optimering gör {FORETAG.kortnamn} er sajt, ert innehåll och er
-              företagsinformation lätta att hitta, förstå och hänvisa till – med samma grund som god
+              företagsinformation lätta att hitta, förstå och hänvisa till, med samma grund som god
               sökmotoroptimering.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -483,7 +483,7 @@ function GeoOptimering() {
               är det värdefullt att uppgifterna om er är korrekta och lätta att hitta även där.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Se GEO som ett komplement till SEO – inte som en ersättning, och inte som en garanti
+              Se GEO som ett komplement till SEO, inte som en ersättning, och inte som en garanti
               för fler affärer.
             </p>
           </Reveal>
@@ -723,7 +723,7 @@ function GeoOptimering() {
               ))}
             </ul>
             <p className="mt-6 leading-relaxed text-muted-foreground">
-              Vi arbetar bara med riktiga uppgifter och äkta omnämnanden – inga påhittade
+              Vi arbetar bara med riktiga uppgifter och äkta omnämnanden, inga påhittade
               recensioner. Hur mycket omnämnanden väger skiljer sig mellan tjänsterna och är inte
               offentligt. Lokalt företag?{" "}
               <Link to={LOKAL_SEO.sokvag} className={LANK}>
@@ -793,7 +793,7 @@ function GeoOptimering() {
             del={SYNLIGHET}
             engangIndex={2}
             engangRubrik="Grundoptimering av SEO och GEO"
-            engangNot="Teknik, sökordsanalys, strukturerad data, Search Console och Bing i ert namn – och en AI-koll som nollmätning."
+            engangNot="Teknik, sökordsanalys, strukturerad data, Search Console och Bing i ert namn, och en AI-koll som nollmätning."
             lopandeRubrik="Löpande SEO och GEO"
             lopandeNot="Nya eller förbättrade sidor, teknisk bevakning och AI-koll varje månad. Nivån föreslår vi efter genomgången."
             tjanst={TJANST}
@@ -836,7 +836,7 @@ function GeoOptimering() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               AI-synlighet handlar inte om en snabb genväg till rekommendationer. Det handlar om en
-              digital närvaro som är tydlig, korrekt och användbar – för människor och för
+              digital närvaro som är tydlig, korrekt och användbar, för människor och för
               söksystemen.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -888,7 +888,7 @@ function GeoOptimering() {
               Vill ni utveckla er synlighet i <Mark>AI-sökningar</Mark>?
             </>
           }
-          text="Boka en gratis genomgång. Vi tittar på er sajt och hur ni beskrivs i AI-tjänsterna i dag, och föreslår vad som är värt att göra – utan löften vi inte kan hålla."
+          text="Boka en gratis genomgång. Vi tittar på er sajt och hur ni beskrivs i AI-tjänsterna i dag, och föreslår vad som är värt att göra, utan löften vi inte kan hålla."
         />
       </div>
     </>

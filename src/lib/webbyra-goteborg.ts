@@ -48,7 +48,7 @@ export const GOTEBORG_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan ni bygga en hemsida åt vårt företag i Göteborg?",
-    svar: "Ja. Vi bygger hemsidor åt företag i hela Göteborg och Västra Götaland – från enskilda firmor och nystartade bolag till växande företag.",
+    svar: "Ja. Vi bygger hemsidor åt företag i hela Göteborg och Västra Götaland, från enskilda firmor och nystartade bolag till växande företag.",
   },
   {
     fraga: "Kan ni modernisera en hemsida vi redan har?",

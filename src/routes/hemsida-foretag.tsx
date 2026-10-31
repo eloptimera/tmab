@@ -92,7 +92,7 @@ const MALGRUPPER: readonly { titel: string; text: string }[] = [
   },
   {
     titel: "Skönhetssalonger",
-    text: "Behandlingar, priser och en tydlig väg till bokning – i ett utseende som matchar salongen.",
+    text: "Behandlingar, priser och en tydlig väg till bokning, i ett utseende som matchar salongen.",
   },
   {
     titel: "Konsulter",
@@ -114,18 +114,18 @@ const MALGRUPPER: readonly { titel: string; text: string }[] = [
 
 /** Checklista för småföretag – vad besökaren behöver hitta, inte vad paketet innehåller. */
 const SMAFORETAG_INNEHALL: readonly (readonly [string, string])[] = [
-  ["Tydlig startsida", "Vad ni gör och vem ni hjälper – direkt."],
+  ["Tydlig startsida", "Vad ni gör och vem ni hjälper, direkt."],
   ["Tjänstebeskrivningar", "Vad kunden kan få hjälp med, gärna med pris."],
   ["Var ni finns", "Orter eller område ni arbetar i."],
   ["Kontaktuppgifter", "Telefon och e-post som syns på varje sida."],
-  ["Formulär", "Kontakt, offertförfrågan eller bokning – det som passar er."],
+  ["Formulär", "Kontakt, offertförfrågan eller bokning, det som passar er."],
   ["Mobil och SEO-grund", "Fungerar på telefonen och går att hitta på Google."],
 ];
 
 const INGAR: readonly (Kort & { lank?: { till: string; text: string } })[] = [
   {
     titel: "Design anpassad efter ert varumärke",
-    text: "En enhetlig och professionell design som speglar företagets identitet – med texter som säljer.",
+    text: "En enhetlig och professionell design som speglar företagets identitet, med texter som säljer.",
     ikon: Palette,
   },
   {
@@ -135,7 +135,7 @@ const INGAR: readonly (Kort & { lank?: { till: string; text: string } })[] = [
   },
   {
     titel: "Grundläggande SEO",
-    text: "Sidstruktur, rubriker, sidtitlar, beskrivningar och sitemap – så att sökmotorer kan förstå och visa sidorna.",
+    text: "Sidstruktur, rubriker, sidtitlar, beskrivningar och sitemap, så att sökmotorer kan förstå och visa sidorna.",
     ikon: Search,
     lank: { till: tjanstSokvag("seo"), text: "Löpande SEO" },
   },
@@ -164,7 +164,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Underlag att godkänna",
-    text: "Kravunderlag, användarflöde, designbrief och tidplan – så att ni ser svart på vitt vad vi bygger innan vi börjar.",
+    text: "Kravunderlag, användarflöde, designbrief och tidplan, så att ni ser svart på vitt vad vi bygger innan vi börjar.",
   },
   {
     titel: "Design och bygge",
@@ -172,7 +172,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Lansering och vidare",
-    text: "Vi publicerar hemsidan och lämnar över kod och konton – eller sköter driften åt er. Vill ni synas mer finns bilder, SEO och annonser att lägga till, var för sig.",
+    text: "Vi publicerar hemsidan och lämnar över kod och konton, eller sköter driften åt er. Vill ni synas mer finns bilder, SEO och annonser att lägga till, var för sig.",
   },
 ];
 
@@ -191,7 +191,7 @@ const VARFOR: readonly Kort[] = [
   },
   {
     titel: "Byggd för att ge affärer",
-    text: "Vi utgår från vad besökaren ska göra på sajten – inte bara från hur den ser ut.",
+    text: "Vi utgår från vad besökaren ska göra på sajten, inte bara från hur den ser ut.",
     ikon: LayoutTemplate,
   },
   {
@@ -215,7 +215,7 @@ function HemsidaForetag() {
             markera="fler kunder"
           />
         }
-        intro={`En professionell hemsida gör det enklare för kunderna att hitta er, förstå vad ni erbjuder och ta kontakt. ${FORETAG.kortnamn} bygger moderna, snabba och mobilanpassade hemsidor där design och affärsmål går hand i hand – oavsett om företaget är etablerat eller precis har startat.`}
+        intro={`En professionell hemsida gör det enklare för kunderna att hitta er, förstå vad ni erbjuder och ta kontakt. ${FORETAG.kortnamn} bygger moderna, snabba och mobilanpassade hemsidor där design och affärsmål går hand i hand, oavsett om företaget är etablerat eller precis har startat.`}
       >
         <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")} />
         <a href="#projekt" className="btn-base btn-outline">

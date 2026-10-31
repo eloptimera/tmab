@@ -30,11 +30,11 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan ni hjälpa ett nystartat företag med hemsida?",
-    svar: "Ja. För ett nytt företag är hemsidan ofta det första kunderna ser. Vi hjälper er att presentera vad ni erbjuder, bygga förtroende från start och göra det enkelt att ta kontakt – även om ni ännu inte har texter eller bilder klara.",
+    svar: "Ja. För ett nytt företag är hemsidan ofta det första kunderna ser. Vi hjälper er att presentera vad ni erbjuder, bygga förtroende från start och göra det enkelt att ta kontakt, även om ni ännu inte har texter eller bilder klara.",
   },
   {
     fraga: "Kan ni bygga en hemsida åt ett småföretag eller en enskild firma?",
-    svar: "Ja – åt enskilda firmor, mindre aktiebolag och nystartade företag. Vi anpassar antalet sidor, innehållet och funktionerna efter verksamheten och budgeten. Ett mindre företag behöver sällan en stor sajt – det viktiga är att besökaren snabbt förstår vad ni erbjuder och hur man tar kontakt.",
+    svar: "Ja, åt enskilda firmor, mindre aktiebolag och nystartade företag. Vi anpassar antalet sidor, innehållet och funktionerna efter verksamheten och budgeten. Ett mindre företag behöver sällan en stor sajt – det viktiga är att besökaren snabbt förstår vad ni erbjuder och hur man tar kontakt.",
   },
   {
     fraga: "Vad ska finnas på en hemsida för ett småföretag?",
@@ -70,7 +70,7 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Behöver vi redan ha texter och bilder?",
-    svar: `Nej. Texterna skriver vi utifrån ett formulär ni fyller i. Bilder använder vi era egna, eller tar fram nya i Studio – till exempel 10 bilder för ${kr(PRIS.bilder10)}.`,
+    svar: `Nej. Texterna skriver vi utifrån ett formulär ni fyller i. Bilder använder vi era egna, eller tar fram nya i Studio, till exempel 10 bilder för ${kr(PRIS.bilder10)}.`,
   },
   {
     fraga: "Vad är skillnaden mellan webbdesign och webbutveckling?",

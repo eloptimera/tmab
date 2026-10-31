@@ -21,7 +21,7 @@ export const PROJEKT: readonly Projekt[] = [
   {
     namn: "Hvittfeldt Invest",
     kategori: "Styrelsearbete",
-    text: "Ankie Hvittfeldt – styrelseordförande och styrelseledamot med över 30 styrelseuppdrag i ägarledda, statligt ägda och noterade bolag.",
+    text: "Ankie Hvittfeldt, styrelseordförande och styrelseledamot med över 30 styrelseuppdrag i ägarledda, statligt ägda och noterade bolag.",
     url: "https://www.hvittfeldtinvest.se",
     doman: "hvittfeldtinvest.se",
     farger: ["#ff7ad9", "#a0237a"],
@@ -35,7 +35,7 @@ export const PROJEKT: readonly Projekt[] = [
   {
     namn: "Treatly",
     kategori: "Personaluppvaktning",
-    text: "Födelsedagar, jubileum och fredagsfika från lokala bagerier – godkänt i ett klick.",
+    text: "Födelsedagar, jubileum och fredagsfika från lokala bagerier, godkänt i ett klick.",
     url: "https://www.treatly.se",
     doman: "treatly.se",
     farger: ["#ffb066", "#ff4f6e"],

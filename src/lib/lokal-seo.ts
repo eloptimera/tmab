@@ -11,7 +11,7 @@ export const LOKAL_SEO = {
   seoBeskrivning:
     "Vill ni nå fler kunder i ert område? TAB hjälper företag med lokal SEO, Google Maps och Google-företagsprofilen. Boka en gratis genomgång.",
   kortText:
-    "Hur Google väljer vilka företag som syns lokalt, hur ni syns på Google Maps och vad ni kan göra – själva eller med oss.",
+    "Hur Google väljer vilka företag som syns lokalt, hur ni syns på Google Maps och vad ni kan göra, själva eller med oss.",
   publicerad: "2026-10-19",
   uppdaterad: "2026-10-19",
 } as const;
@@ -51,7 +51,7 @@ export const LOKAL_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan ni få oss att ranka högre på Google Maps?",
-    svar: "Vi kan förbättra profilen, hemsidan och företagets lokala närvaro – det som påverkar placeringen. Ingen kan garantera eller köpa en viss plats i Google Maps, och avståndet till sökaren går inte att optimera bort.",
+    svar: "Vi kan förbättra profilen, hemsidan och företagets lokala närvaro, det som påverkar placeringen. Ingen kan garantera eller köpa en viss plats i Google Maps, och avståndet till sökaren går inte att optimera bort.",
   },
   {
     fraga: "Vad är skillnaden mellan lokal SEO och vanlig SEO?",

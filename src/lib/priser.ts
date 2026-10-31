@@ -229,7 +229,7 @@ export const ANNONSER: Del = {
   slug: "meta-annonser",
   lagsta: { belopp: PRIS.annonser1, enhet: "mån" },
   intro:
-    "Priset styrs av hur många nya kampanjer vi startar per månad, med annonsbudgeten som tak – inte av hur mycket pengar som går igenom kontot. Annonsbudgeten betalar ni direkt till Meta.",
+    "Priset styrs av hur många nya kampanjer vi startar per månad, med annonsbudgeten som tak, inte av hur mycket pengar som går igenom kontot. Annonsbudgeten betalar ni direkt till Meta.",
   engang: [
     {
       tjanst: "Annonsuppsättning",
@@ -270,7 +270,7 @@ export const ANNONSER: Del = {
   },
   ingarAlltid: [
     "En kampanj = ett mål, en målgrupp, upp till 3 annonsvarianter och upp till 4 veckors löptid",
-    "Utan Studio: upp till 3 varianter av era befintliga bilder eller videor per kampanj – beskurna, med text och i rätt format",
+    "Utan Studio: upp till 3 varianter av era befintliga bilder eller videor per kampanj, beskurna, med text och i rätt format",
     "Nytt bild- och videomaterial köps till i Studio",
   ],
   granser: [
@@ -287,12 +287,12 @@ export const SYNLIGHET: Del = {
   slug: "seo",
   lagsta: { belopp: PRIS.synlighetBas, enhet: "mån" },
   intro:
-    "Att hittas på Google och i AI-svar som ChatGPT. Först en grundoptimering, sedan en löpande nivå som vi föreslår efter genomgången – utifrån er konkurrens och hur sajten ser ut.",
+    "Att hittas på Google och i AI-svar som ChatGPT. Först en grundoptimering, sedan en löpande nivå som vi föreslår efter genomgången, utifrån er konkurrens och hur sajten ser ut.",
   engang: [
     {
       tjanst: "AI-koll",
       pris: "Gratis",
-      not: "Vad ChatGPT svarar om er och er bransch – ingår i genomgången",
+      not: "Vad ChatGPT svarar om er och er bransch, ingår i genomgången",
     },
     {
       tjanst: "Google-företagsprofil",
@@ -358,7 +358,7 @@ export const SYNLIGHET: Del = {
     "Vi tar en säkerhetskopia innan vi ändrar något på en befintlig sajt.",
   ],
   granser: [
-    "Den löpande nivån kräver en grundoptimering först – eller att vi har byggt sajten.",
+    "Den löpande nivån kräver en grundoptimering först, eller att vi har byggt sajten.",
     "Ingår: nya och förbättrade texter, rubriker, metadata, strukturerad data och interna länkar. Ny design, nya funktioner och ändringar i layout räknas som Webb.",
     "Länkbygge, samarbeten och outreach ingår inte – ni får tips om omnämnanden.",
   ],
@@ -396,7 +396,7 @@ export const WEBB: Del = {
       tjanst: "Modernisera befintlig hemsida",
       pris: PRIS.modernisering,
       fran: true,
-      not: "Offert – fast pris efter genomgången",
+      not: "Offert, fast pris efter genomgången",
       slug: "hemsideoptimering",
     },
   ],
@@ -776,7 +776,7 @@ export const KOMBINATIONER: readonly {
 
 /** Råd om att börja med en del i taget – samma text där kombinationerna visas. */
 export const EN_I_TAGET_TEXT =
-  "Ni behöver inte köpa allt på en gång. De flesta börjar med en eller två delar – till exempel Studio och Annonser – och lägger till Synlighet när de första kampanjerna rullar. Då blir första fakturan lägre och ni ser vad varje del ger.";
+  "Ni behöver inte köpa allt på en gång. De flesta börjar med en eller två delar, till exempel Studio och Annonser, och lägger till Synlighet när de första kampanjerna rullar. Då blir första fakturan lägre och ni ser vad varje del ger.";
 
 /** Gränsen mellan Synlighet och Webb – samma text överallt där frågan kan uppstå. */
 export const WEBB_GRANS_TEXT =

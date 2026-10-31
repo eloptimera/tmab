@@ -167,7 +167,7 @@ export const TJANSTER: readonly Tjanst[] = [
         rubrik: { text: "Så mäter vi resultatet", markera: "mäter" },
         stycken: [
           "Bing Webmaster Tools visar hur ofta sajten citeras i Copilot. Därutöver ställer vi samma frågor i ChatGPT, Gemini, Perplexity och Copilot varje månad och antecknar vilka företag som nämns, och i er statistik följer vi besök som kommer från AI-tjänsterna.",
-          "Svaren varierar mellan gånger och användare, så vi tittar på utvecklingen över flera månader – inte på ett enskilt svar.",
+          "Svaren varierar mellan gånger och användare, så vi tittar på utvecklingen över flera månader, inte på ett enskilt svar.",
         ],
         lank: { text: "Läs guiden: Vad är GEO?", till: "/guider/vad-ar-geo" },
       },
@@ -209,7 +209,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Testa, läsa siffror och justera varje vecka",
     ],
     medOss: [
-      "Konto, pixel och cookiebanner – när vi har tillgång till sajten",
+      "Konto, pixel och cookiebanner, när vi har tillgång till sajten",
       "Annonsmaterial i alla format",
       "Löpande optimering av budgeten",
       "Tydlig rapport om vad det gav",
@@ -429,7 +429,7 @@ export const TJANSTER: readonly Tjanst[] = [
         },
         {
           titel: "Ni godkänner utseendet",
-          text: "Färger, typsnitt, bildstil och tonalitet utifrån ert varumärke – innan vi börjar designa.",
+          text: "Färger, typsnitt, bildstil och tonalitet utifrån ert varumärke, innan vi börjar designa.",
         },
         {
           titel: "Vi bygger efter en tidplan",
@@ -474,7 +474,7 @@ export const SPARNING: Delomrade = {
   slug: "cookies-och-sparning",
   titel: "Cookies och spårning",
   iText: "cookies och spårning",
-  vad: "Mät vad som fungerar – med en cookiebanner som väntar på ja",
+  vad: "Mät vad som fungerar, med en cookiebanner som väntar på ja",
   ikon: Cookie,
   svarighet: 4,
   forklaring:
@@ -492,7 +492,7 @@ export const SPARNING: Delomrade = {
     "Integritetspolicy som listar varje verktyg",
   ],
   ingarI: "meta-annonser",
-  ingarText: "Ingår i Meta-annonser – så länge vi kan göra ändringar på er hemsida.",
+  ingarText: "Ingår i Meta-annonser, så länge vi kan göra ändringar på er hemsida.",
 };
 
 /** Raderna under "Det här krävs för att lyckas digitalt" på startsidan. */

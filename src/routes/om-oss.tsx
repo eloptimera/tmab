@@ -88,7 +88,7 @@ function OmOss() {
             </p>
             <p>
               Nu gör vi samma jobb åt andra företag. Ni får en kontakt, fasta priser och någon som
-              faktiskt gör arbetet – inte bara ger råd om det.
+              faktiskt gör arbetet, inte bara ger råd om det.
             </p>
           </div>
         </Reveal>

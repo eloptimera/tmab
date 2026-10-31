@@ -60,7 +60,7 @@ const OMRADEN = [
   {
     titel: "Synas på Google & i AI",
     overrad: "Detalj I · Synlighet",
-    text: "SEO och GEO som gör att kunderna hittar er – på Google och i ChatGPT.",
+    text: "SEO och GEO som gör att kunderna hittar er, på Google och i ChatGPT.",
     bild: {
       src: "/galleri/detalj-iris.webp",
       bredd: 768,
@@ -130,7 +130,7 @@ const MASTARE: readonly {
     slug: "meta-annonser",
     person: "Aristoteles",
     bild: "aristoteles",
-    text: "Aristoteles skrev boken om att övertyga: ethos, pathos och logos – och om att tala till rätt publik. Det är annonsering.",
+    text: "Aristoteles skrev boken om att övertyga: ethos, pathos och logos, och om att tala till rätt publik. Det är annonsering.",
     citat: {
       text: "Persuasio est ars movendi animos",
       lang: "la",
@@ -238,7 +238,7 @@ function Start() {
                 Jag kom, jag såg, jag segrade.
               </p>
               <p className="caesar-poang">
-                Ingen segrar osynlig. Innan ni kan vinna kunderna måste de se er – och det är de här
+                Ingen segrar osynlig. Innan ni kan vinna kunderna måste de se er, och det är de här
                 sex hantverken som gör att de gör det.
               </p>
             </Reveal>

@@ -95,7 +95,7 @@ const VAD_GER: readonly Kort[] = [
   },
   {
     titel: "Mät det som spelar roll",
-    text: "Klick, förfrågningar och köp – där mätningen tillåter det.",
+    text: "Klick, förfrågningar och köp, där mätningen tillåter det.",
     ikon: BarChart3,
   },
   {
@@ -108,7 +108,7 @@ const VAD_GER: readonly Kort[] = [
 const TJANSTER: readonly Kort[] = [
   {
     titel: "Annonseringsstrategi",
-    text: "Mål, målgrupp, budskap och budgetfördelning – och vilka resultat vi ska följa upp – innan första kronan går till Meta.",
+    text: "Mål, målgrupp, budskap och budgetfördelning, och vilka resultat vi ska följa upp, innan första kronan går till Meta.",
     ikon: Compass,
   },
   {
@@ -118,7 +118,7 @@ const TJANSTER: readonly Kort[] = [
   },
   {
     titel: "Målgruppsanalys",
-    text: "Vilka era kunder är, var de bor och vad de bryr sig om – med de målgruppsinställningar Meta tillåter.",
+    text: "Vilka era kunder är, var de bor och vad de bryr sig om, med de målgruppsinställningar Meta tillåter.",
     ikon: Users,
   },
   {
@@ -133,7 +133,7 @@ const TJANSTER: readonly Kort[] = [
   },
   {
     titel: "Rapport varje månad",
-    text: "Vad budgeten gav i klick, förfrågningar och köp – och vad vi ändrar härnäst. På svenska, utan jargong.",
+    text: "Vad budgeten gav i klick, förfrågningar och köp, och vad vi ändrar härnäst. På svenska, utan jargong.",
     ikon: FileText,
   },
 ];
@@ -151,7 +151,7 @@ const PRINCIPER: readonly Kort[] = [
   },
   {
     titel: "Utvärdera innan ni skalar",
-    text: "Låt kampanjen gå några veckor, se vad den ger – och öka först när den fungerar.",
+    text: "Låt kampanjen gå några veckor, se vad den ger, och öka först när den fungerar.",
     ikon: BarChart3,
   },
 ];
@@ -279,7 +279,7 @@ const LANDNINGSSIDA: readonly Kort[] = [
   },
   {
     titel: "Lätt att ta nästa steg",
-    text: "Ett formulär, en bokning eller en köpknapp – utan att leta.",
+    text: "Ett formulär, en bokning eller en köpknapp, utan att leta.",
     ikon: Send,
   },
 ];
@@ -350,7 +350,7 @@ function MetaAdsByra() {
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">
               Vill ni nå fler kunder med annonser på Facebook och Instagram? Vi planerar, skapar och
-              optimerar era Meta-kampanjer – med en tydlig strategi, annonsmaterial vi tar fram
+              optimerar era Meta-kampanjer, med en tydlig strategi, annonsmaterial vi tar fram
               själva och uppföljning varje månad. Oavsett om målet är fler förfrågningar, mer
               försäljning eller bättre resultat av annonser ni redan kör.
             </p>
@@ -458,7 +458,7 @@ function MetaAdsByra() {
             </h2>
             <p className="mt-5 leading-relaxed text-ink/80">
               Facebook når en bred publik i alla åldrar och fungerar bra för att presentera
-              tjänster, nå lokala kunder och få in förfrågningar – gärna med formulärannonser där
+              tjänster, nå lokala kunder och få in förfrågningar, gärna med formulärannonser där
               kunden lämnar sina uppgifter utan att lämna appen.
             </p>
             <p className="mt-4 leading-relaxed text-ink/80">
@@ -507,7 +507,7 @@ function MetaAdsByra() {
               </p>
               <p className="mt-5 text-lg leading-relaxed text-ink/80">
                 Ni behöver inte köra många kampanjer samtidigt. Oftast är det bättre att börja med
-                ett erbjudande, en tydlig målgrupp och en kampanj som går att följa upp – och bygga
+                ett erbjudande, en tydlig målgrupp och en kampanj som går att följa upp, och bygga
                 vidare på det som fungerar.
               </p>
               <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -546,7 +546,7 @@ function MetaAdsByra() {
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
             Ett tjänsteföretag vill ha offertförfrågningar, en e-handel vill ha köp och en konsult
             vill ha bokade möten. Därför bygger vi annonsen, landningssidan och mätningen kring det
-            som ska hända efter klicket – och utvärderar kampanjerna på det, inte på visningar.
+            som ska hända efter klicket, och utvärderar kampanjerna på det, inte på visningar.
           </p>
         </Reveal>
         <Reveal delay={80}>
@@ -604,7 +604,7 @@ function MetaAdsByra() {
             <Reveal delay={80}>
               <p className="text-lg leading-relaxed text-ink/80">
                 En annons har bara ett ögonblick på sig i flödet. Den ska stoppa tummen och snabbt
-                säga varför erbjudandet är relevant – med en stark bild, en kort video eller en
+                säga varför erbjudandet är relevant, med en stark bild, en kort video eller en
                 rubrik som träffar.
               </p>
               <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -840,7 +840,7 @@ function MetaAdsByra() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               En bra annons slösas bort på en långsam eller otydlig sida. Annonsen och sidan man
-              landar på är samma kundresa – och ofta är det sidan, inte annonsen, som avgör om
+              landar på är samma kundresa, och ofta är det sidan, inte annonsen, som avgör om
               klicket blir en kund.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -917,7 +917,7 @@ function MetaAdsByra() {
               <Link to={tjanstSokvag("geo")} className={LANK}>
                 GEO-optimering
               </Link>{" "}
-              kan vi se hela vägen från annons till kund – inte bara annonskontot.
+              kan vi se hela vägen från annons till kund, inte bara annonskontot.
             </p>
           </Reveal>
         </div>
@@ -957,7 +957,7 @@ function MetaAdsByra() {
               Redo att nå fler kunder med <Mark>Meta Ads</Mark>?
             </>
           }
-          text="På den gratis genomgången går vi igenom erbjudandet, målen och eventuella annonser ni redan kör – och ni får ett förslag med upplägg och pris."
+          text="På den gratis genomgången går vi igenom erbjudandet, målen och eventuella annonser ni redan kör, och ni får ett förslag med upplägg och pris."
         />
       </div>
     </>
@@ -1028,7 +1028,7 @@ function Annonsmockup() {
         </span>
       </div>
       <figcaption className="mt-4 text-center text-sm text-muted-foreground">
-        Illustration av två annonsformat med konceptbilder vi tagit fram – inte en kampanj vi kört.
+        Illustration av två annonsformat med konceptbilder vi tagit fram, inte en kampanj vi kört.
       </figcaption>
     </figure>
   );

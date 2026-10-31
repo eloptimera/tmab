@@ -67,7 +67,7 @@ export const HEMSIDA_PRIS_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar en hemsida per månad?",
-    svar: `Det väljer ni. Tar ni över sajten betalar ni ingenting till oss per månad – bara hosting och domän till leverantören. Vill ni att vi sköter driften kostar Essential ${kr(PRIS.essential)} per månad och Total, med domän och ändringar, ${kr(PRIS.total)} per månad.`,
+    svar: `Det väljer ni. Tar ni över sajten betalar ni ingenting till oss per månad, bara hosting och domän till leverantören. Vill ni att vi sköter driften kostar Essential ${kr(PRIS.essential)} per månad och Total, med domän och ändringar, ${kr(PRIS.total)} per månad.`,
   },
   {
     fraga: "Är det ett engångspris eller en prenumeration?",
@@ -83,7 +83,7 @@ export const HEMSIDA_PRIS_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Ingår bilder?",
-    svar: `Nej. Har ni egna bilder använder vi dem. Behöver ni nya tar vi fram dem i Studio – till exempel 10 bilder för ${kr(PRIS.bilder10)}.`,
+    svar: `Nej. Har ni egna bilder använder vi dem. Behöver ni nya tar vi fram dem i Studio, till exempel 10 bilder för ${kr(PRIS.bilder10)}.`,
   },
   {
     fraga: "Kan vi uppdatera hemsidan efter lansering?",

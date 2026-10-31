@@ -30,7 +30,7 @@ export const FORETAG: {
   kortnamn: "TAB",
   juridisktNamn: "Treatly AB",
   beskrivning:
-    "Marknadsföringsbyrå som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag i hela Sverige – till fasta priser.",
+    "Marknadsföringsbyrå som tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger och förbättrar hemsidor åt företag i hela Sverige, till fasta priser.",
   ort: "Göteborg",
   orgnr: "559582-8046",
   momsnr: "SE559582804601",

@@ -73,7 +73,7 @@ const TECKEN: readonly { titel: string; text: string }[] = [
   },
   {
     titel: "Den laddar långsamt",
-    text: "Besökaren hinner tröttna innan sidan visas – särskilt på mobilnät.",
+    text: "Besökaren hinner tröttna innan sidan visas, särskilt på mobilnät.",
   },
   {
     titel: "Designen känns gammal",
@@ -110,7 +110,7 @@ const FORBATTRA: readonly Kort[] = [
   },
   {
     titel: "Hastighet",
-    text: "Mindre bilder, färre tunga tillägg och typsnitt – så att sidorna laddar snabbare.",
+    text: "Mindre bilder, färre tunga tillägg och typsnitt, så att sidorna laddar snabbare.",
     ikon: Gauge,
   },
   {
@@ -138,7 +138,7 @@ const SEO_SKYDD = [
   },
   {
     titel: "Omdirigeringar (301)",
-    text: "Byter en sida adress skickas besökare och Google vidare till den nya – inga döda länkar.",
+    text: "Byter en sida adress skickas besökare och Google vidare till den nya, inga döda länkar.",
   },
   {
     titel: "Behålla det som rankar",
@@ -154,7 +154,7 @@ const SEO_SKYDD = [
   },
   {
     titel: "Test innan och efter lansering",
-    text: "Formulär, mobilvy och indexering kontrolleras – och vi följer upp i Search Console efteråt.",
+    text: "Formulär, mobilvy och indexering kontrolleras, och vi följer upp i Search Console efteråt.",
   },
 ] as const;
 
@@ -186,7 +186,7 @@ const VAGAR: readonly {
       "Ny design i samma plattform",
       "Adresser och omdirigeringar planeras",
     ],
-    pris: "Offert – fast pris efter genomgången",
+    pris: "Offert, fast pris efter genomgången",
   },
   {
     titel: "Ny hemsida",
@@ -296,7 +296,7 @@ function ForeEfter() {
         </div>
       </div>
       <figcaption className="mt-4 text-sm text-muted-foreground">
-        Illustration av en typisk modernisering – inte en kunds hemsida.
+        Illustration av en typisk modernisering, inte en kunds hemsida.
       </figcaption>
     </figure>
   );
@@ -314,7 +314,7 @@ function ModerniseraHemsida() {
             markera="utan att börja om"
           />
         }
-        intro={`Har ni en hemsida som känns gammal, är svår att använda på mobilen eller inte ger några förfrågningar? ${FORETAG.kortnamn} uppdaterar design, hastighet, innehåll och funktioner i den sajt ni redan har – och säger till om det är smartare att bygga nytt.`}
+        intro={`Har ni en hemsida som känns gammal, är svår att använda på mobilen eller inte ger några förfrågningar? ${FORETAG.kortnamn} uppdaterar design, hastighet, innehåll och funktioner i den sajt ni redan har, och säger till om det är smartare att bygga nytt.`}
       >
         <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")}>
           Få er hemsida genomgången
@@ -354,7 +354,7 @@ function ModerniseraHemsida() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               En modernisering handlar sällan om att allt ska se annorlunda ut. Det handlar om att
-              besökaren snabbt ska förstå vad ni gör, lita på er och hitta hur man hör av sig – på
+              besökaren snabbt ska förstå vad ni gör, lita på er och hitta hur man hör av sig, på
               den skärm hen råkar använda.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -473,7 +473,7 @@ function ModerniseraHemsida() {
           </Reveal>
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
-              En modernisering kan förbättra synligheten – men den kan också försämra den. Byter
+              En modernisering kan förbättra synligheten, men den kan också försämra den. Byter
               sidor adress, försvinner texter eller går länkar sönder kan Google tappa sidor som gav
               besök. Det vanligaste misstaget är att lansera den nya designen och upptäcka problemet
               först när förfrågningarna minskar.
@@ -594,7 +594,7 @@ function ModerniseraHemsida() {
                 {kr(PRIS.modernisering)}
               </p>
               <p className="mt-3 text-sm text-white/70">
-                {MOMS_TEXT} Alltid offert med fast pris – aldrig timdebitering.
+                {MOMS_TEXT} Alltid offert med fast pris, aldrig timdebitering.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
@@ -663,7 +663,7 @@ function ModerniseraHemsida() {
               <Link to={tjanstSokvag("geo")} className={LANK}>
                 synlighet i AI-assistenter
               </Link>{" "}
-              och marknadsföring – men det är ett eget val, inget krav.
+              och marknadsföring, men det är ett eget val, inget krav.
             </p>
           </Reveal>
           <Reveal delay={80}>
@@ -705,7 +705,7 @@ function ModerniseraHemsida() {
               Redo att ge er hemsida <Mark>ett lyft</Mark>?
             </>
           }
-          text="Skicka adressen till er hemsida och boka en gratis genomgång. Vi berättar vad som bör förbättras, vad det kostar – och om det är smartare att bygga nytt."
+          text="Skicka adressen till er hemsida och boka en gratis genomgång. Vi berättar vad som bör förbättras, vad det kostar, och om det är smartare att bygga nytt."
         />
       </div>
     </>

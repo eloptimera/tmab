@@ -86,7 +86,7 @@ const VARFOR: readonly Kort[] = [
   },
   {
     titel: "Lätt att höra av sig",
-    text: "Telefon, bokning och offertformulär ett klick bort – på mobilen.",
+    text: "Telefon, bokning och offertformulär ett klick bort, på mobilen.",
     ikon: Phone,
   },
   {
@@ -120,7 +120,7 @@ const FAKTORER: readonly (Kort & { kan: string })[] = [
 const TJANSTER: readonly Kort[] = [
   {
     titel: "Google-företagsprofil",
-    text: "Vi går igenom kategori, tjänster, kontaktuppgifter, öppettider, beskrivning och bilder – så att profilen är korrekt och fullständig.",
+    text: "Vi går igenom kategori, tjänster, kontaktuppgifter, öppettider, beskrivning och bilder, så att profilen är korrekt och fullständig.",
     ikon: MapPinned,
   },
   {
@@ -130,7 +130,7 @@ const TJANSTER: readonly Kort[] = [
   },
   {
     titel: "Lokala landningssidor",
-    text: "Sidor för de tjänster och orter ni faktiskt arbetar med – med unikt innehåll, inte samma text med nytt ortsnamn.",
+    text: "Sidor för de tjänster och orter ni faktiskt arbetar med, med unikt innehåll, inte samma text med nytt ortsnamn.",
     ikon: FileText,
   },
   {
@@ -246,7 +246,7 @@ const VARFOR_TAB: readonly Kort[] = [
   },
   {
     titel: "Profil och hemsida ihop",
-    text: "Vi optimerar båda – och kan göra ändringarna på sajten själva.",
+    text: "Vi optimerar båda, och kan göra ändringarna på sajten själva.",
     ikon: Handshake,
   },
   {
@@ -284,8 +284,8 @@ function LokalSeo() {
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">
               När någon söker efter en tjänst i ert område vill ni vara ett av alternativen de
               hittar. Med lokal SEO förbättrar vi era chanser i Google Maps och de lokala
-              sökresultaten – med lokala sökord, korrekt företagsinformation och en hemsida som
-              visar var ni arbetar.
+              sökresultaten, med lokala sökord, korrekt företagsinformation och en hemsida som visar
+              var ni arbetar.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")} />
@@ -471,7 +471,7 @@ function LokalSeo() {
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-ink/80">
               Hemsidan ska tydligt säga vad ni gör och var. Arbetar ni på flera orter kan en sida
-              per ort vara rätt – men bara när varje sida har något eget att säga: era jobb där, hur
+              per ort vara rätt, men bara när varje sida har något eget att säga: era jobb där, hur
               ni når kunderna, priser eller annat som gäller just den orten.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -504,7 +504,7 @@ function LokalSeo() {
                 ))}
               </ul>
               <p className="mt-4 text-xs text-muted-foreground">
-                Exempel på sökningar – inte våra orter eller kunder.
+                Exempel på sökningar, inte våra orter eller kunder.
               </p>
             </div>
           </Reveal>
@@ -662,11 +662,11 @@ function LokalSeo() {
             <p className="text-lg leading-relaxed text-ink/80">
               Omdömen är ofta det kunden tittar på först, och för företag med en Google-profil är de
               en del av den lokala synligheten. Vi hjälper er att få in en rutin: fråga alla kunder,
-              gör det lätt att svara och svara själva på det som kommer in – även det kritiska.
+              gör det lätt att svara och svara själva på det som kommer in, även det kritiska.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Fråga alla kunder – inte bara de ni vet är nöjda",
+                "Fråga alla kunder, inte bara de ni vet är nöjda",
                 "Ge inga rabatter eller gåvor i utbyte mot omdömen",
                 "Köp aldrig recensioner och skriv inga själva",
               ].map((t) => (
@@ -691,7 +691,7 @@ function LokalSeo() {
           </Reveal>
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
-              Ni ska förstå vilka lokala sökningar som spelar roll och vad som behöver göras – utan
+              Ni ska förstå vilka lokala sökningar som spelar roll och vad som behöver göras, utan
               att bli experter själva. Vill ni börja själva finns en checklista i guiden{" "}
               <Link to="/guider/$slug" params={{ slug: "seo-for-smaforetag" }} className={LANK}>
                 SEO för småföretag

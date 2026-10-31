@@ -75,7 +75,7 @@ const VARFOR_SEO: readonly Kort[] = [
   },
   {
     titel: "Mer relevant trafik",
-    text: "Besökare som redan har ett behov – inte bara fler besökare.",
+    text: "Besökare som redan har ett behov, inte bara fler besökare.",
     ikon: MousePointerClick,
   },
   {
@@ -103,7 +103,7 @@ const TJANSTER_SEO: readonly Kort[] = [
   },
   {
     titel: "On-page SEO",
-    text: "Sidtitlar, metabeskrivningar, rubriker, URL:er och sidinnehåll – så att varje viktig sida blir tydlig för både besökare och sökmotorer.",
+    text: "Sidtitlar, metabeskrivningar, rubriker, URL:er och sidinnehåll, så att varje viktig sida blir tydlig för både besökare och sökmotorer.",
     ikon: FileText,
   },
   {
@@ -159,7 +159,7 @@ const VARFOR_TAB: readonly Kort[] = [
   },
   {
     titel: "Teknik, innehåll och hemsida",
-    text: "Vi bygger och förbättrar hemsidor själva, så åtgärderna blir gjorda – inte bara föreslagna.",
+    text: "Vi bygger och förbättrar hemsidor själva, så åtgärderna blir gjorda, inte bara föreslagna.",
     ikon: Settings2,
   },
   {
@@ -203,7 +203,7 @@ function SeoByra() {
             markera="synas på Google"
           />
         }
-        intro={`Vill ni att fler kunder hittar er när de söker på Google? ${FORETAG.kortnamn} är en SEO-byrå som kombinerar teknisk SEO, sökordsanalys och innehåll för att göra er hemsida synlig för människor som aktivt letar efter det ni erbjuder – oavsett om ni är ett småföretag eller en växande verksamhet.`}
+        intro={`Vill ni att fler kunder hittar er när de söker på Google? ${FORETAG.kortnamn} är en SEO-byrå som kombinerar teknisk SEO, sökordsanalys och innehåll för att göra er hemsida synlig för människor som aktivt letar efter det ni erbjuder, oavsett om ni är ett småföretag eller en växande verksamhet.`}
       >
         <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")} />
         <a href="#process" className="btn-base btn-outline">
@@ -257,7 +257,7 @@ function SeoByra() {
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Letar ni efter en SEO-konsult för rådgivning snarare än en byrå? Hos oss ingår
               rådgivningen i arbetet: den första SEO-konsultationen är gratis, och sedan har ni en
-              kontaktperson som förklarar varför vi prioriterar som vi gör – och som genomför
+              kontaktperson som förklarar varför vi prioriterar som vi gör, och som genomför
               ändringarna åt er.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
@@ -325,7 +325,7 @@ function SeoByra() {
           </Reveal>
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
-              Ni behöver inte vara ett stort företag för att ha nytta av SEO – och inte heller en
+              Ni behöver inte vara ett stort företag för att ha nytta av SEO, och inte heller en
               egen SEO-specialist. För många mindre verksamheter är Google platsen där kunder letar
               efter lokala tjänster, jämför alternativ och bestämmer sig.
             </p>
@@ -500,11 +500,11 @@ function SeoByra() {
               efter en SEO-byrå eller en SEO-konsult.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Vi arbetar med hela kedjan: SEO, synlighet i AI och – som{" "}
+              Vi arbetar med hela kedjan: SEO, synlighet i AI och, som{" "}
               <Link to={tjanstSokvag("hemsida")} className={LANK}>
                 webbyrå
-              </Link>{" "}
-              – själva hemsidan. Behöver sajten bara förbättras kan vi{" "}
+              </Link>
+              , själva hemsidan. Behöver sajten bara förbättras kan vi{" "}
               <Link to={tjanstSokvag("hemsideoptimering")} className={LANK}>
                 modernisera er hemsida
               </Link>

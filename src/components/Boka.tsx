@@ -45,7 +45,7 @@ export function BokaRubrik() {
 }
 
 export const BOKA_PANEL_TEXT =
-  "20–25 minuter där vi går igenom er digitala närvaro. Ni får ett skräddarsytt förslag efteråt – helt utan kostnad.";
+  "20–25 minuter där vi går igenom er digitala närvaro. Ni får ett skräddarsytt förslag efteråt, helt utan kostnad.";
 
 /** Bokningsknappen och prislänken i avslutningsrutan och fyrscenen. */
 export function BokaKnappar({

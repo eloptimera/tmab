@@ -85,7 +85,7 @@ const BYGGEN: readonly {
     namn: "Landningssida",
     pris: kr(PRIS.landningssida),
     passar:
-      "En sida som säljer en sak – till exempel en hantverkare som vill ha offertförfrågningar.",
+      "En sida som säljer en sak, till exempel en hantverkare som vill ha offertförfrågningar.",
     ingar: [
       "En sida med design efter ert varumärke",
       "Texter utifrån ert underlag",
@@ -98,7 +98,7 @@ const BYGGEN: readonly {
     id: "foretagshemsida",
     namn: "Företagshemsida",
     pris: kr(PRIS.foretagshemsida),
-    passar: "Upp till 5 sidor och fler integrationer – för företag med flera tjänster.",
+    passar: "Upp till 5 sidor och fler integrationer, för företag med flera tjänster.",
     ingar: [
       "Upp till 5 sidor",
       "Allt i landningssidan",
@@ -564,7 +564,7 @@ function HemsidaPris() {
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                `Ni betalar bygget en gång – från ${kr(PRIS.landningssida)}. Ingen startavgift.`,
+                `Ni betalar bygget en gång, från ${kr(PRIS.landningssida)}. Ingen startavgift.`,
                 "Drift är frivillig. Tar ni över sajten betalar ni ingenting till oss per månad.",
                 `Väljer ni drift: ${BINDNING_TEXT}`,
                 "Domänen ligger alltid i ert namn, och koden är er.",
@@ -676,7 +676,7 @@ function HemsidaPris() {
             <p className="mt-6 text-lg leading-relaxed text-ink/80">
               En billig hemsida kan räcka för den som behöver en enkel närvaro. Men det mest
               prisvärda är inte alltid lägsta startpris, utan det som motsvarar behoven och har
-              tydliga villkor. Kontrollera det här – oavsett vilken leverantör ni väljer.
+              tydliga villkor. Kontrollera det här, oavsett vilken leverantör ni väljer.
             </p>
           </Reveal>
           <Reveal delay={80}>
@@ -748,7 +748,7 @@ function HemsidaPris() {
               Vill ni utveckla hemsidan <Mark>ytterligare</Mark>?
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Det här ingår inte i bygget, men kan läggas till nu eller senare – var för sig.
+              Det här ingår inte i bygget, men kan läggas till nu eller senare, var för sig.
             </p>
           </Reveal>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -799,7 +799,7 @@ function HemsidaPris() {
             </h2>
             <ul className="mt-8 space-y-3">
               {[
-                "Tydliga priser och innehåll – innan ni bestämmer er",
+                "Tydliga priser och innehåll, innan ni bestämmer er",
                 "Professionell, mobilanpassad webbdesign",
                 "Lösningar efter företagets behov",
                 "Hemsida, SEO och marknadsföring på ett ställe",
@@ -824,7 +824,7 @@ function HemsidaPris() {
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Eftersom vi även jobbar med SEO, bilder och annonser kan ni fortsätta med oss efter
-              lansering – till exempel med{" "}
+              lansering, till exempel med{" "}
               <Link to={SEO_BYRA.sokvag} className={LANK}>
                 SEO
               </Link>{" "}

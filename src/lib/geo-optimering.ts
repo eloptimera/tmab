@@ -44,7 +44,7 @@ export const GEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan ni garantera att vi rekommenderas av ChatGPT?",
-    svar: "Nej, och det kan ingen. Vilka företag och källor som nämns beror på frågan, användaren, tidpunkten och tjänstens egna system – och svaren varierar.",
+    svar: "Nej, och det kan ingen. Vilka företag och källor som nämns beror på frågan, användaren, tidpunkten och tjänstens egna system, och svaren varierar.",
   },
   {
     fraga: "Behöver vi GEO om vi redan arbetar med SEO?",

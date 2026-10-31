@@ -10,9 +10,9 @@ export const SOKMOTOROPTIMERING = {
   etikett: "Kunskap · SEO",
   seoTitel: "Sökmotoroptimering (SEO) – så fungerar det",
   seoBeskrivning:
-    "Vad är sökmotoroptimering och hur fungerar SEO? Teknik, sökord, innehåll och länkar förklarat – och hur TAB hjälper företag att synas på Google.",
+    "Vad är sökmotoroptimering och hur fungerar SEO? Teknik, sökord, innehåll och länkar förklarat, och hur TAB hjälper företag att synas på Google.",
   kortText:
-    "Hur Google hittar, läser och rankar sidor – och vad teknisk SEO, on-page, off-page och sökordsanalys betyder i praktiken.",
+    "Hur Google hittar, läser och rankar sidor, och vad teknisk SEO, on-page, off-page och sökordsanalys betyder i praktiken.",
   publicerad: "2026-10-20",
   uppdaterad: "2026-10-20",
 } as const;
@@ -20,7 +20,7 @@ export const SOKMOTOROPTIMERING = {
 export const SOKMOTOROPTIMERING_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Vad är sökmotoroptimering?",
-    svar: "Arbetet med att förbättra en webbplats teknik, innehåll och struktur så att sökmotorer kan hitta och förstå den – och visa den för relevanta sökningar i de vanliga, obetalda resultaten.",
+    svar: "Arbetet med att förbättra en webbplats teknik, innehåll och struktur så att sökmotorer kan hitta och förstå den, och visa den för relevanta sökningar i de vanliga, obetalda resultaten.",
   },
   {
     fraga: "Vad betyder SEO?",
@@ -60,7 +60,7 @@ export const SOKMOTOROPTIMERING_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad är skillnaden mellan SEO och SEM?",
-    svar: "SEO är arbetet med de obetalda sökresultaten. SEM, Search Engine Marketing, betyder sökmarknadsföring och används oftast om betalda sökannonser – ibland om båda delarna tillsammans.",
+    svar: "SEO är arbetet med de obetalda sökresultaten. SEM, Search Engine Marketing, betyder sökmarknadsföring och används oftast om betalda sökannonser, ibland om båda delarna tillsammans.",
   },
   {
     fraga: "Behöver småföretag SEO?",
@@ -68,7 +68,7 @@ export const SOKMOTOROPTIMERING_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad är en sökordsanalys?",
-    svar: "En genomgång av vilka ord och frågor folk använder på Google, hur många som söker, vad de vill uppnå och hur svårt det är att synas – kopplat till det ert företag erbjuder.",
+    svar: "En genomgång av vilka ord och frågor folk använder på Google, hur många som söker, vad de vill uppnå och hur svårt det är att synas, kopplat till det ert företag erbjuder.",
   },
   {
     fraga: "Vad är en meta description?",
@@ -88,7 +88,7 @@ export const SOKMOTOROPTIMERING_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad är skillnaden mellan SEO och GEO?",
-    svar: "SEO handlar om de vanliga sökresultaten på Google. GEO handlar om att bli förstådd och nämnd av AI-tjänster som ChatGPT. Grunden är delvis densamma – tydligt innehåll, korrekta uppgifter och trovärdiga källor – men bra SEO garanterar inte att ett företag nämns i AI-svar.",
+    svar: "SEO handlar om de vanliga sökresultaten på Google. GEO handlar om att bli förstådd och nämnd av AI-tjänster som ChatGPT. Grunden är delvis densamma – tydligt innehåll, korrekta uppgifter och trovärdiga källor, men bra SEO garanterar inte att ett företag nämns i AI-svar.",
   },
   {
     fraga: "Hur kommer vi igång med SEO hos TAB?",

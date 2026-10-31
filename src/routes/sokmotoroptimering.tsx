@@ -106,7 +106,7 @@ const GOOGLE_STEG = [
   },
   {
     titel: "Indexering",
-    text: "Innehållet bearbetas och kan sparas i Googles index – en enorm katalog över webben.",
+    text: "Innehållet bearbetas och kan sparas i Googles index, en enorm katalog över webben.",
     ikon: BookOpen,
   },
   {
@@ -134,7 +134,7 @@ const AFFARSNYTTA: readonly Kort[] = [
   },
   {
     titel: "Synlighet som håller",
-    text: "Sidor som rankar fortsätter ge besök – till skillnad från en annons som stängs av.",
+    text: "Sidor som rankar fortsätter ge besök, till skillnad från en annons som stängs av.",
     ikon: TrendingUp,
   },
 ];
@@ -142,12 +142,12 @@ const AFFARSNYTTA: readonly Kort[] = [
 const SOKORDSTYPER: readonly Kort[] = [
   {
     titel: "Breda sökord",
-    text: "Korta och vanliga, som ”sökmotoroptimering”. Många söker – men konkurrensen är hård och avsikten blandad.",
+    text: "Korta och vanliga, som ”sökmotoroptimering”. Många söker, men konkurrensen är hård och avsikten blandad.",
     ikon: Search,
   },
   {
     titel: "Long-tail",
-    text: "Längre och mer specifika, som ”SEO för hantverkare”. Färre söker – men de vet vad de vill.",
+    text: "Längre och mer specifika, som ”SEO för hantverkare”. Färre söker, men de vet vad de vill.",
     ikon: Target,
   },
   {
@@ -172,7 +172,7 @@ const AVSIKT = [
 const TEKNISKT: readonly Kort[] = [
   {
     titel: "Indexering",
-    text: "Viktiga sidor ska gå att indexera – och sidor som inte ska synas ska stängas ute.",
+    text: "Viktiga sidor ska gå att indexera, och sidor som inte ska synas ska stängas ute.",
     ikon: BookOpen,
   },
   {
@@ -204,9 +204,9 @@ const TEKNISKT: readonly Kort[] = [
 
 const ON_PAGE = [
   { del: "Sidtitel", text: "Det klickbara i sökresultatet. Börja med det kunden söker på." },
-  { del: "Meta description", text: "Texten under titeln. Påverkar klicken – inte placeringen." },
+  { del: "Meta description", text: "Texten under titeln. Påverkar klicken, inte placeringen." },
   { del: "H1 och underrubriker", text: "En huvudrubrik per sida och tydliga mellanrubriker." },
-  { del: "Brödtext", text: "Svarar på frågan – med sökorden där de passar naturligt." },
+  { del: "Brödtext", text: "Svarar på frågan, med sökorden där de passar naturligt." },
   { del: "Beskrivande URL", text: "/lokal-seo säger mer än /sida?id=42." },
   { del: "Bildbeskrivningar", text: "Filnamn och alt-text som beskriver vad bilden visar." },
   { del: "Interna länkar", text: "Till relaterade sidor, med länktext som säger vart de leder." },
@@ -281,7 +281,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Sökordsstrategi",
-    text: "Vilka sökningar och sidor som ger mest för er – i prioritetsordning.",
+    text: "Vilka sökningar och sidor som ger mest för er, i prioritetsordning.",
   },
   {
     titel: "Åtgärder",
@@ -312,7 +312,7 @@ const UPPFOLJNING: readonly Kort[] = [
 ];
 
 const ADS_JAMFORELSE = [
-  ["Kostnadsmodell", "Arbetet med sajten – inga klickavgifter", "Betalning per klick till Google"],
+  ["Kostnadsmodell", "Arbetet med sajten, inga klickavgifter", "Betalning per klick till Google"],
   ["Tidsperspektiv", "Byggs upp under månader", "Synlighet direkt när kampanjen startar"],
   ["Synlighet", "De vanliga sökresultaten", "Annonsplatser märkta som sponsrade"],
   ["Löpande arbete", "Innehåll, teknik och uppföljning", "Budget, bud och annonser"],
@@ -321,7 +321,7 @@ const ADS_JAMFORELSE = [
 const VARFOR: readonly Kort[] = [
   {
     titel: "Tydlig strategi",
-    text: "Arbetet planeras utifrån vad företaget vill uppnå – inte efter en checklista.",
+    text: "Arbetet planeras utifrån vad företaget vill uppnå, inte efter en checklista.",
     ikon: Target,
   },
   {
@@ -361,7 +361,7 @@ function Sokmotoroptimering() {
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">
               Sökmotoroptimering, SEO, är arbetet med att få er hemsida att synas i Googles vanliga
-              sökresultat – när kunder letar efter det ni erbjuder. Här förklarar vi hur det
+              sökresultat, när kunder letar efter det ni erbjuder. Här förklarar vi hur det
               fungerar: hur Google läser sidor, vad teknisk SEO, innehåll och länkar betyder, och
               vad som faktiskt går att påverka.
             </p>
@@ -436,7 +436,7 @@ function Sokmotoroptimering() {
               Hur fungerar Google – från indexering till <Mark>sökresultat</Mark>?
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Förenklat sker det i tre steg. Fastnar en sida i något av dem syns den inte – och att
+              Förenklat sker det i tre steg. Fastnar en sida i något av dem syns den inte, och att
               en sida är indexerad betyder inte att den rankar högt.
             </p>
           </Reveal>
@@ -485,7 +485,7 @@ function Sokmotoroptimering() {
               eller en snickare jämför redan alternativ. Syns ni där, syns ni i rätt ögonblick.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Ni betalar inte Google per klick i de vanliga resultaten – men SEO kostar tid,
+              Ni betalar inte Google per klick i de vanliga resultaten, men SEO kostar tid,
               utveckling och uppföljning. Därför passar det bäst som en långsiktig del av
               marknadsföringen.
             </p>
@@ -650,7 +650,7 @@ function Sokmotoroptimering() {
               Landningssidor som matchar <Mark>kundernas sökningar</Mark>
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-ink/80">
-              Erbjuder ni flera tjänster behöver varje tjänst en egen sida – med fördelar, pris,
+              Erbjuder ni flera tjänster behöver varje tjänst en egen sida, med fördelar, pris,
               arbetssätt och vanliga frågor. Men varje sida ska ha ett eget syfte. Många nästan
               likadana sidor med ett nytt sökord eller ortsnamn hjälper varken besökare eller
               Google.
@@ -708,7 +708,7 @@ function Sokmotoroptimering() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               Den som söker vill ha ett tydligt svar eller förstå hur något fungerar.
-              Välstrukturerade tjänstesidor och guider hjälper dem att fatta beslut – och ger Google
+              Välstrukturerade tjänstesidor och guider hjälper dem att fatta beslut, och ger Google
               något att visa. Det handlar inte om flest ord, utan om användbar information med
               tydlig struktur.
             </p>
@@ -862,12 +862,12 @@ function Sokmotoroptimering() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               På en mindre sajt med låg konkurrens kan förbättringar märkas inom några veckor. På
-              konkurrensutsatta sökord tar det oftast flera månader eller längre – beroende på var
+              konkurrensutsatta sökord tar det oftast flera månader eller längre, beroende på var
               sajten står i dag, konkurrensen och vad som görs.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Därför ska SEO bedömas över tid och på flera mått – inte på placeringen för ett
-              enskilt sökord.
+              Därför ska SEO bedömas över tid och på flera mått, inte på placeringen för ett enskilt
+              sökord.
             </p>
           </Reveal>
         </div>
@@ -892,7 +892,7 @@ function Sokmotoroptimering() {
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-ink/80">
               Båda syns på Google, men fungerar olika. Vilken som passar beror på mål,
-              tidsperspektiv, konkurrens och budget – och ofta kompletterar de varandra.
+              tidsperspektiv, konkurrens och budget, och ofta kompletterar de varandra.
             </p>
             <p className="mt-5 leading-relaxed text-ink/80">
               Google Ads sköter vi inte. Vill ni annonsera betalt hjälper vi till med{" "}
@@ -950,7 +950,7 @@ function Sokmotoroptimering() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               SEO ska ge rätt besökare, inte bara fler. Vi kombinerar teknisk SEO, sökordsanalys och
-              innehåll med kunskap om webbdesign – så att vi ser hur sajtens struktur och
+              innehåll med kunskap om webbdesign, så att vi ser hur sajtens struktur och
               användarupplevelse påverkar helheten. Och ni ska alltid förstå vad vi gör och varför.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">

@@ -46,7 +46,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Ni får ett förslag",
-    text: "Vi går igenom er digitala närvaro och ger ett skräddarsytt förslag – helt utan kostnad.",
+    text: "Vi går igenom er digitala närvaro och ger ett skräddarsytt förslag, helt utan kostnad.",
   },
 ];
 
@@ -63,7 +63,7 @@ function Kontakt() {
             Boka en <Mark>gratis genomgång</Mark>
           </>
         }
-        intro="20–25 minuter där vi går igenom er hemsida, er synlighet på Google och i sociala medier. Ni får ett skräddarsytt förslag efteråt – helt utan kostnad."
+        intro="20–25 minuter där vi går igenom er hemsida, er synlighet på Google och i sociala medier. Ni får ett skräddarsytt förslag efteråt, helt utan kostnad."
       />
 
       <section className="container-page grid gap-14 py-14 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">

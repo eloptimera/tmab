@@ -81,7 +81,7 @@ const TJANSTER: readonly {
 }[] = [
   {
     titel: "Ny hemsida",
-    text: "Webbdesign och webbutveckling av en ny företagshemsida – mobilanpassad, snabb och med en SEO-grund.",
+    text: "Webbdesign och webbutveckling av en ny företagshemsida, mobilanpassad, snabb och med en SEO-grund.",
     ikon: Laptop,
     till: HEMSIDA_FORETAG.sokvag,
     lank: "Hemsida till företag",
@@ -95,7 +95,7 @@ const TJANSTER: readonly {
   },
   {
     titel: "SEO och lokal synlighet",
-    text: "Synas när kunder i Göteborg söker efter det ni gör – på Google och i Google Maps.",
+    text: "Synas när kunder i Göteborg söker efter det ni gör, på Google och i Google Maps.",
     ikon: Search,
     till: LOKAL_SEO.sokvag,
     lank: "Lokal SEO",
@@ -116,7 +116,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Förslag och pris",
-    text: "Ni får upplägg, tidplan och fast pris skriftligt – innan något arbete påbörjas.",
+    text: "Ni får upplägg, tidplan och fast pris skriftligt, innan något arbete påbörjas.",
   },
   {
     titel: "Design och bygge",
@@ -142,7 +142,7 @@ function WebbyraGoteborg() {
             markera="webbdesign för ert företag"
           />
         }
-        intro={`${FORETAG.kortnamn} är en webbyrå med säte i Göteborg. Vi bygger moderna, mobilanpassade hemsidor och förbättrar befintliga sajter åt företag i Göteborg och resten av Västra Götaland – med fast pris och möten på video eller telefon, eller hos er om ni hellre ses på plats.`}
+        intro={`${FORETAG.kortnamn} är en webbyrå med säte i Göteborg. Vi bygger moderna, mobilanpassade hemsidor och förbättrar befintliga sajter åt företag i Göteborg och resten av Västra Götaland, med fast pris och möten på video eller telefon, eller hos er om ni hellre ses på plats.`}
       >
         <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")} />
         <Link to={HEMSIDA_PRIS.sokvag} className="btn-base btn-outline">
@@ -181,7 +181,7 @@ function WebbyraGoteborg() {
             <p className="text-lg leading-relaxed text-ink/80">
               En hantverkare i Mölndal behöver tjänstesidor och ett offertformulär. En konsult i
               centrala Göteborg vill visa kompetens och göra det enkelt att boka ett möte. Vi utgår
-              från vad era kunder ska göra på sajten – och bygger det, inte mer.
+              från vad era kunder ska göra på sajten, och bygger det, inte mer.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Här är vad vi hjälper företag i Göteborg med. Varje tjänst har en egen sida med
@@ -268,7 +268,7 @@ function WebbyraGoteborg() {
           <Reveal delay={80}>
             <p className="text-lg leading-relaxed text-ink/80">
               Vi arbetar med företag i hela Göteborg och i kranskommuner som{" "}
-              {KRANSKOMMUNER.slice(0, -1).join(", ")} och {KRANSKOMMUNER.at(-1)} – och i resten av
+              {KRANSKOMMUNER.slice(0, -1).join(", ")} och {KRANSKOMMUNER.at(-1)}, och i resten av
               Västra Götaland. I Göteborg och kranskommunerna kan vi ses hos er; längre bort tar vi
               mötena digitalt, och det fungerar likadant för ett företag i Borås, Trollhättan eller
               resten av Sverige.
@@ -374,7 +374,7 @@ function WebbyraGoteborg() {
               Behöver ert företag i Göteborg en <Mark>ny hemsida</Mark>?
             </>
           }
-          text="Boka en gratis genomgång – på video, telefon eller hos er i Göteborgsområdet. Vi hör av oss inom en arbetsdag, går igenom vad ni behöver och skickar ett förslag med fast pris."
+          text="Boka en gratis genomgång, på video, telefon eller hos er i Göteborgsområdet. Vi hör av oss inom en arbetsdag, går igenom vad ni behöver och skickar ett förslag med fast pris."
         />
       </div>
     </>

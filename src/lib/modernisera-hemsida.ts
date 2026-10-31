@@ -84,7 +84,7 @@ export const MODERNISERA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad är skillnaden mellan redesign och en ny hemsida?",
-    svar: "En redesign förbättrar den sajt ni har, i samma plattform. En ny hemsida byggs från grunden – rätt val när den gamla tekniken inte går att bygga vidare på.",
+    svar: "En redesign förbättrar den sajt ni har, i samma plattform. En ny hemsida byggs från grunden, rätt val när den gamla tekniken inte går att bygga vidare på.",
   },
   {
     fraga: "Vem äger hemsidan efteråt?",

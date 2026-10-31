@@ -90,7 +90,7 @@ function GuideSida() {
           <aside className="inramad mt-14 max-w-3xl p-8 text-elfenben sm:p-10">
             <p className="caps text-sun">Vill du slippa göra det själv?</p>
             <p className="mt-4 text-2xl leading-snug sm:text-3xl">
-              Vi sköter {tjanst.iText} åt dig – från första analysen till uppföljningen varje månad.
+              Vi sköter {tjanst.iText} åt dig, från första analysen till uppföljningen varje månad.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <BokaKnapp variant="white" tjanst={tjanst.slug} />

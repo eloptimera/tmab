@@ -60,7 +60,7 @@ export const GUIDER: readonly Guide[] = [
           rader: [
             "Vilka sökningar du visas för, och hur många som klickar.",
             "Genomsnittlig placering per sökning och per sida.",
-            "Vilka sidor Google har tagit med i sitt index – och vilka som saknas och varför.",
+            "Vilka sidor Google har tagit med i sitt index, och vilka som saknas och varför.",
             "Fel som gör att sidor inte kan visas i sökresultaten.",
           ],
         },
@@ -73,7 +73,7 @@ export const GUIDER: readonly Guide[] = [
         lista: {
           numrerad: true,
           rader: [
-            "Gå till search.google.com/search-console och logga in med företagets Google-konto – inte ett privat.",
+            "Gå till search.google.com/search-console och logga in med företagets Google-konto, inte ett privat.",
             "Välj egendomstyp: Domän om du kan ändra DNS hos din domänleverantör, annars URL-prefix.",
             "Verifiera att sajten är din. För Domän lägger du till en TXT-post i DNS. För URL-prefix är en HTML-tagg i hemsidans kod enklast.",
             "Vänta tills Google bekräftat. En DNS-ändring kan ta en stund att slå igenom.",
@@ -157,7 +157,7 @@ export const GUIDER: readonly Guide[] = [
     seoBeskrivning:
       "Hur får man sitt företag att synas i ChatGPT? Så väljer AI-tjänster sina källor, sex saker du kan göra själv och hur du ser om ditt företag nämns.",
     ingress:
-      "Allt fler frågar ChatGPT, Gemini eller Copilot i stället för att googla. Att optimera företaget för de svaren kallas GEO, Generative Engine Optimization – eller ChatGPT-SEO, AI-sökoptimering. Grunden är densamma som för vanlig SEO, men AI-tjänsterna lägger mer vikt vid tydliga svar, fakta som går att kontrollera och vad andra skriver om dig.",
+      "Allt fler frågar ChatGPT, Gemini eller Copilot i stället för att googla. Att optimera företaget för de svaren kallas GEO, Generative Engine Optimization, eller ChatGPT-SEO, AI-sökoptimering. Grunden är densamma som för vanlig SEO, men AI-tjänsterna lägger mer vikt vid tydliga svar, fakta som går att kontrollera och vad andra skriver om dig.",
     publicerad: "2026-10-16",
     uppdaterad: "2026-10-20",
     tjanst: "geo",
@@ -207,7 +207,7 @@ export const GUIDER: readonly Guide[] = [
           rader: [
             {
               titel: "Skriv det viktigaste i klartext",
-              text: "Vad du gör, för vem och vad det kostar – på en egen sida, inte bara i en bild eller pdf.",
+              text: "Vad du gör, för vem och vad det kostar, på en egen sida, inte bara i en bild eller pdf.",
             },
             {
               titel: "Svara på kundernas frågor",
@@ -251,7 +251,7 @@ export const GUIDER: readonly Guide[] = [
       {
         rubrik: "Vad är llms.txt?",
         stycken: [
-          "llms.txt är en textfil på hemsidan som sammanfattar vad företaget gör, skriven för AI-tjänster. Det är ett förslag till standard som få tjänster använder, och Google skriver uttryckligen att det inte behövs några särskilda AI-filer för att synas i deras AI-funktioner. Den är snabb att lägga till och skadar inte – men prioritera punkterna ovan först. Vår egen ligger på adressen /llms.txt.",
+          "llms.txt är en textfil på hemsidan som sammanfattar vad företaget gör, skriven för AI-tjänster. Det är ett förslag till standard som få tjänster använder, och Google skriver uttryckligen att det inte behövs några särskilda AI-filer för att synas i deras AI-funktioner. Den är snabb att lägga till och skadar inte, men prioritera punkterna ovan först. Vår egen ligger på adressen /llms.txt.",
         ],
       },
     ],
@@ -342,7 +342,7 @@ export const GUIDER: readonly Guide[] = [
       {
         rubrik: "När är det dags att ta hjälp?",
         stycken: [
-          "När grunden är på plats handlar SEO om löpande arbete: nytt innehåll, tekniska förbättringar och uppföljning varje månad. Det är där det blir tidskrävande – och där vi kan ta över.",
+          "När grunden är på plats handlar SEO om löpande arbete: nytt innehåll, tekniska förbättringar och uppföljning varje månad. Det är där det blir tidskrävande, och där vi kan ta över.",
         ],
       },
     ],
@@ -372,7 +372,7 @@ export const GUIDER: readonly Guide[] = [
     seoBeskrivning:
       "Så skapar du Facebook-annonser steg för steg: konto, kampanjmål, målgrupp, annonser och budget för Facebook och Instagram. Plus vad det kostar och vanliga misstag.",
     ingress:
-      "Facebook-annonser – Facebook Ads, eller Facebook-reklam som många säger – skapas i Metas Ads Manager, och där gör du även annonser på Instagram. Du behöver ett annonskonto i företagets namn, ett tydligt mål för kampanjen, några annonsvarianter och en budget du låter gå i flera veckor. Så här gör du – och det här ska du undvika.",
+      "Facebook-annonser – Facebook Ads, eller Facebook-reklam som många säger – skapas i Metas Ads Manager, och där gör du även annonser på Instagram. Du behöver ett annonskonto i företagets namn, ett tydligt mål för kampanjen, några annonsvarianter och en budget du låter gå i flera veckor. Så här gör du, och det här ska du undvika.",
     publicerad: "2026-10-20",
     uppdaterad: "2026-10-20",
     tjanst: "meta-annonser",
@@ -382,7 +382,7 @@ export const GUIDER: readonly Guide[] = [
         lista: {
           numrerad: true,
           rader: [
-            "Skapa ett företagskonto i Meta Business Suite, inloggad med ditt privata Facebook-konto – men på företagets uppgifter.",
+            "Skapa ett företagskonto i Meta Business Suite, inloggad med ditt privata Facebook-konto, men på företagets uppgifter.",
             "Koppla företagets Facebook-sida och Instagram-konto till företagskontot.",
             "Skapa ett annonskonto och lägg in företagets betalkort. Välj rätt valuta och tidszon direkt – de är krångliga att ändra i efterhand.",
             "Lägg till en kollega som administratör, så att ni inte låses ute om något händer med ditt konto.",
@@ -401,7 +401,7 @@ export const GUIDER: readonly Guide[] = [
       {
         rubrik: "Steg 3: Välj ett mål som motsvarar det du vill ha",
         stycken: [
-          "Meta visar annonsen för dem som mest sannolikt gör det du väljer som mål. Väljer du trafik får du klick – inte nödvändigtvis kunder.",
+          "Meta visar annonsen för dem som mest sannolikt gör det du väljer som mål. Väljer du trafik får du klick, inte nödvändigtvis kunder.",
         ],
         tabell: {
           kolumner: ["Du vill ha", "Välj målet", "Passar för"],
@@ -445,7 +445,7 @@ export const GUIDER: readonly Guide[] = [
             },
             {
               titel: "Befintliga kunder",
-              text: "En kundlista eller besökare på hemsidan kan användas för att nå liknande personer – men bara om du har rätt att använda uppgifterna.",
+              text: "En kundlista eller besökare på hemsidan kan användas för att nå liknande personer, men bara om du har rätt att använda uppgifterna.",
             },
           ],
         },
@@ -458,7 +458,7 @@ export const GUIDER: readonly Guide[] = [
         lista: {
           rader: [
             "Använd stående format (4:5) för flödet och helskärm (9:16) för Stories och Reels.",
-            "Visa produkten, tjänsten eller resultatet – inte logotypen.",
+            "Visa produkten, tjänsten eller resultatet, inte logotypen.",
             "Skriv det viktigaste i första meningen. Efter några rader döljs resten av texten.",
             "Välj en knapp som säger vad som händer: Boka nu, Begär offert, Handla.",
             "Testa olika bilder eller vinklar, och låt resultaten avgöra vilken som får fortsätta.",
@@ -469,7 +469,7 @@ export const GUIDER: readonly Guide[] = [
         rubrik: "Steg 7: Sätt en budget och ha tålamod",
         stycken: [
           "Välj en dagsbudget du klarar att låta gå i minst fyra veckor. De första dagarna testar Meta vilka som reagerar, och resultaten svänger mycket. Ändrar du budget, målgrupp eller annonser hela tiden börjar testet om.",
-          "Bestäm i förväg vad en förfrågan eller ett köp får kosta för att det ska löna sig. Då vet du när det fungerar – och när du ska stänga av.",
+          "Bestäm i förväg vad en förfrågan eller ett köp får kosta för att det ska löna sig. Då vet du när det fungerar, och när du ska stänga av.",
         ],
       },
       {
@@ -514,7 +514,7 @@ export const GUIDER: readonly Guide[] = [
       },
       {
         fraga: "Vad är sponsrade inlägg på Instagram?",
-        svar: "Det är annonser som visas i flödet, i Reels eller mellan Stories för personer som inte följer dig, märkta som sponsrade. De skapas i Ads Manager precis som Facebook-annonser – inte med knappen för att marknadsföra ett inlägg om du vill ha full kontroll över mål och målgrupp.",
+        svar: "Det är annonser som visas i flödet, i Reels eller mellan Stories för personer som inte följer dig, märkta som sponsrade. De skapas i Ads Manager precis som Facebook-annonser, inte med knappen för att marknadsföra ett inlägg om du vill ha full kontroll över mål och målgrupp.",
       },
       {
         fraga: "Ska jag annonsera på Facebook eller Instagram?",
@@ -522,7 +522,7 @@ export const GUIDER: readonly Guide[] = [
       },
       {
         fraga: "Behöver jag Meta-pixeln?",
-        svar: "Inte för att komma igång. Med formulärannonser och spårningslänkar kan du mäta utan pixel. Pixeln behövs för att mäta köp och förfrågningar på hemsidan och för att visa annonser för tidigare besökare – och då krävs samtycke.",
+        svar: "Inte för att komma igång. Med formulärannonser och spårningslänkar kan du mäta utan pixel. Pixeln behövs för att mäta köp och förfrågningar på hemsidan och för att visa annonser för tidigare besökare, och då krävs samtycke.",
       },
       {
         fraga: "När är det dags att ta hjälp?",

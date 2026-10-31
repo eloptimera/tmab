@@ -82,6 +82,6 @@ export const SEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Hur kommer vi igång med SEO hos TAB?",
-    svar: "Boka en gratis genomgång på 20–25 minuter. Vi tittar på er hemsida och hur ni syns i dag, och ni får ett skräddarsytt förslag efteråt – utan kostnad.",
+    svar: "Boka en gratis genomgång på 20–25 minuter. Vi tittar på er hemsida och hur ni syns i dag, och ni får ett skräddarsytt förslag efteråt, utan kostnad.",
   },
 ];

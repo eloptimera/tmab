@@ -13,7 +13,7 @@ export const META_ADS_BYRA = {
   seoTitel: "Meta Ads-byrå – annonser på Facebook & Instagram",
   seoBeskrivning: `Behöver ni hjälp med Meta Ads? TAB sköter strategi, annonser och optimering på Facebook och Instagram. Från ${kr(PRIS.annonser1)}/mån. Gratis genomgång.`,
   kortText:
-    "Hur Meta Ads fungerar, vad vi gör, vad det kostar – och skillnaden mellan vårt arvode och er annonsbudget.",
+    "Hur Meta Ads fungerar, vad vi gör, vad det kostar, och skillnaden mellan vårt arvode och er annonsbudget.",
   publicerad: "2026-10-20",
   uppdaterad: "2026-10-20",
 } as const;
@@ -61,7 +61,7 @@ export const META_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Tar ni fram annonsbilder och videor?",
-    svar: `Varje ny kampanj får upp till 3 varianter av era befintliga bilder eller videor – beskurna, med text och i rätt format. Nytt material köper ni till i Studio, från ${kr(PRIS.studioS)} per månad. Resultatet beror mycket på materialet, så det tar vi upp redan i genomgången.`,
+    svar: `Varje ny kampanj får upp till 3 varianter av era befintliga bilder eller videor, beskurna, med text och i rätt format. Nytt material köper ni till i Studio, från ${kr(PRIS.studioS)} per månad. Resultatet beror mycket på materialet, så det tar vi upp redan i genomgången.`,
   },
   {
     fraga: "Ingår cookiebanner?",
