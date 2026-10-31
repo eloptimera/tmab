@@ -68,7 +68,7 @@ function Valrad() {
         className="fixed inset-x-3 bottom-3 z-40 sm:inset-x-6 sm:bottom-5"
       >
         <div className="mx-auto flex max-w-4xl flex-wrap items-center gap-x-5 gap-y-3 rounded-[1.5rem] bg-ink px-5 py-4 text-elfenben shadow-[0_12px_40px_rgba(0,0,0,0.35)] sm:px-7">
-          <div className="min-w-0 flex-1" aria-live="polite">
+          <div className="min-w-0 flex-[1_1_16rem]" aria-live="polite">
             <p className="text-sm font-bold">
               {r.valda.length} valda:{" "}
               <span className="font-normal text-white/80">
@@ -77,7 +77,7 @@ function Valrad() {
             </p>
             <p className="mt-0.5 font-display text-xl">{delar.join(" · ")}</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end">
             <button
               type="button"
               onClick={rensa}
