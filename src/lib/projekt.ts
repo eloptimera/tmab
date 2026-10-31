@@ -42,7 +42,7 @@ export const PROJEKT: readonly Projekt[] = [
     // TODO(TAB): stämmer listan? Lägg till siffror (besök, kunder) när ni har dem.
     gjorde: [
       "Hemsida och kundplattform – design, texter och utveckling",
-      "Produktbilder framtagna med AI",
+      "Fullt automatiserad backend",
       "Innehåll för LinkedIn riktat till HR-chefer",
     ],
   },
@@ -56,8 +56,7 @@ export const PROJEKT: readonly Projekt[] = [
     // TODO(TAB): stämmer listan? Lägg till siffror (följare, försäljning) när ni har dem.
     gjorde: [
       "Visuell identitet och lookbook framtagen med AI",
-      "Korta videor i stående format för Instagram och TikTok",
-      "Innehållsserier för TikTok",
+      "Fullt fungerande Storefront API med Shopify",
     ],
     skarmbild: {
       dator: "/projekt/scudaro-hemsida.webp",

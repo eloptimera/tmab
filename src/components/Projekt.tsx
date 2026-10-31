@@ -58,6 +58,7 @@ export function ProjektLista({ className = "" }: { className?: string }) {
                         </li>
                       ))}
                     </ul>
+                    <p className="mt-2 text-sm text-ink/80 italic">Och mycket mer …</p>
                   </>
                 )}
                 <span className="mt-auto flex items-center justify-between gap-3 pt-6 font-bold text-ink">
